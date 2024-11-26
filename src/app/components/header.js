@@ -1,10 +1,12 @@
 import Image from "next/image";
+import ContactLink from "./contact-links";
 
 const Header = () => {
     return (
         <div>
-            <div className="container mx-auto py-4">
+            <div className="container mx-auto py-4 flex flex-col lg:flex-row justify-between items-center gap-y-6 py-8">
                 <Image width={60} height={60} src={"/logo.svg"} alt={""} />
+                <ContactLink/>
             </div>
         </div>
     );
