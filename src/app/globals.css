@@ -3,18 +3,18 @@
 @import 'tailwindcss';
 
 :root {
-  --background: #f0f0f0;
-  --foreground: #111111;
-  --primary: #f0f0f0;
-  --foreground: #111111;
+  --background: var(--color-slate-100);
+  --foreground: var(--color-slate-100);
+  --primary: var(--color-slate-100);
+  --foreground: var(--color-slate-100);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #111111;
-    --foreground: #f0f0f0;
-    --primary: #111111;
-    --secondary: #f0f0f0;
+    --background: var(--color-slate-950);
+    --foreground: var(--color-slate-100);
+    --primary: var(--color-slate-100);
+    --foreground: var(--color-slate-100);
   }
 }
 
@@ -37,8 +37,6 @@
 */
 @layer base {
 
-  
-
   *,
   ::after,
   ::before,
@@ -46,6 +44,7 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
     font-family: "Poppins", sans-serif;
+    
   }
 
   body {
@@ -59,8 +58,70 @@
     font-family: "Monoton", sans-serif;
   }
 
-  h1{
-    
+
+  .box1{
+    width: 185px;
+    height: 185px;
+    background-color:#fbad04;
+    filter: blur(8px);
+    display: block;
+    border-radius: 50%;
+    transform-origin: 75px 75px;
+  animation: ball-animation 5s linear infinite;
+  animation-duration: 2.5s;
+  mix-blend-mode: plus-lighter;
   }
 
-}
+  .box2{
+    width: 185px;
+    height: 185px;
+    background-color: #03a1d9;
+    filter: blur(8px);
+    display: block;
+    border-radius: 50%;
+    transform-origin: 75px 75px;
+  animation: ball-animation 5s linear infinite;
+  animation-duration: 5s;
+  mix-blend-mode: plus-lighter;
+  }
+
+  .box3{
+    width: 185px;
+    height: 185px;
+    background-color: #f7036d;
+    filter: blur(8px);
+    display: block;
+    border-radius: 50%;
+    transform-origin: 75px 75px;
+  animation: ball-animation 5s linear infinite;
+  animation-duration: 7.5s;
+  mix-blend-mode: plus-lighter;
+  }
+
+  .box4{
+    width: 185px;
+    height: 185px;
+    background-color: #93ff16;
+    filter: blur(8px);
+    display: block;
+    border-radius: 50%;
+    transform-origin: 75px 75px;
+  animation: ball-animation 5s linear infinite;
+  animation-duration: 7.5s;
+  mix-blend-mode: plus-lighter;
+  }
+
+  .boxes div:nth-child(even) {
+    animation-direction: reverse;
+  }
+
+  @keyframes ball-animation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  }
