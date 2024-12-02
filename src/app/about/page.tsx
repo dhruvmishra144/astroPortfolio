@@ -1,7 +1,7 @@
 import Image from 'next/image';
 const About = () => {
     return (
-        <div className='container mx-auto h-[calc(100vh-188px)] lg:h-[calc(100vh-98px)] flex flex-col items-center pt-8 lg:pt-32 gap-y-8 px-6'>
+        <div className='container mx-auto flex flex-col items-center py-8 lg:py-16 gap-y-8 px-6'>
     <div className='relative flex p-8'>
     <div className='boxes'>
     <div className="box1 absolute"></div>
