@@ -44,7 +44,7 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
     font-family: "Poppins", sans-serif;
-    
+    text-rendering: optimizeLegibility;
   }
 
   body {
@@ -122,6 +122,10 @@
     100% {
       transform: rotate(360deg);
     }
+  }
+
+  .main-heading {
+    will-change: transform, opacity;
   }
 
   }
