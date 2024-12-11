@@ -6,7 +6,7 @@ import { RiFacebookLine, RiWhatsappLine, RiInstagramLine, RiLinkedinLine } from 
 
 const ContactLinks = () => {
     return (
-        <div className='flex flex-col gap-4 lg:flex-row lg:gap-8'>
+        <div className='flex flex-row gap-8 lg:flex-row'>
          <div className='flex flex-row items-center justify-center gap-x-4 lg:gap-x-10 text-sm'>
           {/* <Link href={'/about'} className='text-slate-500 hover:text-sky-300 translation-all  duration-300'>
             ABOUT

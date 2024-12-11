@@ -25,10 +25,10 @@ export default function About() {
           scrollTrigger: {
             trigger: intro.current,
             start: 'top 70%',
-            end: 'top 58%',
+            end: 'top 28%',
             scrub: true,
             pin: true,
-            markers: false
+            markers: true
           },
           ease: "circ.out",
         }
@@ -47,10 +47,10 @@ export default function About() {
           scrollTrigger: {
             trigger: imageDiv.current,
             start: 'top 30%',
-            end: 'top 20%',
+            end: 'top 0%',
             scrub: true,
             pin: true,
-            markers: false
+            markers: true
           },
           ease: "circ.out",
         }
@@ -65,14 +65,14 @@ export default function About() {
         {
           opacity: 0,
           y: -100,
-          scale: 1.5,
+          scale: 0,
           scrollTrigger: {
             trigger: intro.current,
             start: () => 'top 64.5%',
-            end: () => 'top 40%',
+            end: () => 'top 30%',
             scrub: true,
             pin: true,
-            markers: false
+            markers: true
           },
           ease: "power1.out",
         }
@@ -87,14 +87,14 @@ export default function About() {
         {
           opacity: 0,
           y: 10,
-          scale: 1.5,
+          scale: 0,
           scrollTrigger: {
             trigger: imageDiv.current,
             start: () => 'top 30%',
-            end: () => 'top 10%',
+            end: () => 'top 0%',
             scrub: true,
             pin: true,
-            markers: false
+            markers: true
           },
           ease: "power1.out",
         }

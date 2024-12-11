@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.scss";
 import Header from "./_components/header";
 import Footer from "./_components/footer";
+import Nav from "./_components/nav";
 
 export const metadata: Metadata = {
   title: "Hi, I am Dhruv Mishra",
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Header />
         {children}
         <Footer />
+        <Nav/>
       </body>
     </html>
   );

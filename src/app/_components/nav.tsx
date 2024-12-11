@@ -1,11 +1,9 @@
 //icons
-import { HiHome, HiUser, HiViewColumns, HiEnvelope } from 'react-icons/hi2';
+import { HiHome, HiUser, HiViewColumns, HiEnvelope, HiMiniDocumentText } from 'react-icons/hi2';
 
 //next link
-import Link from 'next/link';
-
-//next router
-import { useRouter } from 'next/router';
+import TransitionLink from './transition-link';
+import { Fragment } from 'react';
 
 //nav data
 export const navData = [
@@ -15,14 +13,14 @@ export const navData = [
     icon: <HiHome />
   },
   {
-    name: 'work',
-    path: '/work',
-    icon: <HiViewColumns />
-  },
-  {
     name: 'about',
     path: '/about',
     icon: <HiUser />
+  },
+  {
+    name: 'cv',
+    path: '/cv',
+    icon: <HiMiniDocumentText />
   },
   {
     name: 'contact',
@@ -32,11 +30,10 @@ export const navData = [
 ];
 const Nav = () => {
     return (
-        <div className="flex">
+        <div className='flex gap-5'>
             {navData.map((link, index) => {
-                return <Link className={``} href={''}></Link>
+                return <TransitionLink href={`${link.path}`} label={`${link.name}`} icon={`${link.icon}`}></TransitionLink>
             })}
-            
         </div>
     );
 }
