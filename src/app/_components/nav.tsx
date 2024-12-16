@@ -1,38 +1,37 @@
-//icons
-import { HiHome, HiUser, HiViewColumns, HiEnvelope, HiMiniDocumentText } from 'react-icons/hi2';
-
 //next link
 import TransitionLink from './transition-link';
 import { Fragment } from 'react';
+//icons
+import { HiHome, HiUser, HiViewColumns, HiEnvelope, HiMiniDocumentText } from 'react-icons/hi2';
 
 //nav data
 export const navData = [
   {
     name: 'home',
     path: '/',
-    icon: <HiHome />
+    icon: <HiHome/>
   },
   {
     name: 'about',
     path: '/about',
-    icon: <HiUser />
+    icon: <HiUser/>
   },
   {
     name: 'cv',
     path: '/cv',
-    icon: <HiMiniDocumentText />
+    icon: <HiMiniDocumentText/>
   },
   {
     name: 'contact',
     path: '/contact',
-    icon: <HiEnvelope />,
+    icon: <HiEnvelope/>,
   },
 ];
 const Nav = () => {
     return (
-        <div className='flex gap-5'>
+        <div className='flex flex-wrap gap-1 sm:gap-2 justify-center fixed bottom-0 sm:bottom-4 left-[50%] -translate-x-[50%] w-[calc(100%)] sm:w-auto backdrop-blur-sm bg-slate-900/50 rounded-lg z-20 px-1 py-2 sm:p-2'>
             {navData.map((link, index) => {
-                return <TransitionLink href={`${link.path}`} label={`${link.name}`} icon={`${link.icon}`}></TransitionLink>
+                return <TransitionLink href={`${link.path}`} label={`${link.name}`} key={index}>{link.icon}</TransitionLink>
             })}
         </div>
     );

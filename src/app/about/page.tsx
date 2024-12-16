@@ -13,7 +13,7 @@ export default function About() {
   // Using useGSAP to run animation on mount
   useGSAP(() => {
     let mm = gsap.matchMedia()
-    mm.add("(min-width: 1024px)", () => {
+    mm.add("(min-width: 992px) and (prefers-reduced-motion: no-preference)", () => {
       // desktop setup code here...
       gsap.fromTo(
         intro.current,
@@ -25,17 +25,17 @@ export default function About() {
           scrollTrigger: {
             trigger: intro.current,
             start: 'top 70%',
-            end: 'top 28%',
+            end: 'top 58%',
             scrub: true,
             pin: true,
-            markers: true
+            markers: false
           },
           ease: "circ.out",
         }
       );
     });
 
-    mm.add("(min-width: 1024px)", () => {
+    mm.add("(min-width: 992px) and (prefers-reduced-motion: no-preference)", () => {
       // desktop setup code here...
       gsap.fromTo(
         imageDiv.current,
@@ -47,54 +47,98 @@ export default function About() {
           scrollTrigger: {
             trigger: imageDiv.current,
             start: 'top 30%',
-            end: 'top 0%',
+            end: 'top 20%',
             scrub: true,
             pin: true,
-            markers: true
+            markers: false
           },
           ease: "circ.out",
         }
       );
     });
 
-    mm.add("(max-width: 1023px)", () => {
-      // mobile setup code here...
+    mm.add("(max-width: 991px) and (min-width: 578px) and (prefers-reduced-motion: no-preference)", () => {
+      // tab setup code here...
       gsap.fromTo(
         intro.current,
         { opacity: 1, y: 0, scale: 1 },
         {
           opacity: 0,
           y: -100,
-          scale: 0,
+          scale: 1.5,
           scrollTrigger: {
             trigger: intro.current,
-            start: () => 'top 64.5%',
-            end: () => 'top 30%',
+            start: () => 'top 64%',
+            end: () => 'top 40%',
             scrub: true,
             pin: true,
-            markers: true
+            markers: false
           },
           ease: "power1.out",
         }
       );
     });
 
-    mm.add("(max-width: 1023px)", () => {
-      // mobile setup code here...
+    mm.add("(max-width: 991px) and (min-width: 578px) and (prefers-reduced-motion: no-preference)", () => {
+      // tab setup code here...
       gsap.fromTo(
         imageDiv.current,
         { opacity: 1, y: 0, scale:1},
         {
           opacity: 0,
           y: 10,
-          scale: 0,
+          scale: 1.5,
           scrollTrigger: {
             trigger: imageDiv.current,
-            start: () => 'top 30%',
-            end: () => 'top 0%',
+            start: () => 'top 41%',
+            end: () => 'top 10%',
             scrub: true,
             pin: true,
-            markers: true
+            markers: false
+          },
+          ease: "power1.out",
+        }
+      );
+    });
+
+    mm.add("(max-width: 575px) and (prefers-reduced-motion: no-preference)", () => {
+      // tab setup code here...
+      gsap.fromTo(
+        intro.current,
+        { opacity: 1, y: 0, scale: 1 },
+        {
+          opacity: 0,
+          y: -100,
+          scale: 1.5,
+          scrollTrigger: {
+            trigger: intro.current,
+            start: () => 'top 64%',
+            end: () => 'top 40%',
+            scrub: true,
+            pin: false,
+            markers: false
+          },
+          ease: "power1.out",
+        }
+      );
+    });
+
+    mm.add("(max-width: 575px) and (prefers-reduced-motion: no-preference)", () => {
+      // tab setup code here...
+      gsap.fromTo(
+        imageDiv.current,
+        { opacity: 1, y: 0, scale:1},
+        {
+          opacity: 0,
+          y: 10,
+          scale: 1.5,
+          scrollTrigger: {
+            trigger: imageDiv.current,
+            start: () => 'top 41%',
+            end: () => 'top 10%',
+            scrub: true,
+            pin: false,
+            markers: false
           },
           ease: "power1.out",
         }
@@ -104,13 +148,13 @@ export default function About() {
   }, []);
   return (
     <main className='overflow-x-hidden' ref={home}>
-      <div className="container pt-10 pb-[25vh] lg:py-[20vh] mx-auto text-center flex flex-col items-center justify-center px-4">
+      <div className="container h-[calc(100vh-110px)] md:h-[calc(100vh-96px)] mx-auto text-center flex flex-col items-center justify-center px-4">
         <div className='relative flex p-8 mb-6 lg:w-[325px] lg:h-[325px]' ref={imageDiv}>
           <div className='boxes'>
-            <div className="box1 lg:w-[250px] lg:h-[250px] lg:origin-[150px_150px] absolute"></div>
-            <div className="box2 lg:w-[250px] lg:h-[250px] lg:origin-[150px_150px] absolute"></div>
-            <div className="box3 lg:w-[250px] lg:h-[250px] lg:origin-[150px_150px] absolute"></div>
-            <div className="box4 lg:w-[250px] lg:h-[250px] lg:origin-[150px_150px] absolute"></div>
+            <div className="box1 lg:w-[250px] lg:h-[250px] lg:origin-[140px_140px] absolute"></div>
+            <div className="box2 lg:w-[250px] lg:h-[250px] lg:origin-[140px_140px] absolute"></div>
+            <div className="box3 lg:w-[250px] lg:h-[250px] lg:origin-[140px_140px] absolute"></div>
+            <div className="box4 lg:w-[250px] lg:h-[250px] lg:origin-[140px_140px] absolute"></div>
           </div>
           <Image width={250} height={250} className='w-[150px] lg:w-[300px] lg:h-[auto] transition-all duration-300 avatar z-10 border rounded-full' src={'/avatar.png'} alt={''} />
         </div>

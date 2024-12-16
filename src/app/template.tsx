@@ -6,7 +6,7 @@ const Template = ({children}:{children: React.ReactNode}) => {
         animationPageIn();
     },[])
     return (
-        <div>
+        <div className="overflow-hidden">
             <div id="banner-1" className="min-h-screen bg-white z-30  fixed top-0 left-0 w-1/4"></div>
             <div id="banner-2" className="min-h-screen bg-white z-30  fixed top-0 left-1/4 w-1/4"></div>
             <div id="banner-3" className="min-h-screen bg-white z-30  fixed top-0 left-2/4 w-1/4"></div>
