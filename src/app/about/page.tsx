@@ -161,7 +161,7 @@ export default function About() {
         <h1 ref={intro} className="text-4xl lg:text-6xl font-extralight main-heading px-4">Hi, I am Dhruv</h1>
 
       </div>
-      <div className="container h-100 mx-auto text-center flex flex-col items-center justify-center px-4 py-28">
+      <div className="container h-100 mx-auto text-center flex flex-col items-center justify-center px-4">
 
         <p className="mb-6 lg:mb-8 text-4xl lg:text-6xl text-slate-400">UX/UI Designer and Developer</p>
         <p className='mb-6 lg:mb-8 text-4xl lg:text-6xl text-sky-400'>For Web and Mobile Platforms</p>
