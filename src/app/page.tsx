@@ -307,6 +307,11 @@ export default function About() {
     });
 
   }, []);
+
+  const projects = [
+    {}
+  ];
+
   return (
     <main className='overflow-x-hidden' ref={home}>
       <div className="container h-[calc(100vh-110px)] md:h-[calc(100vh-98px)] mx-auto text-center flex flex-col items-center justify-center px-4 overflow-hidden">
@@ -319,13 +324,15 @@ export default function About() {
           </div>
           <Image width={250} height={250} className='w-[150px] lg:w-[300px] lg:h-[auto] transition-all duration-300 avatar z-10 border rounded-full' src={'/avatar.png'} alt={''} />
         </div>
-        <h1 ref={intro} className="text-4xl lg:text-6xl font-extralight main-heading px-4 text-slate-400">Hi, I am <span className="text-white">Dhruv Mishra</span></h1>
+        <h1 ref={intro} className="text-4xl lg:text-6xl font-extralight main-heading px-4 text-slate-400 heading-text">Hi, I am <span className="text-white heading-text">Dhruv Mishra</span></h1>
       </div>
       <div className="container h-auto mx-auto text-center flex flex-col items-center justify-center px-4">
-        <p ref={skill} className="mb-6 lg:mb-8 text-4xl lg:text-6xl text-slate-400">I am UX/UI Designer and Developer</p>
+        <p ref={skill} className="mb-6 lg:mb-8 text-4xl lg:text-6xl text-slate-400">I am Product Designer and Developer</p>
         <p ref={platform} className='mb-6 lg:mb-8 text-4xl lg:text-6xl text-sky-400'>For Web and Mobile Platforms</p>
-        {/* <p className="text-2xl lg:text-6xl mb-4 font-semibold text-slate-200">Hi, I’m Dhruv Mishra</p> */}
         <p ref={skillPara} className="mb-4 lg:px-64 text-xl leading-8">My area of knowledge is in developing user-friendly, visually appealing mobile and internet applications that engage people and provide results. Furthermore, I am skilled in web development</p>
+      </div>
+      <div className="container h-auto mx-auto text-center flex flex-col items-center justify-center px-4">
+
       </div>
     </main>
   );

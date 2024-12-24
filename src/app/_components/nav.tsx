@@ -5,7 +5,7 @@ import { Fragment } from 'react';
 import { HiHome, HiUser, HiViewColumns, HiEnvelope, HiMiniDocumentText } from 'react-icons/hi2';
 
 //nav data
-export const navData = [
+const navData = [
   {
     name: 'home',
     path: '/',
