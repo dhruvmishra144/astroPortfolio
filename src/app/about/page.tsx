@@ -5,7 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 
-export default function Home() {
+export default function About() {
   gsap.registerPlugin(ScrollTrigger);
   const intro = useRef(null);
   const imageDiv = useRef(null);
@@ -27,7 +27,7 @@ export default function Home() {
             end: 'top 0%',
             scrub: true,
             pin: true,
-            markers: true
+            markers: false
           },
           ease: "circ.out",
         }

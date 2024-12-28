@@ -1,6 +1,5 @@
 //next link
 import TransitionLink from './transition-link';
-import { Fragment } from 'react';
 //icons
 import { HiHome, HiUser, HiViewColumns, HiEnvelope, HiMiniDocumentText } from 'react-icons/hi2';
 

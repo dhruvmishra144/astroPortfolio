@@ -3,8 +3,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 const Footer = () => {
     const pathname = usePathname();
-    console.log(pathname);
-    
     return (
         <div className="container mx-auto flex flex-col items-center text-center px-4 pb-32">
             <Image className="mb-4" width={64} height={64} src={"/chat.svg"} alt={"lets's Connect"}  />

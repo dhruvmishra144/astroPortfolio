@@ -14,13 +14,17 @@ export const animationPageIn = () => {
         t1.set([bannerOne, bannerTwo, bannerThree, bannerFour],{
             yPercent:0,
             stagger:0.35,
-            duration:1
+            duration:1.5,
+            borderRadius:0,
+            opacity:1
 
         })
         .to([bannerOne, bannerTwo, bannerThree, bannerFour],{
-            yPercent:100,
+            yPercent:150,
             stagger:0.35,
-            duration:1
+            duration:1.5,
+            borderRadius:100,
+            opacity:0
         })
         
         t2.set([linkText],{
@@ -41,7 +45,6 @@ export const animationPageIn = () => {
             duration:0.8
         })
         
-        
     }
 }
 
@@ -50,17 +53,23 @@ export const animationPageOut = (href:string, router: AppRouterInstance) => {
     const bannerTwo = document.getElementById('banner-2');
     const bannerThree = document.getElementById('banner-3');
     const bannerFour = document.getElementById('banner-4');
-    const linkText = document.getElementById('LinkText');
 
-    if (bannerOne && bannerTwo && bannerThree && bannerFour && linkText) {
+    if (bannerOne && bannerTwo && bannerThree && bannerFour) {
         const t1 = gsap.timeline()
-        const t2 = gsap.timeline()
-        t1.set([bannerFour, bannerThree, bannerTwo, bannerOne],{
+        t1.set([bannerOne,bannerTwo,bannerThree,bannerFour],{
             yPercent:-100,
+            borderRadius:100,
+            stagger:0.35,
+            duration:1,
+            opacity:0
+            
 
-        }).to([bannerFour, bannerThree, bannerTwo, bannerOne],{
+        }).to([bannerOne,bannerTwo,bannerThree,bannerFour],{
             yPercent:0,
             stagger:0.35,
+            borderRadius:0,
+            duration:1,
+            opacity:1,
             onComplete: ()=>{
                 router.push(href)
             }

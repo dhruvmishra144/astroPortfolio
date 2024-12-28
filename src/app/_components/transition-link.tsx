@@ -1,6 +1,8 @@
 'use client'
 import { usePathname, useRouter } from "next/navigation"
 import { animationPageOut } from "../utils/animation"
+import { useState } from "react"
+
 
 interface Props {
     href: string,
@@ -11,13 +13,18 @@ interface Props {
 const TransitionLink = ({ href, label, children }: Props) => {
     const router = useRouter();
     const pathname = usePathname();
+    const [isloading, setIsLoading] = useState(false);
     const handleCLick = () => {
+        setIsLoading(true);
         if (pathname != href) {
-            animationPageOut(href, router)
+            setTimeout(() => {
+                setIsLoading(false);
+              }, 1500); // Transition duration: 3 seconds
+              animationPageOut(href, router)    
         }
     }
     return (
-        <button onClick={handleCLick} className={`rounded-lg flex flex-col gap-3 items-center uppercase p-0 py-2 sm:px-2 text-[10px] w-[60px] sm:w-[70px] ${pathname === href?'bg-slate-200/5 backdrop-blur-sm':''}`}>
+        <button onClick={handleCLick} disabled={isloading} className={`rounded-lg flex flex-col gap-3 items-center uppercase p-0 py-2 sm:px-2 text-[10px] w-[60px] sm:w-[70px] ${pathname === href?'bg-slate-200/5 backdrop-blur-sm':''}`}>
             <span className="text-lg">{children}</span>
             <span className="text-xs">{label}</span>
         </button>

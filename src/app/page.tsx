@@ -5,7 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 
-export default function About() {
+export default function Home() {
   gsap.registerPlugin(ScrollTrigger);
   const home = useRef(null);
   const intro = useRef(null);
@@ -67,7 +67,7 @@ export default function About() {
           scrollTrigger: {
             trigger: skill.current,
             start: 'clamp(top 80%)',
-            end: 'clamp(top 40%)',
+            end: 'clamp(top 50%)',
             scrub: true,
             pin: false,
             markers: false
@@ -85,7 +85,7 @@ export default function About() {
           scrollTrigger: {
             trigger: platform.current,
             start: 'clamp(top 80%)',
-            end: 'clamp(top 45%)',
+            end: 'clamp(top 55%)',
             scrub: true,
             pin: false,
             markers: false
@@ -103,7 +103,7 @@ export default function About() {
           scrollTrigger: {
             trigger: skillPara.current,
             start: 'clamp(top 80%)',
-            end: 'clamp(top 50%)',
+            end: 'clamp(top 60%)',
             scrub: true,
             pin: false,
             markers: false
@@ -331,8 +331,13 @@ export default function About() {
         <p ref={platform} className='mb-6 lg:mb-8 text-4xl lg:text-6xl text-sky-400'>For Web and Mobile Platforms</p>
         <p ref={skillPara} className="mb-4 lg:px-64 text-xl leading-8">My area of knowledge is in developing user-friendly, visually appealing mobile and internet applications that engage people and provide results. Furthermore, I am skilled in web development</p>
       </div>
-      <div className="container h-auto mx-auto text-center flex flex-col items-center justify-center px-4">
-
+      <div className="container h-auto mx-auto text-center flex flex-row items-center justify-between px-4 max-w-[1100px] overflow-hidden">
+        <div className='flex flex-row items-center justify-center sm:justify-between px-4 grow mb-10'>
+        <h3 className='text-2xl text-center md:text-3xl md:text-start heading-text'>Featured Case Studies</h3>
+        <p className='hidden sm:block'>Available for New Projects</p>
+        </div>
+         
+        
       </div>
     </main>
   );
