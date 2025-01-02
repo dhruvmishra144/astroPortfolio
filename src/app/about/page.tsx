@@ -103,7 +103,7 @@ export default function About() {
   }, []);
   return (
     <main className='overflow-x-hidden'>
-      <p ref={intro} className='relative text-[200px] lg:text-[300px] text-center font-bold text-slate-700'>Hi</p>
+      <p ref={intro} className='relative text-[200px] lg:text-[300px] text-center font-bold text-gray-400'>Hi</p>
       <p></p>
     </main>
   );
