@@ -24,7 +24,7 @@ const TransitionLink = ({ href, label, children }: Props) => {
         }
     }
     return (
-        <button onClick={handleCLick} disabled={isloading} className={`rounded-lg flex flex-col gap-3 items-center uppercase p-0 py-2 sm:px-2 text-[10px] w-[60px] sm:w-[70px] ${pathname === href?'bg-slate-200/5 backdrop-blur-sm':''}`}>
+        <button onClick={handleCLick} disabled={isloading} className={`rounded-lg flex flex-col gap-3 items-center uppercase p-0 py-2 sm:px-2 text-[10px] w-[60px] sm:w-[70px] cursor-pointer ${pathname === href?'bg-slate-200/5 backdrop-blur-sm':''}`}>
             <span className="text-lg">{children}</span>
             <span className="text-xs">{label}</span>
         </button>

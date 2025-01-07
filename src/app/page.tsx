@@ -17,9 +17,59 @@ export default function Home() {
   const caseStudyHeading = useRef(null);
   const availableForProject = useRef(null);
   const checkStar = useRef(null);
+  const projectContainer = useRef<HTMLDivElement | null>(null);
   // Using useGSAP to run animation on mount
   useGSAP(() => {
     let mm = gsap.matchMedia()
+
+    if (!projectContainer.current) return;
+
+    // Select all children inside the container
+    const elements = gsap.utils.toArray(projectContainer.current.children) as HTMLElement[];
+    elements.forEach((element, index) => {
+      if (index % 2 === 0) {
+        // Even elements animation
+        gsap.fromTo(
+          element,
+          { x:-100, opacity:0 },
+        {
+          x:0,
+          opacity:1,
+          duration:2,
+          scrollTrigger: {
+            trigger: element,
+            start: 'clamp(top 40%)',
+            end: 'clamp(top 20%)',
+            scrub: true,
+            pin: false,
+            markers: false
+          },
+          ease: "power1.inOut",
+        }
+        );
+      } else {
+        // Odd elements animation
+        gsap.fromTo(
+          element,
+          { x:100, opacity:0 },
+        {
+          x:0,
+          opacity:1,
+          duration:2,
+          scrollTrigger: {
+            trigger: element,
+            start: 'clamp(top 40%)',
+            end: 'clamp(top 20%)',
+            scrub: true,
+            pin: false,
+            markers: false
+          },
+          ease: "power1.inOut",
+        }
+        );
+      }
+    });
+
     mm.add("(min-width: 992px) and (prefers-reduced-motion: no-preference)", () => {
       // desktop setup code here...
       gsap.fromTo(
@@ -165,6 +215,44 @@ export default function Home() {
             trigger: checkStar.current,
             start: 'clamp(top 80%)',
             end: 'clamp(top 60%)',
+            scrub: true,
+            pin: false,
+            markers: false
+          },
+          ease: "power1.inOut",
+        }
+      );
+
+      
+
+      gsap.fromTo(
+        ".project:nth-child(odd)",
+        { x:-100, opacity:0 },
+        {
+          x:0,
+          opacity:1,
+          scrollTrigger: {
+            trigger: '.project:nth-child(odd)',
+            start: 'clamp(top 40%)',
+            end: 'clamp(top 20%)',
+            scrub: true,
+            pin: false,
+            markers: false
+          },
+          ease: "power1.inOut",
+        }
+      );
+
+      gsap.fromTo(
+        ".project:nth-child(even)",
+        { x:100, opacity:0 },
+        {
+          x:0,
+          opacity:1,
+          scrollTrigger: {
+            trigger: '.project:nth-child(even)',
+            start: 'clamp(top 40%)',
+            end: 'clamp(top 20%)',
             scrub: true,
             pin: false,
             markers: false
@@ -483,7 +571,7 @@ export default function Home() {
 
   }, []);
   
-  const projects = [
+  const projectsList = [
     {
       projectName: "FlowwBridge",
       projectDesception: "Designing an Affordable and User-Friendly iPaaS Solution for SMEs",
@@ -565,7 +653,7 @@ export default function Home() {
         <p ref={platform} className='mb-6 lg:mb-8 text-4xl lg:text-6xl text-gray-400'>For <span className='text-white'>Web</span> and <span className='text-white'>Mobile</span> Platforms</p>
         <p ref={skillPara} className="mb-4 lg:max-w-[875px] xl:max-w-[1100px] text-xl leading-8">My area of knowledge is in developing user-friendly, visually appealing mobile and internet applications that engage people and provide results. Furthermore, I am skilled in web development</p>
       </div>
-      <div className="container h-auto mx-auto text-center  flex flex-col items-center justify-between px-4 max-w-[1100px] gap-y-8">
+      <div className="container h-auto mx-auto text-center  flex flex-col items-center justify-between px-4 max-w-[1100px] gap-y-8 mb-24 projects">
         <div className='flex flex-row items- w-full justify-between mb-4'>
           <h3 ref={caseStudyHeading} className='text-2xl text-center sm:text-start w-full md:text-2xl md:text-start heading-text'>
             Featured Case Studies
@@ -575,9 +663,10 @@ export default function Home() {
             <p>Available for New Projects</p>
           </div>
         </div>
+        <div ref={projectContainer} className='container h-auto mx-auto text-center  flex flex-col items-center justify-between px-4 max-w-[1100px] gap-y-8 mb-24'>
         {
-          projects.map((items, index) => {
-            return (<a href={items.link} className='flex flex-col p-6 bg-slate-500/20 backdrop-blur-md w-full rounded-[24px] group' key={index.toString()}>
+          projectsList.map((items, index) => {
+            return (<a href={items.link} className='flex flex-col p-6 bg-slate-500/20 backdrop-blur-md w-full rounded-[24px] group' key={index.toString()} >
               <div className='flex flex-row justify-between mb-4'>
                 <p className='text-base'>{items.year}</p>
                 <p className='text-base'>{items.module}</p>
@@ -601,11 +690,10 @@ export default function Home() {
                 </div>
               </div>
               <img width={'auto'} height={'400'} className='h-full w-full rounded-xl' src={items.img} alt="" />
-
             </a>)
           })
         }
-
+        </div>
 
 
       </div>
