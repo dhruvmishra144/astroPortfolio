@@ -42,7 +42,8 @@ export const animationPageIn = () => {
         t2.to([linkText],{
             opacity:0,
             stagger:0.35,
-            duration:0.8
+            duration:0.8,
+            display:'none'
         })
         
     }

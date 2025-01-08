@@ -3,6 +3,7 @@ import "./globals.scss";
 import Header from "./_components/header";
 import Footer from "./_components/footer";
 import Nav from "./_components/nav";
+import BackgroundAnimation from "./utils/background-animation";
 
 export const metadata: Metadata = {
   title: "Hi, I am Dhruv Mishra",
@@ -16,10 +17,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body>
+        <BackgroundAnimation>
         <Header />
         {children}
         <Footer />
         <Nav/>
+        </BackgroundAnimation>
       </body>
     </html>
   );
