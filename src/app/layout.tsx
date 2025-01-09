@@ -18,10 +18,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <body>
         <BackgroundAnimation>
-        <Header />
-        {children}
-        <Footer />
-        <Nav/>
+          <Header />
+          {children}
+          <Footer />
+          <Nav />
         </BackgroundAnimation>
       </body>
     </html>

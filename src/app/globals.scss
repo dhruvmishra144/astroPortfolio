@@ -60,10 +60,10 @@
 
   body {
     color: var(--foreground);
-    background: var(--background);
+    background-color: var(--background);
     font-family: "Poppins", sans-serif;
     font-weight: 200;
-    background-image: url('/bg.svg') !important;
+    background-image: url('/bg.png') !important;
     background-attachment: fixed;
     background-size: cover;
   }
