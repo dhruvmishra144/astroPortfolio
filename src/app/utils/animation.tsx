@@ -14,7 +14,7 @@ export const animationPageIn = () => {
         t1.set([bannerOne, bannerTwo, bannerThree, bannerFour],{
             yPercent:0,
             stagger:0.35,
-            duration:1.5,
+            duration:1,
             borderRadius:0,
             opacity:1
 
@@ -22,7 +22,7 @@ export const animationPageIn = () => {
         .to([bannerOne, bannerTwo, bannerThree, bannerFour],{
             yPercent:150,
             stagger:0.35,
-            duration:1.5,
+            duration:1,
             borderRadius:100,
             opacity:0
         })
@@ -61,7 +61,7 @@ export const animationPageOut = (href:string, router: AppRouterInstance) => {
             yPercent:-100,
             borderRadius:100,
             stagger:0.35,
-            duration:1,
+            duration:0.5,
             opacity:0
             
 
@@ -69,7 +69,7 @@ export const animationPageOut = (href:string, router: AppRouterInstance) => {
             yPercent:0,
             stagger:0.35,
             borderRadius:0,
-            duration:1,
+            duration:0.5,
             opacity:1,
             onComplete: ()=>{
                 router.push(href)

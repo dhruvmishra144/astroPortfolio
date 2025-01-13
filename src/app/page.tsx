@@ -114,10 +114,11 @@ export default function Home() {
 
       gsap.fromTo(
         skill.current,
-        { opacity: 0, y: 0 },
+        { opacity: 0, y: 0, scale:1.5 },
         {
           opacity: 1,
           y: -205,
+          scale:1,
           scrollTrigger: {
             trigger: skill.current,
             start: 'clamp(top 80%)',
@@ -132,10 +133,11 @@ export default function Home() {
 
       gsap.fromTo(
         platform.current,
-        { opacity: 0, y: 0 },
+        { opacity: 0, y: 0, scale:1.5 },
         {
           opacity: 1,
           y: -200,
+          scale:1,
           scrollTrigger: {
             trigger: platform.current,
             start: 'clamp(top 80%)',
@@ -150,10 +152,11 @@ export default function Home() {
 
       gsap.fromTo(
         skillPara.current,
-        { opacity: 0, y: 0 },
+        { opacity: 0, y: 0, scale:1.5 },
         {
           opacity: 1,
           y: -195,
+          scale:1,
           scrollTrigger: {
             trigger: skillPara.current,
             start: 'clamp(top 80%)',
@@ -305,10 +308,11 @@ export default function Home() {
 
       gsap.fromTo(
         skill.current,
-        { opacity: 0, y: 0 },
+        { opacity: 0, y: 0, scale:1.5 },
         {
           opacity: 1,
           y: -205,
+          scale:1,
           scrollTrigger: {
             trigger: skill.current,
             start: 'clamp(top 100%)',
@@ -323,10 +327,11 @@ export default function Home() {
 
       gsap.fromTo(
         platform.current,
-        { opacity: 0, y: 0 },
+        { opacity: 0, y: 0, scale:1.5 },
         {
           opacity: 1,
           y: -200,
+          scale:1,
           scrollTrigger: {
             trigger: platform.current,
             start: 'clamp(top 100%)',
@@ -341,10 +346,11 @@ export default function Home() {
 
       gsap.fromTo(
         skillPara.current,
-        { opacity: 0, y: 0 },
+        { opacity: 0, y: 0, scale:1.5 },
         {
           opacity: 1,
           y: -195,
+          scale:1,
           scrollTrigger: {
             trigger: skillPara.current,
             start: 'clamp(top 100%)',
@@ -458,10 +464,11 @@ export default function Home() {
 
       gsap.fromTo(
         skill.current,
-        { opacity: 0, y: 0 },
+        { opacity: 0, y: 0, scale:1.5 },
         {
           opacity: 1,
           y: -100,
+          scale:1,
           scrollTrigger: {
             trigger: skill.current,
             start: 'clamp(top 100%)',
@@ -476,10 +483,11 @@ export default function Home() {
 
       gsap.fromTo(
         platform.current,
-        { opacity: 0, y: 0 },
+        { opacity: 0, y: 0, scale:1.5 },
         {
           opacity: 1,
           y: -95,
+          scale:1,
           scrollTrigger: {
             trigger: platform.current,
             start: 'clamp(top 100%)',
@@ -494,10 +502,11 @@ export default function Home() {
 
       gsap.fromTo(
         skillPara.current,
-        { opacity: 0, y: 0 },
+        { opacity: 0, y: 0, scale:1.5 },
         {
           opacity: 1,
           y: -90,
+          scale:1,
           scrollTrigger: {
             trigger: skillPara.current,
             start: 'clamp(top 100%)',
@@ -646,11 +655,11 @@ export default function Home() {
           </div>
           <Image width={250} height={250} className='w-[150px] lg:w-[300px] lg:h-[auto] transition-all duration-300 avatar z-10 border rounded-full' src={'/avatar.png'} alt={''} />
         </div>
-        <h1 ref={intro} className="text-4xl lg:text-6xl font-extralight main-heading px-4 text-gray-400 heading-text">Hi, I am <span className="text-white heading-text">Dhruv Mishra</span></h1>
+        <h1 ref={intro} className="text-4xl lg:text-6xl font-extralight main-heading px-4 text-zinc-400 heading-text">Hi, I am <span className="text-white heading-text">Dhruv Mishra</span></h1>
       </div>
       <div className="container h-auto mx-auto text-center flex flex-col items-center justify-center px-4">
-        <p ref={skill} className="mb-6 lg:mb-8 text-4xl lg:text-6xl text-gray-400">I am <span className='text-white'>Product Designer</span> and <span className='text-white'>Developer</span></p>
-        <p ref={platform} className='mb-6 lg:mb-8 text-4xl lg:text-6xl text-gray-400'>For <span className='text-white'>Web</span> and <span className='text-white'>Mobile</span> Platforms</p>
+        <p ref={skill} className="mb-6 lg:mb-8 text-4xl lg:text-6xl text-zinc-400">I am <span className='text-white'>Product Designer</span> and <span className='text-white'>Developer</span></p>
+        <p ref={platform} className='mb-6 lg:mb-8 text-4xl lg:text-6xl text-zinc-400'>For <span className='text-white'>Web</span> and <span className='text-white'>Mobile</span> Platforms</p>
         <p ref={skillPara} className="mb-4 lg:max-w-[875px] xl:max-w-[1100px] text-xl leading-8">My area of knowledge is in developing user-friendly, visually appealing mobile and internet applications that engage people and provide results. Furthermore, I am skilled in web development</p>
       </div>
       <div className="container h-auto mx-auto text-center  flex flex-col items-center justify-between px-4 max-w-[1100px] gap-y-8 mb-24 projects">
@@ -666,7 +675,7 @@ export default function Home() {
         <div ref={projectContainer} className='container h-auto mx-auto text-center  flex flex-col items-center justify-between px-4 max-w-[1100px] gap-y-8 mb-24'>
         {
           projectsList.map((items, index) => {
-            return (<a href={items.link} className='flex flex-col p-6 bg-slate-500/20 backdrop-blur-md w-full rounded-[24px] group' key={index.toString()} >
+            return (<a href={items.link} className='flex flex-col p-6 bg-zinc-500/20 backdrop-blur-md w-full rounded-[24px] group' key={index.toString()} >
               <div className='flex flex-row justify-between mb-4'>
                 <p className='text-base'>{items.year}</p>
                 <p className='text-base'>{items.module}</p>
@@ -675,18 +684,18 @@ export default function Home() {
               <div className='flex flex-row gap-x-4 mb-4 justify-between'>
                 <div className='flex flex-col gap-y-3 text-start'>
                 <h3 className='text-4xl text-start leading-12 w-[calc(100%-48px)]'>{items.projectName}</h3>
-                <p className='text-slate-400 text-lg'>{items.projectDesception}</p>
+                <p className='text-zinc-400 text-lg'>{items.projectDesception}</p>
                 </div>
                 <PiArrowRightThin className='hidden sm:block text-5xl group-hover:-rotate-45 group-hover:transition-transform duration-300' />
               </div>
               <div className='flex flex-col gap-y-6 md:flex-row gap-x-6 mb-4 text-left'>
                 <div className='flex flex-col gap-y-2 w-full'>
                 <h3 className='text-2xl text-start leading-12 w-[calc(100%-48px)]'>{items.metricOne}</h3>
-                <p className='text-slate-400 text-md'>{items.metricDetailOne}</p>
+                <p className='text-zinc-400 text-md'>{items.metricDetailOne}</p>
                 </div>
                 <div className='flex flex-col gap-y-2 w-full'>
                 <h3 className='text-2xl text-start leading-12 w-[calc(100%-48px)]'>{items.metricTwo}</h3>
-                <p className='text-slate-400 text-md'>{items.metricDetailTwo}</p>
+                <p className='text-zinc-400 text-md'>{items.metricDetailTwo}</p>
                 </div>
               </div>
               <img width={'auto'} height={'400'} className='h-full w-full rounded-xl' src={items.img} alt="" />

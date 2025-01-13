@@ -1,7 +1,7 @@
 const Contact = () => {
     return (
-        <div>
-            Cv
+        <div className="container mx-auto px-4">
+            Contact
         </div>
     );
 }
