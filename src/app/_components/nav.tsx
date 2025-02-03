@@ -16,8 +16,8 @@ const navData = [
     icon: <HiUser/>
   },
   {
-    name: 'cv',
-    path: '/cv',
+    name: 'resume',
+    path: '/resume',
     icon: <HiMiniDocumentText/>
   },
   {
