@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import { PiArrowRightThin } from "react-icons/pi";
 
+
 export default function Home() {
   gsap.registerPlugin(ScrollTrigger);
   const home = useRef(null);
@@ -20,7 +21,7 @@ export default function Home() {
   const projectContainer = useRef<HTMLDivElement | null>(null);
   // Using useGSAP to run animation on mount
   useGSAP(() => {
-    let mm = gsap.matchMedia()
+    const mm = gsap.matchMedia()
 
     if (!projectContainer.current) return;
 
@@ -31,9 +32,10 @@ export default function Home() {
         // Even elements animation
         gsap.fromTo(
           element,
-          { x:-100, opacity:0 },
+          { x:-100, y:100, opacity:0 },
         {
           x:0,
+          y:0,
           opacity:1,
           duration:2,
           scrollTrigger: {
@@ -51,9 +53,10 @@ export default function Home() {
         // Odd elements animation
         gsap.fromTo(
           element,
-          { x:100, opacity:0 },
+          { x:100, y:100, opacity:0 },
         {
           x:0,
+          y:0,
           opacity:1,
           duration:2,
           scrollTrigger: {
@@ -226,43 +229,6 @@ export default function Home() {
         }
       );
 
-      
-
-      gsap.fromTo(
-        ".project:nth-child(odd)",
-        { x:-100, opacity:0 },
-        {
-          x:0,
-          opacity:1,
-          scrollTrigger: {
-            trigger: '.project:nth-child(odd)',
-            start: 'clamp(top 40%)',
-            end: 'clamp(top 20%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.inOut",
-        }
-      );
-
-      gsap.fromTo(
-        ".project:nth-child(even)",
-        { x:100, opacity:0 },
-        {
-          x:0,
-          opacity:1,
-          scrollTrigger: {
-            trigger: '.project:nth-child(even)',
-            start: 'clamp(top 40%)',
-            end: 'clamp(top 20%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.inOut",
-        }
-      );
 
     });
 
@@ -698,7 +664,7 @@ export default function Home() {
                 <p className='text-zinc-400 text-md'>{items.metricDetailTwo}</p>
                 </div>
               </div>
-              <img width={'auto'} height={'400'} className='h-full w-full rounded-xl' src={items.img} alt="" />
+              <Image width={'400'} height={'400'} className='h-full w-full rounded-xl' src={items.img} alt="" />
             </a>)
           })
         }

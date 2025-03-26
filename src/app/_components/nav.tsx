@@ -1,7 +1,7 @@
 //next link
 import TransitionLink from './transition-link';
 //icons
-import { HiHome, HiUser, HiViewColumns, HiEnvelope, HiMiniDocumentText } from 'react-icons/hi2';
+import { HiHome, HiUser, HiEnvelope, HiMiniDocumentText } from 'react-icons/hi2';
 
 //nav data
 const navData = [
