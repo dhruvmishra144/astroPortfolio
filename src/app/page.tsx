@@ -664,7 +664,7 @@ export default function Home() {
                 <p className='text-zinc-400 text-md'>{items.metricDetailTwo}</p>
                 </div>
               </div>
-              <Image height={'400'} className='h-full w-full rounded-xl' src={items.img} alt="" />
+              <Image width={977} height={'400'} className='h-full w-full rounded-xl' src={items.img} alt="" />
             </a>)
           })
         }
