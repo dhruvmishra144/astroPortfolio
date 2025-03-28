@@ -1,4 +1,4 @@
-const BackgroundAnimation = ({ children }:{ children: React.ReactNode; }) => {
+const BackgroundAnimation = ({ children }: { children: React.ReactNode; }) => {
     return (
         <div>
             {children}
