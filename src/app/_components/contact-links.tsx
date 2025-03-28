@@ -2,7 +2,7 @@
 import Link from 'next/link';
 
 // Icons
-import { RiFacebookLine, RiWhatsappLine, RiInstagramLine, RiLinkedinLine } from 'react-icons/ri';
+import { RiGoogleLine, RiWhatsappLine, RiInstagramLine, RiLinkedinLine } from 'react-icons/ri';
 
 const ContactLinks = () => {
   return (
@@ -11,8 +11,8 @@ const ContactLinks = () => {
         <Link href={'https://www.linkedin.com/in/dhruvmishra144/'} target='_blank' className='text-xl text-zinc-400 hover:text-zinc-300 translation-all  duration-300 hover:scale-110'>
           <RiLinkedinLine />
         </Link>
-        <Link target='_blank' href={'https://www.facebook.com/profile.php?id=100056903868720'} className='text-xl text-zinc-400 hover:text-zinc-300 translation-all  duration-300 hover:scale-110'>
-          <RiFacebookLine />
+        <Link target='_blank' href={'https://g.co/kgs/E29cFzu'} className='text-xl text-zinc-400 hover:text-zinc-300 translation-all  duration-300 hover:scale-110'>
+          <RiGoogleLine />
         </Link>
         <Link target='_blank' href={'https://www.instagram.com/dhruv.mishra144/'} className='text-xl text-zinc-400 hover:text-zinc-300 translation-all  duration-300 hover:scale-110'>
           <RiInstagramLine />
