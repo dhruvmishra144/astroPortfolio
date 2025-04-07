@@ -8,9 +8,7 @@ const Footer = () => {
             <Image className="mb-4" width={64} height={64} src={"/chat.svg"} alt={"lets's Connect"}  />
             <h3 className="text-3xl font-semibold mb-4">Have an idea? I&apos;d love to hear it!</h3>
             <p  className="text-base mb-4">Excited for a design journey or seeking product design tips? Reach out for some creative collaboration!</p>
-            <div className="relative">
-            <a className={`py-4 px-8 bg-zinc-800 hover:bg-zinc-700 rounded transition-all duration-500 btnn block1`} href={pathname==="/contact"?"#":"/contact"}>Let&apos;s Connect</a>
-            </div>
+            <a className={`py-4 px-8 bg-cyan-800 hover:bg-cyan-700 rounded transition-all duration-500 btnn block1`} href={pathname==="/contact"?"#":"/contact"}>Let&apos;s Connect</a>
         </div>
     );
 }
