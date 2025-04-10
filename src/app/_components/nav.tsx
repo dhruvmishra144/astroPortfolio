@@ -15,11 +15,11 @@ const navData = [
     path: '/about',
     icon: <HiUser/>
   },
-  {
-    name: 'resume',
-    path: '/resume',
-    icon: <HiMiniDocumentText/>
-  },
+  // {
+  //   name: 'resume',
+  //   path: '/resume',
+  //   icon: <HiMiniDocumentText/>
+  // },
   {
     name: 'contact',
     path: '/contact',
@@ -28,7 +28,7 @@ const navData = [
 ];
 const Nav = () => {
     return (
-        <div className='flex flex-wrap gap-4 md:gap-2 justify-center fixed bottom-0 sm:bottom-4 left-[50%] -translate-x-[50%] w-[calc(100%)] sm:w-auto backdrop-blur-sm bg-slate-900/50 hover:bg-slate-800/50 transition-all duration-300 rounded-lg z-20 px-1 py-2 sm:p-2 cursor-pointer'>
+        <div className='flex flex-wrap gap-4 md:gap-2 justify-center fixed bottom-0 sm:bottom-4 left-[50%] -translate-x-[50%] w-[calc(100%)] sm:w-auto backdrop-blur-sm bg-cyan-950/50 hover:bg-cyan-900/50 transition-all duration-300 rounded-lg z-20 px-1 py-2 sm:p-2 cursor-pointer'>
             {navData.map((link, index) => {
                 return <TransitionLink href={`${link.path}`} label={`${link.name}`} key={index}>{link.icon}</TransitionLink>
             })}

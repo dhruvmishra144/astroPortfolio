@@ -40,8 +40,8 @@ export default function Home() {
           duration:2,
           scrollTrigger: {
             trigger: element,
-            start: 'clamp(top 40%)',
-            end: 'clamp(top 20%)',
+            start: 'clamp(top 90%)',
+            end: 'clamp(top 60%)',
             scrub: true,
             pin: false,
             markers: false
@@ -61,8 +61,8 @@ export default function Home() {
           duration:2,
           scrollTrigger: {
             trigger: element,
-            start: 'clamp(top 40%)',
-            end: 'clamp(top 20%)',
+            start: 'clamp(top 90%)',
+            end: 'clamp(top 60%)',
             scrub: true,
             pin: false,
             markers: false
@@ -614,10 +614,10 @@ export default function Home() {
       <div className="container h-[calc(100vh-110px)] md:h-[calc(100vh-98px)] mx-auto text-center flex flex-col items-center justify-center px-4 overflow-hidden">
         <div className='relative flex p-8 mb-6 lg:w-[325px] lg:h-[325px]' ref={imageDiv}>
           <div className='boxes'>
-            <div className="box1 lg:w-[250px] lg:h-[250px] lg:origin-[140px_140px] absolute"></div>
-            <div className="box2 lg:w-[250px] lg:h-[250px] lg:origin-[140px_140px] absolute"></div>
-            <div className="box3 lg:w-[250px] lg:h-[250px] lg:origin-[140px_140px] absolute"></div>
-            <div className="box4 lg:w-[250px] lg:h-[250px] lg:origin-[140px_140px] absolute"></div>
+            <div className="box1 w-[145px] h-[145px] origin-[82px_82px] lg:w-[250px] lg:h-[250px] lg:origin-[140px_140px] absolute"></div>
+            <div className="box2 w-[145px] h-[145px] origin-[82px_82px] lg:w-[250px] lg:h-[250px] lg:origin-[140px_140px] absolute"></div>
+            <div className="box3 w-[145px] h-[145px] origin-[82px_82px] lg:w-[250px] lg:h-[250px] lg:origin-[140px_140px] absolute"></div>
+            <div className="box4 w-[145px] h-[145px] origin-[82px_82px] lg:w-[250px] lg:h-[250px] lg:origin-[140px_140px] absolute"></div>
           </div>
           <Image width={250} height={250} className='w-[150px] lg:w-[300px] lg:h-[auto] transition-all duration-300 avatar z-10 border rounded-full' src={'/avatar.png'} alt={''} />
         </div>
@@ -641,7 +641,7 @@ export default function Home() {
         <div ref={projectContainer} className='container h-auto mx-auto text-center  flex flex-col items-center justify-between px-4 max-w-[1100px] gap-y-8 mb-24'>
         {
           projectsList.map((items, index) => {
-            return (<a href={items.link} className='flex flex-col p-6 bg-slate-500/20 backdrop-blur-md w-full rounded-[24px] group' key={index.toString()} >
+            return (<a href={items.link} className='flex flex-col p-6 bg-cyan-600/20 backdrop-blur-md w-full rounded-[24px] group' key={index.toString()} >
               <div className='flex flex-row justify-between mb-4'>
                 <p className='text-base'>{items.year}</p>
                 <p className='text-base'>{items.module}</p>
@@ -649,22 +649,22 @@ export default function Home() {
               <hr className='border-[0.5px] border-[#e5e5e5]/20 w-full mb-4' />
               <div className='flex flex-row gap-x-4 mb-4 justify-between'>
                 <div className='flex flex-col gap-y-3 text-start'>
-                <h3 className='text-4xl text-start leading-12 w-[calc(100%-48px)]'>{items.projectName}</h3>
-                <p className='text-slate-400 text-lg'>{items.projectDesception}</p>
+                <h3 className='text-2xl lg:text-4xl text-start leading-relax w-[calc(100%-48px)]'>{items.projectName}</h3>
+                <p className='text-slate-400 text-md lg:text-lg'>{items.projectDesception}</p>
                 </div>
                 <PiArrowRightThin className='hidden sm:block text-5xl group-hover:-rotate-45 group-hover:transition-transform duration-300' />
               </div>
               <div className='flex flex-col gap-y-6 md:flex-row gap-x-6 mb-4 text-left'>
                 <div className='flex flex-col gap-y-2 w-full'>
-                <h3 className='text-2xl text-start leading-12 w-[calc(100%-48px)]'>{items.metricOne}</h3>
-                <p className='text-slate-400 text-md'>{items.metricDetailOne}</p>
+                <h3 className='text-lg lg:text-2xl text-start leading-relax w-[calc(100%-48px)]'>{items.metricOne}</h3>
+                <p className='text-slate-400 text-base lg:text-md'>{items.metricDetailOne}</p>
                 </div>
                 <div className='flex flex-col gap-y-2 w-full'>
-                <h3 className='text-2xl text-start leading-12 w-[calc(100%-48px)]'>{items.metricTwo}</h3>
-                <p className='text-slate-400 text-md'>{items.metricDetailTwo}</p>
+                <h3 className='text-lg lg:text-2xl text-start leading-relax w-[calc(100%-48px)]'>{items.metricTwo}</h3>
+                <p className='text-slate-400 text-base lg:text-md'>{items.metricDetailTwo}</p>
                 </div>
               </div>
-              <Image width={977} height={'400'} className='h-full w-full rounded-xl' src={items.img} alt="" />
+              <Image width={'977'} height={'400'} className='h-full w-full rounded-xl' src={items.img} alt="" />
             </a>)
           })
         }

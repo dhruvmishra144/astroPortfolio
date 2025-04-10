@@ -3,6 +3,7 @@
 import React, { useRef, useMemo, useState, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
+import {isMobile} from 'react-device-detect';
 
 gsap.registerPlugin(useGSAP);
 
@@ -51,6 +52,7 @@ const BackgroundAnimation = ({ children }: { children: React.ReactNode }) => {
     // --- GSAP Wave Animation ---
     useGSAP(
         () => {
+
             if (!containerRef.current || !elementRefs.current) return;
 
             elementRefs.current.forEach((elementEl, index) => {
@@ -136,7 +138,8 @@ const BackgroundAnimation = ({ children }: { children: React.ReactNode }) => {
             className={`relative min-h-screen w-full ${BACKGROUND_COLOR} isolate overflow-hidden`}
         >
             {/* Fixed Background Container for Elements */}
-            {<div className="fixed inset-0 z-0 pointer-events-none">
+            {
+                <div className={`fixed inset-0 z-0 pointer-events-none ${isMobile? "stripe-bg":""}`} suppressHydrationWarning>
                 {elementsData.map((elem, index) => (
                     <div
                         suppressHydrationWarning
@@ -144,7 +147,7 @@ const BackgroundAnimation = ({ children }: { children: React.ReactNode }) => {
                         ref={(el) => { elementRefs.current[index] = el; }}
                         // REMOVED rounded-full. Default is rectangle.
                         // Add base styles here
-                        className={`${ELEMENT_COLOR}`} // Just the color
+                        className={`${ELEMENT_COLOR} hidden md:block`} // Just the color
                         style={{
                             width: `${elem.size}px`,
                             // Make height different from width for rectangles
@@ -157,7 +160,8 @@ const BackgroundAnimation = ({ children }: { children: React.ReactNode }) => {
                         
                     ></div>
                 ))}
-            </div>}
+            </div>
+            }
 
             {/* Foreground Content Wrapper */}
             <div className="relative z-10">
