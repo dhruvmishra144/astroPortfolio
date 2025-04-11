@@ -15,16 +15,16 @@ const navData = [
     path: '/about',
     icon: <HiUser/>
   },
-  // {
-  //   name: 'resume',
-  //   path: '/resume',
-  //   icon: <HiMiniDocumentText/>
-  // },
   {
     name: 'contact',
     path: '/contact',
     icon: <HiEnvelope/>,
   },
+    {
+    name: 'resume',
+    path: '/resume',
+    icon: <HiMiniDocumentText/>
+  }
 ];
 const Nav = () => {
     return (
