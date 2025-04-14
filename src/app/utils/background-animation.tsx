@@ -1,6 +1,6 @@
 "use client"
 // src/components/BackgroundAnimation.tsx (or your preferred path)
-import React, { useRef, useMemo, useState, useEffect } from 'react';
+import React, { useRef, useMemo} from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import {isMobile} from 'react-device-detect';
@@ -36,8 +36,6 @@ interface ElementProps {
 const BackgroundAnimation = ({ children }: { children: React.ReactNode }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const elementRefs = useRef<(HTMLDivElement | null)[]>([]); // Renamed ref array
-    const [mounted, setMounted] = useState(false);
-    useEffect(() => setMounted(true), []);
 
     // Memoize element properties
     const elementsData = useMemo<ElementProps[]>(() => {
@@ -81,7 +79,7 @@ const BackgroundAnimation = ({ children }: { children: React.ReactNode }) => {
                     skewX: 0, // Start skew state
                     filter: `blur(${BLUR_AMOUNT})`, // Apply heavy blur
                     // Apply blend mode via style - ensure parent has 'isolate' or similar
-                    mixBlendMode: BLEND_MODE as any, // Cast as any if TS complains
+                    mixBlendMode: BLEND_MODE as string, // Cast as any if TS complains
                 });
                 // --- END MODIFIED INITIAL STATE ---
 

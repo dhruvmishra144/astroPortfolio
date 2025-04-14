@@ -29,9 +29,9 @@ const socialLinks = [
 
   return (
     <div className="container mx-auto px-4 mb-24">
-      <h1 className="text-3xl lg:text-5xl text-center mb-8">Let's Collaborate!</h1>
+      <h1 className="text-3xl lg:text-5xl text-center mb-8">Let&apos;s Collaborate!</h1>
       <p className="text-lg text-center mb-8 max-w-[800px] mx-auto">
-        I am passionate about crafting intuitive and engaging digital experiences. If you're looking for a UX/UI designer to bring your vision to life, let's connect!
+        I am passionate about crafting intuitive and engaging digital experiences. If you&apos;re looking for a UX/UI designer to bring your vision to life, let&apos;s connect!
       </p>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
         {socialLinks.map(({ name, href, icon }) => (
