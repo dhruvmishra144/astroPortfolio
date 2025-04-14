@@ -1,20 +1,14 @@
 'use client'
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
 import { animationPageOut } from "../utils/animation";
 const Footer = () => {
 
     const router = useRouter();
     const href = '/contact'
         const pathname = usePathname();
-        const [isloading, setIsLoading] = useState(false);
         const handleCLick = () => {
-            setIsLoading(true);
             if (pathname != href) {
-                setTimeout(() => {
-                    setIsLoading(false);
-                  }, 1500); // Transition duration: 3 seconds
                   animationPageOut(href, router)    
             }
         }
