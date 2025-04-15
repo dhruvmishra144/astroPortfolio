@@ -31,7 +31,7 @@ export default function About() {
           I&apos;m absolutely delighted to know
         </p>
         <p className='relative text-3xl lg:text-5xl text-center text-slate-200 mb-8'>
-          that you&apos;re excited to learn more about me!
+          that you&apos;re interested to learn more about me!
         </p>
       </section>
 
