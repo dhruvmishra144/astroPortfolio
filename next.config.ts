@@ -1,22 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  output: 'export',
+  output: 'export', // this enables static export
   images: {
-    unoptimized: true,
+    unoptimized: true, // important for static export
   },
-  exportPathMap: async function (
-    defaultPathMap,
-    { dev, dir, outDir, distDir, buildId }
-  ) {
-    return {
-      '/': { page: '/' },
-      '/about': { page: '/about' },
-      '/resume': { page: '/resume' },
-      '/contact': { page: '/contact' },
-    }
-  },
+  trailingSlash: true,
 };
 
 export default nextConfig;
