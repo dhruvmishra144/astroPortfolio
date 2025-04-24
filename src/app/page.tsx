@@ -548,7 +548,7 @@ export default function Home() {
   
   const projectsList = [
     {
-      projectName: "FlowMatic",
+      projectName: "FlowMatic Webapp",
       projectDesception: "Designing an Affordable and User-Friendly iPaaS Solution with AI for SMEs",
       metricOne: "Mean Time to Integrate (MTIT) ",
       metricTwo: "Integration Success Rate (ISR)",
@@ -556,11 +556,11 @@ export default function Home() {
       metricDetailTwo: "10% increase in Integration Success Rate (ISR) and minimizing rework and operational overhead",
       year: "2024",
       module: "Web App",
-      link:'/flowmatic',
+      link:'/projects/flowmatic',
       img:'https://as2.ftcdn.net/v2/jpg/08/09/04/55/1000_F_809045509_U4df7jKWH4fVKayaVi4aSz5Wud4Np9Zb.jpg'
     },
     {
-      projectName: "LoopTrip",
+      projectName: "LoopTrip Mobile App",
       projectDesception: "The ultimate platform for coordinated vehicle travel",
       metricOne: "Fleet Coordination Efficiency (FCE)", 
       metricTwo: "User Satisfaction & Adoption Rate", 
@@ -568,11 +568,11 @@ export default function Home() {
       metricDetailTwo: "User satisfaction rated 4.7/5 with a 65% retention rate after 30 days — indicating strong engagement for coordinated trips.", 
       year: "2025", 
       module: "Mobile App",
-      link:'/ezlearn',
+      link:'/projects/looptrip',
       img:'https://as2.ftcdn.net/v2/jpg/08/09/04/55/1000_F_809045509_U4df7jKWH4fVKayaVi4aSz5Wud4Np9Zb.jpg'
     },
     { 
-      projectName: "GoodsBiz",
+      projectName: "GoodsBiz Webpage",
       projectDesception: "B2B Product Buying and Selling", 
       metricOne: "Lorem ipsum dolor sit amet", 
       metricTwo: "Lorem ipsum dolor sit amet", 
@@ -580,7 +580,7 @@ export default function Home() {
       metricDetailTwo: "Lorem ipsum dolor sit amet", 
       year: "2023", 
       module: "Web App",
-      link:'/goodbiz',
+      link:'/projects/goodsbiz',
       img:'https://as2.ftcdn.net/v2/jpg/08/09/04/55/1000_F_809045509_U4df7jKWH4fVKayaVi4aSz5Wud4Np9Zb.jpg'
     },
     { 
@@ -592,11 +592,11 @@ export default function Home() {
       metricDetailTwo: "Conversion rates can improve by up to 32% due to enhanced performance and user experience", 
       year: "2025", 
       module: "Web App & Mobile App", 
-      link:'/neotron',
+      link:'/projects/aaizaltech',
       img:'https://as2.ftcdn.net/v2/jpg/08/09/04/55/1000_F_809045509_U4df7jKWH4fVKayaVi4aSz5Wud4Np9Zb.jpg'
     },
     { 
-      projectName: "Petrii",
+      projectName: "Petrii Webapp",
       projectDesception: "Streamline research with AI lab management: connect team, experiments, and data in one secure platform.", 
       metricOne: "Data Accessibility SLA Compliance Rate",
       metricTwo: "Experiment Turnaround Time Reduction Rate", 
@@ -604,7 +604,7 @@ export default function Home() {
       metricDetailTwo: "Achieved a 20% reduction in average experiment turnaround time", 
       year: "2022", 
       module: "Web App & Mobile App", 
-      link:'/petrii',
+      link:'/projects/petrii',
       img:'https://as2.ftcdn.net/v2/jpg/08/09/04/55/1000_F_809045509_U4df7jKWH4fVKayaVi4aSz5Wud4Np9Zb.jpg'
     },
   ];

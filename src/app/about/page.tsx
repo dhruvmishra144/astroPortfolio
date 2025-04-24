@@ -74,20 +74,22 @@ export default function About() {
         </div>
       </section>
 
-      <a
-        href={'https://www.linkedin.com/in/dhruvmishra144/'}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex flex-col gap-4 lg:flex-row group p-8 bg-cyan-800/50 backdrop-blur-md justify-between rounded-xl mb-16 items-center"
-      >
-        <h2 className="text-2xl text-gray-400 group-hover:text-gray-200 transition-all duration-300">Learn more about my Professional Timeline</h2>
+      <section>
+        <a
+          href={'https://www.linkedin.com/in/dhruvmishra144/'}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex flex-col gap-4 lg:flex-row group p-8 bg-cyan-800/15 backdrop-blur-md justify-between rounded-xl mb-16 items-center"
+        >
+          <h2 className="text-2xl text-gray-400 group-hover:text-gray-200 transition-all duration-300">Learn more about my Professional Timeline</h2>
 
-        <div className="flex flex-row gap-4 items-center">
-          <RiLinkedinBoxFill className='text-3xl lg:text-5xl' />
-          <p className="text-2xl lg:text-3xl">Linkedin</p>
-          <PiArrowRightThin className="text-3xl lg:text-5xl group-hover:-rotate-45 group-hover:transition-transform duration-300" />
-        </div>
-      </a>
+          <div className="flex flex-row gap-4 items-center">
+            <RiLinkedinBoxFill className='text-3xl lg:text-5xl' />
+            <p className="text-2xl lg:text-3xl">Linkedin</p>
+            <PiArrowRightThin className="text-3xl lg:text-5xl group-hover:-rotate-45 group-hover:transition-transform duration-300" />
+          </div>
+        </a>
+      </section>
 
       <section>
         <div className="mx-auto grid grid-cols-1 lg:grid-cols-2 px-8 mb-16">
