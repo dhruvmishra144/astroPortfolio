@@ -162,7 +162,7 @@ const BackgroundAnimation = ({ children }: { children: React.ReactNode }) => {
             }
 
             {/* Foreground Content Wrapper */}
-            <div className="relative z-10">
+            <div className="relative z-10 absolute sticky top-0">
                 {children}
             </div>
         </div>

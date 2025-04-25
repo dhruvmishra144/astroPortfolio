@@ -548,31 +548,31 @@ export default function Home() {
   
   const projectsList = [
     {
-      projectName: "FlowMatic Webapp",
+      projectName: "FlowMatic",
       projectDesception: "Designing an Affordable and User-Friendly iPaaS Solution with AI for SMEs",
-      metricOne: "Mean Time to Integrate (MTIT) ",
-      metricTwo: "Integration Success Rate (ISR)",
-      metricDetailOne: "Zoom through setup with 34x the speed and none of the stress.",
-      metricDetailTwo: "10% increase in Integration Success Rate (ISR) and minimizing rework and operational overhead",
+      metricOne: "34x",
+      metricTwo: "10%",
+      metricDetailOne: "times faster Applications Integration",
+      metricDetailTwo: "Increase in Integration Success Rate (ISR)",
       year: "2024",
       module: "Web App",
       link:'/projects/flowmatic',
       img:'https://as2.ftcdn.net/v2/jpg/08/09/04/55/1000_F_809045509_U4df7jKWH4fVKayaVi4aSz5Wud4Np9Zb.jpg'
     },
     {
-      projectName: "LoopTrip Mobile App",
+      projectName: "LoopTrip",
       projectDesception: "The ultimate platform for coordinated vehicle travel",
-      metricOne: "Fleet Coordination Efficiency (FCE)", 
-      metricTwo: "User Satisfaction & Adoption Rate", 
-      metricDetailOne: "95% of fleets arrived within 5 minutes of each other, showing high synchronization accuracy", 
-      metricDetailTwo: "User satisfaction rated 4.7/5 with a 65% retention rate after 30 days — indicating strong engagement for coordinated trips.", 
+      metricOne: "95%", 
+      metricTwo: "65%", 
+      metricDetailOne: "Increase in high synchronization accuracy", 
+      metricDetailTwo: "Increase in User Satisfaction for coordinated trips.", 
       year: "2025", 
       module: "Mobile App",
       link:'/projects/looptrip',
       img:'https://as2.ftcdn.net/v2/jpg/08/09/04/55/1000_F_809045509_U4df7jKWH4fVKayaVi4aSz5Wud4Np9Zb.jpg'
     },
     { 
-      projectName: "GoodsBiz Webpage",
+      projectName: "GoodsBiz",
       projectDesception: "B2B Product Buying and Selling", 
       metricOne: "Lorem ipsum dolor sit amet", 
       metricTwo: "Lorem ipsum dolor sit amet", 
@@ -584,26 +584,26 @@ export default function Home() {
       img:'https://as2.ftcdn.net/v2/jpg/08/09/04/55/1000_F_809045509_U4df7jKWH4fVKayaVi4aSz5Wud4Np9Zb.jpg'
     },
     { 
-      projectName: "Aaizal Tech Website Redesign",
+      projectName: "Aaizal Tech Website",
       projectDesception: "Specialise in creating transformative solutions across a wide range of sectors", 
-      metricOne: "Page Load Time", 
-      metricTwo: "Conversion Rate", 
-      metricDetailOne: "Load times can be reduced by up to 60%, achieving speeds under 1 second.", 
-      metricDetailTwo: "Conversion rates can improve by up to 32% due to enhanced performance and user experience", 
+      metricOne: "60%", 
+      metricTwo: "32%", 
+      metricDetailOne: "Reduction of load-time and achieving speeds under 1 second.", 
+      metricDetailTwo: "Conversion rates due to enhanced performance and user experience", 
       year: "2025", 
-      module: "Web App & Mobile App", 
+      module: "Redesign Website", 
       link:'/projects/aaizaltech',
       img:'https://as2.ftcdn.net/v2/jpg/08/09/04/55/1000_F_809045509_U4df7jKWH4fVKayaVi4aSz5Wud4Np9Zb.jpg'
     },
     { 
-      projectName: "Petrii Webapp",
+      projectName: "Petrii",
       projectDesception: "Streamline research with AI lab management: connect team, experiments, and data in one secure platform.", 
-      metricOne: "Data Accessibility SLA Compliance Rate",
-      metricTwo: "Experiment Turnaround Time Reduction Rate", 
-      metricDetailOne: "Our team now fulfills 95 % of data-access requests within the agreed 30-minute SLA", 
-      metricDetailTwo: "Achieved a 20% reduction in average experiment turnaround time", 
+      metricOne: "95%",
+      metricTwo: "20%", 
+      metricDetailOne: "Data-access requests within the 30-minute SLA", 
+      metricDetailTwo: "Reduction in average experiment turnaround time", 
       year: "2022", 
-      module: "Web App & Mobile App", 
+      module: "Web App", 
       link:'/projects/petrii',
       img:'https://as2.ftcdn.net/v2/jpg/08/09/04/55/1000_F_809045509_U4df7jKWH4fVKayaVi4aSz5Wud4Np9Zb.jpg'
     },
@@ -648,7 +648,7 @@ export default function Home() {
               </div>
               <hr className='border-[0.5px] border-[#e5e5e5]/20 w-full mb-4' />
               <div className='flex flex-row gap-x-4 mb-4 justify-between'>
-                <div className='flex flex-col gap-y-3 text-start'>
+                <div className='flex flex-col gap-y-3 text-start flex-grow'>
                 <h3 className='text-2xl lg:text-4xl text-start leading-relax w-[calc(100%-48px)]'>{items.projectName}</h3>
                 <p className='text-slate-400 text-md lg:text-lg'>{items.projectDesception}</p>
                 </div>
