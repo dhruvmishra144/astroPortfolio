@@ -8,9 +8,9 @@ import {isMobile} from 'react-device-detect';
 gsap.registerPlugin(useGSAP);
 
 // --- Configuration for Abstract Waves ---
-const NUM_ELEMENTS = 15; // Fewer, larger elements might work better
-const MIN_SIZE = 150; // Larger base size
-const MAX_SIZE = 450;
+const NUM_ELEMENTS = 5; // Fewer, larger elements might work better
+const MIN_SIZE = 350; // Larger base size
+const MAX_SIZE = 650;
 const MIN_DURATION = 8; // Slower movement
 const MAX_DURATION = 15;
 // const MIN_PEAK_SCALE = 1.0;
@@ -20,7 +20,7 @@ const MAX_OPACITY = 0.5;
 const ELEMENT_COLOR = 'bg-cyan-500'; // Adjusted color slightly
 const BACKGROUND_COLOR = 'bg-slate-950';
 const BLUR_AMOUNT = '60px'; // Significantly more blur
-const MOVEMENT_RANGE = 300; // How far elements travel (pixels)
+const MOVEMENT_RANGE = 600; // How far elements travel (pixels)
 // Optional: Add blend mode for more visual effect (e.g., 'screen', 'overlay', 'soft-light')
 const BLEND_MODE = 'screen'; // Try 'normal' if you don't want blending
 // ---------------------

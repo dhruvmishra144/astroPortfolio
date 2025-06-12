@@ -19,532 +19,100 @@ export default function Home() {
   const availableForProject = useRef(null);
   const checkStar = useRef(null);
   const projectContainer = useRef<HTMLDivElement | null>(null);
-  // Using useGSAP to run animation on mount
+ 
   useGSAP(() => {
-    const mm = gsap.matchMedia()
-
-    if (!projectContainer.current) return;
-
-    // Select all children inside the container
-    const elements = gsap.utils.toArray(projectContainer.current.children) as HTMLElement[];
-    elements.forEach((element, index) => {
-      if (index % 2 === 0) {
-        // Even elements animation
-        gsap.fromTo(
-          element,
-          { x:-100, y:100, opacity:0 },
-        {
-          x:0,
-          y:0,
-          opacity:1,
-          duration:2,
-          scrollTrigger: {
-            trigger: element,
-            start: 'clamp(top 90%)',
-            end: 'clamp(top 60%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.inOut",
-        }
-        );
-      } else {
-        // Odd elements animation
-        gsap.fromTo(
-          element,
-          { x:100, y:100, opacity:0 },
-        {
-          x:0,
-          y:0,
-          opacity:1,
-          duration:2,
-          scrollTrigger: {
-            trigger: element,
-            start: 'clamp(top 90%)',
-            end: 'clamp(top 60%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.inOut",
-        }
-        );
+    gsap.from(intro.current, {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      scrollTrigger: {
+        trigger: intro.current,
+        start: "top 80%",
+        toggleActions: "play none none reverse",
       }
     });
-
-    mm.add("(min-width: 992px) and (prefers-reduced-motion: no-preference)", () => {
-      // desktop setup code here...
-      gsap.fromTo(
-        intro.current,
-        { opacity: 1, y: -50, scale: 1 },
-        {
-          opacity: 0,
-          y: 0,
-          scale: 1.5,
-          scrollTrigger: {
-            trigger: intro.current,
-            start: 'clamp(top 70%)',
-            end: 'clamp(top 38%)',
-            scrub: true,
-            pin: true,
-            markers: false
-          },
-          ease: "power1.inOut",
-          duration: 2.5
-        }
-      );
-
-      gsap.fromTo(
-        imageDiv.current,
-        { opacity: 1, y: -50, scale: 1 },
-        {
-          opacity: 0,
-          y: 0,
-          scale: 1.5,
-          scrollTrigger: {
-            trigger: imageDiv.current,
-            start: 'clamp(top 30%)',
-            end: 'clamp(top 00%)',
-            scrub: true,
-            pin: true,
-            markers: false
-          },
-          ease: "power1.inOut",
-          duration: 2.5
-        }
-      );
-
-      gsap.fromTo(
-        skill.current,
-        { opacity: 0, y: 0, scale:1.5 },
-        {
-          opacity: 1,
-          y: -205,
-          scale:1,
-          scrollTrigger: {
-            trigger: skill.current,
-            start: 'clamp(top 80%)',
-            end: 'clamp(top 50%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.inOut",
-        }
-      );
-
-      gsap.fromTo(
-        platform.current,
-        { opacity: 0, y: 0, scale:1.5 },
-        {
-          opacity: 1,
-          y: -200,
-          scale:1,
-          scrollTrigger: {
-            trigger: platform.current,
-            start: 'clamp(top 80%)',
-            end: 'clamp(top 55%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.inOut",
-        }
-      );
-
-      gsap.fromTo(
-        skillPara.current,
-        { opacity: 0, y: 0, scale:1.5 },
-        {
-          opacity: 1,
-          y: -195,
-          scale:1,
-          scrollTrigger: {
-            trigger: skillPara.current,
-            start: 'clamp(top 80%)',
-            end: 'clamp(top 60%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.inOut",
-        }
-      );
-
-      gsap.fromTo(
-        caseStudyHeading.current,
-        { opacity: 0, x: -200, y: 0, scale: 2 },
-        {
-          opacity: 1,
-          x: 0,
-          y: 0,
-          scale: 1,
-          scrollTrigger: {
-            trigger: caseStudyHeading.current,
-            start: 'clamp(top 80%)',
-            end: 'clamp(top 60%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.inOut",
-        }
-      );
-
-      gsap.fromTo(
-        availableForProject.current,
-        { opacity: 0, x: 200, y: 0, scale: 2 },
-        {
-          opacity: 1,
-          x: 0,
-          y: 0,
-          scale: 1,
-          scrollTrigger: {
-            trigger: availableForProject.current,
-            start: 'clamp(top 80%)',
-            end: 'clamp(top 60%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.inOut",
-        }
-      );
-
-      gsap.fromTo(
-        checkStar.current,
-        { rotate: 0, transformOrigin: "50% 50%" },
-        {
-          rotate: "+=360", transformOrigin: "50% 50%",
-          scrollTrigger: {
-            trigger: checkStar.current,
-            start: 'clamp(top 80%)',
-            end: 'clamp(top 60%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.inOut",
-        }
-      );
-
-
+  
+    gsap.from(imageDiv.current, {
+      opacity: 0,
+      scale: 0.8,
+      duration: 1.2,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: imageDiv.current,
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      }
     });
-
-    mm.add("(max-width: 991px) and (min-width: 578px) and (prefers-reduced-motion: no-preference)", () => {
-      // tab setup code here...
-      gsap.fromTo(
-        intro.current,
-        { opacity: 1, y: -80, scale: 1 },
-        {
-          opacity: 0,
-          y: -100,
-          scale: 2,
-          scrollTrigger: {
-            trigger: intro.current,
-            start: () => 'clamp(top 84%)',
-            end: () => 'clamp(top 40%)',
-            scrub: true,
-            pin: true,
-            markers: false
-          },
-          ease: "power1.out",
-        }
-      );
-
-      gsap.fromTo(
-        imageDiv.current,
-        { opacity: 1, y: -80, scale: 1 },
-        {
-          opacity: 0,
-          y: -100,
-          scale: 2.5,
-          scrollTrigger: {
-            trigger: imageDiv.current,
-            start: () => 'clamp(top 61%)',
-            end: () => 'clamp(top 10%)',
-            scrub: true,
-            pin: true,
-            markers: false
-          },
-          ease: "power1.out",
-        }
-      );
-
-      gsap.fromTo(
-        skill.current,
-        { opacity: 0, y: 0, scale:1.5 },
-        {
-          opacity: 1,
-          y: -205,
-          scale:1,
-          scrollTrigger: {
-            trigger: skill.current,
-            start: 'clamp(top 100%)',
-            end: 'clamp(top 80%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.inOut",
-        }
-      );
-
-      gsap.fromTo(
-        platform.current,
-        { opacity: 0, y: 0, scale:1.5 },
-        {
-          opacity: 1,
-          y: -200,
-          scale:1,
-          scrollTrigger: {
-            trigger: platform.current,
-            start: 'clamp(top 100%)',
-            end: 'clamp(top 75%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.inOut",
-        }
-      );
-
-      gsap.fromTo(
-        skillPara.current,
-        { opacity: 0, y: 0, scale:1.5 },
-        {
-          opacity: 1,
-          y: -195,
-          scale:1,
-          scrollTrigger: {
-            trigger: skillPara.current,
-            start: 'clamp(top 100%)',
-            end: 'clamp(top 70%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.inOut",
-        }
-      );
-
-      gsap.fromTo(
-        caseStudyHeading.current,
-        { opacity: 0, x: -200, y: 0, scale: 2 },
-        {
-          opacity: 1,
-          x: 0,
-          y: 0,
-          scale: 1,
-          scrollTrigger: {
-            trigger: caseStudyHeading.current,
-            start: 'clamp(top 80%)',
-            end: 'clamp(top 60%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.inOut",
-        }
-      );
-
-      gsap.fromTo(
-        availableForProject.current,
-        { opacity: 0, x: 200, y: 0, scale: 2 },
-        {
-          opacity: 1,
-          x: 0,
-          y: 0,
-          scale: 1,
-          scrollTrigger: {
-            trigger: availableForProject.current,
-            start: 'clamp(top 80%)',
-            end: 'clamp(top 60%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.inOut",
-        }
-      );
-
-      gsap.fromTo(
-        checkStar.current,
-        { rotate: 0, transformOrigin: "50% 50%" },
-        {
-          rotate: "+=360", transformOrigin: "50% 50%",
-          scrollTrigger: {
-            trigger: checkStar.current,
-            start: 'clamp(top 80%)',
-            end: 'clamp(top 60%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.inOut",
-        }
-      );
-
+  
+    gsap.from(skill.current, {
+      opacity: 0,
+      x: -100,
+      duration: 1,
+      scrollTrigger: {
+        trigger: skill.current,
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      }
     });
-
-    mm.add("(max-width: 575px) and (prefers-reduced-motion: no-preference)", () => {
-      // tab setup code here...
-      gsap.fromTo(
-        intro.current,
-        { opacity: 1, y: -50, scale: 1 },
-        {
-          opacity: 0,
-          y: -80,
-          scale: 1.5,
-          scrollTrigger: {
-            trigger: intro.current,
-            start: () => 'clamp(top 84%)',
-            end: () => 'clamp(top 30%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.out",
-        }
-      );
-
-      gsap.fromTo(
-        imageDiv.current,
-        { opacity: 1, y: -50, scale: 1 },
-        {
-          opacity: 0,
-          y: -80,
-          scale: 1.5,
-          scrollTrigger: {
-            trigger: imageDiv.current,
-            start: () => 'clamp(top 61%)',
-            end: () => 'clamp(top 0%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.out",
-        }
-      );
-
-      gsap.fromTo(
-        skill.current,
-        { opacity: 0, y: 0, scale:1.5 },
-        {
-          opacity: 1,
-          y: -100,
-          scale:1,
-          scrollTrigger: {
-            trigger: skill.current,
-            start: 'clamp(top 100%)',
-            end: 'clamp(top 30%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.inOut",
-        }
-      );
-
-      gsap.fromTo(
-        platform.current,
-        { opacity: 0, y: 0, scale:1.5 },
-        {
-          opacity: 1,
-          y: -95,
-          scale:1,
-          scrollTrigger: {
-            trigger: platform.current,
-            start: 'clamp(top 100%)',
-            end: 'clamp(top 35%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.inOut",
-        }
-      );
-
-      gsap.fromTo(
-        skillPara.current,
-        { opacity: 0, y: 0, scale:1.5 },
-        {
-          opacity: 1,
-          y: -90,
-          scale:1,
-          scrollTrigger: {
-            trigger: skillPara.current,
-            start: 'clamp(top 100%)',
-            end: 'clamp(top 40%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.inOut",
-        }
-      );
-
-      gsap.fromTo(
-        caseStudyHeading.current,
-        { opacity: 0, x: 0, y: 0, scale: 2 },
-        {
-          opacity: 1,
-          x: 0,
-          y: -50,
-          scale: 1,
-          scrollTrigger: {
-            trigger: caseStudyHeading.current,
-            start: 'clamp(top 80%)',
-            end: 'clamp(top 60%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.inOut",
-        }
-      );
-
-      gsap.fromTo(
-        availableForProject.current,
-        { opacity: 0, x: 200, y: 0, scale: 2 },
-        {
-          opacity: 1,
-          x: 0,
-          y: -100,
-          scale: 1,
-          scrollTrigger: {
-            trigger: availableForProject.current,
-            start: 'clamp(top 80%)',
-            end: 'clamp(top 60%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.inOut",
-        }
-      );
-
-      gsap.fromTo(
-        checkStar.current,
-        { rotate: 0, transformOrigin: "50% 50%" },
-        {
-          rotate: "+=360", transformOrigin: "50% 50%",
-          scrollTrigger: {
-            trigger: checkStar.current,
-            start: 'clamp(top 80%)',
-            end: 'clamp(top 60%)',
-            scrub: true,
-            pin: false,
-            markers: false
-          },
-          ease: "power1.inOut",
-        }
-      );
-
+  
+    gsap.from(platform.current, {
+      opacity: 0,
+      x: 100,
+      duration: 1,
+      scrollTrigger: {
+        trigger: platform.current,
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      }
     });
-
-  }, []);
+  
+    gsap.from(skillPara.current, {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      scrollTrigger: {
+        trigger: skillPara.current,
+        start: "top 90%",
+        toggleActions: "play none none reverse",
+      }
+    });
+  
+    gsap.from(caseStudyHeading.current, {
+      opacity: 0,
+      x: -50,
+      duration: 1,
+      scrollTrigger: {
+        trigger: caseStudyHeading.current,
+        start: "top 90%",
+        toggleActions: "play none none reverse",
+      }
+    });
+  
+    gsap.from(availableForProject.current, {
+      opacity: 0,
+      x: 50,
+      duration: 1,
+      scrollTrigger: {
+        trigger: availableForProject.current,
+        start: "top 90%",
+        toggleActions: "play none none reverse",
+      }
+    });
+  
+    gsap.from(Array.from(projectContainer.current?.children || []), {
+      opacity: 0,
+      y: 40,
+      duration: 1,
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: projectContainer.current,
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      }
+    });
+  
+  }, { scope: home }); // Ensures GSAP only runs inside this component
+  
   
   const projectsList = [
     {
@@ -623,7 +191,7 @@ export default function Home() {
         </div>
         <h1 ref={intro} className="text-4xl lg:text-6xl font-extralight main-heading px-4 text-slate-400 heading-text">Hi, I am <span className="text-white heading-text">Dhruv Mishra</span></h1>
       </div>
-      <div className="container h-auto mx-auto text-center flex flex-col items-center justify-center px-4">
+      <div className="container h-auto mx-auto text-center flex flex-col items-center justify-center px-4 py-32">
         <p ref={skill} className="mb-6 lg:mb-8 text-4xl lg:text-6xl text-slate-400">I am <span className='text-white'>Product Designer</span> and <span className='text-white'>Developer</span></p>
         <p ref={platform} className='mb-6 lg:mb-8 text-4xl lg:text-6xl text-slate-400'>For <span className='text-white'>Web</span> and <span className='text-white'>Mobile</span> Platforms</p>
         <p ref={skillPara} className="mb-4 lg:max-w-[875px] xl:max-w-[1100px] text-xl leading-8">My area of knowledge is in developing user-friendly, visually appealing mobile and internet applications that engage people and provide results. Furthermore, I am skilled in web development</p>
