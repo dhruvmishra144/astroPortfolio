@@ -3,15 +3,15 @@ import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.share
 
 export const animationPageIn = () => {
     const bannerOne = document.getElementById('banner-1');
-    const bannerTwo = document.getElementById('banner-2');
-    const bannerThree = document.getElementById('banner-3');
-    const bannerFour = document.getElementById('banner-4');
-    const linkText = document.getElementById('LinkText');
+    // const bannerTwo = document.getElementById('banner-2');
+    // const bannerThree = document.getElementById('banner-3');
+    // const bannerFour = document.getElementById('banner-4');
+    // const linkText = document.getElementById('LinkText');
 
-    if (bannerOne && bannerTwo && bannerThree && bannerFour && linkText) {
+    if (bannerOne) {
         const t1 = gsap.timeline()
-        const t2 = gsap.timeline()
-        t1.set([bannerOne, bannerTwo, bannerThree, bannerFour],{
+        // const t2 = gsap.timeline()
+        t1.set([bannerOne],{
             yPercent:0,
             stagger:0.35,
             duration:1,
@@ -19,7 +19,7 @@ export const animationPageIn = () => {
             opacity:1
 
         })
-        .to([bannerOne, bannerTwo, bannerThree, bannerFour],{
+        .to([bannerOne],{
             yPercent:150,
             stagger:0.35,
             duration:1,
@@ -27,37 +27,59 @@ export const animationPageIn = () => {
             opacity:0
         })
         
-        t2.set([linkText],{
-            opacity:0,
-            scale:0,
-            color:"#000000"
+        // t2.set([linkText],{
+        //     opacity:0,
+        //     scale:0,
+        //     color:"#000000"
 
-        }).to([linkText],{
-            opacity:1,
-            scale:1.5,
-            stagger:0.35,
-            duration:1
-        })
+        // }).to([linkText],{
+        //     opacity:1,
+        //     scale:1.5,
+        //     stagger:0.35,
+        //     duration:1
+        // })
        
-        t2.to([linkText],{
-            opacity:0,
-            stagger:0.35,
-            duration:0.8,
-            display:'none'
-        })
+        // t2.to([linkText],{
+        //     opacity:0,
+        //     stagger:0.35,
+        //     duration:0.8,
+        //     display:'none'
+        // })
         
     }
 }
 
 export const animationPageOut = (href:string, router: AppRouterInstance) => {
     const bannerOne = document.getElementById('banner-1');
-    const bannerTwo = document.getElementById('banner-2');
-    const bannerThree = document.getElementById('banner-3');
-    const bannerFour = document.getElementById('banner-4');
+    // const bannerTwo = document.getElementById('banner-2');
+    // const bannerThree = document.getElementById('banner-3');
+    // const bannerFour = document.getElementById('banner-4');
 
-    if (bannerOne && bannerTwo && bannerThree && bannerFour) {
+    // if (bannerOne && bannerTwo && bannerThree && bannerFour) {
+    //     const t1 = gsap.timeline()
+    //     t1.set([bannerOne,bannerTwo,bannerThree,bannerFour],{
+    //         yPercent:-100,
+    //         borderRadius:100,
+    //         stagger:0.35,
+    //         duration:0.5,
+    //         opacity:0
+            
+
+    //     }).to([bannerOne,bannerTwo,bannerThree,bannerFour],{
+    //         yPercent:0,
+    //         stagger:0.35,
+    //         borderRadius:0,
+    //         duration:0.5,
+    //         opacity:1,
+    //         onComplete: ()=>{
+    //             router.push(href)
+    //         }
+    //     })
+    // }
+
+    if (bannerOne) {
         const t1 = gsap.timeline()
-        t1.set([bannerOne,bannerTwo,bannerThree,bannerFour],{
+        t1.set([bannerOne],{
             yPercent:-100,
             borderRadius:100,
             stagger:0.35,
@@ -65,7 +87,7 @@ export const animationPageOut = (href:string, router: AppRouterInstance) => {
             opacity:0
             
 
-        }).to([bannerOne,bannerTwo,bannerThree,bannerFour],{
+        }).to([bannerOne],{
             yPercent:0,
             stagger:0.35,
             borderRadius:0,

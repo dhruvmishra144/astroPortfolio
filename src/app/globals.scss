@@ -4,18 +4,18 @@
 
 
 :root {
-  --background: var(--color-zinc-100);
-  --foreground: var(--color-zinc-100);
-  --primary: var(--color-zinc-100);
-  --foreground: var(--color-zinc-100);
+  --background: var(--color-slate-100);
+  --foreground: var(--color-slate-100);
+  --primary: var(--color-slate-100);
+  --foreground: var(--color-slate-100);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: var(--color-zinc-950);
-    --foreground: var(--color-zinc-100);
-    --primary: var(--color-zinc-100);
-    --foreground: var(--color-zinc-100);
+    --background: var(--color-slate-950);
+    --foreground: var(--color-slate-100);
+    --primary: var(--color-slate-100);
+    --foreground: var(--color-slate-100);
   }
 }
 
@@ -53,7 +53,7 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-zinc-200, currentColor);
+    border-color: var(--color-slate-200, currentColor);
     font-family: "Poppins", sans-serif;
     text-rendering: optimizeLegibility;
   }
@@ -63,10 +63,13 @@
     background-color: var(--background);
     font-family: "Poppins", sans-serif;
     font-weight: 200;
-    background-image: url('/bg.png') !important;
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
+  }
+
+  .stripe-bg{
+    background-image: url('/bg.png') !important;
   }
 
   .heading-text {
