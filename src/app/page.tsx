@@ -125,7 +125,7 @@ export default function Home() {
       year: "2024",
       module: "Web App",
       link:'/projects/flowmatic',
-      img:'https://as2.ftcdn.net/v2/jpg/08/09/04/55/1000_F_809045509_U4df7jKWH4fVKayaVi4aSz5Wud4Np9Zb.jpg'
+      img:'/flowmatic-card-image.jpg'
     },
     {
       projectName: "LoopTrip",
@@ -209,13 +209,17 @@ export default function Home() {
         <div ref={projectContainer} className='container h-auto mx-auto text-center  flex flex-col items-center justify-between px-4 max-w-[1100px] gap-y-8 mb-24'>
         {
           projectsList.map((items, index) => {
-            return (<a href={items.link} className='flex flex-col p-6 bg-cyan-600/20 backdrop-blur-md w-full rounded-[24px] group' key={index.toString()} >
-              <div className='flex flex-row justify-between mb-4'>
+            return (<a href={items.link} className={`flex flex-col ${index%2 == 0?"lg:flex-row":"lg:flex-row-reverse"}  p-6 bg-cyan-600/20 backdrop-blur-md w-full rounded-[24px] group gap-8`} key={index.toString()} >
+               <div className='w-full lg:w-1/2'>
+              <Image width={'400'} height={'400'} className='h-full w-full rounded-xl' src={items.img} alt="" />
+              </div>
+              <div className='flex flex-col gap-6 w-full lg:w-1/2'>
+              <div className='flex flex-row justify-between'>
                 <p className='text-base'>{items.year}</p>
                 <p className='text-base'>{items.module}</p>
               </div>
-              <hr className='border-[0.5px] border-[#e5e5e5]/20 w-full mb-4' />
-              <div className='flex flex-row gap-x-4 mb-4 justify-between'>
+              <hr className='border-[0.5px] border-[#e5e5e5]/20 w-full' />
+              <div className='flex flex-row gap-x-4 justify-between'>
                 <div className='flex flex-col gap-y-3 text-start flex-grow'>
                 <h3 className='text-2xl lg:text-4xl text-start leading-relax w-[calc(100%-48px)]'>{items.projectName}</h3>
                 <p className='text-slate-400 text-md lg:text-lg'>{items.projectDesception}</p>
@@ -232,7 +236,8 @@ export default function Home() {
                 <p className='text-slate-400 text-base lg:text-md'>{items.metricDetailTwo}</p>
                 </div>
               </div>
-              <Image width={'977'} height={'400'} className='h-full w-full rounded-xl' src={items.img} alt="" />
+              </div>
+             
             </a>)
           })
         }
