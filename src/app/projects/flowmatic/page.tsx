@@ -1,15 +1,19 @@
 'use client'
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import Tabs from "../_components/tabs";
+import LongCaseStudy from "./_components/long-case-study";
+import ShortCaseStudy from "./_components/short-case-study";
 
-const flowmatic = () => {
+const Flowmatic = () => {
     // Register ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
+    const [activeTab, setActiveTab] = useState('short');
 
-    // Ref for the sticky heading, explicitly typed as HTMLHeadingElement
-    const stickyHeadingRef = useRef<HTMLHeadingElement>(null);
+    // Use a ref to store the array of ScrollTrigger instances for cleanup
+    const scrollTriggersRef = useRef<ScrollTrigger[]>([]);
 
     const data = [
         {
@@ -39,52 +43,58 @@ const flowmatic = () => {
         },
     ];
 
-    const content = [
-        "Manual data handling between business apps is not only inefficient but also prone to errors. The absence of a user-friendly integration tool creates a significant productivity gap. Our goal was to close that gap with an AI-powered, no-code integration solution tailored for everyday users.",
-        "I personally experienced these challenges while working with a client who had to manually transfer and reconcile data across four different SaaS tools every day. It not only consumed hours of their time but also led to inconsistent records, miscommunication, and frustration across teams. Witnessing this firsthand, I realized how underserved non-technical users are when it comes to building workflows or automation.",
-        "That experience pushed me to explore how design could bridge this gap. I decided to take on the challenge of creating a simple, AI-powered, no-code iPaaS platform that empowers users—regardless of their technical background—to create seamless data flows between applications with confidence and clarity."
-    ];
-
     useEffect(() => {
-        let mm = gsap.matchMedia();
+        const mm = gsap.matchMedia();
+        
+        // Cleanup previous scroll triggers
+        if (scrollTriggersRef.current) {
+            scrollTriggersRef.current.forEach(t => t.kill());
+            scrollTriggersRef.current = [];
+        }
 
         mm.add("(min-width: 1024px)", () => {
-            if (stickyHeadingRef.current) {
-                ScrollTrigger.create({
-                    trigger: stickyHeadingRef.current,
-                    start: "top top",
-                    endTrigger: stickyHeadingRef.current.nextElementSibling,
-                    end: "bottom top",
-                    pin: true,
-                    pinSpacing: false,
-                    // markers: true, // Uncomment for visual debugging
-
-                    // Callbacks to add/remove padding
-                    onEnter: () => {
-                        // When the trigger starts pinning
-                        gsap.to(stickyHeadingRef.current, { paddingTop: '1rem', duration: 0.2 }); // Animate to pt-4 (1rem)
-                    },
-                    onLeaveBack: () => {
-                        // When scrolling back up and the element unpins
-                        gsap.to(stickyHeadingRef.current, { paddingTop: '0rem', duration: 0.2 }); // Animate back to pt-0
-                    },
-                    onLeave: () => {
-                        // When the element unpins at the bottom (scrolling down past its parent)
-                        gsap.to(stickyHeadingRef.current, { paddingTop: '0rem', duration: 0.2 }); // Animate back to pt-0
-                    },
-                    onEnterBack: () => {
-                        // When scrolling back up and entering the pinned state from below
-                        gsap.to(stickyHeadingRef.current, { paddingTop: '1rem', duration: 0.2 }); // Animate to pt-4
-                    },
-                });
-            }
+            // Select all headings and their corresponding content
+            const headings = document.querySelectorAll('.project-heading');
+            
+            headings.forEach((heading) => {
+                // Find the content associated with this heading. 
+                // In our structure, it is the next sibling or we can search within the parent section
+                const section = heading.closest('.project-section');
+                const content = section?.querySelector('.project-content');
+                
+                if (heading && content) {
+                   const st = ScrollTrigger.create({
+                        trigger: heading,
+                        start: "top top",
+                        endTrigger: content,
+                        end: "bottom top", // Ends when the bottom of the content hits the top of the viewport
+                        pin: true,
+                        pinSpacing: false,
+                        markers: false,
+                        onEnter: () => gsap.to(heading, { paddingTop: '1rem', duration: 0.2 }),
+                        onLeaveBack: () => gsap.to(heading, { paddingTop: '0rem', duration: 0.2 }),
+                        onLeave: () => gsap.to(heading, { paddingTop: '0rem', duration: 0.2 }),
+                        onEnterBack: () => gsap.to(heading, { paddingTop: '1rem', duration: 0.2 }),
+                    });
+                    scrollTriggersRef.current.push(st);
+                }
+            });
         });
 
         return () => {
             mm.revert();
+            if (scrollTriggersRef.current) {
+                scrollTriggersRef.current.forEach(t => t.kill());
+                scrollTriggersRef.current = [];
+            }
         };
 
-    }, []);
+    }, [activeTab]);
+
+    const tabs = [
+        { id: 'short', label: 'Short Case Study' },
+        { id: 'long', label: 'Long Case Study' },
+    ];
 
     return (
         <div className="container mx-auto px-4 py-20">
@@ -93,32 +103,33 @@ const flowmatic = () => {
                     <p className="text-lg lg:text-2xl font-medium">FlowMatic</p>
                     <h1 className="text-2xl lg:text-6xl font-extralight leading-tight">Next-Gen AI iPaaS: Streamlined Workflows, Rapid Integrations</h1>
                 </section>
-                <Image width={600} height={200} className="w-full rounded-2xl" src={"https://placehold.co/600x300"} alt={""} />
-                <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-sm sm:text-base">
-                    {data.map((block, index) => (
-                        <div key={index} className="space-y-2">
-                            <h2 className="text-white font-bold text-md mb-3">{block.title}</h2>
-                            {block.content.length === 1 ? (
-                                <p className="text-gray-300 text-lg">{block.content[0]}</p>
-                            ) : (
-                                <ul className="text-gray-300 space-y-1 text-lg flex flex-col">
-                                    {block.content.map((item, i) => (
-                                        <li key={i}>{item}</li>
-                                    ))}
-                                </ul>
-                            )}
-                        </div>
-                    ))}
+                
+                <Tabs tabs={tabs} onTabChange={setActiveTab} />
+                
+                <section className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                  <Image width={600} height={200} className="w-full rounded-2xl" src={"/flowmatic-card-image.jpg"} alt="" />
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-8 text-sm sm:text-base self-start">
+                      {data.map((block, index) => (
+                          <div key={index} className="space-y-2">
+                              <h2 className="text-white font-bold text-md mb-3">{block.title}</h2>
+                              {block.content.length === 1 ? (
+                                  <p className="text-gray-300 text-lg">{block.content[0]}</p>
+                              ) : (
+                                  <ul className="text-gray-300 space-y-1 text-lg flex flex-col">
+                                      {block.content.map((item, i) => (
+                                          <li key={i}>{item}</li>
+                                      ))}
+                                  </ul>
+                              )}
+                          </div>
+                      ))}
+                  </div>
                 </section>
-                {/* This is the only "Why This Matters" section. It's controlled by GSAP */}
-                <section className="grid grid-cols-1 lg:grid-cols-2">
-                    <h3 className="text-4xl font-semibold" ref={stickyHeadingRef}>Why This Matters</h3>
+
+                <section>
                     <div className="flex flex-col gap-4">
-                        {content.map((paragraph, index) => (
-                            <p key={index} className="text-xl text-mute-forground">
-                                {paragraph}
-                            </p>
-                        ))}
+                        {activeTab === 'short' ? <ShortCaseStudy /> : <LongCaseStudy />}
                     </div>
                 </section>
             </main>
@@ -126,4 +137,4 @@ const flowmatic = () => {
     );
 }
 
-export default flowmatic;
+export default Flowmatic;

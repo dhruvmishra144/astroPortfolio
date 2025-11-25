@@ -1,5 +1,5 @@
-'use client'
-import { usePathname, useRouter } from "next/navigation"
+ 'use client'
+import { useRouter } from "next/navigation"
 import { animationPageOut } from "../utils/animation"
 
 interface Props {
@@ -10,14 +10,11 @@ interface Props {
 
 const TransitionLink = ({ href, label, children }: Props) => {
     const router = useRouter();
-    const pathname = usePathname();
     const handleCLick = () => {
-        if (pathname != href) {
-              animationPageOut(href, router)    
-        }
+        animationPageOut(href, router)    
     }
     return (
-        <button onClick={handleCLick} className={`rounded-lg flex flex-col gap-3 items-center uppercase p-0 py-2 sm:px-2 text-[10px] w-[60px] sm:w-[70px] cursor-pointer ${pathname === href?'bg-cyan-200/10 backdrop-blur-sm':''} border border-cyan-300/0 hover:border hover:border-cyan-800 transition-all duration-300`}>
+        <button onClick={handleCLick} className={`rounded-lg flex flex-col gap-3 items-center uppercase p-0 py-2 sm:px-2 text-[10px] w-[60px] sm:w-[70px] cursor-pointer border border-cyan-300/0 hover:border hover:border-cyan-800 transition-all duration-300`}>
             <span className="text-lg">{children}</span>
             <span className="text-xs">{label}</span>
         </button>
