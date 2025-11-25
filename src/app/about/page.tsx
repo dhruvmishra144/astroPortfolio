@@ -15,7 +15,7 @@ export default function About() {
   
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.utils.toArray(".animate-on-scroll").forEach((el) => {
+      gsap.utils.toArray<HTMLElement>(".animate-on-scroll").forEach((el) => {
         gsap.from(el, {
           y: 50,
           opacity: 0,
