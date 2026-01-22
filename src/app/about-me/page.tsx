@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { PiArrowRightThin } from "react-icons/pi";
 import { RiLinkedinBoxFill } from "react-icons/ri";
 import gsap from 'gsap';
