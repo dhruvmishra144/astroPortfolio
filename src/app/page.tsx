@@ -111,7 +111,7 @@ export default function Home() {
       year: "2025", 
       module: "Mobile App",
       link:'/projects/looptrip',
-      img:'https://as2.ftcdn.net/v2/jpg/08/09/04/55/1000_F_809045509_U4df7jKWH4fVKayaVi4aSz5Wud4Np9Zb.jpg'
+      img:'/looptrip-card-image.jpg'
     },
     { 
       projectName: "GoodsBiz",
@@ -123,7 +123,7 @@ export default function Home() {
       year: "2023", 
       module: "Web App",
       link:'/projects/goodsbiz',
-      img:'https://as2.ftcdn.net/v2/jpg/08/09/04/55/1000_F_809045509_U4df7jKWH4fVKayaVi4aSz5Wud4Np9Zb.jpg'
+      img:'/goodsbiz-card-image.jpg'
     },
     { 
       projectName: "Aaizal Tech Website",
@@ -135,7 +135,7 @@ export default function Home() {
       year: "2025", 
       module: "Redesign Website", 
       link:'/projects/aaizaltech',
-      img:'https://as2.ftcdn.net/v2/jpg/08/09/04/55/1000_F_809045509_U4df7jKWH4fVKayaVi4aSz5Wud4Np9Zb.jpg'
+      img:'/aaizal-tech-card-image.jpg'
     },
     { 
       projectName: "Petrii",
@@ -147,7 +147,7 @@ export default function Home() {
       year: "2022", 
       module: "Web App", 
       link:'/projects/petrii',
-      img:'https://as2.ftcdn.net/v2/jpg/08/09/04/55/1000_F_809045509_U4df7jKWH4fVKayaVi4aSz5Wud4Np9Zb.jpg'
+      img:'/petrii-card-image.jpg'
     },
   ];
 
