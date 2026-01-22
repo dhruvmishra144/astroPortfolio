@@ -10,40 +10,14 @@ import { PiArrowRightThin } from "react-icons/pi";
 export default function Home() {
   gsap.registerPlugin(ScrollTrigger);
   const home = useRef(null);
-  const intro = useRef(null);
-  const imageDiv = useRef(null);
   const skill = useRef(null);
   const skillPara = useRef(null);
   const platform = useRef(null);
   const caseStudyHeading = useRef(null);
   const availableForProject = useRef(null);
-  const checkStar = useRef(null);
   const projectContainer = useRef<HTMLDivElement | null>(null);
  
   useGSAP(() => {
-    gsap.from(intro.current, {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      scrollTrigger: {
-        trigger: intro.current,
-        start: "top 80%",
-        toggleActions: "play none none reverse",
-      }
-    });
-  
-    gsap.from(imageDiv.current, {
-      opacity: 0,
-      scale: 0.8,
-      duration: 1.2,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: imageDiv.current,
-        start: "top 85%",
-        toggleActions: "play none none reverse",
-      }
-    });
-  
     gsap.from(skill.current, {
       opacity: 0,
       x: -100,
@@ -190,7 +164,7 @@ export default function Home() {
             Featured Case Studies
           </h3>
           <div ref={availableForProject} className='w-full flex flex-row gap-x-3 items-center hidden sm:flex justify-end'>
-            <Image ref={checkStar} width={24} height={24} src={'tick-mark.svg'} alt="" />
+            <Image width={24} height={24} src={'tick-mark.svg'} alt="" />
             <p>Available for New Projects</p>
           </div>
         </div>
