@@ -1,21 +1,44 @@
-"use client"
+'use client'
 import Image from "next/image";
 import { useRef, useEffect } from "react";
 import { PiArrowRightThin } from "react-icons/pi";
 import { RiLinkedinBoxFill } from "react-icons/ri";
-import gsap from 'gsap'; // 👈 Import GSAP
-import { ScrollTrigger } from 'gsap/ScrollTrigger'; // 👈 Import ScrollTrigger plugin
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Register the ScrollTrigger plugin with GSAP
 gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
   
   const mainRef = useRef(null);
+  const intro = useRef(null);
+  const imageDiv = useRef(null);
+
+  useGSAP(() => {
+    gsap.from(intro.current, {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      scrollTrigger: {
+        trigger: intro.current,
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      }
+    });
   
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>(".animate-on-scroll").forEach((el) => {
+    gsap.from(imageDiv.current, {
+      opacity: 0,
+      scale: 0.8,
+      duration: 1.2,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: imageDiv.current,
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      }
+    });
+    gsap.utils.toArray<HTMLElement>(".animate-on-scroll").forEach((el) => {
         gsap.from(el, {
           y: 50,
           opacity: 0,
@@ -28,10 +51,7 @@ export default function About() {
           },
         });
       });
-    }, mainRef);
-    
-    return () => ctx.revert();
-  }, []);
+    }, { scope: mainRef });
   
   const testimonials = [
     {
@@ -55,7 +75,18 @@ export default function About() {
   
   return (
     <main ref={mainRef} className="container mx-auto h-auto">
-      
+         <div className="container h-[calc(100vh-110px)] md:h-[calc(100vh-98px)] mx-auto text-center flex flex-col items-center justify-center px-4 overflow-hidden">
+        <div className='relative flex p-8 mb-6 lg:w-[325px] lg:h-[325px]' ref={imageDiv}>
+          <div className='boxes'>
+            <div className="box1 w-[145px] h-[145px] origin-[82px_82px] lg:w-[250px] lg:h-[250px] lg:origin-[140px_140px] absolute"></div>
+            <div className="box2 w-[145px] h-[145px] origin-[82px_82px] lg:w-[250px] lg:h-[250px] lg:origin-[140px_140px] absolute"></div>
+            <div className="box3 w-[145px] h-[145px] origin-[82px_82px] lg:w-[250px] lg:h-[250px] lg:origin-[140px_140px] absolute"></div>
+            <div className="box4 w-[145px] h-[145px] origin-[82px_82px] lg:w-[250px] lg:h-[250px] lg:origin-[140px_140px] absolute"></div>
+          </div>
+          <Image width={250} height={250} className='w-[150px] lg:w-[300px] lg:h-[auto] transition-all duration-300 avatar z-10 border rounded-full' src={'/avatar.png'} alt={''} />
+        </div>
+        <h1 ref={intro} className="text-4xl lg:text-6xl font-extralight main-heading px-4 text-slate-400 heading-text">Hi, I am <span className="text-white heading-text">Dhruv Mishra</span></h1>
+      </div>
       {/* Hero Section */}
       <section className='flex flex-col items-center justify-center h-[calc(100vh-250px)] animate-on-scroll'>
         <p className='text-4xl lg:text-6xl text-center text-cyan-600 mb-4'>
@@ -69,7 +100,6 @@ export default function About() {
       {/* Intro Section */}
       <section className='flex flex-col lg:flex-row gap-6 px-8 mb-16 xl:items-center animate-on-scroll justify-between'>
         <div className="flex flex-col gap-6">
-          <h1 className="text-3xl lg:text-6xl text-white leading-snug">Hey there! <br className="hidden lg:block" /><span className="font-bold text-cyan-400">I’m Dhruv Mishra</span></h1>
           <p className='text-left text-slate-200 mb-6 text-lg max-w-[1024px]'>A Product Designer with decade of experience...</p>
         </div>
         <Image width={1024} height={576} src={"/sample-photo.jpg"} className="w-[100%] lg:w-[50%] lg:rounded-4xl rounded-2xl" alt={""} />

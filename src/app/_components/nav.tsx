@@ -5,7 +5,7 @@ import { HiHome, HiUser, HiEnvelope, HiMiniDocumentText } from 'react-icons/hi2'
 
 const navLinks = [
   { href: '/', label: 'home', icon: <HiHome /> },
-  { href: '/about', label: 'about', icon: <HiUser /> },
+  { href: '/about-me', label: 'about me', icon: <HiUser /> },
   { href: '/contact', label: 'contact', icon: <HiEnvelope /> },
   { href: '/resume', label: 'resume', icon: <HiMiniDocumentText /> },
 ];

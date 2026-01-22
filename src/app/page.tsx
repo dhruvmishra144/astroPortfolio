@@ -142,10 +142,10 @@ export default function Home() {
     { 
       projectName: "GoodsBiz",
       projectDesception: "B2B Product Buying and Selling", 
-      metricOne: "Lorem ipsum dolor sit amet", 
-      metricTwo: "Lorem ipsum dolor sit amet", 
-      metricDetailOne: "Lorem ipsum dolor sit amet", 
-      metricDetailTwo: "Lorem ipsum dolor sit amet", 
+      metricOne: "", 
+      metricTwo: "", 
+      metricDetailOne: "", 
+      metricDetailTwo: "", 
       year: "2023", 
       module: "Web App",
       link:'/projects/goodsbiz',
@@ -179,18 +179,6 @@ export default function Home() {
 
   return (
     <main className='overflow-x-hidden' ref={home}>
-      <div className="container h-[calc(100vh-110px)] md:h-[calc(100vh-98px)] mx-auto text-center flex flex-col items-center justify-center px-4 overflow-hidden">
-        <div className='relative flex p-8 mb-6 lg:w-[325px] lg:h-[325px]' ref={imageDiv}>
-          <div className='boxes'>
-            <div className="box1 w-[145px] h-[145px] origin-[82px_82px] lg:w-[250px] lg:h-[250px] lg:origin-[140px_140px] absolute"></div>
-            <div className="box2 w-[145px] h-[145px] origin-[82px_82px] lg:w-[250px] lg:h-[250px] lg:origin-[140px_140px] absolute"></div>
-            <div className="box3 w-[145px] h-[145px] origin-[82px_82px] lg:w-[250px] lg:h-[250px] lg:origin-[140px_140px] absolute"></div>
-            <div className="box4 w-[145px] h-[145px] origin-[82px_82px] lg:w-[250px] lg:h-[250px] lg:origin-[140px_140px] absolute"></div>
-          </div>
-          <Image width={250} height={250} className='w-[150px] lg:w-[300px] lg:h-[auto] transition-all duration-300 avatar z-10 border rounded-full' src={'/avatar.png'} alt={''} />
-        </div>
-        <h1 ref={intro} className="text-4xl lg:text-6xl font-extralight main-heading px-4 text-slate-400 heading-text">Hi, I am <span className="text-white heading-text">Dhruv Mishra</span></h1>
-      </div>
       <div className="container h-auto mx-auto text-center flex flex-col items-center justify-center px-4 py-32">
         <p ref={skill} className="mb-6 lg:mb-8 text-4xl lg:text-6xl text-slate-400">I am <span className='text-white'>Product Designer</span> and <span className='text-white'>Developer</span></p>
         <p ref={platform} className='mb-6 lg:mb-8 text-4xl lg:text-6xl text-slate-400'>For <span className='text-white'>Web</span> and <span className='text-white'>Mobile</span> Platforms</p>
@@ -248,4 +236,3 @@ export default function Home() {
     </main>
   );
 }
-

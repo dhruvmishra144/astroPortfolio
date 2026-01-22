@@ -2,19 +2,27 @@
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { animationPageOut } from "../utils/animation";
+import { useEffect, useState } from "react";
+
 const Footer = () => {
 
     const router = useRouter();
     const href = '/contact'
-        const pathname = usePathname();
-        const handleCLick = () => {
-            if (pathname != href) {
-                  animationPageOut(href, router)    
-            }
+    const pathname = usePathname();
+    const [isContactPage, setIsContactPage] = useState(false);
+
+    useEffect(() => {
+        setIsContactPage(pathname === '/contact');
+    }, [pathname]);
+
+    const handleCLick = () => {
+        if (pathname != href) {
+              animationPageOut(href, router)    
         }
+    }
 
     return (
-        <div className={`container mx-auto flex flex-col items-center text-center px-4 pb-32 ${pathname==="/contact"?"hidden":""}`}>
+        <div className={`container mx-auto flex flex-col items-center text-center px-4 pb-32 ${isContactPage ? "hidden" : ""}`}>
             <Image className="mb-4" width={64} height={64} src={"/chat.svg"} alt={"lets's Connect"}  />
             <h3 className="text-3xl font-semibold mb-4">Have an idea? I&apos;d love to hear it!</h3>
             <p  className="text-base mb-4">Excited for a design journey or seeking product design tips? Reach out for some creative collaboration!</p>
