@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.scss";
 import Header from "./_components/header";
-import Footer from "./_components/footer";
 import Nav from "./_components/nav";
 import BackgroundAnimation from "./utils/background-animation";
+import ConditionalFooter from "./_components/conditional-footer";
 
 export const metadata: Metadata = {
   title: "Hi, I am Dhruv Mishra",
@@ -20,7 +20,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <BackgroundAnimation>
           <Header />
           {children}
-          <Footer />
+          <ConditionalFooter />
           <Nav />
         </BackgroundAnimation>
       </body>

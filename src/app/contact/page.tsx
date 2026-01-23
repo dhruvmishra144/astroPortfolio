@@ -28,7 +28,7 @@ const socialLinks = [
   ];
 
   return (
-    <div className="container mx-auto px-4 mb-24">
+    <div className="container mx-auto px-4 mb-36">
       <h1 className="text-3xl lg:text-5xl text-center mb-8">Let&apos;s Collaborate!</h1>
       <p className="text-lg text-center mb-8 max-w-[800px] mx-auto">
         I am passionate about crafting intuitive and engaging digital experiences. If you&apos;re looking for a UX/UI designer to bring your vision to life, let&apos;s connect!

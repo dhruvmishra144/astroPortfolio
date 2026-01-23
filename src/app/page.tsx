@@ -6,7 +6,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import { PiArrowRightThin } from "react-icons/pi";
 
-
 export default function Home() {
   gsap.registerPlugin(ScrollTrigger);
   const home = useRef(null);
