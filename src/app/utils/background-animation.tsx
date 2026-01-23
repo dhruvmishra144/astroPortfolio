@@ -2,7 +2,6 @@
 import React, { useRef, useMemo, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { isMobile as isMobileDevice } from 'react-device-detect';
 
 gsap.registerPlugin(useGSAP);
 
@@ -29,11 +28,9 @@ const BackgroundAnimation = ({ children }: { children: React.ReactNode }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const elementRefs = useRef<(HTMLDivElement | null)[]>([]);
     const [isMounted, setIsMounted] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         setIsMounted(true);
-        setIsMobile(isMobileDevice);
     }, []);
 
     const elementsData = useMemo<ElementProps[]>(() => {
