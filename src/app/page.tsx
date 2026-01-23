@@ -155,12 +155,12 @@ export default function Home() {
     <main className='overflow-x-hidden' ref={home}>
       <div className="container h-auto mx-auto text-left flex flex-col items-center justify-center px-4 py-32">
         {/* Main Heading */}
-        <h1 ref={skill} className="mb-6 lg:mb-8 text-4xl lg:text-7xl font-bold text-slate-400">
+        <h1 ref={skill} className="mb-6 lg:mb-8 text-4xl lg:text-7xl font-bold text-slate-400 lg:max-w-[875px] xl:max-w-[1000px]">
           Senior <span className='text-white'>Product Designer</span> & <span className='text-white'>Systems Strategist</span>
         </h1>
 
         {/* Punch Line */}
-        <p ref={platform} className='mb-8 lg:mb-12 text-2xl lg:text-3xl text-slate-300 font-medium tracking-wide uppercase'>
+        <p ref={platform} className='mb-8 lg:mb-12 text-2xl lg:text-3xl text-slate-300 font-medium tracking-wide uppercase lg:max-w-[875px] xl:max-w-[1000px]'>
           Bridging the gap between <span className='text-white'>Business Logic</span> and <span className='text-white'>Technical Execution</span>
         </p>
 
