@@ -153,7 +153,7 @@ export default function Home() {
 
   return (
     <main className='overflow-x-hidden' ref={home}>
-      <div className="container h-auto mx-auto text-center flex flex-col items-center justify-center px-4 py-32">
+      <div className="container h-auto mx-auto text-left flex flex-col items-center justify-center px-4 py-32">
         {/* Main Heading */}
         <h1 ref={skill} className="mb-6 lg:mb-8 text-4xl lg:text-7xl font-bold text-slate-400">
           Senior <span className='text-white'>Product Designer</span> & <span className='text-white'>Systems Strategist</span>
