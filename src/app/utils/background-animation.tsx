@@ -2,8 +2,9 @@
 import React, { useRef, useMemo, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const NUM_ELEMENTS = 5;
 const MIN_SIZE = 350;
@@ -48,6 +49,20 @@ const BackgroundAnimation = ({ children }: { children: React.ReactNode }) => {
     useGSAP(
         () => {
             if (!isMounted || !containerRef.current || !elementRefs.current) return;
+
+            const backgroundContainer = containerRef.current.querySelector('.fixed');
+            if (backgroundContainer) {
+                gsap.to(backgroundContainer, {
+                    y: "-30vh",
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: document.body,
+                        start: "top top",
+                        end: "bottom bottom",
+                        scrub: 1,
+                    },
+                });
+            }
 
             elementRefs.current.forEach((elementEl, index) => {
                 if (!elementEl) return;
@@ -123,7 +138,7 @@ const BackgroundAnimation = ({ children }: { children: React.ReactNode }) => {
                                 width: `${elem.size}px`,
                                 height: `${elem.size * gsap.utils.random(0.5, 0.8)}px`,
                                 borderRadius: '100%',
-                                willChange: 'width height transform, opacity, filter',
+                                willChange: 'transform, opacity, filter',
                             }}
                         ></div>
                     ))}

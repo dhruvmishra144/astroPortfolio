@@ -58,6 +58,10 @@
     background-repeat: no-repeat;
   }
 
+  .custom-cursor-active, .custom-cursor-active * {
+    cursor: none;
+  }
+
   .stripe-bg {
     background-image: url('/bg.png') !important;
   }

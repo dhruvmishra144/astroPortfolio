@@ -4,6 +4,7 @@ import Header from "./_components/header";
 import Nav from "./_components/nav";
 import BackgroundAnimation from "./utils/background-animation";
 import ConditionalFooter from "./_components/conditional-footer";
+import CustomCursor from "./_components/custom-cursor";
 
 export const metadata: Metadata = {
   title: "Hi, I am Dhruv Mishra",
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
+        <CustomCursor />
         <BackgroundAnimation>
           <Header />
           {children}
