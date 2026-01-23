@@ -51,19 +51,18 @@ const CustomCursor = () => {
       mouseY = e.clientY;
     };
 
-    const handleMouseEnter = () => {
-      if (!isHovering) {
-        isHovering = true;
-        gsap.to(cursor, { 
-          duration: 0.3,
-          scale: 2.5,
-          ease: 'power2.out'
-        });
-      }
-    };
-
-    const handleMouseLeave = () => {
-      if (isHovering) {
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.closest('a, button')) {
+        if (!isHovering) {
+          isHovering = true;
+          gsap.to(cursor, { 
+            duration: 0.3,
+            scale: 2.5,
+            ease: 'power2.out'
+          });
+        }
+      } else if (isHovering) {
         isHovering = false;
         gsap.to(cursor, { 
           duration: 0.3, 
@@ -74,19 +73,13 @@ const CustomCursor = () => {
     };
 
     window.addEventListener('mousemove', handleMouseMove);
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', handleMouseEnter);
-      el.addEventListener('mouseleave', handleMouseLeave);
-    });
+    document.addEventListener('mouseover', handleMouseOver);
     
     animateCursor();
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      document.querySelectorAll('a, button').forEach(el => {
-        el.removeEventListener('mouseenter', handleMouseEnter);
-        el.removeEventListener('mouseleave', handleMouseLeave);
-      });
+      document.removeEventListener('mouseover', handleMouseOver);
       document.body.classList.remove('custom-cursor-active');
     };
   }, [isClient, isPointingDevice]);
