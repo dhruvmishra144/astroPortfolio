@@ -14,7 +14,6 @@ const nextConfig: NextConfig = {
     ],
   },
   trailingSlash: true,
-  transpilePackages: ['@splinetool/runtime'],
 };
 
 export default nextConfig;

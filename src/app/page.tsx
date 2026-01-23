@@ -100,54 +100,54 @@ export default function Home() {
       link: '/projects/flowmatic',
       img: '/flowmatic-card-image.jpg'
     },
-    {
-      projectName: "LoopTrip",
-      projectDesception: "The ultimate platform for coordinated vehicle travel",
-      metricOne: "95%",
-      metricTwo: "65%",
-      metricDetailOne: "Increase in high synchronization accuracy",
-      metricDetailTwo: "Increase in User Satisfaction for coordinated trips.",
-      year: "2025",
-      module: "Mobile App",
-      link: '/projects/looptrip',
-      img: '/looptrip-card-image.jpg'
-    },
-    {
-      projectName: "GoodsBiz",
-      projectDesception: "B2B Product Buying and Selling",
-      metricOne: "",
-      metricTwo: "",
-      metricDetailOne: "",
-      metricDetailTwo: "",
-      year: "2023",
-      module: "Web App",
-      link: '/projects/goodsbiz',
-      img: '/goodsbiz-card-image.jpg'
-    },
-    {
-      projectName: "Aaizal Tech Website",
-      projectDesception: "Specialise in creating transformative solutions across a wide range of sectors",
-      metricOne: "60%",
-      metricTwo: "32%",
-      metricDetailOne: "Reduction of load-time and achieving speeds under 1 second.",
-      metricDetailTwo: "Conversion rates due to enhanced performance and user experience",
-      year: "2025",
-      module: "Redesign Website",
-      link: '/projects/aaizaltech',
-      img: '/aaizal-tech-card-image.jpg'
-    },
-    {
-      projectName: "Petrii",
-      projectDesception: "Streamline research with AI lab management: connect team, experiments, and data in one secure platform.",
-      metricOne: "95%",
-      metricTwo: "20%",
-      metricDetailOne: "Data-access requests within the 30-minute SLA",
-      metricDetailTwo: "Reduction in average experiment turnaround time",
-      year: "2022",
-      module: "Web App",
-      link: '/projects/petrii',
-      img: '/petrii-card-image.jpg'
-    },
+    // {
+    //   projectName: "LoopTrip",
+    //   projectDesception: "The ultimate platform for coordinated vehicle travel",
+    //   metricOne: "95%",
+    //   metricTwo: "65%",
+    //   metricDetailOne: "Increase in high synchronization accuracy",
+    //   metricDetailTwo: "Increase in User Satisfaction for coordinated trips.",
+    //   year: "2025",
+    //   module: "Mobile App",
+    //   link: '/projects/looptrip',
+    //   img: '/looptrip-card-image.jpg'
+    // },
+    // {
+    //   projectName: "GoodsBiz",
+    //   projectDesception: "B2B Product Buying and Selling",
+    //   metricOne: "",
+    //   metricTwo: "",
+    //   metricDetailOne: "",
+    //   metricDetailTwo: "",
+    //   year: "2023",
+    //   module: "Web App",
+    //   link: '/projects/goodsbiz',
+    //   img: '/goodsbiz-card-image.jpg'
+    // },
+    // {
+    //   projectName: "Aaizal Tech Website",
+    //   projectDesception: "Specialise in creating transformative solutions across a wide range of sectors",
+    //   metricOne: "60%",
+    //   metricTwo: "32%",
+    //   metricDetailOne: "Reduction of load-time and achieving speeds under 1 second.",
+    //   metricDetailTwo: "Conversion rates due to enhanced performance and user experience",
+    //   year: "2025",
+    //   module: "Redesign Website",
+    //   link: '/projects/aaizaltech',
+    //   img: '/aaizal-tech-card-image.jpg'
+    // },
+    // {
+    //   projectName: "Petrii",
+    //   projectDesception: "Streamline research with AI lab management: connect team, experiments, and data in one secure platform.",
+    //   metricOne: "95%",
+    //   metricTwo: "20%",
+    //   metricDetailOne: "Data-access requests within the 30-minute SLA",
+    //   metricDetailTwo: "Reduction in average experiment turnaround time",
+    //   year: "2022",
+    //   module: "Web App",
+    //   link: '/projects/petrii',
+    //   img: '/petrii-card-image.jpg'
+    // },
   ];
 
   return (
