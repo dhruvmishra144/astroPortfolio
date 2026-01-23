@@ -116,7 +116,7 @@ const BackgroundAnimation = ({ children }: { children: React.ReactNode }) => {
             className={`relative min-h-screen w-full ${BACKGROUND_COLOR} isolate overflow-hidden`}
         >
             {isMounted && (
-                <div className={`fixed inset-0 z-0 pointer-events-none ${isMobile ? "stripe-bg" : ""}`}>
+                <div className={`fixed inset-0 z-0 pointer-events-none}`}>
                     {elementsData.map((elem, index) => (
                         <div
                             key={elem.id}
