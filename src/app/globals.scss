@@ -79,7 +79,7 @@
     position: relative;
     width: 350px;
     height: 350px;
-    border-radius: 50%;
+    border-radius: 50% !important;
     padding: 5px;
     overflow: hidden;
     display: flex;
@@ -97,7 +97,7 @@
     background: conic-gradient(
       transparent,
       rgba(56, 189, 248, 0.8), /* Brighter blue */
-      rgba(226, 232, 240, 0.8), /* Lighter gray */
+      rgba(226, 232, 240,.8), /* Lighter gray */
       transparent 30%
     );
     animation: rotate 4s linear infinite;
@@ -116,6 +116,7 @@
     height: 100%;
     object-fit: cover;
     border: 3px solid #0F172A; /* Match background color */
+    border-radius: 50% !important;
   }
 }
 

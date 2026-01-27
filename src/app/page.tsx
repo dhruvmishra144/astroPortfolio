@@ -152,15 +152,38 @@ export default function Home() {
 
   return (
     <main className='overflow-x-hidden' ref={home}>
-      <div className="container h-auto mx-auto text-left flex flex-col items-center justify-center px-4 py-32">
+      <div className="container h-auto mx-auto text-left flex flex-col  items-center justify-center px-4 py-32">
+        {/* Image Section - Placed first visually on mobile with order-1, moves to second on desktop with md:order-2 */}
+          <div className='relative flex justify-center items-center h-full min-h-[200px] lg:min-h-[400px] mb-16'>
+            
+            {/* Background Glow Effect */}
+            <div className="absolute w-[250px] h-[250px] lg:w-[500px] lg:h-[500px] rounded-full bg-blue-600/20 blur-[60px] lg:blur-[80px] -z-10 animate-pulse"></div>
+            
+            {/* Avatar Container */}
+            <div className="avatar-container relative w-[240px] h-[240px] lg:w-[420px] lg:h-[420px] rounded-full border-4 border-white/10 p-2 shadow-2xl backdrop-blur-sm bg-white/5">
+              <div className="relative w-full h-full rounded-full overflow-hidden">
+                <Image
+                  src="/avatar.png"
+                  alt="Dhruv Mishra Profile"
+                  fill
+                  priority
+                  className="object-cover transition-transform duration-700 hover:scale-110"
+                  sizes="(max-width: 768px) 240px, 420px"
+                />
+              </div>
+            </div>
+        
+            {/* Decorative Ring */}
+            <div className="absolute w-[260px] h-[260px] lg:w-[460px] lg:h-[460px] rounded-full border border-blue-500/30 -z-5"></div>
+          </div>
         {/* Main Heading */}
-        <h1 ref={skill} className="mb-6 lg:mb-8 text-4xl lg:text-7xl font-bold text-slate-400 lg:max-w-[875px] xl:max-w-[1000px]">
-          Senior <span className='text-white'>Product Designer</span> & <span className='text-white'>Systems Strategist</span>
+        <h1 ref={skill} className="mb-6 lg:mb-8 text-5xl lg:text-8xl font-bold text-slate-400 w-full text-center lg:max-w-[875px] xl:max-w-[1000px]">
+        Dhruv Mishra
         </h1>
 
         {/* Punch Line */}
         <p ref={platform} className='mb-8 lg:mb-12 text-2xl lg:text-3xl text-slate-300 font-medium tracking-wide uppercase lg:max-w-[875px] xl:max-w-[1000px]'>
-          Bridging the gap between <span className='text-white'>Business Logic</span> and <span className='text-white'>Technical Execution</span>
+        Senior UX/UI Designer & Systems Strategist Bridging the gap between <span className='text-white'>Business Logic</span> and <span className='text-white'>Technical Execution</span>
         </p>
 
         {/* Strategic Paragraph */}

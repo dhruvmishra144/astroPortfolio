@@ -10,11 +10,11 @@ const socialLinks = [
       href: 'https://www.linkedin.com/in/dhruvmishra144/',
       icon: <RiLinkedinBoxFill className='text-3xl lg:text-5xl' />,
     },
-    {
-      name: 'Instagram',
-      href: 'https://www.instagram.com/dhruv.mishra144/',
-      icon: <RiInstagramFill className='text-3xl lg:text-5xl' />,
-    },
+    // {
+    //   name: 'Instagram',
+    //   href: 'https://www.instagram.com/dhruv.mishra144/',
+    //   icon: <RiInstagramFill className='text-3xl lg:text-5xl' />,
+    // },
     {
       name: 'Google',
       href: 'https://g.co/kgs/nXUxsVY',

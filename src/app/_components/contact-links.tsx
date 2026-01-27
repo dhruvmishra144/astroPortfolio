@@ -13,9 +13,9 @@ const ContactLinks = () => {
         <Link target='_blank' href={'https://g.co/kgs/E29cFzu'} className='text-xl text-slate-400 hover:text-slate-300 translation-all  duration-300 hover:scale-110'>
           <RiGoogleLine />
         </Link>
-        <Link target='_blank' href={'https://www.instagram.com/dhruv.mishra144/'} className='text-xl text-slate-400 hover:text-slate-300 translation-all  duration-300 hover:scale-110'>
+        {/* <Link target='_blank' href={'https://www.instagram.com/dhruv.mishra144/'} className='text-xl text-slate-400 hover:text-slate-300 translation-all  duration-300 hover:scale-110'>
           <RiInstagramLine />
-        </Link>
+        </Link> */}
         <Link target='_blank' href={'https://api.whatsapp.com/send?phone=918376848843&text=Hi%2C%20I%20want%20to%20connect%20for%20New%20Projects...'} className='text-xl text-slate-400 hover:text-slate-300 translation-all  duration-300 hover:scale-110'>
           <RiWhatsappLine />
         </Link>

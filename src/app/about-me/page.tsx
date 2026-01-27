@@ -10,7 +10,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
-  
+
   const mainRef = useRef(null);
   const intro = useRef(null);
   const imageDiv = useRef(null);
@@ -36,16 +36,16 @@ export default function About() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   const nextTestimonial = () => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
   };
 
   const prevTestimonial = () => {
     setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-};
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
-        nextTestimonial();
+      nextTestimonial();
     }, 5000); // Change testimonial every 5 seconds
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
@@ -63,7 +63,7 @@ export default function About() {
         toggleActions: "play none none reverse",
       }
     });
-  
+
     gsap.from(imageDiv.current, {
       opacity: 0,
       scale: 0.8,
@@ -76,46 +76,68 @@ export default function About() {
       }
     });
     gsap.utils.toArray<HTMLElement>(".animate-on-scroll").forEach((el) => {
-        gsap.from(el, {
-          y: 50,
-          opacity: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
-          },
-        });
+      gsap.from(el, {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
       });
-    }, { scope: mainRef });
-  
+    });
+  }, { scope: mainRef });
+
   return (
     <main ref={mainRef} className="container mx-auto h-auto">
-      {/* Header Section */}
-      <div className="container h-[calc(100vh-110px)] md:h-[calc(100vh-98px)] mx-auto grid md:grid-cols-2 items-center justify-center px-4 overflow-hidden">
-        <div ref={intro} className="text-center md:text-left">
-            <h1 className="text-4xl lg:text-6xl font-extralight main-heading px-4 text-slate-400 heading-text">
-            Hi, I am <span className="text-white heading-text">Dhruv Mishra</span>
-            </h1>
-            <p className='text-2xl lg:text-4xl text-center md:text-left text-slate-200 max-w-4xl leading-relaxed mt-6'>
-                Architecting High-Impact Solutions to bridge the gap between complex user needs and technical scalability.
-            </p>
-        </div>
-        <div className='relative flex justify-center items-center p-8' ref={imageDiv}>
-          <div className="avatar-container">
-            <Image width={300} height={300} className='w-[200px] lg:w-[350px] lg:h-auto transition-all duration-300 avatar z-10 rounded-full' src={'/avatar.png'} alt={'Dhruv Mishra Profile'} />
-          </div>
-        </div>
+      {/* Header Section Container */}
+<div className="container min-h-[calc(50vh-110px)] md:min-h-[calc(100vh-98px)] mx-auto grid grid-cols-1 md:grid-cols-2 items-center justify-center px-6 py-12 lg:py-0 gap-12 md:gap-0">
+  
+  {/* Image Section - Placed first visually on mobile with order-1, moves to second on desktop with md:order-2 */}
+  <div className='relative flex justify-center items-center h-full min-h-[200px] lg:min-h-[400px] order-1 md:order-2'>
+    
+    {/* Background Glow Effect */}
+    <div className="absolute w-[250px] h-[250px] lg:w-[500px] lg:h-[500px] rounded-full bg-blue-600/20 blur-[60px] lg:blur-[80px] -z-10 animate-pulse"></div>
+    
+    {/* Avatar Container */}
+    <div className="avatar-container relative w-[240px] h-[240px] lg:w-[420px] lg:h-[420px] rounded-full border-4 border-white/10 p-2 shadow-2xl backdrop-blur-sm bg-white/5">
+      <div className="relative w-full h-full rounded-full overflow-hidden">
+        <Image
+          src="/avatar.png"
+          alt="Dhruv Mishra Profile"
+          fill
+          priority
+          className="object-cover transition-transform duration-700 hover:scale-110"
+          sizes="(max-width: 768px) 240px, 420px"
+        />
       </div>
-      
+    </div>
+
+    {/* Decorative Ring */}
+    <div className="absolute w-[260px] h-[260px] lg:w-[460px] lg:h-[460px] rounded-full border border-blue-500/30 -z-5"></div>
+  </div>
+
+  {/* Text Content - Moves to bottom on mobile with order-2, moves to first on desktop with md:order-1 */}
+  <div className="text-center md:text-left z-20 order-2 md:order-1">
+    <h1 className="text-4xl lg:text-7xl font-bold main-heading text-slate-400 heading-text tracking-tight">
+      Hi, I am <span className="text-white">Dhruv Mishra</span>
+    </h1>
+    <p className='text-lg lg:text-3xl text-slate-200 max-w-2xl leading-relaxed mt-6 lg:mt-8 font-light'>
+      Architecting <span className="text-cyan-400 font-medium">High-Impact Solutions</span> to bridge the gap between complex user needs and technical scalability.
+    </p>
+  </div>
+
+</div>
+
       {/* Intro Section - Impact Text */}
       <section className='flex flex-col items-center justify-center gap-6 px-8 mb-32 animate-on-scroll'>
         <p className='text-center text-slate-200 text-2xl lg:text-4xl max-w-[800px] leading-relaxed'>
-          With over 3 years of specializing in <span className="highlight-text">Product Design & Technical Architecture</span>, I help companies reduce technical debt through design systems and user-centric logic.
+          With over 10 years of specializing in <span className="highlight-text">Product Design & Technical Architecture</span>, I help companies reduce technical debt through design systems and user-centric logic.
         </p>
       </section>
-      
+
       {/* Experience Section */}
       <section className="animate-on-scroll">
         <div className="mx-auto grid grid-cols-1 lg:grid-cols-2 px-8 mb-16 border-t border-white/10 pt-16">
@@ -131,7 +153,7 @@ export default function About() {
           </div>
         </div>
       </section>
-      
+
       {/* Journey Section (Narrative) */}
       <section className="animate-on-scroll">
         <div className="mx-auto grid grid-cols-1 lg:grid-cols-2 px-8 mb-16">
@@ -144,7 +166,7 @@ export default function About() {
           </div>
         </div>
       </section>
-      
+
       {/* LinkedIn CTA */}
       <section className="animate-on-scroll px-8">
         <a
@@ -163,7 +185,7 @@ export default function About() {
           </div>
         </a>
       </section>
-      
+
       {/* Capabilities Section (Replacing Tools) */}
       <section className="animate-on-scroll">
         <div className="mx-auto grid grid-cols-1 lg:grid-cols-2 px-8 mb-16">
@@ -185,7 +207,7 @@ export default function About() {
           </div>
         </div>
       </section>
-      
+
       {/* Testimonials Section */}
       <section className="animate-on-scroll flex flex-col items-center justify-center px-8 mb-32">
         <h2 className="text-3xl mb-8 text-gray-400 font-light tracking-widest uppercase text-center">Industry Impact</h2>
@@ -198,8 +220,8 @@ export default function About() {
             <p className="font-bold text-white text-right">— {testimonials[currentTestimonial].author}</p>
           </div>
           <div className="flex justify-center gap-4 mt-4">
-              <button onClick={prevTestimonial} className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"><PiArrowLeftThin/></button>
-              <button onClick={nextTestimonial} className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"><PiArrowRightThin/></button>
+            <button onClick={prevTestimonial} className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"><PiArrowLeftThin /></button>
+            <button onClick={nextTestimonial} className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"><PiArrowRightThin /></button>
           </div>
         </div>
       </section>

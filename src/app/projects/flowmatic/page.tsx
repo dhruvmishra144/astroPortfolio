@@ -1,16 +1,13 @@
 'use client'
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import Tabs from "../_components/tabs";
 import LongCaseStudy from "./_components/long-case-study";
-import ShortCaseStudy from "./_components/short-case-study";
 
 const Flowmatic = () => {
     // Register ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
-    const [activeTab, setActiveTab] = useState('short');
 
     // Use a ref to store the array of ScrollTrigger instances for cleanup
     const scrollTriggersRef = useRef<ScrollTrigger[]>([]);
@@ -89,12 +86,7 @@ const Flowmatic = () => {
             }
         };
 
-    }, [activeTab]);
-
-    const tabs = [
-        { id: 'short', label: 'Short Case Study' },
-        { id: 'long', label: 'Long Case Study' },
-    ];
+    }, []);
 
     return (
         <div className="container mx-auto px-4 py-20">
@@ -103,8 +95,6 @@ const Flowmatic = () => {
                     <p className="text-lg lg:text-2xl font-medium">FlowMatic</p>
                     <h1 className="text-2xl lg:text-6xl font-extralight leading-tight">Next-Gen AI iPaaS: Streamlined Workflows, Rapid Integrations</h1>
                 </section>
-                
-                <Tabs tabs={tabs} onTabChange={setActiveTab} />
                 
                 <section className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                   <Image width={600} height={200} className="w-full rounded-2xl" src={"/flowmatic-card-image.jpg"} alt="" />
@@ -129,7 +119,7 @@ const Flowmatic = () => {
 
                 <section>
                     <div className="flex flex-col gap-4">
-                        {activeTab === 'short' ? <ShortCaseStudy /> : <LongCaseStudy />}
+                        <LongCaseStudy />
                     </div>
                 </section>
             </main>
