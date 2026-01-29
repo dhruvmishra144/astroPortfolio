@@ -89,7 +89,7 @@ export default function Home() {
 
   const projectsList = [
     {
-      projectName: "FlowMatic",
+      projectName: "GoFlow",
       projectDesception: "Designing an Affordable and User-Friendly iPaaS Solution with AI for SMEs",
       metricOne: "34x",
       metricTwo: "10%",
@@ -97,8 +97,8 @@ export default function Home() {
       metricDetailTwo: "Increase in Integration Success Rate (ISR)",
       year: "2024",
       module: "Web App",
-      link: '/projects/flowmatic',
-      img: '/flowmatic-card-image.jpg'
+      link: '/projects/GoFlow',
+      img: '/GoFlow-card-image.jpg'
     },
     // {
     //   projectName: "LoopTrip",
