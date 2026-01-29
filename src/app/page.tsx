@@ -17,8 +17,6 @@ export default function Home() {
   const projectContainer = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const mm = gsap.matchMedia();
-
     // Hero Animations
     gsap.from([skill.current, platform.current, skillPara.current], {
       opacity: 0,
@@ -36,30 +34,6 @@ export default function Home() {
       scrollTrigger: {
         trigger: caseStudyHeading.current,
         start: "top 90%",
-      }
-    });
-
-    // PROJECT CARDS LOGIC - Responsive Handling
-    mm.add({
-      isMobile: "(max-width: 768px)",
-      isDesktop: "(min-width: 769px)"
-    }, (context) => {
-      // @ts-ignore
-      const { isMobile } = context.conditions;
-
-      if (projectContainer.current) {
-        gsap.from(Array.from(projectContainer.current.children), {
-          opacity: 0,
-          y: isMobile ? 30 : 60, // Less movement on mobile
-          duration: 1,
-          stagger: 0.2,
-          scrollTrigger: {
-            trigger: projectContainer.current,
-            // START EARLIER ON MOBILE (95% of viewport) so they appear sooner
-            start: isMobile ? "top 95%" : "top 80%", 
-            toggleActions: "play none none reverse",
-          }
-        });
       }
     });
 
@@ -84,21 +58,29 @@ export default function Home() {
     <main className='overflow-x-hidden' ref={home}>
       {/* --- HERO SECTION --- */}
       <section className="container mx-auto px-6 py-16 lg:py-32 flex flex-col items-center justify-center min-h-[80vh]">
-        <div className='relative flex justify-center items-center h-auto mb-12'>
-          <div className="absolute w-[200px] h-[200px] lg:w-[500px] lg:h-[500px] rounded-full bg-blue-600/10 blur-[60px] lg:blur-[80px] -z-10 animate-pulse"></div>
-          <div className="relative w-[200px] h-[200px] lg:w-[420px] lg:h-[420px] rounded-full border-2 border-white/10 p-2 shadow-2xl backdrop-blur-sm bg-white/5">
-            <div className="relative w-full h-full rounded-full overflow-hidden">
-              <Image
-                src="/avatar.png"
-                alt="Dhruv Mishra Profile"
-                fill
-                priority
-                className="object-cover transition-transform duration-700 hover:scale-110"
-                sizes="(max-width: 768px) 200px, 420px"
-              />
+        {/* Image Section - Placed first visually on mobile with order-1, moves to second on desktop with md:order-2 */}
+          <div className='relative flex justify-center items-center h-full min-h-[200px] lg:min-h-[400px] mb-8'>
+            
+            {/* Background Glow Effect */}
+            <div className="absolute w-[250px] h-[250px] lg:w-[500px] lg:h-[500px] rounded-full bg-blue-600/20 blur-[60px] lg:blur-[80px] -z-10 animate-pulse"></div>
+            
+            {/* Avatar Container */}
+            <div className="avatar-container relative w-[240px] h-[240px] lg:w-[420px] lg:h-[420px] rounded-full border-4 border-white/10 p-2 shadow-2xl backdrop-blur-sm bg-white/5">
+              <div className="relative w-full h-full rounded-full overflow-hidden">
+                <Image
+                  src="/avatar.png"
+                  alt="Dhruv Mishra Profile"
+                  fill
+                  priority
+                  className="object-cover transition-transform duration-700 hover:scale-110"
+                  sizes="(max-width: 768px) 240px, 420px"
+                />
+              </div>
             </div>
+        
+            {/* Decorative Ring */}
+            <div className="absolute w-[260px] h-[260px] lg:w-[460px] lg:h-[460px] rounded-full border border-blue-500/30 -z-5"></div>
           </div>
-        </div>
 
         <h1 ref={skill} className="mb-6 text-4xl sm:text-6xl lg:text-9xl font-light text-white w-full text-center tracking-tighter italic leading-tight">
           Dhruv Mishra<span className="text-cyan-500 not-italic">.</span>
