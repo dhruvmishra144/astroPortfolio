@@ -14,234 +14,168 @@ export default function Home() {
   const platform = useRef(null);
   const caseStudyHeading = useRef(null);
   const availableForProject = useRef(null);
-  const projectContainer = useRef<HTMLDivElement | null>(null);
+  const projectContainer = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    gsap.from(skill.current, {
+    const mm = gsap.matchMedia();
+
+    // Hero Animations
+    gsap.from([skill.current, platform.current, skillPara.current], {
       opacity: 0,
-      x: -100,
+      y: 30,
       duration: 1,
-      scrollTrigger: {
-        trigger: skill.current,
-        start: "top 85%",
-        toggleActions: "play none none reverse",
-      }
+      stagger: 0.2,
+      ease: "power3.out"
     });
 
-    gsap.from(platform.current, {
+    // Section Header Animations
+    gsap.from([caseStudyHeading.current, availableForProject.current], {
       opacity: 0,
-      x: 100,
-      duration: 1,
-      scrollTrigger: {
-        trigger: platform.current,
-        start: "top 85%",
-        toggleActions: "play none none reverse",
-      }
-    });
-
-    gsap.from(skillPara.current, {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      scrollTrigger: {
-        trigger: skillPara.current,
-        start: "top 90%",
-        toggleActions: "play none none reverse",
-      }
-    });
-
-    gsap.from(caseStudyHeading.current, {
-      opacity: 0,
-      x: -50,
+      y: 20,
       duration: 1,
       scrollTrigger: {
         trigger: caseStudyHeading.current,
         start: "top 90%",
-        toggleActions: "play none none reverse",
       }
     });
 
-    gsap.from(availableForProject.current, {
-      opacity: 0,
-      x: 50,
-      duration: 1,
-      scrollTrigger: {
-        trigger: availableForProject.current,
-        start: "top 90%",
-        toggleActions: "play none none reverse",
+    // PROJECT CARDS LOGIC - Responsive Handling
+    mm.add({
+      isMobile: "(max-width: 768px)",
+      isDesktop: "(min-width: 769px)"
+    }, (context) => {
+      // @ts-ignore
+      const { isMobile } = context.conditions;
+
+      if (projectContainer.current) {
+        gsap.from(Array.from(projectContainer.current.children), {
+          opacity: 0,
+          y: isMobile ? 30 : 60, // Less movement on mobile
+          duration: 1,
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: projectContainer.current,
+            // START EARLIER ON MOBILE (95% of viewport) so they appear sooner
+            start: isMobile ? "top 95%" : "top 80%", 
+            toggleActions: "play none none reverse",
+          }
+        });
       }
     });
 
-    gsap.from(Array.from(projectContainer.current?.children || []), {
-      opacity: 0,
-      y: 40,
-      duration: 1,
-      stagger: 0.2,
-      scrollTrigger: {
-        trigger: projectContainer.current,
-        start: "top 85%",
-        toggleActions: "play none none reverse",
-      }
-    });
-
-  }, { scope: home }); // Ensures GSAP only runs inside this component
-
+  }, { scope: home });
 
   const projectsList = [
     {
       projectName: "GoFlow",
-      projectDesception: "Designing an Affordable and User-Friendly iPaaS Solution with AI for SMEs",
-      metricOne: "34x",
-      metricTwo: "10%",
-      metricDetailOne: "times faster Applications Integration",
-      metricDetailTwo: "Increase in Integration Success Rate (ISR)",
-      year: "2024",
+      projectDescription: "Designing an AI-powered iPaaS that helps non-technical business owners automate data flows without fear of breaking live systems.",
+      metricOne: "40%",
+      metricTwo: "50%",
+      metricDetailOne: "faster onboarding through confidence-first UX",
+      metricDetailTwo: "reduction in configuration errors via AI-assisted mapping",
+      year: "2025",
       module: "Web App",
-      link: '/projects/GoFlow',
-      img: '/GoFlow-card-image.jpg'
+      link: "/projects/GoFlow",
+      img: "/GoFlow-card-image.jpg",
     },
-    // {
-    //   projectName: "LoopTrip",
-    //   projectDesception: "The ultimate platform for coordinated vehicle travel",
-    //   metricOne: "95%",
-    //   metricTwo: "65%",
-    //   metricDetailOne: "Increase in high synchronization accuracy",
-    //   metricDetailTwo: "Increase in User Satisfaction for coordinated trips.",
-    //   year: "2025",
-    //   module: "Mobile App",
-    //   link: '/projects/looptrip',
-    //   img: '/looptrip-card-image.jpg'
-    // },
-    // {
-    //   projectName: "GoodsBiz",
-    //   projectDesception: "B2B Product Buying and Selling",
-    //   metricOne: "",
-    //   metricTwo: "",
-    //   metricDetailOne: "",
-    //   metricDetailTwo: "",
-    //   year: "2023",
-    //   module: "Web App",
-    //   link: '/projects/goodsbiz',
-    //   img: '/goodsbiz-card-image.jpg'
-    // },
-    // {
-    //   projectName: "Aaizal Tech Website",
-    //   projectDesception: "Specialise in creating transformative solutions across a wide range of sectors",
-    //   metricOne: "60%",
-    //   metricTwo: "32%",
-    //   metricDetailOne: "Reduction of load-time and achieving speeds under 1 second.",
-    //   metricDetailTwo: "Conversion rates due to enhanced performance and user experience",
-    //   year: "2025",
-    //   module: "Redesign Website",
-    //   link: '/projects/aaizaltech',
-    //   img: '/aaizal-tech-card-image.jpg'
-    // },
-    // {
-    //   projectName: "Petrii",
-    //   projectDesception: "Streamline research with AI lab management: connect team, experiments, and data in one secure platform.",
-    //   metricOne: "95%",
-    //   metricTwo: "20%",
-    //   metricDetailOne: "Data-access requests within the 30-minute SLA",
-    //   metricDetailTwo: "Reduction in average experiment turnaround time",
-    //   year: "2022",
-    //   module: "Web App",
-    //   link: '/projects/petrii',
-    //   img: '/petrii-card-image.jpg'
-    // },
   ];
 
   return (
     <main className='overflow-x-hidden' ref={home}>
-      <div className="container h-auto mx-auto text-left flex flex-col  items-center justify-center px-4 py-32">
-        {/* Image Section - Placed first visually on mobile with order-1, moves to second on desktop with md:order-2 */}
-          <div className='relative flex justify-center items-center h-full min-h-[200px] lg:min-h-[400px] mb-16'>
-            
-            {/* Background Glow Effect */}
-            <div className="absolute w-[250px] h-[250px] lg:w-[500px] lg:h-[500px] rounded-full bg-blue-600/20 blur-[60px] lg:blur-[80px] -z-10 animate-pulse"></div>
-            
-            {/* Avatar Container */}
-            <div className="avatar-container relative w-[240px] h-[240px] lg:w-[420px] lg:h-[420px] rounded-full border-4 border-white/10 p-2 shadow-2xl backdrop-blur-sm bg-white/5">
-              <div className="relative w-full h-full rounded-full overflow-hidden">
-                <Image
-                  src="/avatar.png"
-                  alt="Dhruv Mishra Profile"
-                  fill
-                  priority
-                  className="object-cover transition-transform duration-700 hover:scale-110"
-                  sizes="(max-width: 768px) 240px, 420px"
-                />
-              </div>
+      {/* --- HERO SECTION --- */}
+      <section className="container mx-auto px-6 py-16 lg:py-32 flex flex-col items-center justify-center min-h-[80vh]">
+        <div className='relative flex justify-center items-center h-auto mb-12'>
+          <div className="absolute w-[200px] h-[200px] lg:w-[500px] lg:h-[500px] rounded-full bg-blue-600/10 blur-[60px] lg:blur-[80px] -z-10 animate-pulse"></div>
+          <div className="relative w-[200px] h-[200px] lg:w-[420px] lg:h-[420px] rounded-full border-2 border-white/10 p-2 shadow-2xl backdrop-blur-sm bg-white/5">
+            <div className="relative w-full h-full rounded-full overflow-hidden">
+              <Image
+                src="/avatar.png"
+                alt="Dhruv Mishra Profile"
+                fill
+                priority
+                className="object-cover transition-transform duration-700 hover:scale-110"
+                sizes="(max-width: 768px) 200px, 420px"
+              />
             </div>
-        
-            {/* Decorative Ring */}
-            <div className="absolute w-[260px] h-[260px] lg:w-[460px] lg:h-[460px] rounded-full border border-blue-500/30 -z-5"></div>
           </div>
-        {/* Main Heading */}
-        <h1 ref={skill} className="mb-6 lg:mb-8 text-5xl lg:text-8xl font-bold text-slate-400 w-full text-center lg:max-w-[875px] xl:max-w-[1000px]">
-        Dhruv Mishra
+        </div>
+
+        <h1 ref={skill} className="mb-6 text-4xl sm:text-6xl lg:text-9xl font-light text-white w-full text-center tracking-tighter italic leading-tight">
+          Dhruv Mishra<span className="text-cyan-500 not-italic">.</span>
         </h1>
 
-        {/* Punch Line */}
-        <p ref={platform} className='mb-8 lg:mb-12 text-2xl lg:text-3xl text-slate-300 font-medium tracking-wide uppercase lg:max-w-[875px] xl:max-w-[1000px]'>
-        Senior UX/UI Designer & Systems Strategist Bridging the gap between <span className='text-white'>Business Logic</span> and <span className='text-white'>Technical Execution</span>
+        <p ref={platform} className='mb-8 text-lg sm:text-2xl lg:text-4xl text-gray-400 font-light tracking-tight text-center max-w-4xl'>
+          Senior UX/UI Designer & Systems Strategist bridging the gap between <span className='text-white italic'>Business Logic</span> and <span className='text-white italic'>Technical Execution</span>
         </p>
 
-        {/* Strategic Paragraph */}
-        <p ref={skillPara} className="mb-4 lg:max-w-[875px] xl:max-w-[1000px] text-xl lg:text-2xl leading-relaxed text-slate-400">
-          I architect scalable digital products for web and mobile that align user behavior with commercial goals.
-          By leveraging my background in <span className='text-white'>full-stack development</span>, I ensure every design is
-          rooted in technical feasibility—solving complex operational bottlenecks while eliminating technical debt.
+        <p ref={skillPara} className="max-w-2xl text-center text-base lg:text-xl leading-relaxed text-gray-500 font-light">
+          I architect scalable digital products rooted in <span className='text-white font-medium'>full-stack feasibility</span>, eliminating technical debt through strategic design.
         </p>
-      </div>
-      <div className="container h-auto mx-auto text-center  flex flex-col items-center justify-between px-4 max-w-[1100px] gap-y-8 mb-24 projects">
-        <div className='flex flex-row items- w-full justify-between mb-4'>
-          <h3 ref={caseStudyHeading} className='text-2xl text-center sm:text-start w-full md:text-2xl md:text-start heading-text'>
+      </section>
+
+      {/* --- PROJECTS SECTION --- */}
+      <section className="container mx-auto px-6 max-w-[1200px] pb-32">
+        <div className='flex flex-col sm:flex-row items-start sm:items-center justify-between mb-12 gap-y-6'>
+          <h3 ref={caseStudyHeading} className='text-xs font-black tracking-[0.4em] text-cyan-500 uppercase border-l-4 border-cyan-500 pl-4'>
             Featured Case Studies
           </h3>
-          <div ref={availableForProject} className='w-full flex flex-row gap-x-3 items-center hidden sm:flex justify-end'>
-          <svg id="Layer_1" enableBackground="new 0 0 500 500" height="24" viewBox="0 0 500 500" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m439.503 143.281c10.469-21.862 8.985-48.347-8.985-66.317l-7.481-7.481c-17.97-17.97-45.168-20.829-66.317-8.985-14.885 8.336-46.385-8.997-48.717-20.224-4.897-23.578-27.651-40.274-52.898-40.274l-12.855.653c-29.562 1.502-52.76 25.909-52.76 55.509 1.01 12.838-20.99 22.338-33.769 13.986-21.932-21.932-57.491-21.932-79.423 0l-6.151 6.151c-18.807 18.808-20.992 47.339-8.035 69.301 8.888 15.066.221 41.733-14.381 45.323-26.57 6.533-47.731 26.077-47.731 54.875v9.297c0 25.504 18.578 44.533 41.688 52.731 23.978 8.506 22.087 43.679 19.629 47.894-12.541 21.502-9.598 49.552 8.831 67.981l6.151 6.151c18.336 18.336 45.721 20.473 67.658 9.018 15.71-8.204 45.044 7.13 47.477 19.666 4.715 24.293 28.287 41.464 54.219 41.464h8.002c25.422 0 46.947-16.684 54.222-39.701 4.758-15.052 27.791-30.299 50.703-20.66 21.797 9.17 48.645 6.689 65.679-10.344l5.594-5.594c21.932-21.932 21.932-57.491 0-79.422-9.852-8.945 2.815-33.612 13.986-33.769 31.018 0 56.162-25.145 56.162-56.162v-9.615c0-25.827-17.145-48.863-41.275-54.166-16.226-3.567-24.476-36.317-19.223-47.286z" fill="#45c9a5"/><path d="m206.255 326.33-65.171-65.171c-7.811-7.811-7.811-20.474 0-28.284 7.811-7.811 20.474-7.811 28.284 0l51.029 51.029 110.234-110.234c7.811-7.811 20.474-7.811 28.284 0s7.811 20.474 0 28.284l-124.375 124.376c-8.207 7.003-22.873 6.003-28.285 0z" fill="#fff"/></svg>
-            <p>Available for New Projects</p>
+          
+          <div ref={availableForProject} className='flex items-center gap-x-3 bg-white/5 px-4 py-2 rounded-full border border-white/10'>
+            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-gray-300">Available for 2026 Projects</p>
           </div>
         </div>
-        <div ref={projectContainer} className='container h-auto mx-auto text-center  flex flex-col items-center justify-between px-4 max-w-[1100px] gap-y-8 mb-24'>
-          {
-            projectsList.map((items, index) => {
-              return (<a href={items.link} className={`flex flex-col ${index % 2 == 0 ? "lg:flex-row" : "lg:flex-row-reverse"}  p-6 bg-cyan-600/20 backdrop-blur-md w-full rounded-[24px] group gap-8`} key={index.toString()} >
-                <div className='w-full lg:w-1/2'>
-                  <Image width={'400'} height={'400'} className='h-full w-full rounded-xl' src={items.img} alt="" />
+
+        {/* REFS FIXED: Added w-full and min-h for visibility */}
+        <div ref={projectContainer} className='flex flex-col gap-y-12 lg:gap-y-24 w-full min-h-[400px]'>
+          {projectsList.map((items, index) => (
+            <a 
+              href={items.link} 
+              key={items.projectName}
+              className={`flex flex-col ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} p-6 lg:p-8 bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 w-full rounded-[2rem] lg:rounded-[3rem] group gap-8 transition-all duration-500 overflow-hidden`}
+            >
+              {/* Responsive Image Height */}
+              <div className='w-full lg:w-1/2 overflow-hidden rounded-[1.5rem] h-[220px] sm:h-[350px] lg:h-[450px] relative shrink-0'>
+                <Image 
+                  fill
+                  className='object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000' 
+                  src={items.img} 
+                  alt={items.projectName} 
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
+
+              <div className='flex flex-col gap-6 w-full lg:w-1/2 justify-center'>
+                <div className='flex justify-between items-center text-[10px] font-bold tracking-[0.2em] text-cyan-500 uppercase'>
+                  <p>{items.year}</p>
+                  <p>{items.module}</p>
                 </div>
-                <div className='flex flex-col gap-6 w-full lg:w-1/2'>
-                  <div className='flex flex-row justify-between'>
-                    <p className='text-base'>{items.year}</p>
-                    <p className='text-base'>{items.module}</p>
+                
+                <div className='h-[1px] w-full bg-white/5'></div>
+                
+                <div className='flex justify-between items-start gap-4'>
+                  <div className='flex flex-col gap-y-3'>
+                    <h3 className='text-3xl lg:text-5xl font-light italic text-white tracking-tighter leading-none'>{items.projectName}</h3>
+                    <p className='text-gray-400 text-base lg:text-lg font-light leading-relaxed'>{items.projectDescription}</p>
                   </div>
-                  <hr className='border-[0.5px] border-[#e5e5e5]/20 w-full' />
-                  <div className='flex flex-row gap-x-4 justify-between'>
-                    <div className='flex flex-col gap-y-3 text-start flex-grow'>
-                      <h3 className='text-2xl lg:text-4xl text-start leading-relax w-[calc(100%-48px)]'>{items.projectName}</h3>
-                      <p className='text-slate-400 text-md lg:text-lg'>{items.projectDesception}</p>
-                    </div>
-                    <PiArrowRightThin className='hidden sm:block text-5xl group-hover:-rotate-45 group-hover:transition-transform duration-300' />
-                  </div>
-                  <div className='flex flex-col gap-y-6 md:flex-row gap-x-6 mb-4 text-left'>
-                    <div className='flex flex-col gap-y-2 w-full'>
-                      <h3 className='text-lg lg:text-2xl text-start leading-relax w-[calc(100%-48px)]'>{items.metricOne}</h3>
-                      <p className='text-slate-400 text-base lg:text-md'>{items.metricDetailOne}</p>
-                    </div>
-                    <div className='flex flex-col gap-y-2 w-full'>
-                      <h3 className='text-lg lg:text-2xl text-start leading-relax w-[calc(100%-48px)]'>{items.metricTwo}</h3>
-                      <p className='text-slate-400 text-base lg:text-md'>{items.metricDetailTwo}</p>
-                    </div>
-                  </div>
+                  <PiArrowRightThin className='hidden lg:block text-5xl text-gray-600 group-hover:text-cyan-500 group-hover:-rotate-45 transition-all duration-500' />
                 </div>
 
-              </a>)
-            })
-          }
+                <div className='grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4'>
+                  <div className='p-4 bg-white/5 rounded-2xl'>
+                    <h4 className='text-2xl lg:text-3xl font-bold text-white italic'>{items.metricOne}</h4>
+                    <p className='text-[10px] uppercase tracking-wider text-gray-500 mt-1'>{items.metricDetailOne}</p>
+                  </div>
+                  <div className='p-4 bg-white/5 rounded-2xl'>
+                    <h4 className='text-2xl lg:text-3xl font-bold text-white italic'>{items.metricTwo}</h4>
+                    <p className='text-[10px] uppercase tracking-wider text-gray-500 mt-1'>{items.metricDetailTwo}</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))}
         </div>
-
-
-      </div>
+      </section>
     </main>
   );
 }
