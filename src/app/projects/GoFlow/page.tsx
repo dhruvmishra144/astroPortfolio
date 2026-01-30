@@ -55,8 +55,8 @@ const GoFlow = () => {
     const validationData = [
         { metric: "Completion rate", early: "~60%", final: "~88%" },
         { metric: "Median setup time", early: "~18 min", final: "10–11 min" },
-        { metric: "Configuration errors (proxy)", early: "High", final: "~50% lower" },
-        { metric: "Error recovery independence", early: "Low", final: "High" },
+        { metric: "Config errors (proxy)", early: "High", final: "~50% lower" },
+        { metric: "Recovery independence", early: "Low", final: "High" },
     ];
 
     return (
@@ -68,24 +68,28 @@ const GoFlow = () => {
                         GoFlow<span className="text-cyan-500 not-italic">.</span>
                     </h1>
                     <h2 className="text-2xl md:text-4xl lg:text-5xl text-gray-400 font-light tracking-tight leading-tight max-w-5xl">
-                        AI‑Powered iPaaS for Automatic Data Flow Migration
+                        AI-Powered iPaaS for Automatic Data Flow Migration (Confidence-First, Risk-Aware Automation for SMBs)
                     </h2>
                 </header>
 
                 <div className="bg-white/[0.03] border border-white/10 rounded-[2.5rem] p-8 md:p-12 my-16">
                     <h3 className="text-md md:text-md font-black tracking-widest text-cyan-400 uppercase mb-8 text-center">Headline Signals</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 text-center">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 text-center">
                         <div className="space-y-2">
                             <p className="text-lg md:text-xl text-white font-semibold">Staff-level IC</p>
-                            <p className="text-gray-400 text-md md:text-base">agentic-AI + B2B SaaS, 0→1 iPaaS.</p>
+                            <p className="text-gray-400 text-md md:text-base">agentic AI + B2B SaaS, 0→1 iPaaS with safety-first execution.</p>
+                        </div>
+                        <div className="space-y-2">
+                            <p className="text-lg md:text-xl text-white font-semibold">Shipped</p>
+                            <p className="text-gray-400 text-md md:text-base">pre-built connectors + AI-assisted mapping + versioned rollback (SMB-friendly).</p>
                         </div>
                         <div className="space-y-2">
                             <p className="text-lg md:text-xl text-white font-semibold">Drove</p>
-                            <p className="text-gray-400 text-md md:text-base">~40% faster onboarding, ~6–8pt attach-rate lift.</p>
+                            <p className="text-gray-400 text-md md:text-base">~40% faster onboarding (18 → 10–11 min), ~6–8pt attach-rate lift, ~50% fewer first-run config errors.</p>
                         </div>
                         <div className="space-y-2">
                             <p className="text-lg md:text-xl text-white font-semibold">Designed</p>
-                            <p className="text-gray-400 text-md md:text-base">confidence-first UX under SMB/TRiSM constraints.</p>
+                            <p className="text-gray-400 text-md md:text-base">observability + reversibility (diffs, blast radius, hard/soft delete handling) under TRiSM constraints.</p>
                         </div>
                     </div>
                 </div>
@@ -94,103 +98,134 @@ const GoFlow = () => {
 
                 <main className="flex flex-col gap-24 md:gap-32">
 
-                    <Section title="Recruiter Quick-Scan">
-                        <p><strong className="text-white">What:</strong> Led UX strategy and end-to-end product design for an agentic‑AI powered iPaaS focused on safe, confidence-first data automation for SMBs (20–250 employees).</p>
-                        <p><strong className="text-white">Context:</strong> Internal zero-to-one product initiative inside a B2B SaaS company serving ~4,000 SMB accounts, exploring an SMB-friendly alternative to enterprise iPaaS tools.</p>
-                        <p><strong className="text-white">Why:</strong> Competitive analysis showed a consistent failure pattern: risk and responsibility were pushed onto non-technical users, causing fear, hesitation, and abandonment.</p>
+                    <Section title="Recruiter Quick-Scan Summary">
+                        <p><strong className="text-white">What:</strong> Led UX strategy and end-to-end product design for an agentic-AI powered iPaaS that helps SMBs safely create, run, monitor, and recover cross-system automations without API/schema literacy.</p>
+                        <p><strong className="text-white">Context:</strong> Internal 0→1 initiative inside a B2B SaaS serving ~4,000 SMBs. We built an SMB-friendly alternative to enterprise iPaaS tools (Zapier, Workato, Celigo) by focusing on what competitors consistently under-serve: <strong className="text-white">live-run safety, rollback, and clear responsibility-sharing</strong>.</p>
+                        <p><strong className="text-white">Why:</strong> Competitive teardown + review mining showed the same failure pattern: non-technical users could configure flows, but froze at execution because they couldn’t answer:</p>
+                        <ul className="list-decimal pl-6 space-y-2">
+                            <li><em className="text-gray-400">What exactly will happen?</em></li>
+                            <li><em className="text-gray-400">What’s the blast radius if it goes wrong?</em></li>
+                            <li><em className="text-gray-400">Can I undo it reliably?</em></li>
+                        </ul>
                         
                         <div className="bg-white/[0.03] border border-white/10 rounded-[2rem] p-8 space-y-4">
                             <p className="text-md font-black tracking-widest text-cyan-400 uppercase">Impact (Design → Business):</p>
                             <ul className="list-none pl-0 space-y-2 text-base md:text-lg">
-                                <li>⏱️ ~40% faster onboarding (18→10–11 min median).</li>
+                                <li>⏱️ ~40% faster onboarding (18 → 10–11 min median).</li>
                                 <li>❌ ~50% fewer configuration errors in first-run flows.</li>
-                                <li>🔁 ~35% faster recovery from failed runs.</li>
+                                <li>🔁 ~35% faster recovery from failed runs (self-serve rollback + guided fixes).</li>
                             </ul>
-                            <p className="text-xs text-gray-500 pt-2">Metrics validated via moderated proxy testing (n=10/round × 3), comparative analysis, and 40-account internal beta.</p>
+                            <p className="text-xs text-gray-500 pt-2">Validated via moderated proxy testing (n≈8–10/round ×3) + 40-account internal beta.</p>
                         </div>
 
-                        <p><strong className="text-white">My Role:</strong> UX Lead — owned user risk strategy, interaction model, and trust mechanisms. Led research, IA, design, and validation, producing key artifacts and leveraging a full-stack background for feasibility trade-offs.</p>
+                        <p><strong className="text-white">What shipped (v1):</strong></p>
+                        <ul className="space-y-3 pl-0 list-none">
+                            <Bullet><strong>Pre-built connectors</strong> (high-volume systems) + outcome-based onboarding</Bullet>
+                            <Bullet><strong>AI data manipulation for mapping</strong> (suggestions, transformations, previews)</Bullet>
+                            <Bullet><strong>One-to-many/many-to-one safeguards</strong> (risk flags + mapping patterns)</Bullet>
+                            <Bullet><strong>Version control + rollback</strong> (per-run diffs + scoped revert)</Bullet>
+                            <Bullet><strong>Error handling + report generator</strong> (human-readable impact summaries + exports)</Bullet>
+                            <Bullet><strong>Hard/soft delete handling</strong> (guardrails + intent selection)</Bullet>
+                            <Bullet><strong>Self-healing agent</strong> (suggest-only fixes + replay plans, no silent changes)</Bullet>
+                        </ul>
+                        
+                        <p><strong className="text-white">My Role:</strong> UX Lead — owned risk strategy, interaction paradigm, trust model across setup/execution/monitoring/recovery. Led discovery, IA, prototyping, validation. Built service blueprint, risk heatmaps, journey maps, and decision logs with PM/Eng triads. Used full-stack background (Firebase/NoSQL) to weigh feasibility, cost, latency.</p>
+                        
                         <blockquote className="border-l-2 border-cyan-400 pl-6 text-xl md:text-2xl italic text-white my-8">
-                            Core Insight: People don't fail integrations because they're complex — they fail because they're afraid of irreversible data mistakes and can't see a safe way back.
+                            Core Insight: SMBs don’t fail integrations because they’re complex — they fail because they fear irreversible data mistakes and don’t have a safe way back.
                         </blockquote>
                     </Section>
 
-                    <Section title="1. Product & Org Context">
-                        <p>This was a zero-to-one initiative with a 6-month runway to a guarded rollout, targeting non-technical operators at SMBs. The lean team consisted of 1 PM, 4 engineers, and myself as the UX Lead.</p>
-                        <SubHeading>Collaboration & Ownership</SubHeading>
-                        <p>I owned the risk strategy, interaction paradigm, and trust model. Collaboration was tight, with weekly "Runway Reviews" to document activation, cost, and risk tradeoffs. My Figma service blueprint and journey maps served as the single source of truth for flows and failure modes.</p>
-                        <p>A key partnership with the Engineering Lead resulted in a <strong className="text-white">safe-by-default API contract</strong>, trading some flexibility for predictable UX and auditability. For instance, we redesigned a "Dry Run" preview that was too slow by pre-fetching only critical data, preserving responsiveness without backend overload.</p>
-                    </Section>
-
-                    <Section title="2. The Human Problem">
-                        <p>For SMBs without dedicated IT, a single misconfigured automation can be catastrophic. One bad sync can corrupt revenue records or overwrite customer data at scale.</p>
-                        <p>Our research coalesced into the "Nancy" mental model: a non-technical retail owner paralyzed by the fear that <strong className="text-white">one wrong click could "break the business"</strong> by pushing bad data to live systems with no undo.</p>
-                    </Section>
-
-                    <Section title="3. Market Gaps">
-                        <p>UX teardowns and review mining of competitors (Zapier, Workato, etc.) revealed a clear gap: no product offered meaningful protection for SMBs at the moment of a live run. Observability was limited, and rollback features were often buried in advanced settings.</p>
-                        <p className="bg-cyan-500/10 border border-cyan-500/30 rounded-[1.5rem] p-6 font-semibold text-white text-lg md:text-xl">Key Gap: No competitor was explicitly designing for <strong className="italic">confidence and reversibility</strong> as a primary feature for the SMB segment.</p>
-                    </Section>
-
-                    <Section title="4. Research & Discovery">
-                        <SubHeading>Methodology</SubHeading>
-                        <p>With no direct customer access initially, I built an evidence-based picture through:</p>
-                        <ul className="space-y-3 pl-0 list-none">
-                           <Bullet>Review mining for keywords like "data loss," "dupes," and "no undo."</Bullet>
-                           <Bullet>Competitor teardowns mapping risk and recovery surfaces.</Bullet>
-                           <Bullet>Proxy usability tests with 10 SMB-experienced participants.</Bullet>
+                    <Section title="1. Product & Organizational Context">
+                        <ul className="space-y-4 pl-0 list-none">
+                            <Bullet><strong>Timeline:</strong> 2Q runway (~6 months) from brief → v1 architecture + guarded rollout over 1Q.</Bullet>
+                            <Bullet><strong>Target user:</strong> Non-technical/lightly-technical operators (Ops/RevOps/owners) at SMBs (20–250 employees) running fragmented stacks (HubSpot + QuickBooks + Shopify, etc.) with reconciliation pain.</Bullet>
+                            <Bullet><strong>Team:</strong> 1 PM, 3 Backend Eng (connectors/engine/schema), 1 Frontend Eng (UI/monitoring), Me (UX Lead).</Bullet>
+                            <Bullet><strong>Key constraint:</strong> <em className="text-white">Feel dramatically safer than competitors without increasing setup time, infra cost, or price point.</em></Bullet>
                         </ul>
-                        <SubHeading>A Moment That Changed Strategy</SubHeading>
-                        <p>A usability test participant hovered for 20 seconds over the "Run now" button, saying: <strong className="text-white">"I understand the steps… I just don't know how to undo this if it goes wrong."</strong> This was a recurring pattern.</p>
-                        <p>The problem was reframed from "make it simpler" to <strong className="text-white underline decoration-cyan-500">"make it reversible and observable."</strong> This led to making previews, risk checkpoints, and rollback first-class interactions.</p>
+                        <SubHeading>Collaboration</SubHeading>
+                        <p>Weekly “Runway Review” (PM + Eng Lead + me) to trade off activation/cost/risk. My Figma service blueprint and risk maps became the single source of truth (including failure modes, rollback contracts, and API expectations).</p>
                     </Section>
 
-                    <Section title="5. Problem Statement">
-                        <h3 className="text-3xl md:text-4xl lg:text-5xl text-white font-light tracking-tighter leading-none">How might we help business owners create, monitor, and recover data integrations without requiring literacy in schemas, APIs, or failure-states?</h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-                            <div className="p-8 bg-red-900/40 border border-red-500/30 rounded-2xl">
-                                <p className="text-xs font-black tracking-widest text-red-400 uppercase mb-4">Invalidated Assumption</p>
-                                <p className="text-lg md:text-xl italic text-white">"If we simplify the interface enough, users will feel confident."</p>
-                            </div>
-                            <div className="p-8 bg-green-900/40 border border-green-500/30 rounded-2xl">
-                                <p className="text-xs font-black tracking-widest text-green-400 uppercase mb-4">Reality</p>
-                                <p className="text-lg md:text-xl italic text-white">Confidence comes from knowing you can see outcomes, detect issues, and recover quickly.</p>
-                            </div>
-                        </div>
+                    <Section title="2. The Market Gap We Targeted">
+                        <p>Competitors optimized for <strong className="text-white">setup speed</strong>, but pushed risk onto users at live-run moments:</p>
+                         <ul className="space-y-3 pl-0 list-none">
+                           <Bullet>Hidden logs, unclear failure states</Bullet>
+                           <Bullet>Manual rollback (if any), hard to scope</Bullet>
+                           <Bullet>Weak support for <strong className="text-white">cardinality problems</strong> (one-to-many/many-to-one)</Bullet>
+                           <Bullet>Dangerous operations (deletes/overwrites) treated as normal mappings</Bullet>
+                        </ul>
+                        <p>Review mining repeatedly surfaced “data loss,” “duplicates,” “overwrites,” “no undo.” The psychological blocker wasn’t “I don’t understand” — it was <strong className="text-white">“I can’t recover.”</strong></p>
+                    </Section>
+                    
+                    <Section title="3. Research & Discovery">
+                        <SubHeading>Methods</SubHeading>
+                        <ul className="space-y-3 pl-0 list-none">
+                           <Bullet>Competitor teardowns (Zapier, Workato, Celigo, Jitterbit, Elastic.io, Skyvia)</Bullet>
+                           <Bullet>Review mining (G2/Capterra/Reddit) tagged by risk language</Bullet>
+                           <Bullet>Proxy usability tests: 3 rounds, n≈8–10/round; participants configured CRM → invoicing flows in high-fidelity prototypes.</Bullet>
+                        </ul>
+                        <SubHeading>Turning point</SubHeading>
+                        <p>A participant hovered 20 seconds over <strong className="text-white">Run</strong>:</p>
+                        <blockquote className="border-l-2 border-cyan-400 pl-6 text-xl md:text-2xl italic text-white my-8">
+                            “I get it… I just don’t know how to undo this if it goes wrong.”
+                        </blockquote>
+                        <p>We reframed the product goal from <strong className="text-white">“simplify configuration”</strong> to <strong className="text-white underline decoration-cyan-500">“make execution observable and reversible.”</strong></p>
                     </Section>
 
-                    <Section title="6. Major Design Pivots">
+                    <Section title="4. Problem Statement">
+                        <h3 className="text-3xl md:text-4xl lg:text-5xl text-white font-light tracking-tighter leading-none">Design challenge: How might we enable SMB operators to create and run integrations confidently without schema/API literacy — <strong className="text-white">without false safety</strong>?</h3>
+                        <p className="mt-6">Reality: Confidence came less from simplicity and more from:</p>
+                        <ul className="space-y-3 pl-0 list-none mt-4">
+                           <Bullet><strong className="text-white">Previewability</strong> (see outcomes before they occur)</Bullet>
+                           <Bullet><strong className="text-white">Blast-radius clarity</strong> (who/what is affected)</Bullet>
+                           <Bullet><strong className="text-white">Recoverability</strong> (version control + rollback that works)</Bullet>
+                           <Bullet><strong className="text-white">Accountability</strong> (clear logs, reports, and remediation paths)</Bullet>
+                        </ul>
+                    </Section>
+
+                    <Section title="5. Major Design Pivots">
                         <div className="space-y-12">
                             <div className="border-b border-white/10 pb-12">
-                                <h3 className="text-2xl font-bold text-white tracking-tight mb-4">Pivot 1: From Configuration to Outcomes</h3>
-                                <p>Instead of showing triggers and actions, the flow started with "What do you want to keep in sync?" and required an explicit "Review & Preview" step. This focus on safety increased completion rates from ~60% to ~88%.</p>
+                                <h3 className="text-2xl font-bold text-white tracking-tight mb-4">Pivot 1: Pre-built connectors as the SMB “default path”</h3>
+                                <p>Instead of triggers/actions, onboarding started with outcomes (“Keep deals and invoices in sync”). This forced a <strong className="text-white">Review & Preview</strong> step before the first live run, improving completion ~60% → ~88%.</p>
                             </div>
                             <div className="border-b border-white/10 pb-12">
-                                <h3 className="text-2xl font-bold text-white tracking-tight mb-4">Pivot 2: Solving Data Mapping</h3>
-                                <p>I designed an AI-assisted mapping canvas with <strong className="text-cyan-400 italic">"Ghost Fields"</strong>—visual placeholders in the target schema that preview where data will land and how it will be transformed before committing. Feedback shifted from "I hope this is right" to "I could see what would happen."</p>
+                                <h3 className="text-2xl font-bold text-white tracking-tight mb-4">Pivot 2: AI data manipulation (visible, previewed, never “magic”)</h3>
+                                <p>AI suggests matches and transformations with side-by-side previews and “why” explanations. <strong className="text-cyan-400 italic">“Ghost fields”</strong> showed where data lands pre-commit. This shifted sentiment from “I hope this is right” to “I can see what will happen.”</p>
+                            </div>
+                             <div className="border-b border-white/10 pb-12">
+                                <h3 className="text-2xl font-bold text-white tracking-tight mb-4">Pivot 3: One-to-many / many-to-one as a first-class risk model</h3>
+                                <p>The system flags cardinality risks, explains consequences in a “Risk Check” panel, and provides guardrail choices (e.g., merge vs create child records), including “blast radius” estimates.</p>
+                            </div>
+                             <div className="border-b border-white/10 pb-12">
+                                <h3 className="text-2xl font-bold text-white tracking-tight mb-4">Pivot 4: Error handling + report generator (errors become trust moments)</h3>
+                                <p>Errors have human-readable summaries and an exportable report. Instead of panic, users could self-serve or ask specific questions, reducing support load.</p>
+                            </div>
+                             <div className="border-b border-white/10 pb-12">
+                                <h3 className="text-2xl font-bold text-white tracking-tight mb-4">Pivot 5: Version control + rollback as the core interaction</h3>
+                                <p>Every run produces a versioned “change set” with a diff view. One-click rollback is scoped to that run. “Recovery” is always visible, showing the last 3 runs and their status.</p>
+                            </div>
+                            <div className="border-b border-white/10 pb-12">
+                                <h3 className="text-2xl font-bold text-white tracking-tight mb-4">Pivot 6: Hard/soft delete handling (explicit intent, never implicit)</h3>
+                                <p>Default to soft delete. Hard delete requires explicit intent, a warning with blast radius, and a preview of affected records. “Suspicious delete” spikes route to a checkpoint.</p>
                             </div>
                             <div>
-                                <h3 className="text-2xl font-bold text-white tracking-tight mb-4">Pivot 3: Errors as Trust Moments</h3>
-                                <p>We delayed enterprise-grade power features to invest in clarity and recovery. Errors were structured with human-readable impact summaries ("23 invoices affected, all rolled back") and a one-click "Revert this run" button, turning failures into moments of trust.</p>
+                                <h3 className="text-2xl font-bold text-white tracking-tight mb-4">Pivot 7: Self-healing agent (suggest-only, auditable, no silent changes)</h3>
+                                <p>The agent detects failure patterns and proposes fixes with explanations and risk levels. All actions require confirmation. This preserved trust while still reducing recovery time.</p>
                             </div>
                         </div>
                     </Section>
 
-                    <Section title="7. End-to-End Flow">
-                         <p>The final flow was built on three pillars: <strong className="text-white">preview before execution</strong>, <strong className="text-white">explicit risk checkpoints</strong>, and <strong className="text-white">visible recovery paths at all times</strong>. Every risky operation was highlighted with a blast-radius estimate, and a persistent "Recovery" affordance showed recent runs and their rollback status.</p>
+                    <Section title="6. End-to-End Flow">
+                         <p><strong className="text-white">Setup:</strong> Connector selection → outcome template → auth → AI mapping canvas → cardinality checks → dry run preview</p>
+                         <p><strong className="text-white">Run:</strong> versioned execution with diffs and risk checkpoints</p>
+                         <p><strong className="text-white">Monitor:</strong> health view, anomaly thresholds, suspicious changes flagged</p>
+                         <p><strong className="text-white">Recover:</strong> rollback/replay, self-healing suggestions, report generator exports</p>
                     </Section>
 
-                    <Section title="8. Agentic AI Strategy">
-                        <p>We reframed the AI from a simple "smart helper" to a <strong className="text-white">"visible risk co-owner."</strong> Agents were designed for setup, monitoring, and recovery, but with strict governance: no autonomous destructive actions, human-in-the-loop for critical flows, and all decisions logged. Trust was measured via acceptance rates of AI suggestions and user overrides.</p>
-                    </Section>
-
-                    <Section title="9. Constraints & Tradeoffs">
-                         <p>Key constraints included no direct customer access initially, tight cost caps for an SMB product, and the need for low-latency previews. We intentionally de-prioritized long-tail connectors to focus on strong defaults for the most common platforms.</p>
-                         <p>A notable failed bet was an <strong className="text-white">"auto-fix" feature</strong> for mappings, which users felt was "changing things behind my back." We rolled it back to be suggestion-only.</p>
-                    </Section>
-
-                    <Section title="10. Usability Validation">
-                        <p>The core task (CRM→Invoicing sync) was validated over three rounds of moderated testing (n≈10/round) and a 40-account internal pilot.</p>
+                    <Section title="7. Validation">
+                        <p>Testing: 3 rounds moderated proxy tests (n≈8–10/round) + 40-account internal pilots. We stopped after metrics plateaued and qualitative signals converged: “I feel safe enough to turn this on.”</p>
                         {/* Responsive Table/Cards */}
                         <div className="lg:hidden space-y-4 mt-8">
                             {validationData.map((item, index) => (
@@ -225,14 +260,19 @@ const GoFlow = () => {
                         </div>
                     </Section>
 
-                    <Section title="11. Business Impact">
-                        <p>The confidence-first design directly impacted business goals. Faster, safer onboarding <strong className="text-white">lifted the module attach rate for new deals by ~6–8 points</strong> and improved time-to-first-value by ~30–35%. Self-serve recovery reduced L1 support load, making the SMB pricing model more sustainable.</p>
+                    <Section title="8. UX → Business Impact">
+                        <p><strong className="text-white">Activation:</strong> confidence-first onboarding increased first-successful-run conversion and reduced abandonment at “Run.”</p>
+                        <p><strong className="text-white">Attach rate:</strong> ~6–8pt lift over 2Q driven by higher activation + reduced perceived risk.</p>
+                        <p><strong className="text-white">Support cost:</strong> fewer misconfigs + self-serve rollback/reporting reduced L1 load, supporting SMB economics.</p>
+                        <p><strong className="text-white">Positioning:</strong> GoFlow became the default integration layer for mid-market because safety + rollback shifted trust from “tool” to “system of record for automation.”</p>
                     </Section>
 
-                    <Section title="12. Personal Reflection">
-                        <p>My decision framework evolved to prioritize activation, risk reduction, and cost-effectiveness. When tradeoffs emerged, I learned to defend safety and observability over features that looked impressive but compromised user trust.</p>
-                        <SubHeading>What This Demonstrates</SubHeading>
-                        <p>This project showcases my ability to define and drive a confidence-first UX strategy for a complex AI system under real business constraints. It proves I can translate abstract goals like "Trust and Safety" into concrete, measurable patterns and operate at a senior-to-staff level to influence product strategy and earn user trust in high-risk environments.</p>
+                    <Section title="9. What This Proves About My Level">
+                        <ul className="space-y-4 pl-0 list-none">
+                            <Bullet>I can design <strong className="text-white">high-stakes, risk-aware UX</strong> for AI-driven automation (not just happy-path setup).</Bullet>
+                            <Bullet>I translate TRiSM concerns into concrete product mechanics: <strong className="text-white">observability, auditability, reversibility, and controlled autonomy.</strong></Bullet>
+                            <Bullet>I resolve cross-functional conflict with measurable outcomes and scalable patterns (connectors, mapping, rollback contracts, self-healing interaction design).</Bullet>
+                        </ul>
                     </Section>
 
                 </main>
