@@ -2,11 +2,12 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import CardsSection from "./CardsSection";
 
 const Section = ({ title, children }: { title: string, children: React.ReactNode }) => (
     <section className="project-section grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16">
         <div className="lg:col-span-4">
-            <h2 className="project-heading text-md md:text-md font-black tracking-[0.4em] text-cyan-500 uppercase py-2 border-l-4 border-cyan-500 pl-6 sticky top-28">
+            <h2 className="project-heading text-md md:text-md font-black tracking-[0.4em] text-cyan-500 uppercase py-2 border-l-4 border-cyan-500 pl-6 top-28">
                 {title}
             </h2>
         </div>
@@ -176,6 +177,7 @@ const GoFlow = () => {
                     <Section title="4. Problem Statement">
                         <h3 className="text-3xl md:text-4xl lg:text-5xl text-white font-light tracking-tighter leading-none">Design challenge: How might we enable SMB operators to create and run integrations confidently without schema/API literacy — <strong className="text-white">without false safety</strong>?</h3>
                         <p className="mt-6">Reality: Confidence came less from simplicity and more from:</p>
+                        <CardsSection />
                         <ul className="space-y-3 pl-0 list-none mt-4">
                            <Bullet><strong className="text-white">Previewability</strong> (see outcomes before they occur)</Bullet>
                            <Bullet><strong className="text-white">Blast-radius clarity</strong> (who/what is affected)</Bullet>
