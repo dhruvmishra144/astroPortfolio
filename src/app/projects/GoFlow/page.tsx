@@ -7,7 +7,7 @@ import CardsSection from "./CardsSection";
 const Section = ({ title, children }: { title: string, children: React.ReactNode }) => (
     <section className="project-section grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16">
         <div className="lg:col-span-4">
-            <h2 className="project-heading text-md md:text-md font-black tracking-[0.4em] text-cyan-500 uppercase py-2 border-l-4 border-cyan-500 pl-6 top-28">
+            <h2 className="project-heading text-md md:text-md font-black tracking-[0.4em] text-cyan-500 uppercase py-2 border-l-4 border-cyan-500 pl-6">
                 {title}
             </h2>
         </div>
@@ -34,19 +34,18 @@ const GoFlow = () => {
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
         const ctx = gsap.context(() => {
-            const mm = gsap.matchMedia();
-            mm.add("(min-width: 1024px)", () => {
-                document.querySelectorAll(".project-section").forEach((section) => {
-                    const heading = section.querySelector(".project-heading");
-                    if (heading) {
-                        ScrollTrigger.create({
-                            trigger: section,
-                            start: "top top+=112",
-                            end: "bottom bottom-=150",
-                            pin: heading,
-                            pinSpacing: false,
-                        });
-                    }
+            const sections = gsap.utils.toArray<HTMLElement>('.project-section');
+            sections.forEach((section) => {
+                gsap.from(section, {
+                    opacity: 0,
+                    y: 50,
+                    duration: 1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none',
+                    },
                 });
             });
         }, mainRef);
