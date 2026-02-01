@@ -198,6 +198,27 @@ const GoFlow = () => {
                         </ul>
                     </Section>
 
+                    <Section title="Case Study">
+                        <SubHeading>6.1 User Journey Flow Diagram</SubHeading>
+                        <p>Complete user journey from outcome selection through execution. Mandatory checkpoints (risk checks, previews) ensure confidence before live runs.</p>
+                        <p><strong className="text-white">Key callouts:</strong></p>
+                        <ul className="space-y-3 pl-0 list-none">
+                            <Bullet>Progressive disclosure of complexity</Bullet>
+                            <Bullet>4 safety checkpoints before execution</Bullet>
+                            <Bullet>Feedback loops for adjustments</Bullet>
+                        </ul>
+                        <img src="/path/to/your/user-flow-diagram.png" alt="User Journey Flow Diagram" className="w-full h-auto my-8"/>
+                        <SubHeading>6.2 Backend Architecture Flow</SubHeading>
+                        <p>System architecture showing versioned change sets, anomaly detection, rollback contracts, and audit logging. Every operation is immutable and auditable.</p>
+                        <p><strong className="text-white">Key callouts:</strong></p>
+                        <ul className="space-y-3 pl-0 list-none">
+                            <Bullet>Immutable change sets (every run logged)</Bullet>
+                            <Bullet>Rollback contract (clear reversibility boundaries)</Bullet>
+                            <Bullet>Real-time anomaly detection</Bullet>
+                        </ul>
+                        <img src="/path/to/your/backend-architecture-flow.png" alt="Backend Architecture Flow" className="w-full h-auto my-8"/>
+                    </Section>
+
                     <Section title="5. Major Design Pivots">
                         <div className="space-y-12">
                             <div className="border-b border-white/10 pb-12">
