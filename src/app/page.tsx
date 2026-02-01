@@ -37,6 +37,22 @@ export default function Home() {
       }
     });
 
+    // Project Card Animations
+    const projectCards = gsap.utils.toArray('.project-card');
+    projectCards.forEach((card) => {
+      gsap.from(card as HTMLElement, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: card as HTMLElement,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+      });
+    });
+
   }, { scope: home });
 
   const projectsList = [
@@ -104,7 +120,7 @@ export default function Home() {
           
           <div ref={availableForProject} className='flex items-center gap-x-3 bg-white/5 px-4 py-2 rounded-full border border-white/10'>
             <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
-            <p className="text-[10px] font-bold uppercase tracking-widest text-gray-300">Available for 2026 Projects</p>
+            <p className="text-sm font-bold uppercase tracking-widest text-gray-300">Available for 2026 Projects</p>
           </div>
         </div>
 
@@ -114,7 +130,7 @@ export default function Home() {
             <a 
               href={items.link} 
               key={items.projectName}
-              className={`flex flex-col ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} p-6 lg:p-8 bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 w-full rounded-[2rem] lg:rounded-[3rem] group gap-8 transition-all duration-500 overflow-hidden`}
+              className={`project-card flex flex-col ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} p-6 lg:p-8 bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 w-full rounded-[2rem] lg:rounded-[3rem] group gap-8 transition-all duration-500 overflow-hidden`}
             >
               {/* Responsive Image Height */}
               <div className='w-full lg:w-1/2 overflow-hidden rounded-[1.5rem] h-[220px] sm:h-[350px] lg:h-[450px] relative shrink-0'>
@@ -128,7 +144,7 @@ export default function Home() {
               </div>
 
               <div className='flex flex-col gap-6 w-full lg:w-1/2 justify-center'>
-                <div className='flex justify-between items-center text-[10px] font-bold tracking-[0.2em] text-cyan-500 uppercase'>
+                <div className='flex justify-between items-center text-sm font-bold tracking-[0.2em] text-cyan-500 uppercase'>
                   <p>{items.year}</p>
                   <p>{items.module}</p>
                 </div>
@@ -140,17 +156,17 @@ export default function Home() {
                     <h3 className='text-3xl lg:text-5xl font-light italic text-white tracking-tighter leading-none'>{items.projectName}</h3>
                     <p className='text-gray-400 text-base lg:text-lg font-light leading-relaxed'>{items.projectDescription}</p>
                   </div>
-                  <PiArrowRightThin className='hidden lg:block text-5xl text-gray-600 group-hover:text-cyan-500 group-hover:-rotate-45 transition-all duration-500' />
+                  <PiArrowRightThin className='hidden lg:block w-12 h-12 text-gray-600 group-hover:text-cyan-500 group-hover:-rotate-45 transition-all duration-500 flex-shrink-0' />
                 </div>
 
                 <div className='grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4'>
                   <div className='p-4 bg-white/5 rounded-2xl'>
                     <h4 className='text-2xl lg:text-3xl font-bold text-white italic'>{items.metricOne}</h4>
-                    <p className='text-[10px] uppercase tracking-wider text-gray-500 mt-1'>{items.metricDetailOne}</p>
+                    <p className='text-sm uppercase tracking-wider text-gray-500 mt-1'>{items.metricDetailOne}</p>
                   </div>
                   <div className='p-4 bg-white/5 rounded-2xl'>
                     <h4 className='text-2xl lg:text-3xl font-bold text-white italic'>{items.metricTwo}</h4>
-                    <p className='text-[10px] uppercase tracking-wider text-gray-500 mt-1'>{items.metricDetailTwo}</p>
+                    <p className='text-sm uppercase tracking-wider text-gray-500 mt-1'>{items.metricDetailTwo}</p>
                   </div>
                 </div>
               </div>

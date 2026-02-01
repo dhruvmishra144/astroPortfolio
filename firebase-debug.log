@@ -1,0 +1,77 @@
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2026-02-01T09:18:17.437Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2026-02-01T09:18:17.439Z] > authorizing via signed-in user (dhruvmishra144@gmail.com)
+[debug] [2026-02-01T09:18:17.441Z] Checked if tokens are valid: false, expires at: 1769933359011
+[debug] [2026-02-01T09:18:17.442Z] Checked if tokens are valid: false, expires at: 1769933359011
+[debug] [2026-02-01T09:18:17.442Z] > refreshing access token with scopes: []
+[debug] [2026-02-01T09:18:17.447Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-02-01T09:18:17.448Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-01T09:18:17.517Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-02-01T09:18:17.517Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-01T09:18:17.548Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-nextjs-b02fb/billingInfo [none]
+[debug] [2026-02-01T09:18:17.789Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-nextjs-b02fb/billingInfo 200
+[debug] [2026-02-01T09:18:17.790Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-nextjs-b02fb/billingInfo {"name":"projects/portfolio-nextjs-b02fb/billingInfo","projectId":"portfolio-nextjs-b02fb","billingAccountName":"","billingEnabled":false}
+[debug] [2026-02-01T09:18:17.811Z] Checked if tokens are valid: true, expires at: 1769941096522
+[debug] [2026-02-01T09:18:17.811Z] Checked if tokens are valid: true, expires at: 1769941096522
+[debug] [2026-02-01T09:18:17.812Z] Checked if tokens are valid: true, expires at: 1769941096522
+[debug] [2026-02-01T09:18:17.812Z] Checked if tokens are valid: true, expires at: 1769941096522
+[debug] [2026-02-01T09:18:17.841Z] Checked if tokens are valid: true, expires at: 1769941096522
+[debug] [2026-02-01T09:18:17.842Z] Checked if tokens are valid: true, expires at: 1769941096522
+[debug] [2026-02-01T09:18:17.843Z] Checked if tokens are valid: true, expires at: 1769941096522
+[debug] [2026-02-01T09:18:17.843Z] Checked if tokens are valid: true, expires at: 1769941096522
+[debug] [2026-02-01T09:18:17.843Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-nextjs-b02fb/services/firebasedataconnect.googleapis.com [none]
+[debug] [2026-02-01T09:18:17.844Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-nextjs-b02fb/services/firebasedataconnect.googleapis.com  x-goog-user-project=portfolio-nextjs-b02fb
+[debug] [2026-02-01T09:18:17.848Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-nextjs-b02fb/services/cloudfunctions.googleapis.com [none]
+[debug] [2026-02-01T09:18:17.848Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-nextjs-b02fb/services/cloudfunctions.googleapis.com  x-goog-user-project=portfolio-nextjs-b02fb
+[debug] [2026-02-01T09:18:17.851Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-nextjs-b02fb/services/firebaseapphosting.googleapis.com [none]
+[debug] [2026-02-01T09:18:17.851Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-nextjs-b02fb/services/firebaseapphosting.googleapis.com  x-goog-user-project=portfolio-nextjs-b02fb
+[debug] [2026-02-01T09:18:17.854Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/portfolio-nextjs-b02fb/services/firebaseio.com [none]
+[debug] [2026-02-01T09:18:17.854Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/portfolio-nextjs-b02fb/services/firebaseio.com  x-goog-user-project=portfolio-nextjs-b02fb
+[debug] [2026-02-01T09:18:18.910Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-nextjs-b02fb/services/firebasedataconnect.googleapis.com 200
+[debug] [2026-02-01T09:18:18.910Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-nextjs-b02fb/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2026-02-01T09:18:18.961Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-nextjs-b02fb/services/cloudfunctions.googleapis.com 200
+[debug] [2026-02-01T09:18:18.972Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-nextjs-b02fb/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2026-02-01T09:18:19.118Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-nextjs-b02fb/services/firebaseio.com 403
+[debug] [2026-02-01T09:18:19.123Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-nextjs-b02fb/services/firebaseio.com [omitted]
+[debug] [2026-02-01T09:18:19.154Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/portfolio-nextjs-b02fb/services/firebaseapphosting.googleapis.com 200
+[debug] [2026-02-01T09:18:19.154Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/portfolio-nextjs-b02fb/services/firebaseapphosting.googleapis.com [omitted]
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2026-02-01T09:18:19.172Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2026-02-01T09:18:19.172Z] > authorizing via signed-in user (dhruvmishra144@gmail.com)
+[debug] [2026-02-01T09:18:19.174Z] Checked if tokens are valid: true, expires at: 1769941096522
+[debug] [2026-02-01T09:18:19.174Z] Checked if tokens are valid: true, expires at: 1769941096522
+[debug] [2026-02-01T09:18:19.175Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-nextjs-b02fb/billingInfo [none]
+[debug] [2026-02-01T09:18:19.388Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-nextjs-b02fb/billingInfo 200
+[debug] [2026-02-01T09:18:19.389Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-nextjs-b02fb/billingInfo {"name":"projects/portfolio-nextjs-b02fb/billingInfo","projectId":"portfolio-nextjs-b02fb","billingAccountName":"","billingEnabled":false}
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2026-02-01T09:18:19.400Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2026-02-01T09:18:19.401Z] > authorizing via signed-in user (dhruvmishra144@gmail.com)
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2026-02-01T09:18:19.480Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2026-02-01T09:18:19.480Z] > authorizing via signed-in user (dhruvmishra144@gmail.com)
+[debug] [2026-02-01T09:18:19.480Z] Checked if tokens are valid: true, expires at: 1769941096522
+[debug] [2026-02-01T09:18:19.480Z] Checked if tokens are valid: true, expires at: 1769941096522
+[debug] [2026-02-01T09:18:19.487Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-nextjs-b02fb/billingInfo [none]
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2026-02-01T09:18:19.525Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2026-02-01T09:18:19.525Z] > authorizing via signed-in user (dhruvmishra144@gmail.com)
+[debug] [2026-02-01T09:18:19.525Z] Checked if tokens are valid: true, expires at: 1769941096522
+[debug] [2026-02-01T09:18:19.525Z] Checked if tokens are valid: true, expires at: 1769941096522
+[debug] [2026-02-01T09:18:19.526Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-nextjs-b02fb/billingInfo [none]
+[debug] [2026-02-01T09:18:19.752Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-nextjs-b02fb/billingInfo 200
+[debug] [2026-02-01T09:18:19.752Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-nextjs-b02fb/billingInfo {"name":"projects/portfolio-nextjs-b02fb/billingInfo","projectId":"portfolio-nextjs-b02fb","billingAccountName":"","billingEnabled":false}
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2026-02-01T09:18:19.755Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2026-02-01T09:18:19.755Z] > authorizing via signed-in user (dhruvmishra144@gmail.com)
+[debug] [2026-02-01T09:18:20.491Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-nextjs-b02fb/billingInfo 200
+[debug] [2026-02-01T09:18:20.492Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/portfolio-nextjs-b02fb/billingInfo {"name":"projects/portfolio-nextjs-b02fb/billingInfo","projectId":"portfolio-nextjs-b02fb","billingAccountName":"","billingEnabled":false}
+[error] Failed to fetch Firebase Project from Studio Workspace because WORKSPACE_SLUG environment variable is empty
+[debug] [2026-02-01T09:18:20.498Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
+[debug] [2026-02-01T09:18:20.498Z] > authorizing via signed-in user (dhruvmishra144@gmail.com)

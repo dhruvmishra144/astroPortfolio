@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useRef } from "react";
+import { useGSAP } from '@gsap/react';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import CardsSection from "./CardsSection";
@@ -30,27 +31,38 @@ const Bullet = ({ children }: { children: React.ReactNode }) => (
 
 const GoFlow = () => {
     const mainRef = useRef<HTMLDivElement>(null);
+    const heroHeader = useRef(null);
+    const headlineSignals = useRef(null);
 
-    useEffect(() => {
+    useGSAP(() => {
         gsap.registerPlugin(ScrollTrigger);
-        const ctx = gsap.context(() => {
-            const sections = gsap.utils.toArray<HTMLElement>('.project-section');
-            sections.forEach((section) => {
-                gsap.from(section, {
-                    opacity: 0,
-                    y: 50,
-                    duration: 1,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: section,
-                        start: 'top 85%',
-                        toggleActions: 'play none none none',
-                    },
-                });
+
+        // Hero animation
+        gsap.from([heroHeader.current, headlineSignals.current], {
+            opacity: 0,
+            y: 30,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+
+        // Section fade-in animation
+        const sections = gsap.utils.toArray<HTMLElement>('.project-section');
+        sections.forEach((section) => {
+            gsap.from(section, {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none',
+                },
             });
-        }, mainRef);
-        return () => ctx.revert();
-    }, []);
+        });
+
+    }, { scope: mainRef });
 
     const validationData = [
         { metric: "Completion rate", early: "~60%", final: "~88%" },
@@ -63,7 +75,7 @@ const GoFlow = () => {
         <div ref={mainRef} className="text-[#e5e5e5] min-h-screen font-sans selection:bg-cyan-500/30 pb-40 leading-relaxed">
             <div className="container mx-auto px-6 lg:px-16 pt-24 md:pt-32">
 
-                <header className="max-w-6xl mb-24">
+                <header ref={heroHeader} className="max-w-6xl mb-24">
                     <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-light mb-4 tracking-tighter leading-none text-white italic">
                         GoFlow<span className="text-cyan-500 not-italic">.</span>
                     </h1>
@@ -72,7 +84,7 @@ const GoFlow = () => {
                     </h2>
                 </header>
 
-                <div className="bg-white/[0.03] border border-white/10 rounded-[2.5rem] p-8 md:p-12 my-16">
+                <div ref={headlineSignals} className="bg-white/[0.03] border border-white/10 rounded-[2.5rem] p-8 md:p-12 my-16">
                     <h3 className="text-md md:text-md font-black tracking-widest text-cyan-400 uppercase mb-8 text-center">Headline Signals</h3>
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 text-center">
                         <div className="space-y-2">
@@ -174,8 +186,9 @@ const GoFlow = () => {
                     </Section>
 
                     <Section title="4. Problem Statement">
-                        <h3 className="text-3xl md:text-4xl lg:text-5xl text-white font-light tracking-tighter leading-none">Design challenge: How might we enable SMB operators to create and run integrations confidently without schema/API literacy — <strong className="text-white">without false safety</strong>?</h3>
-                        <p className="mt-6">Reality: Confidence came less from simplicity and more from:</p>
+                        <h3 className="text-3xl md:text-4xl lg:text-5xl text-white font-light tracking-tighter leading-none">The Design Challenge: Confidence Without False Safety</h3>
+                        <p className="mt-6 text-xl md:text-2xl text-white italic">How might we enable SMB operators to create and run integrations confidently without schema/API literacy — without creating a false sense of security?</p>
+                        <p className="mt-8">Reality: Confidence came less from simplicity and more from:</p>
                         <CardsSection />
                         <ul className="space-y-3 pl-0 list-none mt-4">
                            <Bullet><strong className="text-white">Previewability</strong> (see outcomes before they occur)</Bullet>
