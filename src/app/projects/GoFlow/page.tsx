@@ -19,7 +19,7 @@ const Section = ({ title, children }: { title: string, children: React.ReactNode
 );
 
 const SubHeading = ({ children }: { children: React.ReactNode }) => (
-    <h3 className="text-3xl md:text-4xl font-light text-white italic tracking-tighter mt-12 mb-6">{children}</h3>
+    <h3 className="text-3xl md:text-4xl font-light text-white italic tracking-tighter mb-6">{children}</h3>
 );
 
 const Bullet = ({ children }: { children: React.ReactNode }) => (
@@ -85,8 +85,8 @@ const GoFlow = () => {
                 </header>
 
                 <div ref={headlineSignals} className="bg-white/[0.03] border border-white/10 rounded-[2.5rem] p-8 md:p-12 my-16">
-                    <h3 className="text-md md:text-md font-black tracking-widest text-cyan-400 uppercase mb-8 text-center">Headline Signals</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 text-center">
+                    <h3 className="text-md md:text-md font-black tracking-widest text-cyan-400 uppercase mb-8 text-center">Headline Signals (Skim-first)</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 text-center">
                         <div className="space-y-2">
                             <p className="text-lg md:text-xl text-white font-semibold">Staff-level IC</p>
                             <p className="text-gray-400 text-md md:text-base">agentic AI + B2B SaaS, 0→1 iPaaS with safety-first execution.</p>
@@ -113,10 +113,10 @@ const GoFlow = () => {
                     <Section title="Recruiter Quick-Scan Summary">
                         <p><strong className="text-white">What:</strong> Led UX strategy and end-to-end product design for an agentic-AI powered iPaaS that helps SMBs safely create, run, monitor, and recover cross-system automations without API/schema literacy.</p>
                         <p><strong className="text-white">Context:</strong> Internal 0→1 initiative inside a B2B SaaS serving ~4,000 SMBs. We built an SMB-friendly alternative to enterprise iPaaS tools (Zapier, Workato, Celigo) by focusing on what competitors consistently under-serve: <strong className="text-white">live-run safety, rollback, and clear responsibility-sharing</strong>.</p>
-                        <p><strong className="text-white">Why:</strong> Competitive teardown + review mining showed the same failure pattern: non-technical users could configure flows, but froze at execution because they couldn’t answer:</p>
+                        <p><strong className="text-white">Why:</strong> Competitive teardown + review mining showed the same failure pattern: non-technical users could configure flows, but froze at execution because they couldn't answer:</p>
                         <ul className="list-decimal pl-6 space-y-2">
                             <li><em className="text-gray-400">What exactly will happen?</em></li>
-                            <li><em className="text-gray-400">What’s the blast radius if it goes wrong?</em></li>
+                            <li><em className="text-gray-400">What's the blast radius if it goes wrong?</em></li>
                             <li><em className="text-gray-400">Can I undo it reliably?</em></li>
                         </ul>
                         
@@ -144,7 +144,7 @@ const GoFlow = () => {
                         <p><strong className="text-white">My Role:</strong> UX Lead — owned risk strategy, interaction paradigm, trust model across setup/execution/monitoring/recovery. Led discovery, IA, prototyping, validation. Built service blueprint, risk heatmaps, journey maps, and decision logs with PM/Eng triads. Used full-stack background (Firebase/NoSQL) to weigh feasibility, cost, latency.</p>
                         
                         <blockquote className="border-l-2 border-cyan-400 pl-6 text-xl md:text-2xl italic text-white my-8">
-                            Core Insight: SMBs don’t fail integrations because they’re complex — they fail because they fear irreversible data mistakes and don’t have a safe way back.
+                            Core Insight: SMBs don't fail integrations because they're complex — they fail because they fear irreversible data mistakes and don't have a safe way back.
                         </blockquote>
                     </Section>
 
@@ -156,33 +156,33 @@ const GoFlow = () => {
                             <Bullet><strong>Key constraint:</strong> <em className="text-white">Feel dramatically safer than competitors without increasing setup time, infra cost, or price point.</em></Bullet>
                         </ul>
                         <SubHeading>Collaboration</SubHeading>
-                        <p>Weekly “Runway Review” (PM + Eng Lead + me) to trade off activation/cost/risk. My Figma service blueprint and risk maps became the single source of truth (including failure modes, rollback contracts, and API expectations).</p>
+                        <p>Weekly "Runway Review" (PM + Eng Lead + me) to trade off activation/cost/risk. My Figma service blueprint and risk maps became the single source of truth (including failure modes, rollback contracts, and API expectations).</p>
                     </Section>
 
                     <Section title="2. The Market Gap We Targeted">
                         <p>Competitors optimized for <strong className="text-white">setup speed</strong>, but pushed risk onto users at live-run moments:</p>
-                         <ul className="space-y-3 pl-0 list-none">
-                           <Bullet>Hidden logs, unclear failure states</Bullet>
-                           <Bullet>Manual rollback (if any), hard to scope</Bullet>
-                           <Bullet>Weak support for <strong className="text-white">cardinality problems</strong> (one-to-many/many-to-one)</Bullet>
-                           <Bullet>Dangerous operations (deletes/overwrites) treated as normal mappings</Bullet>
+                        <ul className="space-y-3 pl-0 list-none">
+                            <Bullet>Hidden logs, unclear failure states</Bullet>
+                            <Bullet>Manual rollback (if any), hard to scope</Bullet>
+                            <Bullet>Weak support for <strong className="text-white">cardinality problems</strong> (one-to-many/many-to-one)</Bullet>
+                            <Bullet>Dangerous operations (deletes/overwrites) treated as normal mappings</Bullet>
                         </ul>
-                        <p>Review mining repeatedly surfaced “data loss,” “duplicates,” “overwrites,” “no undo.” The psychological blocker wasn’t “I don’t understand” — it was <strong className="text-white">“I can’t recover.”</strong></p>
+                        <p>Review mining repeatedly surfaced "data loss," "duplicates," "overwrites," "no undo." The psychological blocker wasn't "I don't understand" — it was <strong className="text-white">"I can't recover."</strong></p>
                     </Section>
                     
                     <Section title="3. Research & Discovery">
                         <SubHeading>Methods</SubHeading>
                         <ul className="space-y-3 pl-0 list-none">
-                           <Bullet>Competitor teardowns (Zapier, Workato, Celigo, Jitterbit, Elastic.io, Skyvia)</Bullet>
-                           <Bullet>Review mining (G2/Capterra/Reddit) tagged by risk language</Bullet>
-                           <Bullet>Proxy usability tests: 3 rounds, n≈8–10/round; participants configured CRM → invoicing flows in high-fidelity prototypes.</Bullet>
+                            <Bullet>Competitor teardowns (Zapier, Workato, Celigo, Jitterbit, Elastic.io, Skyvia)</Bullet>
+                            <Bullet>Review mining (G2/Capterra/Reddit) tagged by risk language</Bullet>
+                            <Bullet>Proxy usability tests: 3 rounds, n≈8–10/round; participants configured CRM → invoicing flows in high-fidelity prototypes.</Bullet>
                         </ul>
                         <SubHeading>Turning point</SubHeading>
                         <p>A participant hovered 20 seconds over <strong className="text-white">Run</strong>:</p>
                         <blockquote className="border-l-2 border-cyan-400 pl-6 text-xl md:text-2xl italic text-white my-8">
-                            “I get it… I just don’t know how to undo this if it goes wrong.”
+                            "I get it… I just don't know how to undo this if it goes wrong."
                         </blockquote>
-                        <p>We reframed the product goal from <strong className="text-white">“simplify configuration”</strong> to <strong className="text-white underline decoration-cyan-500">“make execution observable and reversible.”</strong></p>
+                        <p>We reframed the product goal from <strong className="text-white">"simplify configuration"</strong> to <strong className="text-white underline decoration-cyan-500">"make execution observable and reversible."</strong></p>
                     </Section>
 
                     <Section title="4. Problem Statement">
@@ -191,76 +191,81 @@ const GoFlow = () => {
                         <p className="mt-8">Reality: Confidence came less from simplicity and more from:</p>
                         <CardsSection />
                         <ul className="space-y-3 pl-0 list-none mt-4">
-                           <Bullet><strong className="text-white">Previewability</strong> (see outcomes before they occur)</Bullet>
-                           <Bullet><strong className="text-white">Blast-radius clarity</strong> (who/what is affected)</Bullet>
-                           <Bullet><strong className="text-white">Recoverability</strong> (version control + rollback that works)</Bullet>
-                           <Bullet><strong className="text-white">Accountability</strong> (clear logs, reports, and remediation paths)</Bullet>
+                            <Bullet><strong className="text-white">Previewability</strong> (see outcomes before they occur)</Bullet>
+                            <Bullet><strong className="text-white">Blast-radius clarity</strong> (who/what is affected)</Bullet>
+                            <Bullet><strong className="text-white">Recoverability</strong> (version control + rollback that works)</Bullet>
+                            <Bullet><strong className="text-white">Accountability</strong> (clear logs, reports, and remediation paths)</Bullet>
                         </ul>
-                    </Section>
-
-                    <Section title="Case Study">
-                        <SubHeading>6.1 User Journey Flow Diagram</SubHeading>
-                        <p>Complete user journey from outcome selection through execution. Mandatory checkpoints (risk checks, previews) ensure confidence before live runs.</p>
-                        <p><strong className="text-white">Key callouts:</strong></p>
-                        <ul className="space-y-3 pl-0 list-none">
-                            <Bullet>Progressive disclosure of complexity</Bullet>
-                            <Bullet>4 safety checkpoints before execution</Bullet>
-                            <Bullet>Feedback loops for adjustments</Bullet>
-                        </ul>
-                        <img src="/path/to/your/user-flow-diagram.png" alt="User Journey Flow Diagram" className="w-full h-auto my-8"/>
-                        <SubHeading>6.2 Backend Architecture Flow</SubHeading>
-                        <p>System architecture showing versioned change sets, anomaly detection, rollback contracts, and audit logging. Every operation is immutable and auditable.</p>
-                        <p><strong className="text-white">Key callouts:</strong></p>
-                        <ul className="space-y-3 pl-0 list-none">
-                            <Bullet>Immutable change sets (every run logged)</Bullet>
-                            <Bullet>Rollback contract (clear reversibility boundaries)</Bullet>
-                            <Bullet>Real-time anomaly detection</Bullet>
-                        </ul>
-                        <img src="/path/to/your/backend-architecture-flow.png" alt="Backend Architecture Flow" className="w-full h-auto my-8"/>
                     </Section>
 
                     <Section title="5. Major Design Pivots">
                         <div className="space-y-12">
                             <div className="border-b border-white/10 pb-12">
-                                <h3 className="text-2xl font-bold text-white tracking-tight mb-4">Pivot 1: Pre-built connectors as the SMB “default path”</h3>
-                                <p>Instead of triggers/actions, onboarding started with outcomes (“Keep deals and invoices in sync”). This forced a <strong className="text-white">Review & Preview</strong> step before the first live run, improving completion ~60% → ~88%.</p>
+                                <h3 className="text-2xl font-bold text-white tracking-tight mb-4">Pivot 1: Pre-built connectors as the SMB "default path"</h3>
+                                <p>Template-first setup ("Keep deals and invoices in sync"). System chooses best connector pairing + auth flow. Progressive disclosure of mapping complexity. Forced Review & Preview before first live run. Result: Completion improved ~60% → ~88%, setup time ~18 min → 10–11 min.</p>
                             </div>
                             <div className="border-b border-white/10 pb-12">
-                                <h3 className="text-2xl font-bold text-white tracking-tight mb-4">Pivot 2: AI data manipulation (visible, previewed, never “magic”)</h3>
-                                <p>AI suggests matches and transformations with side-by-side previews and “why” explanations. <strong className="text-cyan-400 italic">“Ghost fields”</strong> showed where data lands pre-commit. This shifted sentiment from “I hope this is right” to “I can see what will happen.”</p>
+                                <h3 className="text-2xl font-bold text-white tracking-tight mb-4">Pivot 2: AI data manipulation (visible, previewed, never "magic")</h3>
+                                <p>AI suggests matches using schema names + sample distributions. Transform previews (formatting, concatenation, normalization, dedupe rules). Side-by-side sample records (source → target) with "why" explanations. <strong className="text-cyan-400 italic">"Ghost fields"</strong> placeholders showing where data lands pre-commit. Explicit confirmation for every non-trivial transformation.</p>
                             </div>
-                             <div className="border-b border-white/10 pb-12">
+                            <div className="border-b border-white/10 pb-12">
                                 <h3 className="text-2xl font-bold text-white tracking-tight mb-4">Pivot 3: One-to-many / many-to-one as a first-class risk model</h3>
-                                <p>The system flags cardinality risks, explains consequences in a “Risk Check” panel, and provides guardrail choices (e.g., merge vs create child records), including “blast radius” estimates.</p>
+                                <p>System flags cardinality risk during mapping. "Risk Check" panel explains consequences in plain language. Guardrail choices: Create child records vs update existing; Merge rules vs reject; Unique ID strategy (source-of-truth selection). "Blast radius" estimates (how many records could be impacted).</p>
                             </div>
-                             <div className="border-b border-white/10 pb-12">
+                            <div className="border-b border-white/10 pb-12">
                                 <h3 className="text-2xl font-bold text-white tracking-tight mb-4">Pivot 4: Error handling + report generator (errors become trust moments)</h3>
-                                <p>Errors have human-readable summaries and an exportable report. Instead of panic, users could self-serve or ask specific questions, reducing support load.</p>
+                                <p>Human-readable root cause + impact summary. Run-level "what changed" diff. Report generator outputs: affected records count; fields changed; attempted operations (create/update/delete); rollback status; exportable CSV/audit summary for stakeholders.</p>
                             </div>
-                             <div className="border-b border-white/10 pb-12">
+                            <div className="border-b border-white/10 pb-12">
                                 <h3 className="text-2xl font-bold text-white tracking-tight mb-4">Pivot 5: Version control + rollback as the core interaction</h3>
-                                <p>Every run produces a versioned “change set” with a diff view. One-click rollback is scoped to that run. “Recovery” is always visible, showing the last 3 runs and their status.</p>
+                                <p>Every run produces a versioned "change set". Diff view (before/after for sampled records + summary counts). One-click rollback scoped to the run. Clear statement of what rollback can/cannot undo (no false guarantees). "Recovery" always visible: last 3 runs + rollback status + replay option.</p>
                             </div>
                             <div className="border-b border-white/10 pb-12">
                                 <h3 className="text-2xl font-bold text-white tracking-tight mb-4">Pivot 6: Hard/soft delete handling (explicit intent, never implicit)</h3>
-                                <p>Default to soft delete. Hard delete requires explicit intent, a warning with blast radius, and a preview of affected records. “Suspicious delete” spikes route to a checkpoint.</p>
+                                <p>Default to soft delete when destination supports it. Hard delete requires: explicit intent selection; warning with blast radius; preview of affected records. "Suspicious delete" detection (spikes, pattern anomalies) routes users to a checkpoint.</p>
                             </div>
                             <div>
                                 <h3 className="text-2xl font-bold text-white tracking-tight mb-4">Pivot 7: Self-healing agent (suggest-only, auditable, no silent changes)</h3>
-                                <p>The agent detects failure patterns and proposes fixes with explanations and risk levels. All actions require confirmation. This preserved trust while still reducing recovery time.</p>
+                                <p>Detects failure patterns (auth expiry, schema change, rate limits, mapping mismatches). Proposes fixes with: explanation; predicted outcome; risk level; "apply + replay" plan. All actions require confirmation and are logged with an audit event ID.</p>
                             </div>
                         </div>
                     </Section>
 
-                    <Section title="6. End-to-End Flow">
-                         <p><strong className="text-white">Setup:</strong> Connector selection → outcome template → auth → AI mapping canvas → cardinality checks → dry run preview</p>
-                         <p><strong className="text-white">Run:</strong> versioned execution with diffs and risk checkpoints</p>
-                         <p><strong className="text-white">Monitor:</strong> health view, anomaly thresholds, suspicious changes flagged</p>
-                         <p><strong className="text-white">Recover:</strong> rollback/replay, self-healing suggestions, report generator exports</p>
+                    <Section title="6. End-to-End Flow (Confidence-First)">
+                        <p><strong className="text-white">Setup:</strong> Connector selection → outcome template → auth → AI mapping canvas → cardinality checks → dry run preview</p>
+                        <p><strong className="text-white">Run:</strong> versioned execution with diffs and risk checkpoints</p>
+                        <p><strong className="text-white">Monitor:</strong> health view, anomaly thresholds, suspicious changes flagged</p>
+                        <p><strong className="text-white">Recover:</strong> rollback/replay, self-healing suggestions, report generator exports</p>
+
+                        {/* 6.1 User Journey Flow Diagram */}
+                        <div className="bg-white/[0.03] border border-white/10 rounded-[2rem] p-8 mt-12">
+                            <h4 className="text-2xl font-bold text-white tracking-tight mb-6">6.1 User Journey Flow Diagram</h4>
+                            <p className="text-gray-400 italic mb-6">[IMAGE PLACEHOLDER: User-flow-GoFlow.jpg]</p>
+                            <p className="text-gray-300 mb-4">Complete user journey from outcome selection through execution. Mandatory checkpoints (risk checks, previews) ensure confidence before live runs.</p>
+                            <p className="text-md font-black tracking-widest text-cyan-400 uppercase mb-4">Key callouts:</p>
+                            <ul className="space-y-2 pl-0 list-none">
+                                <Bullet>Progressive disclosure of complexity</Bullet>
+                                <Bullet>4 safety checkpoints before execution</Bullet>
+                                <Bullet>Feedback loops for adjustments</Bullet>
+                            </ul>
+                        </div>
+
+                        {/* 6.2 Backend Architecture Flow */}
+                        <div className="bg-white/[0.03] border border-white/10 rounded-[2rem] p-8 mt-12">
+                            <h4 className="text-2xl font-bold text-white tracking-tight mb-6">6.2 Backend Architecture Flow</h4>
+                            <p className="text-gray-400 italic mb-6">[IMAGE PLACEHOLDER: Backend-Flow-GoFlow.jpg]</p>
+                            <p className="text-gray-300 mb-4">System architecture showing versioned change sets, anomaly detection, rollback contracts, and audit logging. Every operation is immutable and auditable.</p>
+                            <p className="text-md font-black tracking-widest text-cyan-400 uppercase mb-4">Key callouts:</p>
+                            <ul className="space-y-2 pl-0 list-none">
+                                <Bullet>Immutable change sets (every run logged)</Bullet>
+                                <Bullet>Rollback contract (clear reversibility boundaries)</Bullet>
+                                <Bullet>Real-time anomaly detection</Bullet>
+                            </ul>
+                        </div>
                     </Section>
 
                     <Section title="7. Validation">
-                        <p>Testing: 3 rounds moderated proxy tests (n≈8–10/round) + 40-account internal pilots. We stopped after metrics plateaued and qualitative signals converged: “I feel safe enough to turn this on.”</p>
+                        <p>Testing: 3 rounds moderated proxy tests (n≈8–10/round) + 40-account internal pilots. We stopped after metrics plateaued and qualitative signals converged: "I feel safe enough to turn this on."</p>
                         {/* Responsive Table/Cards */}
                         <div className="lg:hidden space-y-4 mt-8">
                             {validationData.map((item, index) => (
@@ -296,10 +301,10 @@ const GoFlow = () => {
                     </Section>
 
                     <Section title="8. UX → Business Impact">
-                        <p><strong className="text-white">Activation:</strong> confidence-first onboarding increased first-successful-run conversion and reduced abandonment at “Run.”</p>
+                        <p><strong className="text-white">Activation:</strong> confidence-first onboarding increased first-successful-run conversion and reduced abandonment at "Run."</p>
                         <p><strong className="text-white">Attach rate:</strong> ~6–8pt lift over 2Q driven by higher activation + reduced perceived risk.</p>
                         <p><strong className="text-white">Support cost:</strong> fewer misconfigs + self-serve rollback/reporting reduced L1 load, supporting SMB economics.</p>
-                        <p><strong className="text-white">Positioning:</strong> GoFlow became the default integration layer for mid-market because safety + rollback shifted trust from “tool” to “system of record for automation.”</p>
+                        <p><strong className="text-white">Positioning:</strong> GoFlow became the default integration layer for mid-market because safety + rollback shifted trust from "tool" to "system of record for automation."</p>
                     </Section>
 
                     <Section title="9. What This Proves About My Level">
