@@ -5,7 +5,6 @@ import Footer from "./footer";
 
 const ConditionalFooter = () => {
     const pathname = usePathname();
-    console.log(pathname);
     if (pathname === '/contact/') {
         return null;
     }
