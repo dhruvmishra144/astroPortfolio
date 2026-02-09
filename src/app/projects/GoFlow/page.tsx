@@ -24,7 +24,7 @@ const SubHeading = ({ children }: { children: React.ReactNode }) => (
 
 const Bullet = ({ children }: { children: React.ReactNode }) => (
     <li className="flex items-start gap-4">
-        <span className="text-cyan-500 mt-2 shrink-0">•</span>
+        <span className="text-cyan-500 shrink-0">•</span>
         <span>{children}</span>
     </li>
 );
