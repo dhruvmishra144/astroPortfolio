@@ -4,15 +4,21 @@ import { useGSAP } from '@gsap/react';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import DataAnalysisChart from './DataAnalysisChart';
+import CardsSection from './CardsSection';
+import CompetitiveFeatureMatrix from './CompetitiveFeatureMatrix';
+import UserEmpathyMap from './UserEmpathyMap'; // Import UserEmpathyMap
 
 const Section = ({ title, children }: { title: string, children: React.ReactNode }) => (
-    <section className="project-section grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16">
-        <div className="lg:col-span-4">
+    <section className="project-section flex flex-col gap-8 md:gap-12">
+        {/* Top-aligned Heading */}
+        <div className="w-full">
             <h2 className="project-heading text-md md:text-md font-black tracking-[0.4em] text-cyan-500 uppercase py-2 border-l-4 border-cyan-500 pl-6">
                 {title}
             </h2>
         </div>
-        <div className="project-content lg:col-span-8 space-y-10 text-lg md:text-xl font-light text-gray-300 max-w-4xl leading-relaxed">
+        
+        {/* Full-width Content */}
+        <div className="project-content w-full space-y-10 text-lg md:text-xl font-light text-gray-300 leading-relaxed">
             {children}
         </div>
     </section>
@@ -181,7 +187,7 @@ const GoFlow = () => {
                             </ul>
                             <p className="text-xs text-gray-500 pt-2">Validated via moderated proxy testing (n≈8–10/round ×3) + 40-account internal beta.</p>
                         </div>
-
+                        <CardsSection />
                         <SubHeading>What Shipped (v1)</SubHeading>
                         <ul className="space-y-3 pl-0 list-none">
                             <Bullet>Pre-built connectors (high-volume systems) + outcome-based onboarding</Bullet>
@@ -225,7 +231,7 @@ const GoFlow = () => {
                         <DataAnalysisChart />
                         <SubHeading>2.2 Competitive Feature Analysis</SubHeading>
                         <p>Our analysis across six major competitors revealed consistent gaps: all optimized for setup velocity while neglecting execution safety. This created defensible differentiation. GoFlow's competitive advantage isn't configuration simplicity—it's operational safety. Competitors like Zapier and Elastic.io excel at setup speed but fail at rollback capability, cardinality handling, and error transparency. GoFlow leads in all eight critical dimensions.</p>
-                        <ImagePlaceholder title="Competitive Feature Matrix" />
+                        <CompetitiveFeatureMatrix /> {/* Replaced ImagePlaceholder with CompetitiveFeatureMatrix */}
                     </Section>
                     
                     <Section title="3. Research & Discovery">
@@ -241,10 +247,9 @@ const GoFlow = () => {
                         <blockquote className="border-l-2 border-cyan-400 pl-6 text-xl md:text-2xl italic text-white my-8">
                             “I get it… I just don’t know how to undo this if it goes wrong.”
                         </blockquote>
-                        <p>This single observation shifted the product goal. Users could mentally model the mapping; they couldn't mentally model what would happen if things went wrong.</p>
                         <SubHeading>3.2 User Research & Empathy</SubHeading>
                         <p>We mapped the SMB operator's mental model, emotional journey, and core anxieties. The central insight: <strong className="text-white">users freeze at execution due to fear of irreversible data loss, not configuration complexity.</strong> This empathy map became the north star for design priorities. Every feature that shipped addressed one of the pain points or unlocked one of the gains visible in this map.</p>
-                        <ImagePlaceholder title="User Empathy Map" />
+                        <UserEmpathyMap /> {/* Replaced ImagePlaceholder with UserEmpathyMap */}
                     </Section>
 
                     <Section title="4. Problem Statement">
@@ -371,7 +376,7 @@ const GoFlow = () => {
                         </ul>
                         <SubHeading>Feature ship list v1</SubHeading>
                          <ul className="space-y-3 pl-0 list-none">
-                            <Bullet>Pre-built connectors + outcome onboarding</Bullet>
+                            <Bullet>Pre-built connectors (high-volume systems) + outcome onboarding</Bullet>
                             <Bullet>AI data mapping</Bullet>
                             <Bullet>Cardinality safeguards</Bullet>
                             <Bullet>Version control + rollback</Bullet>
