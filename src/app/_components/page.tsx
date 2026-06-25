@@ -211,7 +211,7 @@ export default function Home() {
               fill
               src="/GoFlow-card-image.jpg"
               alt="GoFlow interface preview"
-              className="object-cover transition-transform duration-700 group-hover:scale-95 group-hover:radius-[2.5rem]"
+              className="rounded-3xl object-cover transition-transform duration-700 group-hover:scale-95 "
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/25 to-transparent" />

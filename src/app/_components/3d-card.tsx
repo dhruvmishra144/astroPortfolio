@@ -11,7 +11,7 @@ interface Card3DProps {
 const Card3D = ({ title, subtitle, imageUrl, href }: Card3DProps) => {
   return (
     <a href={href} className="block w-full group">
-      <div className="relative w-full h-96 rounded-2xl overflow-hidden bg-gray-900/50 p-8 transition-all duration-300 ease-in-out  group-hover:scale-105">
+      <div className="relative w-full h-96 rounded-2xl overflow-hidden bg-gray-900/50 p-8 transition-all duration-300 ease-in-out  group-hover:scale-95">
         <div className="absolute inset-0">
             <Image 
               src={imageUrl} 

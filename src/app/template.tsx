@@ -16,7 +16,7 @@ const Template = ({children}:{children: React.ReactNode}) => {
             <div id="banner-1" className="min-h-screen h-screen backdrop-blur-3xl bg-black  z-30 fixed top-0 left-0 w-full flex flex-col items-center justify-center">
             <div className="relative -top-16 lg:top-0">
             <ImSpinner9 className="text-cyan-500 text-8xl animate-spin" />
-            <ImSpinner9 className="text-cyan-300 text-8xl animate-spin -z-10 scale-105 blur-[10px] absolute top-0" />
+            <ImSpinner9 className="text-cyan-300 text-8xl animate-spin -z-10 scale-95 blur-[10px] absolute top-0" />
             </div>
             </div>
             {children}
