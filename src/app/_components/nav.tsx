@@ -4,21 +4,23 @@
       import { HiHome, HiUser, HiEnvelope, HiMiniDocumentText } from 'react-icons/hi2';
       
       const navLinks = [
-        { href: '/', label: 'home', icon: <HiHome /> },
-        { href: '/about-me', label: 'about me', icon: <HiUser /> },
-        { href: '/contact', label: 'contact', icon: <HiEnvelope /> },
-       { href: '/resume', label: 'resume', icon: <HiMiniDocumentText /> },
+        { href: '/', label: 'Home', icon: <HiHome /> },
+        { href: '/about-me', label: 'About', icon: <HiUser /> },
+        { href: '/contact', label: 'Contact', icon: <HiEnvelope /> },
+        { href: '/resume', label: 'Resume', icon: <HiMiniDocumentText /> },
      ];
      
      const Nav = () => {
        return (
-         <div className='flex flex-nowrap gap-4 md:gap-6 justify-center fixed bottom-0 sm:bottom-4 left-[50%] -translate-x-[50%] w-[calc(100%)] sm:w-auto backdrop-blur-sm bg-cyan-950/50 hover:bg-cyan-900/50 transition-all duration-300 rounded-lg z-20 px-1 py-2 sm:px-4 sm:py-3'>
-           {navLinks.map(({ href, label, icon }) => (
-             <TransitionLink key={href} href={href} label={label}>
-               {icon}
-             </TransitionLink>
-           ))}
-         </div>
+         <nav aria-label='Primary navigation' className='fixed bottom-3 left-1/2 z-30 w-[calc(100%-1.25rem)] max-w-[28rem] -translate-x-1/2'>
+           <div className='surface-strong flex flex-nowrap justify-between gap-2 rounded-full px-2 py-2 sm:gap-3 sm:px-3'>
+             {navLinks.map(({ href, label, icon }) => (
+               <TransitionLink key={href} href={href} label={label}>
+                 {icon}
+               </TransitionLink>
+             ))}
+           </div>
+         </nav>
        );
      };
      

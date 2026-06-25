@@ -5,7 +5,11 @@ import Footer from "./footer";
 
 const ConditionalFooter = () => {
     const pathname = usePathname();
-    if (pathname === '/contact/') {
+    const normalizedPathname = pathname.endsWith('/') && pathname.length > 1
+        ? pathname.slice(0, -1)
+        : pathname;
+
+    if (normalizedPathname === '/contact') {
         return null;
     }
 

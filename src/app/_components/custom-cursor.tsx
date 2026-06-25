@@ -6,22 +6,33 @@ const CustomCursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const [isClient, setIsClient] = useState(false);
   const [isPointingDevice, setIsPointingDevice] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
     const mediaQuery = window.matchMedia('(pointer: fine)');
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setIsPointingDevice(mediaQuery.matches);
+    setPrefersReducedMotion(motionQuery.matches);
 
     const handleChange = (e: MediaQueryListEvent) => {
       setIsPointingDevice(e.matches);
     };
 
+    const handleMotionChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+
     mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
+    motionQuery.addEventListener('change', handleMotionChange);
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange);
+      motionQuery.removeEventListener('change', handleMotionChange);
+    };
   }, []);
 
   useEffect(() => {
-    if (!isClient || !isPointingDevice) return;
+    if (!isClient || !isPointingDevice || prefersReducedMotion) return;
 
     const cursor = cursorRef.current;
     if (!cursor) return;
@@ -82,9 +93,9 @@ const CustomCursor = () => {
       document.removeEventListener('mouseover', handleMouseOver);
       document.body.classList.remove('custom-cursor-active');
     };
-  }, [isClient, isPointingDevice]);
+  }, [isClient, isPointingDevice, prefersReducedMotion]);
 
-  if (!isClient || !isPointingDevice) {
+  if (!isClient || !isPointingDevice || prefersReducedMotion) {
     return null;
   }
 

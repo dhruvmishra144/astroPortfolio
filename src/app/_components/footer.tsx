@@ -2,32 +2,44 @@
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { animationPageOut } from "../utils/animation";
-import { useEffect, useState } from "react";
 
 const Footer = () => {
 
     const router = useRouter();
     const href = '/contact'
     const pathname = usePathname();
-    const [isContactPage, setIsContactPage] = useState(false);
-
-    useEffect(() => {
-        setIsContactPage(pathname === '/contact');
-    }, [pathname]);
+    const normalizedPathname = pathname.endsWith('/') && pathname.length > 1
+        ? pathname.slice(0, -1)
+        : pathname;
 
     const handleCLick = () => {
-        if (pathname != href) {
+        if (normalizedPathname !== href) {
               animationPageOut(href, router)    
         }
     }
 
     return (
-        <div className={`container mx-auto flex flex-col items-center text-center px-4 pb-32 ${isContactPage ? "hidden" : ""}`}>
-            <Image className="mb-4" width={64} height={64} src={"/chat.svg"} alt={"lets's Connect"}  />
-            <h3 className="text-3xl font-semibold mb-4">Have an idea? I&apos;d love to hear it!</h3>
-            <p  className="text-base mb-4">Excited for a design journey or seeking product design tips? Reach out for some creative collaboration!</p>
-            <button className={`py-4 px-8 bg-cyan-800 hover:bg-cyan-700 rounded transition-all duration-500 btnn block1`} onClick={handleCLick}>Let&apos;s Connect</button>
-        </div>
+        <footer className="page-shell pb-32">
+            <div className="surface-strong mx-auto flex max-w-4xl flex-col items-center gap-6 rounded-[2rem] px-6 py-10 text-center sm:px-10 sm:py-12">
+                <Image className="mb-1" width={56} height={56} src="/chat.svg" alt="Let's connect" />
+                <div className="space-y-3">
+                    <p className="section-label justify-center">Start a conversation</p>
+                    <h3 className="hero-title text-3xl text-balance text-white sm:text-4xl">
+                        Have a product problem worth solving?
+                    </h3>
+                    <p className="mx-auto max-w-2xl text-sm text-slate-300 sm:text-base">
+                        I design systems that reduce friction between strategy, interface, and implementation. If you need practical product thinking, reach out.
+                    </p>
+                </div>
+                <button
+                    type="button"
+                    className="button-primary px-6 py-3 text-sm"
+                    onClick={handleCLick}
+                >
+                    Let&apos;s Connect
+                </button>
+            </div>
+        </footer>
     );
 }
 

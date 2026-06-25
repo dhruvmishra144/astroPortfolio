@@ -1,178 +1,252 @@
-'use client'
+'use client';
+
+import Link from 'next/link';
+import Image from 'next/image';
 import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Image from 'next/image';
-import { PiArrowRightThin } from "react-icons/pi";
+import { PiArrowRightThin } from 'react-icons/pi';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const capabilityCards = [
+  {
+    tag: 'Strategy',
+    title: 'Product framing that removes ambiguity.',
+    description:
+      'I structure flows, hierarchy, and content so teams can make clearer decisions before they get expensive to change.',
+  },
+  {
+    tag: 'Systems',
+    title: 'Interfaces built as reusable patterns.',
+    description:
+      'Design tokens, responsive components, and interaction rules stay consistent as the product grows.',
+  },
+  {
+    tag: 'Delivery',
+    title: 'Handoff that front-end teams can trust.',
+    description:
+      'I keep implementation details visible early so the final UI stays close to the design intent without rework.',
+  },
+];
+
+const featuredMetrics = [
+  {
+    value: '40%',
+    label: 'faster onboarding through confidence-first UX',
+  },
+  {
+    value: '50%',
+    label: 'reduction in configuration errors via AI-assisted mapping',
+  },
+];
 
 export default function Home() {
-  gsap.registerPlugin(ScrollTrigger);
-  const home = useRef(null);
-  const skill = useRef(null);
-  const skillPara = useRef(null);
-  const platform = useRef(null);
-  const caseStudyHeading = useRef(null);
-  const availableForProject = useRef(null);
-  const projectContainer = useRef<HTMLDivElement>(null);
+  const home = useRef<HTMLElement>(null);
+  const capabilities = useRef<HTMLElement>(null);
+  const project = useRef<HTMLElement>(null);
 
-  useGSAP(() => {
-    // Hero Animations
-    gsap.from([skill.current, platform.current, skillPara.current], {
-      opacity: 0,
-      y: 30,
-      duration: 1,
-      stagger: 0.2,
-      ease: "power3.out"
-    });
-
-    // Section Header Animations
-    gsap.from([caseStudyHeading.current, availableForProject.current], {
-      opacity: 0,
-      y: 20,
-      duration: 1,
-      scrollTrigger: {
-        trigger: caseStudyHeading.current,
-        start: "top 90%",
-      }
-    });
-
-    // Project Card Animations
-    const projectCards = gsap.utils.toArray('.project-card');
-    projectCards.forEach((card) => {
-      gsap.from(card as HTMLElement, {
+  useGSAP(
+    () => {
+      gsap.from('[data-hero-reveal]', {
         opacity: 0,
-        y: 50,
-        duration: 1,
+        y: 24,
+        duration: 0.85,
+        stagger: 0.08,
+        ease: 'power3.out',
+      });
+
+      gsap.from('[data-capability-card]', {
+        opacity: 0,
+        y: 24,
+        duration: 0.8,
+        stagger: 0.12,
         ease: 'power3.out',
         scrollTrigger: {
-          trigger: card as HTMLElement,
-          start: 'top 85%',
-          toggleActions: 'play none none none',
+          trigger: capabilities.current,
+          start: 'top 82%',
         },
       });
-    });
 
-  }, { scope: home });
-
-  const projectsList = [
-    {
-      projectName: "GoFlow",
-      projectDescription: "Designing an AI-powered iPaaS that helps non-technical business owners automate data flows without fear of breaking live systems.",
-      metricOne: "40%",
-      metricTwo: "50%",
-      metricDetailOne: "faster onboarding through confidence-first UX",
-      metricDetailTwo: "reduction in configuration errors via AI-assisted mapping",
-      year: "2025",
-      module: "Web App",
-      link: "/projects/GoFlow",
-      img: "/GoFlow-card-image.jpg",
+      gsap.from('[data-project-stat]', {
+        opacity: 0,
+        y: 18,
+        duration: 0.75,
+        stagger: 0.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: project.current,
+          start: 'top 82%',
+        },
+      });
     },
-  ];
+    { scope: home }
+  );
 
   return (
-    <main className='overflow-x-hidden' ref={home}>
-      {/* --- HERO SECTION --- */}
-      <section className="container mx-auto px-6 py-16 lg:py-32 flex flex-col items-center justify-center min-h-[80vh]">
-        {/* Image Section - Placed first visually on mobile with order-1, moves to second on desktop with md:order-2 */}
-          <div className='relative flex justify-center items-center h-full min-h-[200px] lg:min-h-[400px] mb-8'>
-            
-            {/* Background Glow Effect */}
-            <div className="absolute w-[250px] h-[250px] lg:w-[500px] lg:h-[500px] rounded-full bg-blue-600/20 blur-[60px] lg:blur-[80px] -z-10 animate-pulse"></div>
-            
-            {/* Avatar Container */}
-            <div className="avatar-container relative w-[240px] h-[240px] lg:w-[420px] lg:h-[420px] rounded-full border-4 border-white/10 p-2 shadow-2xl backdrop-blur-sm bg-white/5">
-              <div className="relative w-full h-full rounded-full overflow-hidden">
-                <Image
-                  src="/avatar.png"
-                  alt="Dhruv Mishra Profile"
-                  fill
-                  priority
-                  className="object-cover transition-transform duration-700 hover:scale-110"
-                  sizes="(max-width: 768px) 240px, 420px"
-                />
-              </div>
-            </div>
-        
-            {/* Decorative Ring */}
-            <div className="absolute w-[260px] h-[260px] lg:w-[460px] lg:h-[460px] rounded-full border border-blue-500/30 -z-5"></div>
+    <main id="content" ref={home} className="page-shell overflow-x-hidden pb-24">
+      <section className="page-section grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <div className="space-y-7">
+          <span className="section-label" data-hero-reveal>
+            Senior UX/UI Designer
+          </span>
+
+          <div className="space-y-5">
+            <h1
+              data-hero-reveal
+              className="hero-title max-w-4xl text-balance text-5xl font-light leading-[0.92] text-white sm:text-6xl lg:text-7xl"
+            >
+              Design systems that survive handoff and still ship cleanly.
+            </h1>
+            <p
+              data-hero-reveal
+              className="max-w-2xl text-base text-slate-300 sm:text-lg lg:text-xl"
+            >
+              I bridge business logic and technical execution to shape products that are easier to understand, build, and scale.
+            </p>
           </div>
 
-        <h1 ref={skill} className="mb-6 text-4xl sm:text-6xl lg:text-9xl font-light text-white w-full text-center tracking-tighter italic leading-tight">
-          Dhruv Mishra<span className="text-cyan-500 not-italic">.</span>
-        </h1>
+          <div data-hero-reveal className="flex flex-col gap-3 sm:flex-row">
+            <Link href="/projects/GoFlow" className="button-primary px-5 py-3 text-sm">
+              View case study
+              <PiArrowRightThin className="text-lg" />
+            </Link>
+            <Link href="/contact" className="button-secondary px-5 py-3 text-sm">
+              Start a project
+            </Link>
+          </div>
 
-        <p ref={platform} className='mb-8 text-lg sm:text-2xl lg:text-4xl text-gray-400 font-light tracking-tight text-center max-w-4xl'>
-          Senior UX/UI Designer & Systems Strategist bridging the gap between <span className='text-white italic'>Business Logic</span> and <span className='text-white italic'>Technical Execution</span>
-        </p>
+          <div data-hero-reveal className="grid gap-3 sm:grid-cols-3">
+            <div className="metric-card">
+              <p className="text-xs uppercase tracking-[0.28em] text-cyan-300">Focus</p>
+              <p className="mt-2 text-sm text-slate-200">Product strategy and UI systems.</p>
+            </div>
+            <div className="metric-card">
+              <p className="text-xs uppercase tracking-[0.28em] text-cyan-300">Process</p>
+              <p className="mt-2 text-sm text-slate-200">Research, flows, prototypes, and handoff.</p>
+            </div>
+            <div className="metric-card">
+              <p className="text-xs uppercase tracking-[0.28em] text-cyan-300">Outcome</p>
+              <p className="mt-2 text-sm text-slate-200">Cleaner decisions with less rework.</p>
+            </div>
+          </div>
+        </div>
 
-        <p ref={skillPara} className="max-w-2xl text-center text-base lg:text-xl leading-relaxed text-gray-500 font-light">
-          I architect scalable digital products rooted in <span className='text-white font-medium'>full-stack feasibility</span>, eliminating technical debt through strategic design.
-        </p>
+        <div data-hero-reveal className="relative mx-auto w-full max-w-[34rem]">
+          <div className="absolute -left-6 top-16 h-28 w-28 rounded-full bg-cyan-400/20 blur-3xl" />
+          <div className="absolute -right-4 bottom-10 h-36 w-36 rounded-full bg-blue-400/15 blur-3xl" />
+
+          <div className="surface-strong relative overflow-hidden rounded-[2rem] p-4 sm:p-5">
+            <div className="flex items-center justify-between gap-4 pb-4">
+              <div>
+                <p className="section-label">Open for 2026 projects</p>
+                <p className="mt-2 text-sm text-slate-300">
+                  Focused on UX audits, product design, and front-end aligned execution.
+                </p>
+              </div>
+              <span className="chip whitespace-nowrap">Remote friendly</span>
+            </div>
+
+            <div className="avatar-container aspect-square w-full">
+              <Image
+                src="/avatar.jpeg"
+                alt="Portrait of Dhruv Mishra"
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 1024px) 90vw, 560px"
+              />
+            </div>
+          </div>
+        </div>
       </section>
 
-      {/* --- PROJECTS SECTION --- */}
-      <section className="container mx-auto px-6 max-w-[1200px] pb-32">
-        <div className='flex flex-col sm:flex-row items-start sm:items-center justify-between mb-12 gap-y-6'>
-          <h3 ref={caseStudyHeading} className='text-xs font-black tracking-[0.4em] text-cyan-500 uppercase border-l-4 border-cyan-500 pl-4'>
-            Featured Case Studies
-          </h3>
-          
-          <div ref={availableForProject} className='flex items-center gap-x-3 bg-white/5 px-4 py-2 rounded-full border border-white/10'>
-            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
-            <p className="text-sm font-bold uppercase tracking-widest text-gray-300">Available for 2026 Projects</p>
+      <section ref={capabilities} id="capabilities" className="page-section">
+        <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div className="space-y-3">
+            <p className="section-label">What I bring</p>
+            <h2 className="section-title text-3xl text-white sm:text-4xl">
+              A product-minded design process.
+            </h2>
           </div>
+          <p className="max-w-2xl text-sm text-slate-300 sm:text-base">
+            The work stays practical: I map the problem, define the system, and hand off interfaces that are easier to build and maintain.
+          </p>
         </div>
 
-        {/* REFS FIXED: Added w-full and min-h for visibility */}
-        <div ref={projectContainer} className='flex flex-col gap-y-12 lg:gap-y-24 w-full min-h-[400px]'>
-          {projectsList.map((items, index) => (
-            <a 
-              href={items.link} 
-              key={items.projectName}
-              className={`project-card flex flex-col ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} p-6 lg:p-8 bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 w-full rounded-[2rem] lg:rounded-[3rem] group gap-8 transition-all duration-500 overflow-hidden`}
+        <div className="grid gap-4 lg:grid-cols-3">
+          {capabilityCards.map((card) => (
+            <article
+              key={card.title}
+              data-capability-card
+              className="surface rounded-[1.75rem] p-6 sm:p-7"
             >
-              {/* Responsive Image Height */}
-              <div className='w-full lg:w-1/2 overflow-hidden rounded-[1.5rem] h-[220px] sm:h-[350px] lg:h-[450px] relative shrink-0'>
-                <Image 
-                  fill
-                  className='object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000' 
-                  src={items.img} 
-                  alt={items.projectName} 
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              </div>
-
-              <div className='flex flex-col gap-6 w-full lg:w-1/2 justify-center'>
-                <div className='flex justify-between items-center text-sm font-bold tracking-[0.2em] text-cyan-500 uppercase'>
-                  <p>{items.year}</p>
-                  <p>{items.module}</p>
-                </div>
-                
-                <div className='h-[1px] w-full bg-white/5'></div>
-                
-                <div className='flex justify-between items-start gap-4'>
-                  <div className='flex flex-col gap-y-3'>
-                    <h3 className='text-3xl lg:text-5xl font-light italic text-white tracking-tighter leading-none'>{items.projectName}</h3>
-                    <p className='text-gray-400 text-base lg:text-lg font-light leading-relaxed'>{items.projectDescription}</p>
-                  </div>
-                  <PiArrowRightThin className='hidden lg:block w-12 h-12 text-gray-600 group-hover:text-cyan-500 group-hover:-rotate-45 transition-all duration-500 flex-shrink-0' />
-                </div>
-
-                <div className='grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4'>
-                  <div className='p-4 bg-white/5 rounded-2xl'>
-                    <h4 className='text-2xl lg:text-3xl font-bold text-white italic'>{items.metricOne}</h4>
-                    <p className='text-sm uppercase tracking-wider text-gray-500 mt-1'>{items.metricDetailOne}</p>
-                  </div>
-                  <div className='p-4 bg-white/5 rounded-2xl'>
-                    <h4 className='text-2xl lg:text-3xl font-bold text-white italic'>{items.metricTwo}</h4>
-                    <p className='text-sm uppercase tracking-wider text-gray-500 mt-1'>{items.metricDetailTwo}</p>
-                  </div>
-                </div>
-              </div>
-            </a>
+              <p className="section-label">{card.tag}</p>
+              <h3 className="mt-4 text-2xl font-light text-white text-balance">{card.title}</h3>
+              <p className="mt-4 text-sm leading-7 text-slate-300">{card.description}</p>
+            </article>
           ))}
         </div>
+      </section>
+
+      <section ref={project} className="page-section">
+        <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div className="space-y-3">
+            <p className="section-label">Featured case study</p>
+            <h2 className="section-title text-3xl text-white sm:text-4xl">GoFlow</h2>
+          </div>
+          <p className="max-w-2xl text-sm text-slate-300 sm:text-base">
+            An AI-powered iPaaS concept that helps non-technical business owners automate data flows without fear of breaking live systems.
+          </p>
+        </div>
+
+        <Link
+          href="/projects/GoFlow"
+          aria-label="Open the GoFlow case study"
+          className="surface group grid overflow-hidden rounded-[2rem] lg:grid-cols-[1.05fr_0.95fr]"
+        >
+          <div className="relative min-h-[22rem] lg:min-h-[34rem]">
+            <Image
+              fill
+              src="/GoFlow-card-image.jpg"
+              alt="GoFlow interface preview"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/25 to-transparent" />
+          </div>
+
+          <div className="flex flex-col justify-between gap-8 p-6 sm:p-8 lg:p-10">
+            <div className="space-y-5">
+              <div className="flex flex-wrap gap-2">
+                <span className="chip">2025</span>
+                <span className="chip">Web App</span>
+                <span className="chip">AI-assisted mapping</span>
+              </div>
+              <h3 className="hero-title text-balance text-3xl text-white sm:text-4xl">
+                Reducing complexity in data-flow automation.
+              </h3>
+              <p className="max-w-xl text-sm text-slate-300 sm:text-base">
+                Designed to keep non-technical users confident while configuring integrations across live systems. The interface emphasizes preview, validation, and recovery.
+              </p>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {featuredMetrics.map((metric) => (
+                <article key={metric.label} data-project-stat className="metric-card">
+                  <p className="text-3xl font-light text-white">{metric.value}</p>
+                  <p className="mt-2 text-xs uppercase tracking-[0.24em] text-slate-400">{metric.label}</p>
+                </article>
+              ))}
+            </div>
+
+            <div className="inline-flex items-center gap-3 text-sm font-semibold text-cyan-300">
+              View full case study
+              <PiArrowRightThin className="text-lg transition-transform duration-300 group-hover:translate-x-1" />
+            </div>
+          </div>
+        </Link>
       </section>
     </main>
   );

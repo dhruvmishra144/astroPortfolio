@@ -45,11 +45,11 @@ export default function About() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      nextTestimonial();
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
     }, 5000); // Change testimonial every 5 seconds
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
-  }, []);
+  }, [testimonials.length]);
 
 
   useGSAP(() => {
@@ -91,9 +91,9 @@ export default function About() {
   }, { scope: mainRef });
 
   return (
-    <main ref={mainRef} className="container mx-auto h-auto">
+    <main id="content" ref={mainRef} className="page-shell pb-24">
       {/* Header Section Container */}
-<div className="container min-h-[calc(50vh-110px)] md:min-h-[calc(100vh-98px)] mx-auto grid grid-cols-1 md:grid-cols-2 items-center justify-center px-6 py-12 lg:py-0 gap-12 md:gap-0">
+<div className="page-section grid min-h-[calc(50vh-110px)] items-center justify-center gap-12 md:grid-cols-2 md:min-h-[calc(100vh-98px)]">
   
   {/* Image Section - Placed first visually on mobile with order-1, moves to second on desktop with md:order-2 */}
   <div className='relative flex justify-center items-center h-full min-h-[200px] lg:min-h-[400px] order-1 md:order-2'>
@@ -105,7 +105,7 @@ export default function About() {
     <div className="avatar-container relative w-[240px] h-[240px] lg:w-[420px] lg:h-[420px] rounded-full border-4 border-white/10 p-2 shadow-2xl backdrop-blur-sm bg-white/5">
       <div className="relative w-full h-full rounded-full overflow-hidden">
         <Image
-          src="/avatar.png"
+          src="/avatar.jpeg"
           alt="Dhruv Mishra Profile"
           fill
           priority
@@ -120,11 +120,11 @@ export default function About() {
   </div>
 
   {/* Text Content - Moves to bottom on mobile with order-2, moves to first on desktop with md:order-1 */}
-  <div className="text-center md:text-left z-20 order-2 md:order-1">
-    <h1 className="text-4xl lg:text-7xl font-bold main-heading text-slate-400 heading-text tracking-tight">
+  <div className="surface-strong order-2 z-20 rounded-[2rem] p-6 text-center md:order-1 md:text-left sm:p-8">
+    <h1 className="main-heading hero-title text-balance text-4xl font-bold tracking-tight text-white lg:text-7xl">
       Hi, I am <span className="text-white">Dhruv Mishra</span>
     </h1>
-    <p className='text-lg lg:text-3xl text-slate-200 max-w-2xl leading-relaxed mt-6 lg:mt-8 font-light'>
+    <p className='mt-6 max-w-2xl text-lg leading-relaxed text-slate-200 lg:mt-8 lg:text-3xl font-light'>
       Architecting <span className="text-cyan-400 font-medium">High-Impact Solutions</span> to bridge the gap between complex user needs and technical scalability.
     </p>
   </div>
@@ -132,10 +132,12 @@ export default function About() {
 </div>
 
       {/* Intro Section - Impact Text */}
-      <section className='flex flex-col items-center justify-center gap-6 px-8 mb-32 animate-on-scroll'>
-        <p className='text-center text-slate-200 text-2xl lg:text-4xl max-w-[800px] leading-relaxed'>
+      <section className='animate-on-scroll'>
+        <div className='surface rounded-[2rem] px-6 py-10 text-center sm:px-8 lg:px-12 mb-20'>
+        <p className='mx-auto max-w-[800px] text-center text-2xl leading-relaxed text-slate-200 lg:text-4xl'>
           With over 10 years of specializing in <span className="highlight-text">Product Design & Technical Architecture</span>, I help companies reduce technical debt through design systems and user-centric logic.
         </p>
+        </div>
       </section>
 
       {/* Experience Section */}
@@ -161,7 +163,7 @@ export default function About() {
             <h2 className="text-3xl mb-4 text-gray-400 font-light tracking-widest uppercase">The Strategy</h2>
           </div>
           <div className="flex flex-col gap-6 text-lg text-slate-300 leading-relaxed">
-            <p>My transition from <span className="text-white">Developer to Product Designer</span> was driven by the realization that code is only as powerful as the problem it solves. I focus on the "Why" before the "How."</p>
+            <p>My transition from <span className="text-white">Developer to Product Designer</span> was driven by the realization that code is only as powerful as the problem it solves. I focus on the &quot;Why&quot; before the &quot;How&quot;.</p>
             <p>I have spent the last 3 years refining the art of technical feasibility—ensuring that every pixel designed is a pixel that can be efficiently built, deployed, and scaled.</p>
           </div>
         </div>
@@ -176,7 +178,7 @@ export default function About() {
           className="flex flex-col gap-4 lg:flex-row group p-10 bg-white/5 border border-white/10 backdrop-blur-md justify-between rounded-2xl mb-16 items-center hover:bg-white/10 transition-all duration-300"
         >
           <h2 className="text-2xl text-gray-300 font-light italic">
-            "Deep-dive into my professional ROI and impact history"
+            Deep-dive into my professional ROI and impact history
           </h2>
           <div className="flex flex-row gap-4 items-center">
             <RiLinkedinBoxFill className='text-3xl lg:text-5xl text-cyan-500' />
