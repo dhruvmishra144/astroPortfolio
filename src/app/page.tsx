@@ -137,7 +137,7 @@ export default function Home() {
           <div className="absolute -left-6 top-16 h-28 w-28 rounded-full bg-cyan-400/20 blur-3xl" />
           <div className="absolute -right-4 bottom-10 h-36 w-36 rounded-full bg-blue-400/15 blur-3xl" />
 
-          <div className="surface-strong relative overflow-hidden rounded-[2rem] p-4 sm:p-5">
+          <div className="relative overflow-hidden rounded-[2rem] p-4 sm:p-5">
             <div className="flex items-center justify-between gap-4 pb-4">
               <div>
                 <p className="section-label">Open for 2026 projects</p>
@@ -211,7 +211,7 @@ export default function Home() {
               fill
               src="/GoFlow-card-image.jpg"
               alt="GoFlow interface preview"
-              className="object-cover transition-transform duration-700 group-hover:scale-95 group-hover:radius-[2.5rem]"
+              className="object-cover transition-transform duration-700 group-hover:scale-95 rounded-3xl"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/25 to-transparent" />

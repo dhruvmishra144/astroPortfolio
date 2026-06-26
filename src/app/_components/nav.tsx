@@ -13,7 +13,7 @@
      const Nav = () => {
        return (
          <nav aria-label='Primary navigation' className='fixed bottom-3 left-1/2 z-30 w-[calc(100%-1.25rem)] max-w-[28rem] -translate-x-1/2'>
-           <div className='surface-strong flex flex-nowrap justify-between gap-2 rounded-full px-2 py-2 sm:gap-3 sm:px-3'>
+           <div className='surface-strong flex flex-nowrap justify-between gap-2 rounded-xl px-2 py-2 sm:gap-3 sm:px-3'>
              {navLinks.map(({ href, label, icon }) => (
                <TransitionLink key={href} href={href} label={label}>
                  {icon}

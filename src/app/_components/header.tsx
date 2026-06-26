@@ -15,10 +15,10 @@ const Header = () => {
                             <p className="text-[11px] uppercase tracking-[0.32em] text-slate-400">UX/UI Designer</p>
                         </div>
                     </Link>
-                    <div className="hidden md:block text-right">
+                    {/* <div className="hidden md:block text-right">
                         <p className="text-[11px] uppercase tracking-[0.35em] text-cyan-300">Selected work</p>
                         <p className="text-sm text-slate-300">Design systems, product thinking, clean execution</p>
-                    </div>
+                    </div> */}
                     <ContactLink />
                 </div>
             </div>
