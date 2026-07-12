@@ -1,0 +1,94 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" rx="44" fill="#07111E"/>
+  <rect x="1" y="1" width="1598" height="998" rx="43" stroke="#274155" stroke-width="2"/>
+  <rect x="86" y="70" width="1428" height="860" rx="34" fill="#0A1524" stroke="#243B52"/>
+  <rect x="86" y="70" width="292" height="860" rx="34" fill="#08111E"/>
+  <path d="M378 70V930" stroke="#243B52"/>
+  <text x="132" y="142" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="850">Aonflow</text>
+  <text x="132" y="178" fill="#8EA4BA" font-family="Inter, Arial, sans-serif" font-size="16">Connector intelligence console</text>
+
+  <rect x="126" y="240" width="206" height="52" rx="16" fill="#0F2236" stroke="#31506A"/>
+  <text x="158" y="273" fill="#67E8F9" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="800">Overview</text>
+  <rect x="126" y="314" width="206" height="52" rx="16" fill="#0A1524"/>
+  <text x="158" y="347" fill="#A9B8C8" font-family="Inter, Arial, sans-serif" font-size="17">Connectors</text>
+  <rect x="126" y="388" width="206" height="52" rx="16" fill="#0A1524"/>
+  <text x="158" y="421" fill="#A9B8C8" font-family="Inter, Arial, sans-serif" font-size="17">Rules engine</text>
+  <rect x="126" y="462" width="206" height="52" rx="16" fill="#0A1524"/>
+  <text x="158" y="495" fill="#A9B8C8" font-family="Inter, Arial, sans-serif" font-size="17">Demo users</text>
+
+  <rect x="126" y="736" width="206" height="124" rx="22" fill="#0F1D2E" stroke="#243B52"/>
+  <text x="154" y="780" fill="#67E8F9" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800">BUILD STATUS</text>
+  <text x="154" y="816" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="850">Static</text>
+  <rect x="154" y="836" width="142" height="8" rx="4" fill="#1A3148"/>
+  <rect x="154" y="836" width="118" height="8" rx="4" fill="#56DBF7"/>
+
+  <text x="436" y="146" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="850">Dense grids, responsive by contract.</text>
+  <text x="436" y="190" fill="#A9B8C8" font-family="Inter, Arial, sans-serif" font-size="20">Connector and feature matrices use stable tracks, predictable wrapping, and overflow-safe content rules.</text>
+
+  <rect x="436" y="238" width="978" height="68" rx="22" fill="#0F1D2E" stroke="#243B52"/>
+  <rect x="464" y="258" width="320" height="28" rx="14" fill="#14283D"/>
+  <text x="492" y="278" fill="#8EA4BA" font-family="Inter, Arial, sans-serif" font-size="15">Search connectors, actions, or auth state</text>
+  <rect x="810" y="254" width="132" height="36" rx="18" fill="#10243A"/>
+  <text x="846" y="278" fill="#67E8F9" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800">API</text>
+  <rect x="958" y="254" width="166" height="36" rx="18" fill="#10243A"/>
+  <text x="1000" y="278" fill="#67E8F9" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800">OAuth</text>
+  <rect x="1140" y="254" width="238" height="36" rx="18" fill="#56DBF7"/>
+  <text x="1210" y="278" fill="#06101D" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="850">Open workspace</text>
+
+  <g transform="translate(436 344)">
+    <rect width="978" height="500" rx="28" fill="#08111E" stroke="#243B52"/>
+    <rect x="0" y="0" width="978" height="72" rx="28" fill="#0D1B2D"/>
+    <text x="34" y="44" fill="#67E8F9" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="850" letter-spacing="4">CONNECTOR MATRIX</text>
+    <text x="348" y="44" fill="#8EA4BA" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="750">Auth</text>
+    <text x="510" y="44" fill="#8EA4BA" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="750">Actions</text>
+    <text x="672" y="44" fill="#8EA4BA" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="750">RSC payload</text>
+    <text x="842" y="44" fill="#8EA4BA" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="750">Status</text>
+
+    <g font-family="Inter, Arial, sans-serif" font-size="17">
+      <rect x="24" y="96" width="930" height="54" rx="16" fill="#0D1B2D"/>
+      <text x="52" y="130" fill="#FFFFFF" font-weight="800">Salesforce</text>
+      <text x="348" y="130" fill="#A9B8C8">OAuth</text>
+      <text x="510" y="130" fill="#A9B8C8">21</text>
+      <text x="672" y="130" fill="#A9B8C8">4.8 KB</text>
+      <rect x="842" y="113" width="82" height="24" rx="12" fill="#133E34"/>
+      <text x="862" y="131" fill="#70F6BD" font-size="13" font-weight="800">READY</text>
+
+      <rect x="24" y="166" width="930" height="54" rx="16" fill="#0A1524"/>
+      <text x="52" y="200" fill="#FFFFFF" font-weight="800">HubSpot</text>
+      <text x="348" y="200" fill="#A9B8C8">OAuth</text>
+      <text x="510" y="200" fill="#A9B8C8">18</text>
+      <text x="672" y="200" fill="#A9B8C8">3.9 KB</text>
+      <rect x="842" y="183" width="82" height="24" rx="12" fill="#133E34"/>
+      <text x="862" y="201" fill="#70F6BD" font-size="13" font-weight="800">READY</text>
+
+      <rect x="24" y="236" width="930" height="54" rx="16" fill="#0D1B2D"/>
+      <text x="52" y="270" fill="#FFFFFF" font-weight="800">QuickBooks</text>
+      <text x="348" y="270" fill="#A9B8C8">OAuth</text>
+      <text x="510" y="270" fill="#A9B8C8">14</text>
+      <text x="672" y="270" fill="#A9B8C8">4.2 KB</text>
+      <rect x="842" y="253" width="82" height="24" rx="12" fill="#133E34"/>
+      <text x="862" y="271" fill="#70F6BD" font-size="13" font-weight="800">READY</text>
+
+      <rect x="24" y="306" width="930" height="54" rx="16" fill="#0A1524"/>
+      <text x="52" y="340" fill="#FFFFFF" font-weight="800">Shopify</text>
+      <text x="348" y="340" fill="#A9B8C8">Token</text>
+      <text x="510" y="340" fill="#A9B8C8">16</text>
+      <text x="672" y="340" fill="#A9B8C8">3.1 KB</text>
+      <rect x="842" y="323" width="82" height="24" rx="12" fill="#133E34"/>
+      <text x="862" y="341" fill="#70F6BD" font-size="13" font-weight="800">READY</text>
+
+      <rect x="24" y="376" width="930" height="54" rx="16" fill="#0D1B2D"/>
+      <text x="52" y="410" fill="#FFFFFF" font-weight="800">NetSuite</text>
+      <text x="348" y="410" fill="#A9B8C8">OAuth</text>
+      <text x="510" y="410" fill="#A9B8C8">27</text>
+      <text x="672" y="410" fill="#A9B8C8">6.4 KB</text>
+      <rect x="842" y="393" width="82" height="24" rx="12" fill="#40351A"/>
+      <text x="860" y="411" fill="#FFD36A" font-size="13" font-weight="800">BETA</text>
+    </g>
+  </g>
+
+  <rect x="436" y="872" width="286" height="28" rx="14" fill="#10243A"/>
+  <rect x="740" y="872" width="220" height="28" rx="14" fill="#10243A"/>
+  <rect x="978" y="872" width="198" height="28" rx="14" fill="#10243A"/>
+  <rect x="1194" y="872" width="220" height="28" rx="14" fill="#10243A"/>
+</svg>

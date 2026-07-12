@@ -1,0 +1,79 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" rx="44" fill="#06101D"/>
+  <rect x="1" y="1" width="1598" height="998" rx="43" stroke="#274155" stroke-opacity="0.7" stroke-width="2"/>
+  <circle cx="1260" cy="210" r="360" fill="url(#cyanGlow)" opacity="0.46"/>
+  <circle cx="272" cy="860" r="300" fill="url(#blueGlow)" opacity="0.34"/>
+  <path d="M0 160H1600" stroke="#203449"/>
+  <rect x="92" y="64" width="1416" height="84" rx="24" fill="#0B1625" stroke="#243B52"/>
+  <circle cx="132" cy="106" r="12" fill="#FF5F57"/>
+  <circle cx="168" cy="106" r="12" fill="#FFBD2E"/>
+  <circle cx="204" cy="106" r="12" fill="#28C840"/>
+  <rect x="258" y="88" width="484" height="36" rx="18" fill="#111F31"/>
+  <text x="288" y="112" fill="#8EA4BA" font-family="Inter, Arial, sans-serif" font-size="18">aonflow.com/platform</text>
+  <rect x="1080" y="88" width="122" height="36" rx="18" fill="#10243A"/>
+  <text x="1111" y="112" fill="#8EEBFF" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700">Docs</text>
+  <rect x="1218" y="88" width="190" height="36" rx="18" fill="#56DBF7"/>
+  <text x="1260" y="112" fill="#06101D" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800">Launch demo</text>
+
+  <text x="112" y="250" fill="#67E8F9" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="8">ENTERPRISE IPAAS</text>
+  <text x="112" y="332" fill="white" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="800">AI-assisted orchestration</text>
+  <text x="112" y="410" fill="white" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="800">without integration drag.</text>
+  <text x="116" y="474" fill="#A9B8C8" font-family="Inter, Arial, sans-serif" font-size="28">High-performance Next.js pages explain dense connector logic, then</text>
+  <text x="116" y="512" fill="#A9B8C8" font-family="Inter, Arial, sans-serif" font-size="28">route developers into a Firebase-secured low-code demo workspace.</text>
+
+  <rect x="112" y="570" width="210" height="62" rx="31" fill="#56DBF7"/>
+  <text x="158" y="610" fill="#06101D" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">Start demo</text>
+  <rect x="342" y="570" width="228" height="62" rx="31" fill="#0D1B2D" stroke="#2B4258"/>
+  <text x="390" y="610" fill="#DCE8F4" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700">View architecture</text>
+
+  <rect x="116" y="724" width="190" height="96" rx="24" fill="#0B1727" stroke="#243B52"/>
+  <text x="144" y="762" fill="#67E8F9" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800">RSC</text>
+  <text x="144" y="794" fill="#E9F3FC" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800">Server-first</text>
+  <rect x="326" y="724" width="230" height="96" rx="24" fill="#0B1727" stroke="#243B52"/>
+  <text x="354" y="762" fill="#67E8F9" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800">FIREBASE</text>
+  <text x="354" y="794" fill="#E9F3FC" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800">Auth handoff</text>
+  <rect x="576" y="724" width="222" height="96" rx="24" fill="#0B1727" stroke="#243B52"/>
+  <text x="604" y="762" fill="#67E8F9" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800">TAILWIND</text>
+  <text x="604" y="794" fill="#E9F3FC" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800">Tokenized UI</text>
+
+  <g transform="translate(860 236)">
+    <rect width="560" height="560" rx="34" fill="#0A1524" stroke="#2B4258"/>
+    <rect x="34" y="34" width="492" height="54" rx="18" fill="#0F2236"/>
+    <circle cx="66" cy="61" r="10" fill="#67E8F9"/>
+    <text x="92" y="68" fill="#E9F3FC" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">Workflow orchestration preview</text>
+    <rect x="44" y="128" width="168" height="98" rx="22" fill="#0D1B2D" stroke="#31506A"/>
+    <text x="72" y="166" fill="#67E8F9" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800">TRIGGER</text>
+    <text x="72" y="196" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">Webhook</text>
+    <path d="M212 177H286" stroke="#56DBF7" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="286" cy="177" r="6" fill="#56DBF7"/>
+    <rect x="286" y="128" width="230" height="98" rx="22" fill="#0D1B2D" stroke="#31506A"/>
+    <text x="314" y="166" fill="#67E8F9" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800">AI MAP</text>
+    <text x="314" y="196" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">Normalize payload</text>
+    <path d="M401 226V286" stroke="#56DBF7" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="401" cy="286" r="6" fill="#56DBF7"/>
+    <rect x="286" y="286" width="230" height="98" rx="22" fill="#0D1B2D" stroke="#31506A"/>
+    <text x="314" y="324" fill="#67E8F9" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800">BRANCH</text>
+    <text x="314" y="354" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">Route by account</text>
+    <path d="M286 335H212" stroke="#56DBF7" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="212" cy="335" r="6" fill="#56DBF7"/>
+    <rect x="44" y="286" width="168" height="98" rx="22" fill="#0D1B2D" stroke="#31506A"/>
+    <text x="72" y="324" fill="#67E8F9" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800">ACTION</text>
+    <text x="72" y="354" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">Sync record</text>
+    <rect x="44" y="432" width="472" height="82" rx="24" fill="#07111E" stroke="#203449"/>
+    <text x="74" y="468" fill="#A9B8C8" font-family="Inter, Arial, sans-serif" font-size="18">Build route:</text>
+    <text x="186" y="468" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">Marketing -> Auth -> Workspace</text>
+    <rect x="74" y="486" width="384" height="8" rx="4" fill="#152A40"/>
+    <rect x="74" y="486" width="306" height="8" rx="4" fill="#56DBF7"/>
+  </g>
+
+  <defs>
+    <radialGradient id="cyanGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1260 210) rotate(90) scale(360)">
+      <stop stop-color="#2EEBFF"/>
+      <stop offset="1" stop-color="#2EEBFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="blueGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(272 860) rotate(90) scale(300)">
+      <stop stop-color="#2A6CFF"/>
+      <stop offset="1" stop-color="#2A6CFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

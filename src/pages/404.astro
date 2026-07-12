@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<Base title="Page not found">
+  <main id="content" class="page-shell pb-24">
+    <section class="page-section flex min-h-[50vh] flex-col items-center justify-center gap-6 text-center">
+      <p class="section-label">404</p>
+      <h1 class="hero-title text-balance text-4xl text-white sm:text-5xl">
+        This page doesn't exist.
+      </h1>
+      <p class="max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
+        The link may be outdated or the page may have moved. Head back to the homepage to keep
+        exploring.
+      </p>
+      <a href="/" data-transition class="button-primary px-5 py-3 text-sm">
+        Back to homepage
+        <Icon name="arrow-right-thin" class="text-lg" />
+      </a>
+    </section>
+  </main>
+</Base>

@@ -13,7 +13,14 @@
 # testing
 /coverage
 
-# next.js
+# astro
+/dist/
+/.astro/
+
+# cloudflare
+/.wrangler/
+
+# next.js (legacy)
 /.next/
 /out/
 

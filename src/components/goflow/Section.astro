@@ -1,0 +1,19 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<section class="project-section flex flex-col gap-8 md:gap-12">
+  <div class="w-full">
+    <h2 class="project-heading text-md md:text-md font-black tracking-[0.4em] text-cyan-500 uppercase py-2 border-l-4 border-cyan-500 pl-6">
+      {title}
+    </h2>
+  </div>
+
+  <div class="project-content w-full space-y-10 text-lg md:text-xl font-light text-gray-300 leading-relaxed">
+    <slot />
+  </div>
+</section>

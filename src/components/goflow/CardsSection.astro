@@ -1,0 +1,41 @@
+---
+const cards = [
+  {
+    title: 'User Fears',
+    items: ['Breaking live data', 'No way back', "I don't understand fields"],
+    bgColor: 'bg-green-100',
+    textColor: 'text-green-700',
+  },
+  {
+    title: 'Market Failures',
+    items: ['Zapier → no recovery', 'Workato → too abstract', 'Celigo → complex errors'],
+    bgColor: 'bg-purple-100',
+    textColor: 'text-purple-700',
+  },
+  {
+    title: 'Design Principles',
+    items: ['Explain before act', 'Preview before commit', 'Recover by default'],
+    bgColor: 'bg-teal-100',
+    textColor: 'text-teal-700',
+  },
+];
+---
+
+<div class="flex flex-wrap xl:flex-nowrap justify-between gap-8">
+  {
+    cards.map((card) => (
+      <div class="w-full flex">
+        <div class={`p-6 rounded-xl shadow-lg ${card.bgColor} ${card.textColor} w-full`}>
+          <h3 class="text-lg font-semibold">{card.title}</h3>
+          <div class="mt-4 space-y-4">
+            {card.items.map((item) => (
+              <div class="p-4 bg-white rounded-lg shadow-md hover:bg-gray-100 transition duration-300">
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</div>

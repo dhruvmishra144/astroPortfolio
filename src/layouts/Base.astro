@@ -1,0 +1,66 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import CustomCursor from '../components/CustomCursor.svelte';
+import Icon from '../components/Icon.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Product design and front-end aligned UX systems for scalable digital products.',
+} = Astro.props;
+
+const fullTitle = title ? `${title} | Dhruv Mishra` : 'Dhruv Mishra | UX/UI Designer';
+
+const pathname = Astro.url.pathname;
+const normalizedPathname =
+  pathname.endsWith('/') && pathname.length > 1 ? pathname.slice(0, -1) : pathname;
+const showFooter = normalizedPathname !== '/contact';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="UX/UI design, product design, design systems, front-end development" />
+    <meta name="author" content="Dhruv Mishra" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" href="/icon.png" />
+  </head>
+  <body class="bg-background text-foreground antialiased">
+    <a class="skip-link" href="#content">Skip to content</a>
+    <CustomCursor client:idle />
+    <div class="portfolio-background relative min-h-screen w-full isolate overflow-hidden bg-slate-950">
+      <div aria-hidden="true" class="portfolio-background__motion fixed inset-0 z-0 pointer-events-none"></div>
+      <div class="relative z-10">
+        <div
+          id="banner-1"
+          class="min-h-screen h-screen backdrop-blur-3xl bg-black z-30 fixed top-0 left-0 w-full flex flex-col items-center justify-center"
+        >
+          <div class="relative -top-16 lg:top-0">
+            <Icon name="spinner" class="text-cyan-500 text-8xl animate-spin" />
+            <Icon name="spinner" class="text-cyan-300 text-8xl animate-spin -z-10 scale-95 blur-[10px] absolute top-0" />
+          </div>
+        </div>
+        <Header />
+        <slot />
+        {showFooter && <Footer />}
+        <Nav />
+      </div>
+    </div>
+    <script>
+      import { initPageTransitions } from '../scripts/transitions';
+
+      initPageTransitions();
+    </script>
+  </body>
+</html>

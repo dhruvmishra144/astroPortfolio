@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+
+const resumeLinks = [
+  {
+    title: 'Generic Resume',
+    description: 'A broad overview of product design, UX, and execution experience.',
+    href: 'https://www.canva.com/design/DAEQNdGR8r0/K_cMJ6Lfz4MLS86HrdcubQ/edit',
+  },
+  {
+    title: 'ATS Resume',
+    description: 'A cleaner version optimized for applicant tracking and keyword scans.',
+    href: 'https://www.canva.com/design/DAGeBI1bH14/qg6_63PczAl8Frq0p-xpCw/edit',
+  },
+];
+---
+
+<Base title="Resume">
+  <main id="content" class="page-shell pb-24">
+    <section class="page-section">
+      <div class="mb-8 space-y-3">
+        <p class="section-label">Resume</p>
+        <h1 class="hero-title text-balance text-4xl text-white sm:text-5xl">
+          Open the latest resume versions.
+        </h1>
+        <p class="max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
+          Choose the version that fits the context. Both links open in Canva so you can review the
+          most current copy.
+        </p>
+      </div>
+
+      <div class="grid gap-4 lg:grid-cols-2">
+        {
+          resumeLinks.map((resume) => (
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={resume.href}
+              class="surface group flex flex-col gap-6 rounded-[1.75rem] p-6 hover:border-cyan-300/30 hover:bg-white/10"
+            >
+              <div class="flex items-center gap-4">
+                <div class="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-cyan-400/10 text-cyan-300">
+                  <Icon name="download-cloud-fill" class="text-2xl" />
+                </div>
+                <div class="space-y-1">
+                  <p class="text-lg font-medium text-white">{resume.title}</p>
+                  <p class="text-sm text-slate-400">{resume.description}</p>
+                </div>
+              </div>
+              <div class="inline-flex items-center gap-2 text-sm font-semibold text-cyan-300">
+                Open in Canva
+                <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+</Base>
