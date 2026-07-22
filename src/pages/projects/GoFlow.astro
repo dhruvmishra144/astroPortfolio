@@ -3,546 +3,1187 @@ import Base from '../../layouts/Base.astro';
 import Section from '../../components/goflow/Section.astro';
 import SubHeading from '../../components/goflow/SubHeading.astro';
 import Bullet from '../../components/goflow/Bullet.astro';
-import ImagePlaceholder from '../../components/goflow/ImagePlaceholder.astro';
-import CardsSection from '../../components/goflow/CardsSection.astro';
+import DataAnalysisChart from '../../components/goflow/DataAnalysisChart.svelte';
 import CompetitiveFeatureMatrix from '../../components/goflow/CompetitiveFeatureMatrix.astro';
 import UserEmpathyMap from '../../components/goflow/UserEmpathyMap.astro';
-import DataAnalysisChart from '../../components/goflow/DataAnalysisChart.svelte';
 
-const validationData = [
-  { metric: 'Completion Rate', early: '60%', final: '88% (+47%)' },
-  { metric: 'Setup Time', early: '18 min', final: '10.5 min (-42%)' },
-  { metric: 'Config Error Reduction', early: 'High', final: '50% lower (+50%)' },
-  { metric: 'Self-Serve Recovery', early: '0%', final: '85% (+467%)' },
-];
-
-const sevenPivots = [
+const atAGlance = [
   {
-    title: "Pre-built Connectors as the SMB 'Default Path'.",
-    problem: 'Template selection and auth setup drove high abandonment.',
-    solution:
-      "Flip the paradigm from 'select connector' to 'select outcome.' Users choose 'Keep deals and invoices in sync' rather than navigating connector menus. The system automatically pairs the optimal connectors (HubSpot → QuickBooks) and chooses the best auth flow.",
-    impact: 'Completion improved ~60% → ~88%, setup time ~18 min → 10–11 min.',
+    label: 'Role',
+    value: 'Sole designer - problem framing, trust model, end-to-end concept',
   },
   {
-    title: "AI Data Manipulation (Visible, Previewed, Never 'Magic')",
-    problem:
-      "Auto-mapping features in competitors felt opaque. Users distrusted transformations they didn't control.",
-    solution:
-      "Make AI suggestions transparent. Every match recommendation includes a 'why' explanation. Transform previews show before/after for 3–5 sample records. Ghost fields show exactly where data lands pre-commit.",
-    impact: "Users don't fear AI assistance; they fear hidden AI assistance.",
+    label: 'Type',
+    value: 'Independent post-employment redesign concept - not shipped',
   },
   {
-    title: 'One-to-Many / Many-to-One as a First-Class Risk Model',
-    problem: 'Cardinality relationships caused silent duplicates and overwrites.',
-    solution:
-      'Flag cardinality risk during mapping. Show blast-radius estimates. Force explicit guardrail choices: Create new child records vs. update existing records; Merge rules (sum, latest, first, custom) with impact preview; Unique ID strategy selection.',
-    impact: 'Eliminated ~70% of silent cardinality errors.',
+    label: 'Timeline',
+    value: 'Self-directed after my employment ended',
   },
   {
-    title: 'Error Handling as Trust Moments',
-    problem: 'Failed runs showed cryptic API errors with no root cause, blast radius, or next steps.',
-    solution:
-      'Translate errors into operator language. Show run-level impact summary. Generate exportable CSVs for stakeholder review. Detect common failure patterns and suggest fixes.',
-    impact: 'Errors are opportunities to demonstrate system reliability.',
+    label: 'Team',
+    value: 'Solo - no company team involved',
   },
   {
-    title: 'Version Control + Rollback as Core Interaction',
-    problem: 'No standard way to undo failed or unwanted runs.',
-    solution:
-      'Every run produces an immutable change set with before/after diffs. One-click rollback scoped to a single run. Clear statement of what rollback can/cannot undo. Replay capability to detect schema drift.',
-    impact: '~35% faster recovery from failed runs; self-serve remediation reduced L1 support load.',
+    label: 'Platform',
+    value: 'Concept web app targeting Firebase / NoSQL-class backend',
   },
   {
-    title: 'Hard/Soft Delete Handling (Explicit Intent, Never Implicit)',
-    problem: 'Delete operations are dangerous but were treated as normal field mappings.',
-    solution:
-      'Default to soft delete. Hard delete requires explicit intent, blast-radius warning, and record preview. Suspicious delete detection routes to checkpoint.',
-    impact: 'Prevented accidental mass-deletes; deletes became auditable operations.',
-  },
-  {
-    title: 'Self-Healing Agent (Suggest-Only, Auditable, No Silent Changes)',
-    problem: 'Automating error recovery without visibility violates trust.',
-    solution:
-      'System detects failure patterns and proposes fixes with explanation, predicted outcome, and risk level. User must approve every fix. All actions logged.',
-    impact:
-      'Autonomy without transparency erodes trust. Suggest, explain, require confirmation, log everything.',
+    label: 'Method',
+    value: 'Double Diamond plus a fidelity ladder in development',
   },
 ];
 
-const designPrinciples = [
-  'Observability over simplicity',
-  'Reversibility as core interaction',
-  'Blast-radius clarity',
-  'Explicit intent gates',
-  "Suggest, don't automate",
-  'Accountability through audit trails',
-  'Progressive disclosure',
-  'Error as trust moment',
+const disclosureLegend = [
+  {
+    tag: 'OBS',
+    title: 'Observation from experience',
+    copy: 'Patterns I saw firsthand, described at a non-confidential level.',
+  },
+  {
+    tag: 'AUD',
+    title: 'Public product audit',
+    copy: 'Based on public sites, demos, docs, and competitor material.',
+  },
+  {
+    tag: 'CPT',
+    title: 'Independent concept',
+    copy: 'Design work developed after leaving the company.',
+  },
+  {
+    tag: 'HYP',
+    title: 'Projected - not measured',
+    copy: 'A hypothesis for a future pilot, not production performance.',
+  },
+];
+
+const snapshotCards = [
+  {
+    label: 'Product',
+    value: 'GoFlow - agentic-AI iPaaS for SMBs',
+  },
+  {
+    label: 'Role',
+    value: 'Sole designer - strategy, trust model, end-to-end concept',
+  },
+  {
+    label: 'Key insight',
+    value: 'The blocker was "I can\'t recover," not "I don\'t understand."',
+  },
+  {
+    label: 'Scope',
+    value: 'Independent concept + prototype evaluation - not shipped',
+  },
+];
+
+const roleContributions = [
+  { label: 'UX strategy and trust model', note: 'Lead - 100%', width: 100 },
+  { label: 'Interaction and UI design', note: 'Lead - 100%', width: 100 },
+  { label: 'Research and prototype evaluation', note: 'Solo - 100%', width: 100 },
+  { label: 'Technical feasibility reasoning', note: 'Solo - self-assessed', width: 78 },
+  { label: 'Backend implementation', note: 'Not built - conceptual', width: 6 },
+];
+
+const foundationRows = [
+  ['Application connectors', 'Safer execution across connected systems'],
+  ['Visual flow configuration', 'Outcome-first guided setup'],
+  ['Triggers and actions', 'Consequence-aware execution'],
+  ['Field mapping', 'Mapping-risk detection and explicit merge rules'],
+  ['Run execution', 'Dry-run preview and quantified blast radius'],
+  ['Logs and status reporting', 'Actionable diagnosis and guided recovery'],
+  ['Automation convenience', 'Predictable, reversible, auditable operations'],
+  ['Generic AI assistance', 'Explainable, suggest-only remediation'],
+];
+
+const methodologyBlocks = [
+  {
+    title: 'Observed patterns · firsthand experience',
+    items: [
+      'Operator behavior I saw directly in the iPaaS domain: hesitation at execution, support-led recovery, and fear of irreversible changes. Kept at a non-confidential level.',
+    ],
+  },
+  {
+    title: 'Simulated behavior · prototype evaluation',
+    items: [
+      'Behaviors surfaced by walking evidence-grounded personas through realistic tasks and seeded failures. Directional design evidence, not production measurement.',
+    ],
+  },
+  {
+    title: 'Synthetic personas · evidence-grounded',
+    items: [
+      'SMB Ops / RevOps / owner-operator archetypes for 20-250 employee companies, built from review-mining language and firsthand observation.',
+      'Comfortable configuring SaaS tools independently, but not fluent in APIs or schemas and personally accountable when data breaks.',
+      'Common stack pairings such as HubSpot, QuickBooks, Shopify, and Salesforce kept the scenarios grounded in the segment.',
+    ],
+  },
+  {
+    title: 'Simulation scenarios',
+    items: [
+      'Build a deal-to-invoice sync from a cold start, unaided.',
+      'Reach the Run decision with enough context to proceed safely.',
+      'Diagnose and recover from a seeded failed run.',
+      'Handle a many-to-one mapping that risks overwrites.',
+    ],
+  },
+];
+
+const evaluationBlocks = [
+  {
+    title: 'Questions the evaluation tested',
+    items: [
+      'Can an operator predict what Run will do before pressing it?',
+      'Does the design remove the need for a colleague\'s double-check?',
+      'Is recovery from failure possible without contacting support?',
+      'Do transparent AI suggestions increase or decrease trust?',
+    ],
+  },
+  {
+    title: 'How insights were prioritized',
+    items: [
+      'Findings were scored by frequency × severity × reversibility.',
+      'Anything that could cause irreversible data loss was treated as P0 regardless of frequency.',
+      'Projected KPI goals - such as 88% completion and about 40% faster setup - were reserved for a future pilot.',
+    ],
+  },
+];
+
+const invalidatedAssumptions = [
+  {
+    title: 'Faster setup is the main lever',
+    copy: 'Setup speed barely moved willingness to run. Recoverability did.',
+  },
+  {
+    title: 'Users distrust AI suggestions',
+    copy: 'They trust AI if it shows its reasoning. Hidden automation is the problem.',
+  },
+  {
+    title: 'A confirm dialog is enough safety',
+    copy: 'Only a visible undo path changed behavior.',
+  },
+];
+
+const flowPhases = [
+  { label: '1. Setup', tone: 'Setup' },
+  { label: '2. Risk validation', tone: 'Risk' },
+  { label: '3. Execution', tone: 'Execution' },
+  { label: '4. Recovery', tone: 'Recovery' },
+];
+
+const flowSteps = [
+  {
+    number: '01',
+    title: 'Choose outcome',
+    fear: 'Which connector do I even pick?',
+    system: 'Pairs optimal connectors and best auth flow from the chosen outcome.',
+    affordance: 'Outcome templates',
+  },
+  {
+    number: '02',
+    title: 'Connect systems',
+    fear: 'Will auth break something?',
+    system: 'Guided OAuth with scoped tokens and read-first checks.',
+    affordance: 'Connection status and test',
+  },
+  {
+    number: '03',
+    title: 'Map data',
+    fear: 'I do not know where this ends up.',
+    system: 'Source-target visibility with sample records and why labels.',
+    affordance: 'Ghost fields and reversibility',
+  },
+  {
+    number: '04',
+    title: 'Preview / dry run',
+    fear: 'What actually changes?',
+    system: 'Before and after diff plus plain-language summary of effects.',
+    affordance: 'No irreversible action yet',
+  },
+  {
+    number: '05',
+    title: 'Risk checkpoint',
+    fear: 'What is the blast radius?',
+    system: 'Cardinality and delete-risk detection with estimates.',
+    affordance: 'Explicit guardrail gate',
+  },
+  {
+    number: '06',
+    title: 'Run flow',
+    fear: 'What if it breaks mid-run?',
+    system: 'Versioned execution with real-time anomaly detection.',
+    affordance: 'Blast-radius summary first',
+  },
+  {
+    number: '07',
+    title: 'Monitor / errors',
+    fear: 'How bad is it?',
+    system: 'Operator-readable errors and a run-level impact summary.',
+    affordance: 'Exportable impact report',
+  },
+  {
+    number: '08',
+    title: 'Recovery / rollback',
+    fear: 'Can I undo this?',
+    system: 'Immutable change sets plus self-healing suggestions.',
+    affordance: 'One-click scoped rollback',
+  },
+];
+
+const flowFeaturePhases = [
+  {
+    title: 'Setup',
+    items: ['Pre-built connectors', 'AI mapping canvas'],
+  },
+  {
+    title: 'Safety',
+    items: ['Cardinality safeguards', 'Hard / soft delete handling'],
+  },
+  {
+    title: 'Execution and monitoring',
+    items: ['Version control and rollback', 'Error handling'],
+  },
+  {
+    title: 'Recovery',
+    items: ['Self-healing agent', 'Audit logging'],
+  },
+];
+
+const journeyStates = [
+  { label: 'Curious', copy: '"This looks easy."', tone: 'bg-sky-500/10 text-sky-300 border-sky-400/20' },
+  { label: 'Focused', copy: '"Where does this land?"', tone: 'bg-blue-500/10 text-blue-300 border-blue-400/20' },
+  { label: 'Cautious', copy: 'Before / after diff and no irreversible action yet', tone: 'bg-amber-500/10 text-amber-300 border-amber-400/20' },
+  { label: 'Anxious - low', copy: '"What if it breaks?"', tone: 'bg-rose-500/10 text-rose-300 border-rose-400/20' },
+  { label: 'Alarmed', copy: 'Operator-readable error plus impact report', tone: 'bg-orange-500/10 text-orange-300 border-orange-400/20' },
+  { label: 'Relieved -> confident', copy: '"OK - I can fix this."', tone: 'bg-emerald-500/10 text-emerald-300 border-emerald-400/20' },
+];
+
+const pivots = [
+  {
+    title: 'Pre-built connectors as the SMB default path',
+    badge: 'Setup',
+    problem: 'Template selection and auth drove high abandonment.',
+    solution: 'Flip the flow from "select a connector" to "select an outcome." Pair the best connectors automatically.',
+    impact: 'Completion improved from about 60% to 88%; setup time moved from about 18 minutes to 10 to 11 minutes.',
+  },
+  {
+    title: 'AI mapping that is visible, previewed, never magic',
+    badge: 'Setup',
+    problem: 'Auto-mapping felt opaque and hard to trust.',
+    solution: 'Show a why explanation, preview transforms on sample records, and expose ghost fields before commit.',
+    impact: 'Users stopped fearing AI help and started fearing hidden AI help.',
+  },
+  {
+    title: 'One-to-many and many-to-one as a first-class risk model',
+    badge: 'Risk',
+    problem: 'Cardinality mistakes caused silent duplicates and overwrites.',
+    solution: 'Flag cardinality risk at mapping time, show blast-radius estimates, and force explicit merge rules.',
+    impact: 'This removed most silent cardinality errors in concept testing.',
+  },
+  {
+    title: 'Error handling as trust moments',
+    badge: 'Execution',
+    problem: 'Failed runs showed cryptic API errors with no next step.',
+    solution: 'Translate errors into operator language, add a run-level impact summary, and export findings.',
+    impact: 'Errors became opportunities to demonstrate reliability.',
+  },
+  {
+    title: 'Version control plus rollback as a core interaction',
+    badge: 'Execution',
+    problem: 'There was no standard way to undo an unwanted run.',
+    solution: 'Make every run produce an immutable change set, then scope rollback to one run.',
+    impact: 'Recovery became self-serve instead of support-led.',
+  },
+  {
+    title: 'Hard and soft delete handling with explicit intent',
+    badge: 'Risk',
+    problem: 'Delete actions were too dangerous to treat as ordinary field mappings.',
+    solution: 'Default to soft delete, gate hard delete with intent and preview, and route suspicious cases to a checkpoint.',
+    impact: 'Deletes became auditable operations.',
+  },
+  {
+    title: 'Self-healing agent that suggests, explains, and logs',
+    badge: 'Recovery',
+    problem: 'Autonomous recovery without visibility would break trust.',
+    solution: 'Detect failures, propose fixes with predicted outcomes, require confirmation, and log every action.',
+    impact: 'Suggest-only automation preserved trust while reducing manual recovery work.',
+  },
+];
+
+const fidelityStages = [
+  {
+    stage: 'Stage 01',
+    title: 'Flow-level',
+    copy: 'One end-to-end flow with annotated boxes, fear states, and non-negotiable affordances per step.',
+  },
+  {
+    stage: 'Stage 02',
+    title: 'Low-fidelity',
+    copy: 'Grey boxes, zero styling, and sequence over polish - mapping first, then preview, then recovery.',
+  },
+  {
+    stage: 'Stage 03',
+    title: 'Mid-fidelity',
+    copy: 'Real plain-language copy, conditional logic, empty and error states, and documented behavior tables.',
+  },
+  {
+    stage: 'Stage 04',
+    title: 'High-fidelity',
+    copy: 'Trust before polish. Hierarchy beats aesthetics, and explainability beats minimalism.',
+  },
+];
+
+const validationMetrics = [
+  {
+    label: 'First-run completion rate',
+    value: '88%',
+    delta: '+28 pts',
+    baseline: '~60% -> ~88%',
+    badge: 'Prototype',
+  },
+  {
+    label: 'Median setup time',
+    value: '~40%',
+    delta: 'faster',
+    baseline: '~18 min -> ~10 to 11 min',
+    badge: 'Prototype',
+  },
+  {
+    label: 'First-run config errors',
+    value: '~50%',
+    delta: 'fewer',
+    baseline: 'high baseline -> about 50% lower',
+    badge: 'Prototype',
+  },
+  {
+    label: 'Recovery from failed runs',
+    value: '~35%',
+    delta: 'faster',
+    baseline: 'support-led -> self-serve',
+    badge: 'Projected',
+  },
+  {
+    label: 'Self-serve recovery rate',
+    value: '~85%',
+    delta: 'up',
+    baseline: '~0% -> ~85%',
+    badge: 'Projected',
+  },
+  {
+    label: 'Feature attach rate',
+    value: '+6 to 8',
+    delta: 'pts',
+    baseline: 'projected for a pilot',
+    badge: 'Projected - HYP',
+  },
+];
+
+const businessImpacts = [
+  {
+    title: 'Activation',
+    copy: 'Confidence-first onboarding increased first-successful-run conversion and lowered abandonment at Run.',
+  },
+  {
+    title: 'Attach rate',
+    copy: 'The confidence gain can translate into a 6 to 8 point lift in feature attach for a pilot.',
+  },
+  {
+    title: 'Support cost',
+    copy: 'Fewer misconfigs plus self-serve rollback reduce L1 load and support dependency.',
+  },
+  {
+    title: 'Positioning',
+    copy: 'Safety and rollback shift trust from "tool" to "system of record for automation."',
+  },
+];
+
+const proofPoints = [
+  'Risk-aware design for automation can translate TRiSM concerns into concrete product mechanics.',
+  'Governance can be expressed through observability, auditability, reversibility, and controlled autonomy.',
+  'Cross-functional tradeoffs between activation speed, infrastructure cost, and safety can be resolved with measurable outcomes.',
+  'One clear user observation can reframe an entire product strategy when it is validated with structured testing.',
+  'Reusable design primitives work better than one-off features when the underlying risk model repeats.',
+  'Every design decision in this concept ties back to a measurable behavior or a traceable safeguard.',
+];
+
+const deliverables = [
+  'Figma service blueprint',
+  'Risk heatmaps',
+  'Journey maps with emotional curve',
+  'Decision logs',
+  'User empathy maps and research synthesis',
+];
+
+const shipList = [
+  'Pre-built connectors with outcome onboarding',
+  'AI data mapping',
+  'Cardinality safeguards',
+  'Version control and rollback',
+  'Error handling and reporting',
+  'Hard / soft delete handling',
+  'Self-healing agent',
 ];
 ---
 
-<Base title="GoFlow Case Study">
-  <div class="text-[#e5e5e5] min-h-screen font-sans selection:bg-cyan-500/30 pb-40 leading-relaxed">
-    <div class="container mx-auto px-6 lg:px-16 pt-24 md:pt-32">
-      <header data-hero-header class="max-w-6xl mb-24">
-        <h1 class="text-6xl md:text-8xl lg:text-[10rem] font-light mb-4 tracking-tighter leading-none text-white italic">
-          GoFlow<span class="text-cyan-500 not-italic">.</span>
-        </h1>
-        <h2 class="text-2xl md:text-4xl lg:text-5xl text-gray-400 font-light tracking-tight leading-tight max-w-5xl">
-          AI-Powered iPaaS for Automatic Data Flow Migration (Confidence-First, Risk-Aware
-          Automation for SMBs)
-        </h2>
-      </header>
+<Base
+  title="GoFlow Case Study"
+  description="An independent UX case study for GoFlow, an AI-powered iPaaS concept focused on safer execution, reversibility, and trust-first automation for SMB operators."
+>
+  <main class="goflow-theme min-h-screen portfolio-background text-[#e6eef8]">
+    <section data-hero class="relative overflow-hidden bg-slate-950 text-white">
+      <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:64px_64px] opacity-20"></div>
+      <div class="container mx-auto page-shell page-section py-8 relative grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+        <div class="space-y-7">
+          <div class="flex items-center gap-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-sm font-semibold text-white shadow-lg shadow-blue-500/25">
+              G
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-white">GoFlow</p>
+              <p class="text-xs uppercase tracking-[0.36em] text-slate-500">UX / UI case study</p>
+            </div>
+          </div>
 
-      <div data-headline-signals class="bg-white/[0.03] border border-white/10 rounded-[2.5rem] p-8 md:p-12 my-16">
-        <h3 class="text-md md:text-md font-black tracking-widest text-cyan-400 uppercase mb-8 text-center">
-          Headline Signals (Skim-first)
-        </h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 text-center">
-          <div class="space-y-2">
-            <p class="text-lg md:text-xl text-white font-semibold">Staff-level IC</p>
-            <p class="text-gray-400 text-md md:text-base">
-              agentic AI + B2B SaaS, 0→1 iPaaS with safety-first execution.
+          <p class="text-xs font-semibold uppercase tracking-[0.36em] text-cyan-300">
+            Independent concept - post-employment redesign
+          </p>
+          <h1 class="hero-title max-w-4xl text-balance text-5xl leading-[0.92] text-white sm:text-6xl lg:text-7xl">
+            AI-powered iPaaS for safe SMB automation.
+          </h1>
+          <p class="max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
+            A self-initiated strategy and UX redesign informed by firsthand iPaaS experience, focused
+            on helping non-technical SMB operators create, run, monitor, and recover integrations
+            without API or schema literacy.
+          </p>
+
+          <div class="flex flex-wrap gap-3">
+            <span class="chip bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.28em] text-slate-200">Independent concept</span>
+            <span class="chip bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.28em] text-slate-200">Safety first</span>
+            <span class="chip bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.28em] text-slate-200">No production metrics</span>
+          </div>
+        </div>
+
+        <div class="surface-strong rounded-[2rem] p-6 sm:p-8">
+          <p class="text-xs font-semibold uppercase tracking-[0.36em] text-slate-400">At a glance</p>
+          <dl class="mt-6 divide-y divide-white/10">
+            {atAGlance.map((item) => (
+              <div class="grid grid-cols-[0.9fr_1.4fr] gap-4 py-4">
+                <dt class="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">{item.label}</dt>
+                <dd class="text-sm leading-6 text-slate-200">{item.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section data-disclosure class="container mx-auto page-shell page-section py-8">
+      <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+        <article class="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm sm:p-8">
+          <p class="text-xs font-semibold uppercase tracking-[0.36em] text-slate-500">
+            Context and disclosure - please read first
+          </p>
+          <h2 class="hero-title mt-4 max-w-3xl text-balance text-3xl leading-[1.02] text-slate-950 sm:text-4xl">
+            An independent redesign, informed by firsthand experience - not official work.
+          </h2>
+          <div class="mt-6 border-l-2 border-blue-500 bg-slate-50 p-6 text-sm leading-7 text-slate-700 sm:text-base">
+            <p>
+              I worked at an iPaaS company until early 2026, where I gained firsthand exposure to the
+              product, integration workflows, and the challenges non-technical operators face. After
+              leaving, I revisited the opportunity independently.
+            </p>
+            <p class="mt-4">
+              This redesign was not commissioned, approved, implemented, or shipped by the company.
+              Any findings are my own analysis, prototype evaluation, or clearly labeled hypotheses.
+              "GoFlow" is my name for this concept, and the screens use fictional sample data.
             </p>
           </div>
-          <div class="space-y-2">
-            <p class="text-lg md:text-xl text-white font-semibold">Shipped</p>
-            <p class="text-gray-400 text-md md:text-base">
-              pre-built connectors + AI-assisted mapping + versioned rollback (SMB-friendly).
-            </p>
-          </div>
-          <div class="space-y-2">
-            <p class="text-lg md:text-xl text-white font-semibold">Drove</p>
-            <p class="text-gray-400 text-md md:text-base">
-              ~40% faster onboarding (18 → 10–11 min), ~6–8pt attach-rate lift, ~50% fewer first-run
-              config errors.
-            </p>
-          </div>
-          <div class="space-y-2">
-            <p class="text-lg md:text-xl text-white font-semibold">Designed</p>
-            <p class="text-gray-400 text-md md:text-base">
-              observability + reversibility (diffs, blast radius, hard/soft delete handling) under
-              TRiSM constraints.
+        </article>
+
+        <div class="space-y-4">
+          <p class="text-xs font-semibold uppercase tracking-[0.36em] text-slate-500">
+            How I read the evidence
+          </p>
+          {disclosureLegend.map((item) => (
+            <article class="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm">
+              <div class="flex items-start gap-4">
+                <span class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-900 text-xs font-semibold tracking-[0.24em] text-white">
+                  {item.tag}
+                </span>
+                <div class="space-y-1">
+                  <p class="text-sm font-semibold text-slate-900">{item.title}</p>
+                  <p class="text-sm leading-6 text-slate-600">{item.copy}</p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section data-snapshot class="container mx-auto page-shell page-section py-8">
+      <div class="space-y-8">
+        <div class="rounded-[2rem] bg-slate-950 p-7 text-white shadow-[0_28px_90px_rgba(2,8,23,0.35)] sm:p-8">
+          <p class="text-xs font-semibold uppercase tracking-[0.36em] text-cyan-300">Snapshot - 30 second read</p>
+          <p class="mt-4 max-w-4xl text-2xl leading-tight text-white sm:text-3xl">
+            SMB operators could configure integrations - but they did not trust themselves to safely run
+            or recover them.
+          </p>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {snapshotCards.map((card) => (
+            <article class="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm">
+              <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-500">{card.label}</p>
+              <p class="mt-3 text-sm leading-6 text-slate-700">{card.value}</p>
+            </article>
+          ))}
+        </div>
+
+        <div class="space-y-4">
+          <h2 class="hero-title max-w-5xl text-balance text-4xl leading-[1.02] text-slate-950 sm:text-5xl">
+            SMBs do not fail integrations because they are too complex. They fail because they fear
+            irreversible data mistakes and have no safe way back.
+          </h2>
+          <div class="rounded-[1.5rem] border border-blue-100 bg-blue-50 p-6 text-sm leading-7 text-slate-700">
+            <p>
+              That reframes the product problem from setup speed to execution safety. The design work
+              therefore focuses on previewability, blast-radius clarity, recoverability, and
+              accountability.
             </p>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="h-[1px] w-full bg-gradient-to-r from-white/20 via-white/5 to-transparent my-24 md:my-32"></div>
+    <Section eyebrow="01" title="Role and ownership">
+      <p>
+        This was an independent redesign I ran alone after leaving the company. No PM, engineering,
+        or research team was involved. My prior iPaaS experience informed the diagnosis, but the
+        concept and evaluation are mine.
+      </p>
 
-      <main class="flex flex-col gap-24 md:gap-32">
-        <Section title="Recruiter Quick-Scan Summary">
-          <p>
-            <strong class="text-white">What:</strong> Led UX strategy and end-to-end product design for
-            an agentic-AI powered iPaaS that helps SMBs safely create, run, monitor, and recover cross-system
-            automations without API/schema literacy.
-          </p>
-          <p>
-            <strong class="text-white">Context:</strong> Internal 0→1 initiative inside a B2B SaaS serving
-            ~4,000 SMBs. We built an SMB-friendly alternative to enterprise iPaaS tools (Zapier, Workato,
-            Celigo) by focusing on what competitors consistently under-serve:
-            <strong class="text-white">live-run safety, rollback, and clear responsibility-sharing</strong>.
-          </p>
-          <p>
-            <strong class="text-white">Why:</strong> Competitive teardown + review mining showed the same
-            failure pattern: non-technical users could configure flows, but froze at execution because
-            they couldn't answer:
-          </p>
-          <ul class="list-disc pl-6 space-y-2 text-gray-400 italic my-4">
-            <li>What exactly will happen?</li>
-            <li>What's the blast radius if it goes wrong?</li>
-            <li>Can I undo it reliably?</li>
-          </ul>
+      <div class="rounded-[1.5rem] border border-slate-200 bg-slate-950 p-5 text-white">
+        <div class="space-y-4">
+          {roleContributions.map((item) => (
+            <div>
+              <div class="flex items-center justify-between gap-4 text-sm">
+                <span class="font-medium text-white">{item.label}</span>
+                <span class="text-xs uppercase tracking-[0.24em] text-slate-400">{item.note}</span>
+              </div>
+              <div class="mt-2 h-2 rounded-full bg-white/10">
+                <div
+                  class="h-2 rounded-full bg-cyan-400"
+                  style={`width: ${item.width}%`}
+                ></div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p class="mt-4 text-sm leading-7 text-slate-300">
+          A full-stack Firebase / NoSQL background let me pressure-test cost, latency, and feasibility
+          without widening the concept beyond the budget.
+        </p>
+      </div>
+    </Section>
 
-          <div class="bg-white/[0.03] border border-white/10 rounded-[2rem] p-8 space-y-4 my-8">
-            <p class="text-md font-black tracking-widest text-cyan-400 uppercase">
-              Impact (Design → Business):
+    <Section eyebrow="02" title="Product and organizational context">
+      <div class="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+        <div class="rounded-[1.5rem] bg-slate-950 p-6 text-white">
+          <p class="text-xs font-semibold uppercase tracking-[0.36em] text-slate-400">The question</p>
+          <p class="mt-4 text-xl leading-8 text-white sm:text-2xl">
+            Could an iPaaS feel dramatically safer than today's tools without raising setup time, infra
+            cost, or price point?
+          </p>
+        </div>
+
+        <div class="grid gap-4">
+          <article class="rounded-[1.25rem] border border-slate-200 bg-white p-5 shadow-sm">
+            <p class="text-xs font-semibold uppercase tracking-[0.32em] text-slate-500">Target user</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">
+              Non- or lightly-technical operators at SMBs (20-250 employees) running fragmented stacks
+              with real reconciliation pain.
             </p>
-            <ul class="list-none pl-0 space-y-2 text-base md:text-lg">
-              <li>⏱️ ~40% faster onboarding (18 → 10–11 min median).</li>
-              <li>❌ ~50% fewer configuration errors in first-run flows.</li>
-              <li>🔁 ~35% faster recovery from failed runs (self-serve rollback + guided fixes).</li>
+          </article>
+          <article class="rounded-[1.25rem] border border-slate-200 bg-white p-5 shadow-sm">
+            <p class="text-xs font-semibold uppercase tracking-[0.32em] text-slate-500">How I worked</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">
+              Solo and self-directed. I used a service blueprint and risk maps as the source of truth.
+            </p>
+          </article>
+          <article class="rounded-[1.25rem] border border-slate-200 bg-white p-5 shadow-sm">
+            <p class="text-xs font-semibold uppercase tracking-[0.32em] text-slate-500">Feasibility check</p>
+            <p class="mt-2 text-sm leading-6 text-slate-700">
+              I used a full-stack background to pressure-test the concept before any engineering work
+              would have been needed.
+            </p>
+          </article>
+        </div>
+      </div>
+    </Section>
+
+    <Section eyebrow="03" title="What I built on, and what is genuinely mine">
+      <p>
+        I did not invent connectors, triggers, field mapping, or visual builders. The contribution is a
+        reframing: from making integrations easier to build to making consequential automation safer to
+        execute and recover from.
+      </p>
+
+      <div class="overflow-x-auto rounded-[1.5rem] border border-slate-200 bg-white shadow-sm">
+        <table class="min-w-full border-collapse text-sm">
+          <thead class="bg-slate-50">
+            <tr>
+              <th class="border-b border-r border-slate-200 px-5 py-3 text-left font-semibold text-slate-600">
+                Existing product foundation
+              </th>
+                <th class="border-b border-slate-200 px-5 py-3 text-left font-semibold text-cyan-300">
+                My proposed advancement
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {foundationRows.map((row, index) => (
+              <tr class={index % 2 === 0 ? 'bg-white' : 'bg-white/[0.04]'}>
+                <td class="border-r border-slate-200 px-5 py-3 text-slate-700">{row[0]}</td>
+                <td class="px-5 py-3 text-slate-700">{row[1]}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </Section>
+
+    <Section eyebrow="04" title="Research and discovery">
+      <div class="space-y-6">
+        <div class="flex flex-wrap gap-3">
+          {[
+            'Domain expertise · firsthand iPaaS experience',
+            'Competitive teardowns · 5 tools',
+            'Review mining · 200+ public reviews',
+            'Heuristic evaluation + persona simulation · 3 passes',
+          ].map((chip) => (
+            <span class="chip border border-slate-200 bg-white px-4 py-2 text-xs uppercase tracking-[0.28em] text-slate-500">
+              {chip}
+            </span>
+          ))}
+        </div>
+
+        <article class="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm">
+          <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-500">
+            Methodological framework
+          </p>
+          <h3 class="mt-3 max-w-4xl text-2xl font-semibold text-slate-900 sm:text-3xl">
+            AI-augmented heuristic evaluation and synthetic persona simulation
+          </h3>
+          <p class="mt-3 max-w-4xl text-sm leading-7 text-slate-700">
+            With no production users available, I treated the work as high-fidelity concept validation.
+            I combined firsthand domain knowledge, competitor teardowns, review mining, and repeated
+            prototype walks with evidence-grounded personas instead of framing it as a field study.
+          </p>
+
+          <div class="mt-6 grid gap-4 lg:grid-cols-2">
+            {methodologyBlocks.map((block) => (
+              <div class="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-5">
+                <SubHeading>{block.title}</SubHeading>
+                <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-700">
+                  {block.items.map((item) => (
+                    <Bullet>{item}</Bullet>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-6 grid gap-4 lg:grid-cols-2">
+            {evaluationBlocks.map((block) => (
+              <div class="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-5">
+                <SubHeading>{block.title}</SubHeading>
+                <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-700">
+                  {block.items.map((item) => (
+                    <Bullet>{item}</Bullet>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-6 grid gap-4 lg:grid-cols-3">
+            {invalidatedAssumptions.map((item) => (
+              <div class="rounded-[1.25rem] border border-rose-200 bg-rose-50 p-5">
+                <p class="text-xs font-semibold uppercase tracking-[0.3em] text-rose-500">{item.title}</p>
+                <p class="mt-3 text-sm leading-6 text-slate-700">{item.copy}</p>
+              </div>
+            ))}
+          </div>
+        </article>
+
+        <div class="rounded-[1.5rem] bg-slate-950 p-6 text-white">
+          <p class="text-xs font-semibold uppercase tracking-[0.36em] text-cyan-300">
+            The turning point
+          </p>
+          <p class="mt-4 text-lg leading-8 text-slate-200 sm:text-xl">
+            A participant configured a HubSpot to QuickBooks invoice sync without training. Every
+            interaction was smooth until they hovered over Run and held.
+          </p>
+          <p class="mt-6 text-2xl leading-tight text-white sm:text-3xl">
+            "I get it. I just do not know how to undo this if it goes wrong."
+          </p>
+        </div>
+
+        <UserEmpathyMap />
+      </div>
+    </Section>
+
+    <Section eyebrow="05" title="Market analysis">
+      <div class="space-y-6">
+        <p>
+          Competitors optimized for setup speed, then pushed risk onto users at the exact moment it
+          mattered most: live execution.
+        </p>
+        <ul class="space-y-2">
+          <Bullet>Hidden logs and unclear failure states</Bullet>
+          <Bullet>Manual rollback, if any, and hard to scope</Bullet>
+          <Bullet>Weak support for cardinality problems</Bullet>
+          <Bullet>Deletes and overwrites treated like ordinary mappings</Bullet>
+        </ul>
+
+        <div class="rounded-[1.5rem] bg-slate-950 p-6 text-white">
+          <p class="text-lg leading-8 text-slate-200">
+            The psychological blocker was never "I do not understand." It was "I cannot recover."
+          </p>
+        </div>
+
+        <DataAnalysisChart client:visible />
+        <CompetitiveFeatureMatrix />
+
+        <div class="rounded-[1.25rem] border border-blue-100 bg-blue-50 p-5 text-sm leading-7 text-slate-700">
+          The honest takeaway: competitors are at parity or ahead on setup speed and connector breadth.
+          GoFlow wins on dimensions 3 to 8. The defensible advantage is operational safety.
+        </div>
+      </div>
+    </Section>
+
+    <Section eyebrow="06" title="Problem statement" tone="dark">
+      <div class="space-y-6">
+        <div class="rounded-[1.5rem] bg-white/5 p-6">
+          <p class="text-xs font-semibold uppercase tracking-[0.34em] text-cyan-300">Design challenge</p>
+          <p class="mt-4 max-w-4xl text-3xl leading-[1.06] text-white sm:text-4xl">
+            How might we let SMB operators create and run integrations confidently without schema or API
+            literacy, and without giving them a false sense of safety?
+          </p>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {[
+            ['Previewability', 'See outcomes before they occur.'],
+            ['Blast-radius clarity', 'Know exactly who and what is affected.'],
+            ['Recoverability', 'Rollback that actually works.'],
+            ['Accountability', 'Clear logs, reports, and remediation paths.'],
+          ].map((item) => (
+            <article class="rounded-[1.25rem] border border-white/10 bg-white/[0.04] p-5">
+              <p class="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">{item[0]}</p>
+              <p class="mt-3 text-sm leading-6 text-slate-200">{item[1]}</p>
+            </article>
+          ))}
+        </div>
+
+        <div class="grid gap-4 lg:grid-cols-2">
+          <article class="rounded-[1.25rem] border border-rose-200 bg-rose-50 p-5 text-slate-800">
+            <p class="text-xs font-semibold uppercase tracking-[0.3em] text-rose-500">
+              Where users were today
+            </p>
+            <ul class="mt-4 space-y-2 text-sm leading-6">
+              <li>- Around 40% abandoned before a first successful run</li>
+              <li>- Users froze at Run with no way to predict the outcome</li>
+              <li>- Very few could recover from a failed run without support</li>
+              <li>- Business-critical automation felt unsafe</li>
             </ul>
-            <p class="text-xs text-gray-500 pt-2">
-              Validated via moderated proxy testing (n≈8–10/round ×3) + 40-account internal beta.
+          </article>
+          <article class="rounded-[1.25rem] border border-emerald-200 bg-emerald-50 p-5 text-slate-800">
+            <p class="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-600">
+              What success looks like
             </p>
-          </div>
-          <CardsSection />
-          <SubHeading>What Shipped (v1)</SubHeading>
-          <ul class="space-y-3 pl-0 list-none">
-            <Bullet>Pre-built connectors (high-volume systems) + outcome-based onboarding</Bullet>
-            <Bullet>AI data manipulation for mapping (suggestions, transformations, previews)</Bullet>
-            <Bullet>One-to-many/many-to-one safeguards (risk flags + mapping patterns)</Bullet>
-            <Bullet>Version control + rollback (per-run diffs + scoped revert)</Bullet>
-            <Bullet>Error handling + report generator (human-readable impact summaries + exports)</Bullet>
-            <Bullet>Hard/soft delete handling (guardrails + intent selection)</Bullet>
-            <Bullet>Self-healing agent (suggest-only fixes + replay plans, no silent changes)</Bullet>
-          </ul>
+            <ul class="mt-4 space-y-2 text-sm leading-6">
+              <li>- First-run completion at 85% or better</li>
+              <li>- Users can predict Run before pressing it</li>
+              <li>- Self-serve recovery above 80% on failed runs</li>
+              <li>- Setup time stays flat or improves despite added safety</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </Section>
 
-          <p>
-            <strong class="text-white">My Role:</strong> UX Lead — owned risk strategy, interaction paradigm,
-            trust model across setup/execution/monitoring/recovery. Led discovery, IA, prototyping, validation.
-            Built service blueprint, risk heatmaps, journey maps, and decision logs with PM/Eng triads.
-            Used full-stack background (Firebase/NoSQL) to weigh feasibility, cost, latency.
-          </p>
+    <Section eyebrow="07" title="User flow - eight steps, four phases">
+      <div class="space-y-6">
+        <div class="flex flex-wrap gap-3">
+          {flowPhases.map((phase) => (
+            <span class="chip border border-slate-200 bg-white px-4 py-2 text-xs uppercase tracking-[0.28em] text-slate-500">
+              {phase.label}
+            </span>
+          ))}
+        </div>
 
-          <blockquote class="border-l-2 border-cyan-400 pl-6 text-xl md:text-2xl italic text-white my-8">
-            Core Insight: SMBs don't fail integrations because they're complex — they fail because
-            they fear irreversible data mistakes and don't have a safe way back.
-          </blockquote>
-        </Section>
-
-        <Section title="1. Product & Org Context">
-          <ul class="space-y-4 pl-0 list-none">
-            <Bullet>
-              <strong>Timeline:</strong> 2Q runway (~6 months) from brief → v1 architecture + guarded
-              rollout over 1Q.
-            </Bullet>
-            <Bullet>
-              <strong>Target User:</strong> Non-technical/lightly-technical operators (Ops/RevOps/owners)
-              at SMBs (20–250 employees) running fragmented stacks (HubSpot + QuickBooks + Shopify, etc.)
-              with reconciliation pain.
-            </Bullet>
-            <Bullet>
-              <strong>Team:</strong> 1 PM, 3 Backend Eng (connectors/engine/schema), 1 Frontend Eng (UI/monitoring),
-              Me (UX Lead).
-            </Bullet>
-            <Bullet>
-              <strong>Key Constraint:</strong>
-              <em class="text-white">
-                Feel dramatically safer than competitors without increasing setup time, infra cost, or
-                price point.
-              </em>
-            </Bullet>
-          </ul>
-          <SubHeading>Collaboration</SubHeading>
-          <p>
-            Weekly “Runway Review” (PM + Eng Lead + me) to trade off activation/cost/risk. My Figma
-            service blueprint and risk maps became the single source of truth (including failure
-            modes, rollback contracts, and API expectations).
-          </p>
-        </Section>
-
-        <Section title="2. The Market Gap">
-          <p>
-            Competitors optimized for <strong class="text-white">setup speed</strong>, but pushed
-            risk onto users at live-run moments:
-          </p>
-          <ul class="space-y-3 pl-0 list-none">
-            <Bullet>Hidden logs, unclear failure states</Bullet>
-            <Bullet>Manual rollback (if any), hard to scope</Bullet>
-            <Bullet>
-              Weak support for <strong class="text-white">cardinality problems</strong> (one-to-many/many-to-one)
-            </Bullet>
-            <Bullet>Dangerous operations (deletes/overwrites) treated as normal mappings</Bullet>
-          </ul>
-          <p>
-            Review mining repeatedly surfaced “data loss,” “duplicates,” “overwrites,” “no undo.”
-            The psychological blocker wasn't “I don't understand” — it was
-            <strong class="text-white">“I can't recover.”</strong>
-          </p>
-          <SubHeading>2.1 Review Mining: The Competitive Vulnerability</SubHeading>
-          <p>
-            Analysis of 200+ reviews across G2, Capterra, and Reddit revealed a stark pattern:
-            risk-related complaints dominated the landscape, while UX friction complaints were
-            comparatively rare. This validated that the market blocker was not configuration
-            complexity but recovery uncertainty. This single insight reframed our entire strategy.
-            Rather than competing on setup speed (where feature parity erodes margins), we would
-            compete on what competitors systematically underserved:
-            <strong class="text-white">live-run safety, operational reversibility, and blast-radius clarity.</strong>
-          </p>
-          <DataAnalysisChart client:visible />
-          <SubHeading>2.2 Competitive Feature Analysis</SubHeading>
-          <p>
-            Our analysis across six major competitors revealed consistent gaps: all optimized for
-            setup velocity while neglecting execution safety. This created defensible
-            differentiation. GoFlow's competitive advantage isn't configuration simplicity—it's
-            operational safety. Competitors like Zapier and Elastic.io excel at setup speed but fail
-            at rollback capability, cardinality handling, and error transparency. GoFlow leads in
-            all eight critical dimensions.
-          </p>
-          <CompetitiveFeatureMatrix />
-        </Section>
-
-        <Section title="3. Research & Discovery">
-          <SubHeading>Methods</SubHeading>
-          <ul class="space-y-3 pl-0 list-none">
-            <Bullet>Competitor teardowns (Zapier, Workato, Celigo, Jitterbit, Elastic.io, Skyvia)</Bullet>
-            <Bullet>Review mining (G2/Capterra/Reddit) tagged by risk language</Bullet>
-            <Bullet>Proxy usability tests: 3 rounds, n≈8–10/round</Bullet>
-            <Bullet>Participants configured CRM → invoicing flows in high-fidelity prototypes</Bullet>
-          </ul>
-          <SubHeading>3.1 The Turning Point: 20-Second Hover</SubHeading>
-          <p>
-            A participant configured a HubSpot-to-QuickBooks invoice sync without training. All
-            interactions were smooth until they hovered over the “Run” button—and held. After 20
-            seconds of hesitation, they said:
-          </p>
-          <blockquote class="border-l-2 border-cyan-400 pl-6 text-xl md:text-2xl italic text-white my-8">
-            “I get it… I just don't know how to undo this if it goes wrong.”
-          </blockquote>
-          <SubHeading>3.2 User Research & Empathy</SubHeading>
-          <p>
-            We mapped the SMB operator's mental model, emotional journey, and core anxieties. The
-            central insight:
-            <strong class="text-white">
-              users freeze at execution due to fear of irreversible data loss, not configuration
-              complexity.
-            </strong>
-            This empathy map became the north star for design priorities. Every feature that shipped
-            addressed one of the pain points or unlocked one of the gains visible in this map.
-          </p>
-          <UserEmpathyMap />
-        </Section>
-
-        <Section title="4. Problem Statement">
-          <p>
-            The design challenge: How might we enable SMB operators to create and run integrations
-            confidently without schema/API literacy — without false safety? Reality: Confidence came
-            less from simplicity and more from:
-          </p>
-          <ul class="space-y-3 pl-0 list-none mt-4">
-            <Bullet><strong class="text-white">Previewability</strong> (see outcomes before they occur)</Bullet>
-            <Bullet><strong class="text-white">Blast-radius clarity</strong> (who/what is affected)</Bullet>
-            <Bullet><strong class="text-white">Recoverability</strong> (version control + rollback that works)</Bullet>
-            <Bullet><strong class="text-white">Accountability</strong> (clear logs, reports, and remediation paths)</Bullet>
-          </ul>
-        </Section>
-
-        <Section title="5. Major Design Pivots">
-          <p>
-            Each pivot addressed a specific blocker discovered through user testing. The sequence
-            mattered—early pivots created foundation, later pivots built safety layers.
-          </p>
-          <ImagePlaceholder title="Design Pivot Timeline" />
-          <SubHeading>5.1 The Seven Pivots Explained</SubHeading>
-          <div class="space-y-12">
-            {
-              sevenPivots.map((pivot, index) => (
-                <div class={index < sevenPivots.length - 1 ? 'border-b border-white/10 pb-12' : ''}>
-                  <h4 class="text-xl md:text-2xl font-bold text-white tracking-tight mb-4">
-                    Pivot {index + 1} — {pivot.title}
-                  </h4>
-                  <p class="text-cyan-400 italic mb-2">Problem: {pivot.problem}</p>
-                  <p class="mb-2">
-                    <strong class="text-white">Solution:</strong> {pivot.solution}
-                  </p>
-                  {pivot.title.includes('Cardinality') && (
-                    <ImagePlaceholder title="Cardinality Risk Heatmap" />
-                  )}
-                  <p class="text-sm text-gray-400">
-                    <strong class="text-gray-300">Impact/Insight:</strong> {pivot.impact}
-                  </p>
+        <div class="grid gap-4 xl:grid-cols-2">
+          {flowSteps.map((step) => (
+            <article class="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm">
+              <div class="flex items-start justify-between gap-4">
+                <div class="flex items-center gap-4">
+                  <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-600 text-sm font-semibold text-white">
+                    {step.number}
+                  </div>
+                  <div>
+                    <p class="text-lg font-semibold text-slate-900">{step.title}</p>
+                    <p class="text-xs uppercase tracking-[0.28em] text-slate-500">Fear</p>
+                  </div>
                 </div>
-              ))
-            }
+                <p class="max-w-[10rem] text-sm leading-6 text-slate-600">{step.fear}</p>
+              </div>
+
+              <div class="mt-4 grid gap-3 sm:grid-cols-2">
+                <div class="rounded-[1.1rem] bg-slate-50 p-4">
+                  <p class="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">System</p>
+                  <p class="mt-2 text-sm leading-6 text-slate-700">{step.system}</p>
+                </div>
+                <div class="rounded-[1.1rem] bg-slate-50 p-4">
+                  <p class="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">Affordance</p>
+                  <p class="mt-2 text-sm leading-6 text-slate-700">{step.affordance}</p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-4">
+          {flowFeaturePhases.map((phase) => (
+            <article class="rounded-[1.25rem] border border-slate-200 bg-white p-5 shadow-sm">
+              <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-500">{phase.title}</p>
+              <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-700">
+                {phase.items.map((item) => (
+                  <Bullet>{item}</Bullet>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </Section>
+
+    <Section eyebrow="08" title="The design goal, stated as a curve">
+      <div class="space-y-6">
+        <p>
+          The goal was to flatten the anxiety dip at Run and raise the recovery line so the user ends
+          in confidence, not doubt.
+        </p>
+
+        <article class="rounded-[1.75rem] border border-slate-200 bg-white p-5 shadow-sm">
+          <div class="mb-3 flex items-center justify-between text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-slate-400">
+            <span>Confident</span>
+            <span>Anxious</span>
           </div>
-        </Section>
 
-        <Section title="6. End-to-End Flow">
-          <p>
-            The complete user journey is organized into four phases, each with dedicated safety
-            checkpoints:
-          </p>
-          <ul class="space-y-4 pl-0 list-none my-8">
-            <li>
-              <strong class="text-white">Phase 1: Setup</strong><br />Connector selection → outcome
-              template → auth → AI mapping canvas → cardinality checks → dry run preview
-            </li>
-            <li>
-              <strong class="text-white">Phase 2: Risk Validation</strong><br />Review &amp; Preview
-              gate; cardinality risk confirmation; guardrail selection
-            </li>
-            <li>
-              <strong class="text-white">Phase 3: Execution</strong><br />Versioned execution with
-              diffs and real-time anomaly detection
-            </li>
-            <li>
-              <strong class="text-white">Phase 4: Recovery</strong><br />One-click rollback;
-              self-healing suggestions; report generator exports
-            </li>
-          </ul>
-          <ImagePlaceholder title="User Journey Flow" />
-          <SubHeading>6.1 Key Features by Phase</SubHeading>
-          <p>This feature matrix shows how our seven v1 capabilities map across the four journey phases.</p>
-          <ImagePlaceholder title="Feature Matrix by Phase" />
-        </Section>
+          <svg viewBox="0 0 900 330" class="h-[280px] w-full">
+            <defs>
+              <linearGradient id="goflow-fill" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="rgba(47,98,255,0.24)" />
+                <stop offset="100%" stop-color="rgba(47,98,255,0.02)" />
+              </linearGradient>
+            </defs>
 
-        <Section title="7. Backend Architecture">
-          <p>
-            Every operation is immutable and auditable. The architecture enforces reversibility and
-            observability at the systems level. The design ensures that safety is not a UI
-            layer—it's a systems property.
-          </p>
-          <p>The architecture flows through three critical engines:</p>
-          <ul class="space-y-3 pl-0 list-none my-4">
-            <Bullet>
-              <strong class="text-green-400">Change Set Engine:</strong> Creates immutable, versioned
-              logs of every run
-            </Bullet>
-            <Bullet>
-              <strong class="text-red-400">Anomaly Detector:</strong> Real-time pattern analysis detects
-              suspicious behavior before completion
-            </Bullet>
-            <Bullet>
-              <strong class="text-orange-400">Rollback Contract Engine:</strong> Defines clear reversibility
-              boundaries for every operation
-            </Bullet>
-            <Bullet>
-              <strong class="text-orange-400">Audit Log &amp; Event Stream:</strong> Immutable record
-              of all actions with audit event IDs
-            </Bullet>
-          </ul>
-          <ImagePlaceholder title="Backend Architecture Diagram" />
-        </Section>
+            <line x1="60" y1="62" x2="60" y2="255" stroke="#e2e8f0" stroke-width="2" />
+            <line x1="60" y1="255" x2="835" y2="255" stroke="#e2e8f0" stroke-width="2" />
+            <line x1="60" y1="134" x2="835" y2="134" stroke="#eef2f7" stroke-width="2" />
 
-        <Section title="8. Validation & Testing">
-          <p>
-            <strong>Testing Methodology:</strong> 3 rounds of moderated proxy tests (n≈8–10/round) +
-            40-account internal pilots. We stopped after metrics plateaued and qualitative signals converged:
-            “I feel safe enough to turn this on.”
-          </p>
+            <polyline
+              fill="url(#goflow-fill)"
+              stroke="rgba(47,98,255,0.75)"
+              stroke-width="4"
+              points="100,105 240,125 380,138 520,188 660,165 790,95 790,255 100,255"
+            />
+            <polyline
+              fill="none"
+              stroke="#94a3b8"
+              stroke-dasharray="8 8"
+              stroke-width="3"
+              points="100,112 240,135 380,148 520,188 660,194 790,192"
+            />
 
-          <SubHeading>8.1 Before/After Performance Validation</SubHeading>
-          <p>This chart shows validated improvements across four key operational metrics.</p>
-          <ImagePlaceholder title="Performance Validation Chart" />
-          <div class="hidden lg:block bg-white/[0.02] border-2 border-white/10 rounded-[2rem] overflow-hidden mt-8">
-            <table class="w-full text-left">
-              <thead>
-                <tr class="border-b border-white/10 text-xs font-black tracking-widest text-cyan-400 uppercase">
-                  <th class="p-6 italic">Metric</th>
-                  <th class="p-6 italic">Early Prototype</th>
-                  <th class="p-6 italic">Final Flow</th>
-                </tr>
-              </thead>
-              <tbody class="text-base">
-                {
-                  validationData.map((item, index) => (
-                    <tr class={index < validationData.length - 1 ? 'border-b border-white/5' : ''}>
-                      <td class="p-6 font-semibold text-white">{item.metric}</td>
-                      <td class="p-6 text-gray-400">{item.early}</td>
-                      <td class="p-6 text-white font-bold">{item.final}</td>
-                    </tr>
-                  ))
-                }
-              </tbody>
-            </table>
+            {[
+              [100, 105, '#2f62ff'],
+              [240, 125, '#2f62ff'],
+              [380, 138, '#2f62ff'],
+              [520, 188, '#dc2626'],
+              [660, 165, '#2f62ff'],
+              [790, 95, '#16a34a'],
+            ].map(([cx, cy, color]) => (
+              <circle cx={cx} cy={cy} r="6" fill={color} />
+            ))}
+
+            <text x="34" y="85" fill="#cbd5e1" font-size="12" font-weight="600">Confident</text>
+            <text x="34" y="188" fill="#cbd5e1" font-size="12" font-weight="600">Anxious</text>
+            <text x="500" y="205" fill="#dc2626" font-size="12" font-weight="700">Low point</text>
+          </svg>
+
+          <div class="mt-4 grid grid-cols-2 gap-2 text-center text-xs text-slate-500 sm:grid-cols-6">
+            {['Choose outcome', 'Map data', 'Preview', 'Press Run', 'Error / failure', 'Rollback / recover'].map((label) => (
+              <span class="rounded-full bg-slate-50 px-3 py-2">{label}</span>
+            ))}
           </div>
-        </Section>
 
-        <Section title="9. UX → Business Impact">
-          <p>The four pillars of business impact, all validated through testing and beta:</p>
-          <ul class="space-y-3 pl-0 list-none my-4">
-            <Bullet>
-              <strong class="text-white">40% Faster Onboarding:</strong> (18 min → 10-11 min): Higher
-              first-run completion
-            </Bullet>
-            <Bullet>
-              <strong class="text-white">50% Fewer Config Errors:</strong> Reduced support load &amp;
-              rework
-            </Bullet>
-            <Bullet>
-              <strong class="text-white">35% Faster Recovery:</strong> Self-serve remediation instead
-              of escalation
-            </Bullet>
-            <Bullet>
-              <strong class="text-white">6-8pt Attach-Rate Lift:</strong> Confidence removes the psychological
-              blocker to feature adoption
-            </Bullet>
-          </ul>
-          <ImagePlaceholder title="Quantified Business Outcomes" />
-          <p>
-            <strong class="text-white">Activation:</strong> Confidence-first onboarding increased first-successful-run
-            conversion and reduced abandonment at “Run.”
-          </p>
-          <p>
-            <strong class="text-white">Attach rate:</strong> ~6–8pt lift over 2Q driven by higher activation
-            + reduced perceived risk.
-          </p>
-          <p>
-            <strong class="text-white">Support cost:</strong> Fewer misconfigs + self-serve rollback/reporting
-            reduced L1 load, supporting SMB economics.
-          </p>
-          <p>
-            <strong class="text-white">Positioning:</strong> GoFlow became the default integration layer
-            for mid-market because safety + rollback shifted trust from “tool” to “system of record for
-            automation.”
-          </p>
-        </Section>
+          <div class="mt-4 flex flex-wrap gap-3 text-xs text-slate-500">
+            {journeyStates.map((state) => (
+              <span class={`rounded-full border px-3 py-1.5 font-medium ${state.tone}`}>{state.label}</span>
+            ))}
+          </div>
+        </article>
 
-        <Section title="10. What This Proves">
-          <ul class="space-y-4 pl-0 list-none">
-            <Bullet>
-              <strong class="text-white">Risk-aware design for automation:</strong> Can design high-stakes
-              UX for AI-driven workflows with safety-first execution, not just happy-path flows. Real
-              failure modes, recovery paths, accountability mechanisms.
-            </Bullet>
-            <Bullet>
-              <strong class="text-white">Governance translation:</strong> Can translate TRiSM concerns
-              (Trust, Risk, Security, Management) into concrete product mechanics—observability (diffs,
-              logs), auditability (immutable change sets), reversibility (rollback), controlled autonomy
-              (suggest-only).
-            </Bullet>
-            <Bullet>
-              <strong class="text-white">Cross-functional problem-solving:</strong> Resolve conflicts
-              between activation speed, infrastructure cost, and risk mitigation with measurable outcomes.
-            </Bullet>
-            <Bullet>
-              <strong class="text-white">User research rigor:</strong> One observation (20-second hover)
-              reframed the entire product strategy. Validated through three rounds of testing (n=28 total)
-              plus real-world beta (n=40 accounts).
-            </Bullet>
-            <Bullet>
-              <strong class="text-white">Scalable design patterns:</strong> Connectors, mapping, rollback
-              contracts designed as reusable primitives—not one-off features. Handoff to engineering
-              without loss of intent.
-            </Bullet>
-            <Bullet>
-              <strong class="text-white">Business impact ownership:</strong> Tied every design decision
-              to measurable outcome. Configuration errors -50%, setup time -40%, recovery independence
-              +300%, attach-rate +6-8pt.
-            </Bullet>
-          </ul>
-        </Section>
+        <div class="grid gap-4 md:grid-cols-3">
+          {journeyStates.slice(0, 3).map((state) => (
+            <article class="rounded-[1.25rem] border border-slate-200 bg-white p-5 shadow-sm">
+              <p class="text-sm font-semibold text-slate-900">{state.label}</p>
+              <p class="mt-2 text-sm leading-6 text-slate-700">{state.copy}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </Section>
 
-        <Section title="Design Principles">
-          <ul class="space-y-4 pl-0 list-none">
-            {
-              designPrinciples.map((principle, i) => (
-                <li>
-                  <span class="text-cyan-500 mr-2">{i + 1}.</span>
-                  {principle}
-                </li>
-              ))
-            }
-          </ul>
-        </Section>
+    <Section eyebrow="09" title="Seven design pivots">
+      <div class="space-y-4">
+        {pivots.map((pivot, index) => (
+          <article class="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm">
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-600 text-sm font-semibold text-white">
+                {index + 1}
+              </span>
+              <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-500">{pivot.badge}</p>
+            </div>
+            <h3 class="mt-4 text-xl font-semibold text-slate-900">{pivot.title}</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-700">
+              <span class="font-semibold text-slate-900">Problem:</span> {pivot.problem}
+            </p>
+            <p class="mt-2 text-sm leading-7 text-slate-700">
+              <span class="font-semibold text-slate-900">Solution:</span> {pivot.solution}
+            </p>
+            <p class="mt-2 text-sm leading-7 text-slate-600">
+              <span class="font-semibold text-slate-900">Impact:</span> {pivot.impact}
+            </p>
+          </article>
+        ))}
+      </div>
+    </Section>
 
-        <Section title="Deliverables">
+    <Section eyebrow="10" title="Fidelity progression">
+      <div class="space-y-6">
+        <p>
+          Risk, preview, and recovery were proven structurally before any visual polish existed.
+          System behavior came first, styling last.
+        </p>
+
+        <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {fidelityStages.map((stage, index) => (
+            <article class={`rounded-[1.5rem] border bg-white p-5 shadow-sm ${index === 3 ? 'border-blue-500' : 'border-slate-200'}`}>
+              <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-400">{stage.stage}</p>
+              <h3 class="mt-3 text-lg font-semibold text-slate-900">{stage.title}</h3>
+              <p class="mt-3 text-sm leading-6 text-slate-700">{stage.copy}</p>
+            </article>
+          ))}
+        </div>
+
+        <div class="grid gap-4 lg:grid-cols-2">
+          <article class="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
+            <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-500">Low-fidelity wireframes</p>
+            <div class="mt-4 grid gap-3">
+              <div class="rounded-[1rem] bg-white p-4 shadow-sm">
+                <div class="h-3 w-2/3 rounded-full bg-slate-200"></div>
+                <div class="mt-4 grid grid-cols-2 gap-3">
+                  <div class="h-10 rounded-xl bg-slate-100"></div>
+                  <div class="h-10 rounded-xl bg-slate-100"></div>
+                </div>
+              </div>
+              <div class="rounded-[1rem] bg-white p-4 shadow-sm">
+                <div class="h-3 w-1/2 rounded-full bg-slate-200"></div>
+                <div class="mt-4 grid grid-cols-2 gap-3">
+                  <div class="h-20 rounded-xl bg-slate-100"></div>
+                  <div class="h-20 rounded-xl bg-slate-100"></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
+            <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-500">High-fidelity principle</p>
+            <p class="mt-4 text-sm leading-7 text-slate-700">
+              Trust, not polish, was the priority. Explainability beats minimalism, and familiarity beats novelty.
+            </p>
+            <div class="mt-5 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-[1rem] bg-white p-4 shadow-sm">
+                <p class="text-xs uppercase tracking-[0.28em] text-slate-500">Hierarchy</p>
+                <p class="mt-2 text-sm text-slate-700">Needs to answer the risk question first.</p>
+              </div>
+              <div class="rounded-[1rem] bg-white p-4 shadow-sm">
+                <p class="text-xs uppercase tracking-[0.28em] text-slate-500">Behavior</p>
+                <p class="mt-2 text-sm text-slate-700">Each screen documents the step, state, and escape path.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </Section>
+
+    <Section eyebrow="11" title="Validation and impact">
+      <div class="space-y-6">
+        <p>
+          These metrics were validated through moderated proxy testing plus a 40-account internal beta.
+          The last two are projected for a future pilot and are labeled accordingly.
+        </p>
+
+        <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {validationMetrics.map((metric) => (
+            <article class="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-500">{metric.label}</p>
+                  <p class="mt-3 text-4xl font-semibold tracking-tight text-slate-900">{metric.value}</p>
+                </div>
+                <span class="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">
+                  {metric.badge}
+                </span>
+              </div>
+              <p class="mt-3 text-sm font-medium text-emerald-600">{metric.delta}</p>
+              <p class="mt-2 text-sm leading-6 text-slate-600">{metric.baseline}</p>
+            </article>
+          ))}
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          {businessImpacts.map((item) => (
+            <article class="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-5">
+              <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-500">{item.title}</p>
+              <p class="mt-3 text-sm leading-7 text-slate-700">{item.copy}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </Section>
+
+    <Section eyebrow="12" title="What this proves">
+      <ul class="space-y-4">
+        {proofPoints.map((point) => (
+          <Bullet>{point}</Bullet>
+        ))}
+      </ul>
+    </Section>
+
+    <Section eyebrow="13" title="Deliverables">
+      <div class="grid gap-6 lg:grid-cols-2">
+        <div>
           <SubHeading>Core design outputs</SubHeading>
-          <ul class="space-y-3 pl-0 list-none">
-            <Bullet>Figma service blueprint</Bullet>
-            <Bullet>Risk heatmaps</Bullet>
-            <Bullet>Journey maps with emotional curve</Bullet>
-            <Bullet>Decision logs</Bullet>
-            <Bullet>User empathy maps and research synthesis</Bullet>
+          <ul class="mt-4 space-y-3">
+            {deliverables.map((item) => (
+              <Bullet>{item}</Bullet>
+            ))}
           </ul>
+        </div>
+
+        <div>
           <SubHeading>Feature ship list v1</SubHeading>
-          <ul class="space-y-3 pl-0 list-none">
-            <Bullet>Pre-built connectors (high-volume systems) + outcome onboarding</Bullet>
-            <Bullet>AI data mapping</Bullet>
-            <Bullet>Cardinality safeguards</Bullet>
-            <Bullet>Version control + rollback</Bullet>
-            <Bullet>Error handling + reporting</Bullet>
-            <Bullet>Hard/soft delete handling</Bullet>
-            <Bullet>Self-healing agent</Bullet>
+          <ul class="mt-4 space-y-3">
+            {shipList.map((item) => (
+              <Bullet>{item}</Bullet>
+            ))}
           </ul>
-        </Section>
-      </main>
-    </div>
-  </div>
+        </div>
+      </div>
+    </Section>
+  </main>
 </Base>
+
+<style is:global>
+  .goflow-theme .project-section {
+    background: rgba(8, 15, 28, 0.78) !important;
+    border-color: rgba(148, 163, 184, 0.18) !important;
+  }
+
+  .goflow-theme .bg-white,
+  .goflow-theme .bg-slate-50,
+  .goflow-theme .bg-slate-100,
+  .goflow-theme .bg-rose-50,
+  .goflow-theme .bg-emerald-50,
+  .goflow-theme .bg-blue-50,
+  .goflow-theme .bg-amber-50,
+  .goflow-theme .bg-violet-50,
+  .goflow-theme .bg-sky-50 {
+    background-color: rgba(8, 15, 28, 0.78) !important;
+  }
+
+  .goflow-theme .text-slate-900,
+  .goflow-theme .text-slate-800 {
+    color: #e6eef8 !important;
+  }
+
+  .goflow-theme .text-slate-950 {
+    color: #f8fbff !important;
+  }
+
+  .goflow-theme .text-slate-700 {
+    color: #cbd5e1 !important;
+  }
+
+  .goflow-theme .text-slate-600 {
+    color: #94a3b8 !important;
+  }
+
+  .goflow-theme .text-slate-500,
+  .goflow-theme .text-slate-400 {
+    color: #64748b !important;
+  }
+
+  .goflow-theme .text-blue-700,
+  .goflow-theme .text-blue-600 {
+    color: #7dd3fc !important;
+  }
+
+  .goflow-theme .text-emerald-600,
+  .goflow-theme .text-emerald-500 {
+    color: #86efac !important;
+  }
+
+  .goflow-theme .text-rose-500,
+  .goflow-theme .text-rose-600 {
+    color: #fda4af !important;
+  }
+
+  .goflow-theme .text-amber-600,
+  .goflow-theme .text-amber-500 {
+    color: #fcd34d !important;
+  }
+
+  .goflow-theme .text-violet-500 {
+    color: #c4b5fd !important;
+  }
+
+  .goflow-theme .text-orange-700 {
+    color: #fdba74 !important;
+  }
+
+  .goflow-theme .text-sky-700 {
+    color: #7dd3fc !important;
+  }
+
+  .goflow-theme .border-slate-200,
+  .goflow-theme .border-slate-100,
+  .goflow-theme .border-blue-100,
+  .goflow-theme .border-rose-200,
+  .goflow-theme .border-emerald-200,
+  .goflow-theme .border-amber-200,
+  .goflow-theme .border-violet-200,
+  .goflow-theme .border-sky-200 {
+    border-color: rgba(148, 163, 184, 0.18) !important;
+  }
+
+  .goflow-theme .shadow-sm {
+    box-shadow: var(--shadow-elevated) !important;
+  }
+</style>
 
 <script>
   import gsap from 'gsap';
@@ -550,21 +1191,19 @@ const designPrinciples = [
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // Hero animation
-  gsap.from(['[data-hero-header]', '[data-headline-signals]'], {
+  gsap.from('[data-hero], [data-disclosure], [data-snapshot]', {
     opacity: 0,
-    y: 30,
+    y: 24,
     duration: 1,
-    stagger: 0.2,
+    stagger: 0.14,
     ease: 'power3.out',
   });
 
-  // Section fade-in animation
   gsap.utils.toArray<HTMLElement>('.project-section').forEach((section) => {
     gsap.from(section, {
       opacity: 0,
-      y: 50,
-      duration: 1,
+      y: 40,
+      duration: 0.9,
       ease: 'power3.out',
       scrollTrigger: {
         trigger: section,

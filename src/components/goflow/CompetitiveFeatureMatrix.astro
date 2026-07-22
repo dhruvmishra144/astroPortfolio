@@ -1,189 +1,196 @@
 ---
 const features = [
-  { name: 'Error Handling', key: 'errorHandling' },
-  { name: 'Rollback Cap.', key: 'rollbackCap' },
-  { name: 'Cardinality', key: 'cardinality' },
-  { name: 'Data Safety', key: 'dataSafety' },
-  { name: 'Error Visible', key: 'errorVisible' },
-  { name: 'Version Ctrl', key: 'versionCtrl' },
-  { name: 'AI Mapping', key: 'aiMapping' },
-  { name: 'Self-Healing', key: 'selfHealing' },
+  { name: 'Setup speed / time-to-first-run', key: 'setupSpeed' },
+  { name: 'Pre-built connector breadth', key: 'connectorBreadth' },
+  { name: 'AI-mapping transparency', key: 'aiTransparency' },
+  { name: 'Cardinality handling (1:N / N:1)', key: 'cardinality' },
+  { name: 'Rollback / reversibility', key: 'rollback' },
+  { name: 'Error transparency', key: 'errorTransparency' },
+  { name: 'Delete safety', key: 'deleteSafety' },
+  { name: 'Auditability / observability', key: 'auditability' },
 ] as const;
 
 type FeatureKey = (typeof features)[number]['key'];
-type Status = 'advanced' | 'basic' | 'weak';
+type Status = 'strong' | 'partial' | 'weak' | 'none';
 
 const platforms: { name: string; features: Record<FeatureKey, Status> }[] = [
   {
     name: 'Zapier',
     features: {
-      errorHandling: 'basic',
-      rollbackCap: 'weak',
+      setupSpeed: 'strong',
+      connectorBreadth: 'strong',
+      aiTransparency: 'weak',
       cardinality: 'weak',
-      dataSafety: 'weak',
-      errorVisible: 'basic',
-      versionCtrl: 'weak',
-      aiMapping: 'weak',
-      selfHealing: 'weak',
+      rollback: 'none',
+      errorTransparency: 'partial',
+      deleteSafety: 'none',
+      auditability: 'partial',
     },
   },
   {
     name: 'Workato',
     features: {
-      errorHandling: 'advanced',
-      rollbackCap: 'basic',
-      cardinality: 'basic',
-      dataSafety: 'basic',
-      errorVisible: 'advanced',
-      versionCtrl: 'basic',
-      aiMapping: 'basic',
-      selfHealing: 'weak',
+      setupSpeed: 'partial',
+      connectorBreadth: 'strong',
+      aiTransparency: 'partial',
+      cardinality: 'partial',
+      rollback: 'partial',
+      errorTransparency: 'strong',
+      deleteSafety: 'partial',
+      auditability: 'partial',
     },
   },
   {
     name: 'Celigo',
     features: {
-      errorHandling: 'advanced',
-      rollbackCap: 'basic',
-      cardinality: 'basic',
-      dataSafety: 'basic',
-      errorVisible: 'advanced',
-      versionCtrl: 'basic',
-      aiMapping: 'advanced',
-      selfHealing: 'basic',
+      setupSpeed: 'partial',
+      connectorBreadth: 'strong',
+      aiTransparency: 'weak',
+      cardinality: 'partial',
+      rollback: 'partial',
+      errorTransparency: 'strong',
+      deleteSafety: 'partial',
+      auditability: 'partial',
     },
   },
   {
     name: 'Jitterbit',
     features: {
-      errorHandling: 'advanced',
-      rollbackCap: 'basic',
+      setupSpeed: 'partial',
+      connectorBreadth: 'partial',
+      aiTransparency: 'weak',
       cardinality: 'weak',
-      dataSafety: 'basic',
-      errorVisible: 'advanced',
-      versionCtrl: 'basic',
-      aiMapping: 'weak',
-      selfHealing: 'weak',
+      rollback: 'weak',
+      errorTransparency: 'strong',
+      deleteSafety: 'partial',
+      auditability: 'partial',
     },
   },
   {
     name: 'Elastic.io',
     features: {
-      errorHandling: 'basic',
-      rollbackCap: 'weak',
+      setupSpeed: 'strong',
+      connectorBreadth: 'partial',
+      aiTransparency: 'weak',
       cardinality: 'weak',
-      dataSafety: 'weak',
-      errorVisible: 'basic',
-      versionCtrl: 'weak',
-      aiMapping: 'weak',
-      selfHealing: 'weak',
+      rollback: 'none',
+      errorTransparency: 'partial',
+      deleteSafety: 'none',
+      auditability: 'weak',
     },
   },
   {
     name: 'Skyvia',
     features: {
-      errorHandling: 'basic',
-      rollbackCap: 'weak',
+      setupSpeed: 'strong',
+      connectorBreadth: 'partial',
+      aiTransparency: 'weak',
       cardinality: 'weak',
-      dataSafety: 'weak',
-      errorVisible: 'basic',
-      versionCtrl: 'weak',
-      aiMapping: 'weak',
-      selfHealing: 'weak',
+      rollback: 'none',
+      errorTransparency: 'partial',
+      deleteSafety: 'none',
+      auditability: 'weak',
     },
   },
   {
     name: 'GoFlow',
     features: {
-      errorHandling: 'advanced',
-      rollbackCap: 'advanced',
-      cardinality: 'advanced',
-      dataSafety: 'advanced',
-      errorVisible: 'advanced',
-      versionCtrl: 'advanced',
-      aiMapping: 'advanced',
-      selfHealing: 'advanced',
+      setupSpeed: 'strong',
+      connectorBreadth: 'strong',
+      aiTransparency: 'strong',
+      cardinality: 'strong',
+      rollback: 'strong',
+      errorTransparency: 'strong',
+      deleteSafety: 'strong',
+      auditability: 'strong',
     },
   },
 ];
 
 const getIcon = (status: Status) => {
   switch (status) {
-    case 'advanced':
-      return '✓';
-    case 'basic':
-      return '◐';
+    case 'strong':
+      return 'Strong';
+    case 'partial':
+      return 'Partial';
     case 'weak':
-      return '✗';
+      return 'Weak';
+    case 'none':
+      return 'None';
   }
 };
 
 const getBgColor = (status: Status) => {
   switch (status) {
-    case 'advanced':
-      return 'bg-[#9FD5B3]';
-    case 'basic':
-      return 'bg-[#F5E6A8]';
+    case 'strong':
+      return 'bg-emerald-500/12 text-emerald-300 border-emerald-400/20';
+    case 'partial':
+      return 'bg-amber-500/12 text-amber-300 border-amber-400/20';
     case 'weak':
-      return 'bg-[#F5C1C8]';
+      return 'bg-rose-500/12 text-rose-300 border-rose-400/20';
+    case 'none':
+      return 'bg-slate-500/12 text-slate-300 border-slate-400/20';
   }
 };
 ---
 
-<div class="w-full max-w-7xl mx-auto p-4 md:p-8">
-  {/* Table Container with horizontal scroll */}
-  <div class="overflow-x-auto -mx-4 md:mx-0">
-    <div class="inline-block min-w-full align-middle">
-      <div class="overflow-hidden shadow-sm border border-gray-200 rounded-lg">
-        <table class="min-w-full border-collapse">
-          <thead class="bg-gray-50">
-            <tr>
-              <th class="sticky left-0 z-10 bg-gray-50 p-2 md:p-4 text-center text-sm md:text-base text-gray-600 font-medium border-b-2 border-r-2 border-gray-300 min-w-[100px]">
-                Platform
-              </th>
-              {
-                features.map((feature) => (
-                  <th class="p-2 md:p-4 text-center text-xs md:text-base text-gray-600 font-medium border-b-2 border-gray-300 min-w-[80px] md:min-w-[100px]">
-                    {feature.name}
-                  </th>
-                ))
-              }
-            </tr>
-          </thead>
-          <tbody class="bg-white">
-            {
-              platforms.map((platform, idx) => (
-                <tr class={idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                  <td class="sticky left-0 z-10 p-2 md:p-4 text-center text-sm md:text-base text-gray-700 font-medium border-r-2 border-gray-300 bg-inherit">
-                    {platform.name}
-                  </td>
-                  {features.map((feature) => {
-                    const status = platform.features[feature.key];
-                    return (
-                      <td class={`p-2 md:p-4 text-center text-xl md:text-2xl ${getBgColor(status)}`}>
-                        <span class="text-black">{getIcon(status)}</span>
-                      </td>
-                    );
-                  })}
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
-      </div>
+<div class="w-full overflow-x-auto">
+  <div class="min-w-[900px] rounded-[1.75rem] surface-strong p-4">
+    <div class="mb-5 px-2">
+      <h3 class="text-xl font-semibold text-white">Competitive feature matrix</h3>
+      <p class="mt-1 text-sm text-slate-400">
+        Six tools were scored across eight execution-safety dimensions. Ratings are directional.
+      </p>
     </div>
-  </div>
 
-  {/* Legend */}
-  <div class="flex flex-wrap justify-center gap-3 md:gap-8 mt-6 md:mt-8 px-2">
-    <div class="flex items-center gap-2">
-      <span class="px-3 md:px-4 py-2 bg-[#F5C1C8] rounded text-sm md:text-base text-black">✗ Weak/Missing</span>
-    </div>
-    <div class="flex items-center gap-2">
-      <span class="px-3 md:px-4 py-2 bg-[#F5E6A8] rounded text-sm md:text-base text-black">◐ Basic</span>
-    </div>
-    <div class="flex items-center gap-2">
-      <span class="px-3 md:px-4 py-2 bg-[#9FD5B3] rounded text-sm md:text-base text-black">✓ Advanced</span>
+    <table class="min-w-full border-collapse text-sm">
+      <thead class="bg-white/5">
+        <tr>
+          <th class="sticky left-0 z-10 border-b border-r border-white/10 bg-white/5 px-4 py-3 text-left font-semibold text-slate-300">
+            Platform
+          </th>
+          {features.map((feature) => (
+            <th class="border-b border-white/10 px-3 py-3 text-center font-semibold text-slate-300">
+              {feature.name}
+            </th>
+          ))}
+        </tr>
+      </thead>
+
+      <tbody>
+        {platforms.map((platform, index) => (
+          <tr class={index % 2 === 0 ? 'bg-white/[0.02]' : 'bg-white/[0.05]'}>
+            <td class="sticky left-0 z-10 border-r border-white/10 bg-inherit px-4 py-3 font-semibold text-white">
+              {platform.name}
+            </td>
+            {features.map((feature) => {
+              const status = platform.features[feature.key];
+              return (
+                <td class="border-b border-white/5 px-3 py-3 text-center">
+                  <span class={`inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-semibold ${getBgColor(status)}`}>
+                    {getIcon(status)}
+                  </span>
+                </td>
+              );
+            })}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+    <div class="mt-5 flex flex-wrap gap-3 px-2 text-xs font-semibold text-slate-400">
+      <span class="inline-flex items-center gap-2 rounded-full bg-emerald-500/12 px-3 py-1 text-emerald-300">
+        Strong
+      </span>
+      <span class="inline-flex items-center gap-2 rounded-full bg-amber-500/12 px-3 py-1 text-amber-300">
+        Partial
+      </span>
+      <span class="inline-flex items-center gap-2 rounded-full bg-rose-500/12 px-3 py-1 text-rose-300">
+        Weak
+      </span>
+      <span class="inline-flex items-center gap-2 rounded-full bg-slate-500/12 px-3 py-1 text-slate-300">
+        None
+      </span>
     </div>
   </div>
 </div>

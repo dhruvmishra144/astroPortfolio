@@ -1,98 +1,70 @@
 ---
 const quadrants = [
   {
-    title: 'FEELS',
-    style: 'bg-pink-100 border-2 border-pink-300',
+    title: 'Feels',
+    style: 'bg-white/[0.04] border border-rose-400/20',
     items: [
       'Anxious before hitting Run',
-      'Overwhelmed by technical jargon',
       'Responsible for data integrity',
-      'Frustrated when integrations break',
+      'Wants confidence, not guesswork',
+      'Frustrated when recovery is unclear',
     ],
   },
   {
-    title: 'SAYS',
-    style: 'bg-orange-100 border-2 border-orange-300',
+    title: 'Says',
+    style: 'bg-white/[0.04] border border-amber-400/20',
     items: [
-      '"I need to sync data between tools without breaking anything"',
-      '"Our tools don\'t talk to each other"',
-      '"I don\'t have time to learn code"',
-      '"What if I delete the wrong records?"',
+      '"I need to sync data without breaking anything."',
+      '"What exactly happens when I press Run?"',
+      '"Can I undo this if it goes wrong?"',
     ],
   },
   {
-    title: 'DOES',
-    style: 'bg-yellow-100 border-2 border-yellow-400',
+    title: 'Does',
+    style: 'bg-white/[0.04] border border-sky-400/20',
     items: [
-      'Manually copy-paste data between systems (4-8 hours/week)',
-      'Tests integrations in separate sandbox',
-      'Exports files with dummy data',
-      'Checks logs after runs',
-      "But can't undo mistakes",
-      'Calls developer when something breaks',
+      'Configures in a sandbox before shipping live',
+      'Checks logs after every run',
+      'Avoids automating anything business-critical',
+      'Calls a teammate when recovery is unclear',
     ],
   },
   {
-    title: 'THINKS',
-    style: 'bg-pink-100 border-2 border-pink-300',
+    title: 'Thinks',
+    style: 'bg-white/[0.04] border border-violet-400/20',
     items: [
-      '"This should just work, but what if I mess up?"',
-      'My boss needs this working by tomorrow',
-      "I can't undo data changes – they'll blame me",
-      'Will my team blame me if integration fails?',
+      '"If this duplicates invoices, I\'ll lose time cleaning it up."',
+      '"I don\'t fully trust suggestions I can\'t see."',
+      '"I need to know what changes before I commit."',
     ],
   },
 ];
 
-const painPoints = [
-  'Fear of irreversible data mistakes',
-  'No clear recovery path if execution fails',
-  'Hidden/unclear error states',
-  "Can't see blast radius of operations",
-  'Lack of hands-on technical training',
-];
+const painPoints = ['No blast-radius visibility', 'No reliable undo', 'Cryptic errors', 'Silent AI transformations'];
 
-const gains = [
-  'Visibility into what will happen before execution',
-  'One-click undo capability',
-  'Clear error logs and documentation',
-  'Self-service recovery without developer escalation',
-  'Time savings from reduced manual reconciliation',
-];
+const gains = ['Confidence to press Run', 'Preview before commit', 'One-click recovery', 'Clear accountability'];
 ---
 
-<div class="w-full max-w-6xl mx-auto p-4 md:p-8 bg-white">
-  {/* Header */}
-  <div class="text-center mb-6 md:mb-8">
-    <h1 class="text-xl sm:text-2xl md:text-3xl text-gray-600 mb-2 font-medium">
-      GoFlow User Empathy Map: SMB Ops/RevOps Operator
-    </h1>
-    <p class="text-sm md:text-base text-gray-500">Confidence from reversibility, not simplicity</p>
+<div class="w-full rounded-[1.75rem] surface-strong p-4">
+  <div class="mb-6 flex flex-col gap-3 border-b border-white/10 pb-4 md:flex-row md:items-end md:justify-between">
+    <div>
+      <h3 class="text-xl font-semibold text-white">Empathy map - SMB operator</h3>
+      <p class="mt-1 text-sm text-slate-400">Confidence from reversibility, not simplicity</p>
+    </div>
+    <p class="max-w-md text-xs uppercase tracking-[0.28em] text-slate-500">
+      Persona: RevOps / Ops operator at a 20-250 person SMB
+    </p>
   </div>
 
-  {/* Tags */}
-  <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 text-black">
-    <div class="px-3 md:px-4 py-1.5 md:py-2 bg-blue-100 border border-blue-300 rounded text-xs md:text-sm">
-      <span class="font-semibold">Persona:</span> SMB Ops/RevOps Operator
-    </div>
-    <div class="px-3 md:px-4 py-1.5 md:py-2 bg-blue-100 border border-blue-300 rounded text-xs md:text-sm">
-      <span class="font-semibold">Company Size:</span> 20-250 employees
-    </div>
-    <div class="px-3 md:px-4 py-1.5 md:py-2 bg-yellow-100 border border-yellow-400 rounded text-xs md:text-sm">
-      <span class="font-semibold">Tech Literacy:</span> Beginner → Intermediate
-    </div>
-  </div>
-
-  {/* Empathy Map Grid */}
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
+  <div class="grid gap-4 md:grid-cols-2">
     {
       quadrants.map((quadrant) => (
-        <div class={`${quadrant.style} rounded-lg p-4 md:p-6`}>
-          <h2 class="text-lg md:text-xl font-semibold text-gray-700 mb-3 md:mb-4">{quadrant.title}</h2>
-          <ul class="space-y-1.5 md:space-y-2 text-xs md:text-sm text-gray-700">
+        <div class={`${quadrant.style} rounded-[1.25rem] p-5`}>
+          <h4 class="mb-4 text-sm font-semibold uppercase tracking-[0.34em] text-cyan-300">{quadrant.title}</h4>
+          <ul class="space-y-2 text-sm leading-6 text-slate-300">
             {quadrant.items.map((item) => (
-              <li class="flex items-start">
-                <span class="mr-2">●</span>
+              <li class="flex items-start gap-2">
+                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400"></span>
                 <span>{item}</span>
               </li>
             ))}
@@ -102,69 +74,39 @@ const gains = [
     }
   </div>
 
-  {/* User Quote - Center */}
-  <div class="flex justify-center mb-6">
-    <div class="relative">
-      <div class="bg-yellow-200 border-2 border-yellow-400 rounded-lg p-3 md:p-4 max-w-lg md:max-w-sm mx-auto">
-        <p class="text-xs md:text-sm text-gray-700 text-center font-medium">
-          User Quote:
-          <br />
-          "I get it. I don't know how to undo this if it goes wrong."
-        </p>
-      </div>
-      <div class="flex justify-center mt-2">
-        <svg class="w-6 h-6 md:w-8 md:h-8 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-          <path
-            fill-rule="evenodd"
-            d="M10 3a1 1 0 011 1v10.586l2.293-2.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V4a1 1 0 011-1z"
-            clip-rule="evenodd"></path>
-        </svg>
-      </div>
-    </div>
-  </div>
-
-  {/* Bottom Section - Pain Points and Gains */}
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
-    <div class="bg-pink-100 border-2 border-pink-300 rounded-lg p-4 md:p-6">
-      <h2 class="text-lg md:text-xl font-semibold text-gray-700 mb-3 md:mb-4">PAIN POINTS</h2>
-      <ul class="space-y-1.5 md:space-y-2 text-xs md:text-sm text-gray-700">
-        {
-          painPoints.map((item) => (
-            <li class="flex items-start">
-              <span class="mr-2">●</span>
-              <span>{item}</span>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-
-    <div class="bg-green-200 border-2 border-green-400 rounded-lg p-4 md:p-6">
-      <h2 class="text-lg md:text-xl font-semibold text-gray-700 mb-3 md:mb-4">GAINS</h2>
-      <ul class="space-y-1.5 md:space-y-2 text-xs md:text-sm text-gray-700">
-        {
-          gains.map((item) => (
-            <li class="flex items-start">
-              <span class="mr-2">●</span>
-              <span>{item}</span>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </div>
-
-  {/* Stakes */}
-  <div class="bg-white border-2 border-pink-400 rounded-lg p-3 md:p-4 mb-4">
-    <p class="text-xs md:text-sm text-gray-700 text-center">
-      <span class="font-semibold">Stakes:</span> Revenue-critical systems: CRM, Finance sync, Customer
-      data accuracy, Process automation
+  <div class="my-6 rounded-[1.25rem] border border-amber-400/20 bg-amber-500/10 p-5 text-center">
+    <p class="text-sm font-medium text-slate-200">
+      "I get it. I just don't know how to undo this if it goes wrong."
     </p>
   </div>
 
-  {/* Confidence Scale */}
-  <div class="flex items-center justify-between text-xs md:text-sm px-4">
-    <span class="text-red-500 font-medium">← Anxious</span>
-    <span class="text-green-600 font-medium">Confident →</span>
+  <div class="grid gap-4 md:grid-cols-2">
+    <div class="rounded-[1.25rem] border border-rose-400/20 bg-rose-500/10 p-5">
+      <h4 class="mb-3 text-sm font-semibold uppercase tracking-[0.34em] text-rose-300">Pain points</h4>
+      <ul class="space-y-2 text-sm leading-6 text-slate-300">
+        {painPoints.map((item) => (
+          <li class="flex items-start gap-2">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-rose-300"></span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="rounded-[1.25rem] border border-emerald-400/20 bg-emerald-500/10 p-5">
+      <h4 class="mb-3 text-sm font-semibold uppercase tracking-[0.34em] text-emerald-300">Gains</h4>
+      <ul class="space-y-2 text-sm leading-6 text-slate-300">
+        {gains.map((item) => (
+          <li class="flex items-start gap-2">
+            <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-300"></span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <div class="mt-5 rounded-[1.1rem] border border-white/10 bg-white/[0.03] p-4 text-center text-sm text-slate-400">
+    Stakes: revenue-critical systems, customer data accuracy, and process automation.
   </div>
 </div>
