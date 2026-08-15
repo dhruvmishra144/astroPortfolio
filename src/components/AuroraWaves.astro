@@ -1,0 +1,89 @@
+---
+/**
+ * AuroraWaves.astro — flowing cyan/teal "aurora" lines behind page content.
+ *
+ * The signature aesthetic element: soft, undulating gradient strokes clustered
+ * around the vertical centre, drifting and breathing slowly. Fixed + masked so
+ * it sits behind everything on every page. Honors prefers-reduced-motion.
+ */
+---
+
+<div class="aurora" aria-hidden="true">
+  <svg viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" width="100%" height="100%">
+    <defs>
+      <linearGradient id="aw-cyan" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#4dd7ff" stop-opacity="0"></stop>
+        <stop offset="0.5" stop-color="#4dd7ff" stop-opacity="0.85"></stop>
+        <stop offset="1" stop-color="#22d3ee" stop-opacity="0"></stop>
+      </linearGradient>
+      <linearGradient id="aw-teal" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#2dd4bf" stop-opacity="0"></stop>
+        <stop offset="0.5" stop-color="#34d399" stop-opacity="0.6"></stop>
+        <stop offset="1" stop-color="#2dd4bf" stop-opacity="0"></stop>
+      </linearGradient>
+    </defs>
+
+    <g class="aurora__layer aurora__layer--a" fill="none" stroke="url(#aw-cyan)" stroke-width="1.4">
+      <path d="M-40,360 C240,270 460,470 720,360 C980,250 1180,430 1480,340"></path>
+      <path d="M-40,410 C260,320 520,520 780,410 C1040,300 1220,470 1480,390"></path>
+      <path d="M-40,320 C220,250 480,400 760,320 C1040,240 1240,380 1480,300"></path>
+    </g>
+    <g class="aurora__layer aurora__layer--b" fill="none" stroke="url(#aw-teal)" stroke-width="1.1">
+      <path d="M-40,470 C300,380 540,560 820,460 C1080,370 1260,520 1480,440"></path>
+      <path d="M-40,270 C260,200 520,330 780,260 C1060,190 1260,300 1480,240"></path>
+      <path d="M-40,520 C280,450 560,610 840,510 C1100,420 1280,560 1480,490"></path>
+    </g>
+  </svg>
+</div>
+
+<style>
+  .aurora {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    color: #4dd7ff;
+    contain: strict;
+    -webkit-mask-image: radial-gradient(120% 80% at 50% 50%, #000 30%, transparent 78%);
+    mask-image: radial-gradient(120% 80% at 50% 50%, #000 30%, transparent 78%);
+  }
+
+  .aurora__layer {
+    will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .aurora__layer--a {
+      animation: aurora-drift-a 30s ease-in-out infinite alternate;
+    }
+    .aurora__layer--b {
+      animation: aurora-drift-b 38s ease-in-out infinite alternate;
+    }
+  }
+
+  /* transform-only (compositor) animation — no per-frame repaint */
+  @keyframes aurora-drift-a {
+    0% {
+      transform: translate3d(-2%, 1.5%, 0);
+    }
+    100% {
+      transform: translate3d(2.5%, -2%, 0);
+    }
+  }
+
+  @keyframes aurora-drift-b {
+    0% {
+      transform: translate3d(2%, -1%, 0);
+    }
+    100% {
+      transform: translate3d(-2.5%, 2%, 0);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .aurora {
+      opacity: 0.4;
+    }
+  }
+</style>

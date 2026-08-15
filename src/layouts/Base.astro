@@ -1,8 +1,10 @@
 ---
 import '../styles/global.css';
-import Header from '../components/Header.astro';
+import SiteNav from '../components/SiteNav.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import AuroraWaves from '../components/AuroraWaves.astro';
+import CommandPalette from '../components/CommandPalette.svelte';
 import CustomCursor from '../components/CustomCursor.svelte';
 import Icon from '../components/Icon.astro';
 
@@ -41,6 +43,7 @@ const showFooter = normalizedPathname !== '/contact';
     <CustomCursor client:idle />
     <div class="portfolio-background relative min-h-screen w-full isolate overflow-hidden bg-slate-950">
       <div aria-hidden="true" class="portfolio-background__motion fixed inset-0 z-0 pointer-events-none"></div>
+      <AuroraWaves />
       <div class="relative z-10">
         <div
           id="banner-1"
@@ -51,12 +54,13 @@ const showFooter = normalizedPathname !== '/contact';
             <Icon name="spinner" class="text-cyan-300 text-8xl animate-spin -z-10 scale-95 blur-[10px] absolute top-0" />
           </div>
         </div>
-        <Header />
+        <SiteNav />
         <slot />
         {showFooter && <Footer />}
         <Nav />
       </div>
     </div>
+    <CommandPalette client:idle />
     <script>
       import { initPageTransitions } from '../scripts/transitions';
 

@@ -249,7 +249,7 @@ const flowFeaturePhases = [
 
 const journeyStates = [
   { label: 'Curious', copy: '"This looks easy."', tone: 'bg-sky-500/10 text-sky-300 border-sky-400/20' },
-  { label: 'Focused', copy: '"Where does this land?"', tone: 'bg-blue-500/10 text-blue-300 border-blue-400/20' },
+  { label: 'Focused', copy: '"Where does this land?"', tone: 'bg-cyan-500/10 text-blue-300 border-blue-400/20' },
   { label: 'Cautious', copy: 'Before / after diff and no irreversible action yet', tone: 'bg-amber-500/10 text-amber-300 border-amber-400/20' },
   { label: 'Anxious - low', copy: '"What if it breaks?"', tone: 'bg-rose-500/10 text-rose-300 border-rose-400/20' },
   { label: 'Alarmed', copy: 'Operator-readable error plus impact report', tone: 'bg-orange-500/10 text-orange-300 border-orange-400/20' },
@@ -433,7 +433,7 @@ const shipList = [
       <div class="container mx-auto page-shell page-section py-8 relative grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
         <div class="space-y-7">
           <div class="flex items-center gap-3">
-            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-sm font-semibold text-white shadow-lg shadow-blue-500/25">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-600 text-sm font-semibold text-white shadow-lg shadow-cyan-500/25">
               G
             </div>
             <div>
@@ -543,7 +543,7 @@ const shipList = [
             SMBs do not fail integrations because they are too complex. They fail because they fear
             irreversible data mistakes and have no safe way back.
           </h2>
-          <div class="rounded-[1.5rem] border border-blue-100 bg-blue-50 p-6 text-sm leading-7 text-slate-700">
+          <div class="rounded-[1.5rem] border border-blue-100 bg-cyan-50 p-6 text-sm leading-7 text-slate-700">
             <p>
               That reframes the product problem from setup speed to execution safety. The design work
               therefore focuses on previewability, blast-radius clarity, recoverability, and
@@ -754,7 +754,7 @@ const shipList = [
         <DataAnalysisChart client:visible />
         <CompetitiveFeatureMatrix />
 
-        <div class="rounded-[1.25rem] border border-blue-100 bg-blue-50 p-5 text-sm leading-7 text-slate-700">
+        <div class="rounded-[1.25rem] border border-blue-100 bg-cyan-50 p-5 text-sm leading-7 text-slate-700">
           The honest takeaway: competitors are at parity or ahead on setup speed and connector breadth.
           GoFlow wins on dimensions 3 to 8. The defensible advantage is operational safety.
         </div>
@@ -827,7 +827,7 @@ const shipList = [
             <article class="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm">
               <div class="flex items-start justify-between gap-4">
                 <div class="flex items-center gap-4">
-                  <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-600 text-sm font-semibold text-white">
+                  <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-cyan-600 text-sm font-semibold text-white">
                     {step.number}
                   </div>
                   <div>
@@ -951,7 +951,7 @@ const shipList = [
         {pivots.map((pivot, index) => (
           <article class="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm">
             <div class="flex flex-wrap items-center gap-3">
-              <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-600 text-sm font-semibold text-white">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-cyan-600 text-sm font-semibold text-white">
                 {index + 1}
               </span>
               <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-500">{pivot.badge}</p>
@@ -1108,7 +1108,7 @@ const shipList = [
   .goflow-theme .bg-slate-100,
   .goflow-theme .bg-rose-50,
   .goflow-theme .bg-emerald-50,
-  .goflow-theme .bg-blue-50,
+  .goflow-theme .bg-cyan-50,
   .goflow-theme .bg-amber-50,
   .goflow-theme .bg-violet-50,
   .goflow-theme .bg-sky-50 {

@@ -1,303 +1,57 @@
 ---
 import Base from '../layouts/Base.astro';
-import Icon from '../components/Icon.astro';
+import ProjectGrid from '../components/landing/ProjectGrid.astro';
+import TestimonialMarquee from '../components/landing/TestimonialMarquee.tsx';
 
-const capabilityCards = [
-  {
-    tag: 'Strategy',
-    title: 'Product framing that removes ambiguity.',
-    description:
-      'I structure flows, hierarchy, and content so teams can make clearer decisions before they get expensive to change.',
-  },
-  {
-    tag: 'Systems',
-    title: 'Interfaces built as reusable patterns.',
-    description:
-      'Design tokens, responsive components, and interaction rules stay consistent as the product grows.',
-  },
-  {
-    tag: 'Delivery',
-    title: 'Handoff that front-end teams can trust.',
-    description:
-      'I keep implementation details visible early so the final UI stays close to the design intent without rework.',
-  },
-];
-
-const featuredMetrics = [
-  {
-    value: '40%',
-    label: 'faster onboarding through confidence-first UX',
-  },
-  {
-    value: '50%',
-    label: 'reduction in configuration errors via AI-assisted mapping',
-  },
-];
-
-const miniProjects = [
-  {
-    title: 'Aonflow',
-    href: '/projects/aonflow',
-    eyebrow: 'Frontend engineering spotlight',
-    mockup: '/aonflow-marketing-mockup.svg',
-    description:
-      'A high-performance Next.js and Firebase web presence engineered to explain enterprise iPaaS orchestration and route developers into a secure low-code demo workspace.',
-    tags: ['Lead Frontend', 'Next.js App Router', 'Firebase Auth'],
-    signals: ['RSC-first pages', 'Responsive data grids', 'Core Web Vitals focus'],
-    summaries: [
-      'Built a server-first App Router structure for fast product storytelling.',
-      'Used Tailwind tokens to keep dense enterprise sections consistent.',
-      'Isolated Firebase Auth state from static marketing surfaces.',
-      'Optimized the route for SEO, layout stability, and reusable growth.',
-    ],
-  },
-];
+const roles = ['Product Designer', 'UX Strategist', 'Front-End'];
 ---
 
 <Base>
   <main id="content" class="page-shell overflow-x-hidden pb-24">
-    <section class="page-section grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-      <div class="space-y-7">
-        <span class="section-label" data-hero-reveal> Senior UX/UI Designer </span>
+    <!-- Hero -->
+    <section class="relative flex min-h-[calc(100vh-6rem)] flex-col items-center justify-center py-16 text-center">
+      <p data-hero class="section-label mb-8 justify-center">
+        Faridabad · Delhi NCR · Available 2026
+      </p>
 
-        <div class="space-y-5">
-          <h1
-            data-hero-reveal
-            class="hero-title max-w-4xl text-balance text-5xl font-light leading-[0.92] text-white sm:text-6xl lg:text-7xl"
-          >
-            Design systems that survive handoff and still ship cleanly.
-          </h1>
-          <p data-hero-reveal class="max-w-2xl text-base text-slate-300 sm:text-lg lg:text-xl">
-            I bridge business logic and technical execution to shape products that are easier to
-            understand, build, and scale.
-          </p>
-        </div>
+      <h1 data-hero class="hero-title text-balance text-5xl font-light leading-[0.95] text-white sm:text-7xl lg:text-8xl">
+        Hi, I'm <span class="text-cyan-300">Dhruv.</span>
+      </h1>
 
-        <div data-hero-reveal class="flex flex-col gap-3 sm:flex-row">
-          <a href="/projects/GoFlow" data-transition class="button-primary px-5 py-3 text-sm">
-            View case study
-            <Icon name="arrow-right-thin" class="text-lg" />
-          </a>
-          <a href="/contact" data-transition class="button-secondary px-5 py-3 text-sm">
-            Start a project
-          </a>
-        </div>
-
-        <div data-hero-reveal class="grid gap-3 sm:grid-cols-3">
-          <div class="metric-card">
-            <p class="text-xs uppercase tracking-[0.28em] text-cyan-300">Focus</p>
-            <p class="mt-2 text-sm text-slate-200">Product strategy and UI systems.</p>
-          </div>
-          <div class="metric-card">
-            <p class="text-xs uppercase tracking-[0.28em] text-cyan-300">Process</p>
-            <p class="mt-2 text-sm text-slate-200">Research, flows, prototypes, and handoff.</p>
-          </div>
-          <div class="metric-card">
-            <p class="text-xs uppercase tracking-[0.28em] text-cyan-300">Outcome</p>
-            <p class="mt-2 text-sm text-slate-200">Cleaner decisions with less rework.</p>
-          </div>
-        </div>
-      </div>
-
-      <div data-hero-reveal class="relative mx-auto w-full max-w-[34rem]">
-        <div class="absolute -left-6 top-16 h-28 w-28 rounded-full bg-cyan-400/20 blur-3xl"></div>
-        <div class="absolute -right-4 bottom-10 h-36 w-36 rounded-full bg-blue-400/15 blur-3xl"></div>
-
-        <div class="relative overflow-hidden rounded-[2rem] p-4 sm:p-5">
-          <div class="flex items-center justify-between gap-4 pb-4">
-            <div>
-              <p class="section-label">Open for 2026 projects</p>
-              <p class="mt-2 text-sm text-slate-300">
-                Focused on UX audits, product design, and front-end aligned execution.
-              </p>
-            </div>
-            <span class="chip whitespace-nowrap">Remote friendly</span>
-          </div>
-
-          <div class="avatar-container aspect-square w-full">
-            <img
-              src="/avatar.jpeg"
-              alt="Portrait of Dhruv Mishra"
-              class="absolute inset-0 h-full w-full object-cover"
-              fetchpriority="high"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="capabilities" data-capabilities class="page-section">
-      <div class="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div class="space-y-3">
-          <p class="section-label">What I bring</p>
-          <h2 class="section-title text-3xl text-white sm:text-4xl">
-            A product-minded design process.
-          </h2>
-        </div>
-        <p class="max-w-2xl text-sm text-slate-300 sm:text-base">
-          The work stays practical: I map the problem, define the system, and hand off interfaces
-          that are easier to build and maintain.
-        </p>
-      </div>
-
-      <div class="grid gap-4 lg:grid-cols-3">
+      <p data-hero class="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs font-semibold uppercase tracking-[0.32em] text-cyan-300/90 sm:text-sm">
         {
-          capabilityCards.map((card) => (
-            <article data-capability-card class="surface rounded-[1.75rem] p-6 sm:p-7">
-              <p class="section-label">{card.tag}</p>
-              <h3 class="mt-4 text-2xl font-light text-white text-balance">{card.title}</h3>
-              <p class="mt-4 text-sm leading-7 text-slate-300">{card.description}</p>
-            </article>
+          roles.map((role, i) => (
+            <>
+              <span>{role}</span>
+              {i < roles.length - 1 && <span class="text-slate-600">·</span>}
+            </>
           ))
         }
-      </div>
-    </section>
+      </p>
 
-    <section data-featured-project class="page-section">
-      <div class="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div class="space-y-3">
-          <p class="section-label">Featured case study</p>
-          <h2 class="section-title text-3xl text-white sm:text-4xl">GoFlow</h2>
-        </div>
-        <p class="max-w-2xl text-sm text-slate-300 sm:text-base">
-          An AI-powered iPaaS concept that helps non-technical business owners automate data flows
-          without fear of breaking live systems.
-        </p>
-      </div>
+      <p data-hero class="mx-auto mt-8 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg lg:text-xl">
+        I redefine and build experiences for complex data &amp; AI platforms — turning powerful,
+        intimidating enterprise software into tools people actually want to use. Grounded in over a
+        decade of product architecture and design thinking.
+      </p>
 
-      <a
-        href="/projects/GoFlow"
-        data-transition
-        aria-label="Open the GoFlow case study"
-        class="surface group grid overflow-hidden rounded-[2rem] lg:grid-cols-[1.05fr_0.95fr]"
-      >
-        <div class="relative min-h-[22rem] lg:min-h-[34rem]">
-          <img
-            src="/GoFlow-card-image.jpg"
-            alt="GoFlow interface preview"
-            class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-95 rounded-3xl"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/25 to-transparent"></div>
-        </div>
-
-        <div class="flex flex-col justify-between gap-8 p-6 sm:p-8 lg:p-10">
-          <div class="space-y-5">
-            <div class="flex flex-wrap gap-2">
-              <span class="chip">2025</span>
-              <span class="chip">Web App</span>
-              <span class="chip">AI-assisted mapping</span>
-            </div>
-            <h3 class="hero-title text-balance text-3xl text-white sm:text-4xl">
-              Reducing complexity in data-flow automation.
-            </h3>
-            <p class="max-w-xl text-sm text-slate-300 sm:text-base">
-              Designed to keep non-technical users confident while configuring integrations across
-              live systems. The interface emphasizes preview, validation, and recovery.
-            </p>
-          </div>
-
-          <div class="grid gap-3 sm:grid-cols-2">
-            {
-              featuredMetrics.map((metric) => (
-                <article data-project-stat class="metric-card">
-                  <p class="text-3xl font-light text-white">{metric.value}</p>
-                  <p class="mt-2 text-xs uppercase tracking-[0.24em] text-slate-400">{metric.label}</p>
-                </article>
-              ))
-            }
-          </div>
-
-          <div class="inline-flex items-center gap-3 text-sm font-semibold text-cyan-300">
-            View full case study
-            <Icon
-              name="arrow-right-thin"
-              class="text-lg transition-transform duration-300 group-hover:translate-x-1"
-            />
-          </div>
-        </div>
+      <a data-hero href="#work" class="group mt-12 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300">
+        <span class="inline-block transition-transform duration-300 group-hover:translate-y-1">↓</span>
+        See the work
       </a>
     </section>
 
+    <ProjectGrid />
+
+    <!-- Testimonials -->
     <section class="page-section pt-0">
-      <div class="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div class="space-y-3">
-          <p class="section-label">Mini projects</p>
-          <h2 class="section-title text-3xl text-white sm:text-4xl">
-            Aonflow engineering spotlight.
-          </h2>
-        </div>
-        <p class="max-w-2xl text-sm text-slate-300 sm:text-base">
-          A compact technical case study with mockup visuals for the marketing site, responsive grid
-          system, and Firebase onboarding path.
-        </p>
+      <div class="mb-10 space-y-3">
+        <p class="section-label">Signal</p>
+        <h2 class="section-title text-3xl text-white sm:text-4xl">What the people who staffed the work say.</h2>
       </div>
-
-      <div class="grid gap-4">
-        {
-          miniProjects.map((miniProject) => (
-            <a
-              href={miniProject.href}
-              data-transition
-              aria-label={`Open the ${miniProject.title} mini case study`}
-              class="surface group grid overflow-hidden rounded-[2rem] lg:grid-cols-[0.9fr_1.1fr]"
-            >
-              <div class="relative overflow-hidden border-b border-white/10 bg-slate-950/40 p-4 lg:border-b-0 lg:border-r">
-                <div class="absolute inset-0 bg-[linear-gradient(rgba(77,215,255,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(77,215,255,0.08)_1px,transparent_1px)] bg-[size:42px_42px] opacity-30" />
-                <img
-                  src={miniProject.mockup}
-                  alt={`${miniProject.title} marketing website mockup`}
-                  width="1600"
-                  height="1000"
-                  class="relative aspect-[16/10] h-full min-h-[18rem] w-full rounded-[1.5rem] object-cover object-left-top shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]"
-                />
-              </div>
-
-              <div class="flex flex-col justify-between gap-8 p-6 sm:p-8 lg:p-10">
-                <div class="space-y-5">
-                  <div class="flex flex-wrap gap-2">
-                    {miniProject.tags.map((tag) => (
-                      <span class="chip">{tag}</span>
-                    ))}
-                  </div>
-                  <div class="space-y-3">
-                    <p class="section-label">{miniProject.eyebrow}</p>
-                    <h3 class="hero-title text-balance text-3xl text-white sm:text-4xl">
-                      {miniProject.title}
-                    </h3>
-                    <p class="max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
-                      {miniProject.description}
-                    </p>
-                  </div>
-                </div>
-
-                <div class="grid gap-3 sm:grid-cols-2">
-                  {miniProject.summaries.map((summary) => (
-                    <article class="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                      <p class="text-sm leading-6 text-slate-200">{summary}</p>
-                    </article>
-                  ))}
-                </div>
-
-                <div class="grid gap-3 sm:grid-cols-3">
-                  {miniProject.signals.map((signal) => (
-                    <article class="metric-card">
-                      <p class="text-xs uppercase tracking-[0.24em] text-cyan-300">System signal</p>
-                      <p class="mt-2 text-sm text-slate-200">{signal}</p>
-                    </article>
-                  ))}
-                </div>
-
-                <div class="inline-flex items-center gap-3 text-sm font-semibold text-cyan-300">
-                  Read mini case study
-                  <Icon
-                    name="arrow-right-thin"
-                    class="text-lg transition-transform duration-300 group-hover:translate-x-1"
-                  />
-                </div>
-              </div>
-            </a>
-          ))
-        }
+      <div class="flex flex-col gap-4">
+        <TestimonialMarquee client:visible speed={34} direction="left" />
+        <TestimonialMarquee client:visible speed={26} direction="right" />
       </div>
     </section>
   </main>
@@ -305,39 +59,16 @@ const miniProjects = [
 
 <script>
   import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-  gsap.registerPlugin(ScrollTrigger);
-
-  gsap.from('[data-hero-reveal]', {
-    opacity: 0,
-    y: 24,
-    duration: 0.85,
-    stagger: 0.08,
-    ease: 'power3.out',
-  });
-
-  gsap.from('[data-capability-card]', {
-    opacity: 0,
-    y: 24,
-    duration: 0.8,
-    stagger: 0.12,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '[data-capabilities]',
-      start: 'top 82%',
-    },
-  });
-
-  gsap.from('[data-project-stat]', {
-    opacity: 0,
-    y: 18,
-    duration: 0.75,
-    stagger: 0.1,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '[data-featured-project]',
-      start: 'top 82%',
-    },
-  });
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce) {
+    gsap.from('[data-hero]', {
+      opacity: 0,
+      y: 22,
+      duration: 0.9,
+      stagger: 0.1,
+      ease: 'power3.out',
+      delay: 0.15,
+    });
+  }
 </script>

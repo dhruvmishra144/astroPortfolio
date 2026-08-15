@@ -1,140 +1,150 @@
 ---
 import Base from '../layouts/Base.astro';
-import Icon from '../components/Icon.astro';
-import Testimonials from '../components/Testimonials.svelte';
+
+const identities = ['Father', 'Foodie', 'Maker', 'Trap-head', 'Seeker'];
+
+const offTheClock = [
+  {
+    title: 'Chasing the strange menu',
+    body: "I'll order the weirdest thing on the menu on purpose. Food is the one experiment where even failure still tastes like something.",
+  },
+  {
+    title: 'Trap on repeat',
+    body: 'Heavy low end, lots of space to think — trap is the tempo most of my best work quietly happens at.',
+  },
+  {
+    title: 'Training (on pause)',
+    body: "I lift when life lets me. It's paused right now, but the discipline it teaches never really switches off.",
+  },
+  {
+    title: 'A little spiritual',
+    body: 'Quiet and non-dogmatic. I like sitting with the big questions more than pretending to have answered them.',
+  },
+];
+
+const onMyList = [
+  {
+    title: 'A small fleet of agents that work for me',
+    note: 'Personal AI agents running the busywork of my life and work — so I get to stay on the interesting parts.',
+  },
+  {
+    title: 'A hydroponic farm at home',
+    note: 'Clean, organic food grown without soil. Part experiment, part calmer future, part quietly good business.',
+  },
+  {
+    title: 'Getting back under the barbell',
+    note: 'The training is paused, not cancelled. Rebuilding the routine around a 3.5-year-old is the real project.',
+  },
+];
 ---
 
 <Base title="About">
-  <main id="content" class="page-shell pb-24">
-    {/* Header Section Container */}
-    <div class="page-section grid min-h-[calc(50vh-110px)] items-center justify-center gap-12 md:grid-cols-2 md:min-h-[calc(100vh-98px)]">
-      {/* Image Section - first visually on mobile, second on desktop */}
-      <div data-about-image class="relative flex justify-center items-center h-full min-h-[200px] lg:min-h-[400px] order-1 md:order-2">
-        {/* Background Glow Effect */}
-        <div class="absolute w-[250px] h-[250px] lg:w-[500px] lg:h-[500px] rounded-full bg-blue-600/20 blur-[60px] lg:blur-[80px] -z-10 animate-pulse"></div>
+  <main id="content" class="page-shell pb-24 pt-6">
+    <!-- Hero: Outside the terminal -->
+    <section class="page-section flex flex-col items-center pt-8 text-center">
+      <figure data-life class="relative mx-auto w-full max-w-[18rem]">
+        <div class="absolute -inset-4 rounded-[2rem] bg-cyan-400/10 blur-2xl"></div>
+        <img
+          src="/avatar.jpeg"
+          alt="Portrait of Dhruv Mishra"
+          class="relative w-full rounded-[1.5rem] border border-white/10 object-cover grayscale"
+          fetchpriority="high"
+        />
+      </figure>
 
-        {/* Avatar Container */}
-        <div class="avatar-container relative w-[240px] h-[240px] lg:w-[420px] lg:h-[420px] rounded-full border-4 border-white/10 p-2 shadow-2xl backdrop-blur-sm bg-white/5">
-          <div class="relative w-full h-full rounded-full overflow-hidden">
-            <img
-              src="/avatar.jpeg"
-              alt="Dhruv Mishra Profile"
-              class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-110"
-              fetchpriority="high"
-            />
-          </div>
-        </div>
-
-        {/* Decorative Ring */}
-        <div class="absolute w-[260px] h-[260px] lg:w-[460px] lg:h-[460px] rounded-full border border-blue-500/30 -z-5"></div>
-      </div>
-
-      {/* Text Content - bottom on mobile, first on desktop */}
-      <div data-about-intro class="surface-strong order-2 z-20 rounded-[2rem] p-6 text-center md:order-1 md:text-left sm:p-8">
-        <h1 class="main-heading hero-title text-balance text-4xl font-bold tracking-tight text-white lg:text-7xl">
-          Hi, I am <span class="text-white">Dhruv Mishra</span>
-        </h1>
-        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-200 lg:mt-8 lg:text-3xl font-light">
-          Architecting <span class="text-cyan-400 font-medium">High-Impact Solutions</span> to bridge
-          the gap between complex user needs and technical scalability.
+      <div data-life class="mt-10 max-w-4xl">
+        <h1 class="hero-title text-balance text-4xl text-white sm:text-6xl">Outside the terminal.</h1>
+        <p class="mt-5 flex flex-wrap justify-center gap-x-3 gap-y-1 text-[0.72rem] uppercase tracking-[0.24em] text-cyan-300/80">
+          {
+            identities.map((id, i) => (
+              <>
+                <span>{id}</span>
+                {i < identities.length - 1 && <span class="text-slate-600">·</span>}
+              </>
+            ))
+          }
         </p>
-      </div>
-    </div>
-
-    {/* Intro Section - Impact Text */}
-    <section class="animate-on-scroll">
-      <div class="surface rounded-[2rem] px-6 py-10 text-center sm:px-8 lg:px-12 mb-20">
-        <p class="mx-auto max-w-[800px] text-center text-2xl leading-relaxed text-slate-200 lg:text-4xl">
-          With over 10 years of specializing in <span class="highlight-text">Product Design &amp; Technical Architecture</span>,
-          I help companies reduce technical debt through design systems and user-centric logic.
-        </p>
-      </div>
-    </section>
-
-    {/* Experience Section */}
-    <section class="animate-on-scroll">
-      <div class="mx-auto grid grid-cols-1 lg:grid-cols-2 px-8 mb-16 border-t border-white/10 pt-16">
-        <div>
-          <h2 class="text-3xl mb-4 text-gray-400 font-light tracking-widest uppercase">Expertise &amp; Logic</h2>
-        </div>
-        <div>
-          <ul class="text-gray-200 mb-4 text-lg flex flex-col gap-4">
-            <li><strong class="text-white">Professional Focus:</strong> Senior Product Design &amp; Design Engineering</li>
-            <li><strong class="text-white">Location:</strong> Gurugram, India (Available for Global High-Impact Projects)</li>
-            <li><strong class="text-white">Business Value:</strong> Reducing operational friction through system-thinking and scalable UI.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    {/* Journey Section (Narrative) */}
-    <section class="animate-on-scroll">
-      <div class="mx-auto grid grid-cols-1 lg:grid-cols-2 px-8 mb-16">
-        <div>
-          <h2 class="text-3xl mb-4 text-gray-400 font-light tracking-widest uppercase">The Strategy</h2>
-        </div>
-        <div class="flex flex-col gap-6 text-lg text-slate-300 leading-relaxed">
+        <div class="mt-8 space-y-4 text-base leading-8 text-slate-300 sm:text-lg">
           <p>
-            My transition from <span class="text-white">Developer to Product Designer</span> was driven
-            by the realization that code is only as powerful as the problem it solves. I focus on the
-            "Why" before the "How".
+            Away from the systems and the screens I'm in Faridabad, on the edge of Delhi NCR —
+            building, tasting, and chasing whatever's next. I don't sit still well: if I'm not
+            shipping something at work, I'm cooking up an idea at home.
           </p>
           <p>
-            I have spent the last 3 years refining the art of technical feasibility—ensuring that every
-            pixel designed is a pixel that can be efficiently built, deployed, and scaled.
+            The same curiosity that pulls me into a codebase pulls me toward a dish I've never
+            tried, a beat I've never heard, and a question I can't quite answer yet. That's the part
+            of me that existed long before any of this was a job.
           </p>
         </div>
       </div>
     </section>
 
-    {/* LinkedIn CTA */}
-    <section class="animate-on-scroll px-8">
-      <a
-        href="https://www.linkedin.com/in/dhruvmishra144/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="flex flex-col gap-4 lg:flex-row group p-10 bg-white/5 border border-white/10 backdrop-blur-md justify-between rounded-2xl mb-16 items-center hover:bg-white/10 transition-all duration-300"
-      >
-        <h2 class="text-2xl text-gray-300 font-light italic">
-          Deep-dive into my professional ROI and impact history
-        </h2>
-        <div class="flex flex-row gap-4 items-center">
-          <Icon name="linkedin-fill" class="text-3xl lg:text-5xl text-cyan-500" />
-          <p class="text-2xl lg:text-3xl font-bold">Connect on Linkedin</p>
-          <Icon
-            name="arrow-right-thin"
-            class="text-3xl lg:text-5xl group-hover:-rotate-45 group-hover:transition-transform duration-300"
-          />
-        </div>
-      </a>
-    </section>
-
-    {/* Capabilities Section */}
-    <section class="animate-on-scroll">
-      <div class="mx-auto grid grid-cols-1 lg:grid-cols-2 px-8 mb-16">
-        <div>
-          <h2 class="text-3xl mb-4 text-gray-400 font-light tracking-widest uppercase">Capabilities</h2>
-        </div>
-        <div>
-          <p class="text-xl text-white mb-8">Bridging the gap with a full-stack design toolkit:</p>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-slate-400">
-            <div>
-              <h3 class="text-white font-bold mb-2 underline underline-offset-8 decoration-cyan-500">Design Strategy</h3>
-              <p>System Design, User Research, Prototyping, and ICE Framework prioritization.</p>
-            </div>
-            <div>
-              <h3 class="text-white font-bold mb-2 underline underline-offset-8 decoration-cyan-500">Technical Stack</h3>
-              <p>React, Next.js, TypeScript, and Tailwind CSS for production-ready design engineering.</p>
-            </div>
-          </div>
+    <!-- The family block -->
+    <section data-life class="page-section flex flex-col items-center pt-0 text-center">
+      <figure class="surface mx-auto grid aspect-[3/4] w-full max-w-[18rem] place-items-center rounded-[1.5rem]">
+        <span class="text-[0.68rem] uppercase tracking-[0.24em] text-slate-500">Family photo · replace</span>
+        <!-- Swap for: <img src="/life/family.jpg" alt="Dhruv with his family" class="aspect-[3/4] w-full rounded-[1.5rem] object-cover grayscale" /> -->
+      </figure>
+      <div class="mt-10 max-w-4xl">
+        <h2 class="hero-title text-3xl text-white sm:text-4xl">The people I come home to</h2>
+        <div class="mt-6 space-y-5 text-base leading-9 text-slate-300 sm:text-lg sm:leading-10">
+          <p>
+            My wife and my daughter — the two people every late night and long build eventually
+            leads back to. Home is Faridabad, on the edge of Delhi NCR, and it's louder, warmer, and
+            far more interesting than anything I've ever shipped.
+          </p>
+          <p>
+            My wife is the steady, generous force behind everything I get to chase. She holds the
+            ground so I can go wandering after the next idea, and she's the first honest read on
+            whether any of it is actually worth doing. More of my good decisions than I'd like to
+            admit started as something she said out loud before I was ready to.
+          </p>
+          <p>
+            Our daughter is three and a half, and she's quietly rewired how I see almost everything.
+            She asks “why” until the question finally gets good, tastes the whole world with her
+            whole face, and reminds me — daily — that curiosity is the point, not the polish.
+            Watching her figure things out is the closest thing I know to seeing creativity in its
+            rawest form.
+          </p>
+          <p>
+            Everything else is just the work. This is the reason for it — and the calmer,
+            better-run life I'm quietly building toward.
+          </p>
         </div>
       </div>
     </section>
 
-    {/* Testimonials Section */}
-    <section class="animate-on-scroll flex flex-col items-center justify-center px-8 mb-32">
-      <h2 class="text-3xl mb-8 text-gray-400 font-light tracking-widest uppercase text-center">Industry Impact</h2>
-      <Testimonials client:visible />
+    <!-- Off the clock -->
+    <section data-life class="page-section">
+      <p class="section-label mb-8">Off the clock</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {
+          offTheClock.map((item) => (
+            <article class="surface rounded-[1.5rem] p-6 sm:p-7">
+              <h3 class="hero-title text-xl text-white">{item.title}</h3>
+              <p class="mt-3 text-sm leading-7 text-slate-400 sm:text-base">{item.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- On my list -->
+    <section data-life class="page-section pt-0">
+      <h2 class="hero-title text-3xl text-white sm:text-4xl">On my list</h2>
+      <ul class="mt-10 space-y-8">
+        {
+          onMyList.map((item, i) => (
+            <li class="grid gap-2 border-t border-white/10 pt-6 sm:grid-cols-[3rem_1fr] sm:gap-6">
+              <span class="text-sm font-semibold text-cyan-300">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <p class="text-lg font-semibold text-white sm:text-xl">{item.title}</p>
+                <p class="mt-2 text-sm leading-7 text-slate-400 sm:text-base">{item.note}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
     </section>
   </main>
 </Base>
@@ -145,40 +155,16 @@ import Testimonials from '../components/Testimonials.svelte';
 
   gsap.registerPlugin(ScrollTrigger);
 
-  gsap.from('[data-about-intro]', {
-    opacity: 0,
-    y: 50,
-    duration: 1,
-    scrollTrigger: {
-      trigger: '[data-about-intro]',
-      start: 'top 80%',
-      toggleActions: 'play none none reverse',
-    },
-  });
-
-  gsap.from('[data-about-image]', {
-    opacity: 0,
-    scale: 0.8,
-    duration: 1.2,
-    ease: 'power2.out',
-    scrollTrigger: {
-      trigger: '[data-about-image]',
-      start: 'top 85%',
-      toggleActions: 'play none none reverse',
-    },
-  });
-
-  gsap.utils.toArray<HTMLElement>('.animate-on-scroll').forEach((el) => {
-    gsap.from(el, {
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 80%',
-        toggleActions: 'play none none reverse',
-      },
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce) {
+    gsap.utils.toArray<HTMLElement>('[data-life]').forEach((el) => {
+      gsap.from(el, {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 85%' },
+      });
     });
-  });
+  }
 </script>
