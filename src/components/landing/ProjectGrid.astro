@@ -10,102 +10,139 @@ const arrow =
   '<svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
 const feature = {
-  href: '/projects/GoFlow',
-  index: '01',
-  category: 'AI-assisted iPaaS · Product',
-  title: 'GoFlow',
+  href: "/projects/GoFlow",
+  index: "01",
+  category: "AI-assisted iPaaS · Product",
+  title: "GoFlow",
   impact:
-    'Letting non-technical operators build and trust automated data flows across live systems — designed around preview, validation, and recovery so nothing breaks in production.',
-  tags: ['Product Design', 'AI-assisted mapping', 'Design System'],
-  metric: { value: '68%', label: 'faster provisioning' },
+    "Letting non-technical operators build and trust automated data flows across live systems — designed around preview, validation, and recovery so nothing breaks in production.",
+  tags: ["Product Design", "AI-assisted mapping", "Design System"],
+  metric: { value: "68%", label: "faster provisioning" },
 };
 
 const projects = [
   {
-    href: '/projects/aonflow',
-    index: '02',
-    category: 'Frontend · Enterprise marketing',
-    title: 'Aonflow',
-    impact: 'A server-first Next.js presence that turns dense iPaaS orchestration into an acquisition funnel.',
-    tags: ['Next.js', 'RSC', 'Firebase'],
-    span: 'lg:col-span-2',
+    href: "/projects/lacasa-retreats",
+    index: "01",
+    category: "Product & Systems · Hospitality",
+    title: "LaCasa Retreats",
+    impact:
+      "Architecting a server-authoritative luxury booking engine and bespoke PMS that eliminates double-bookings across OTAs.",
+    tags: ["React 19", "Express 5", "Firestore", "Gemini AI", "Razorpay"],
+    span: "lg:col-span-2",
   },
   {
-    href: '/projects/petrii',
-    index: '03',
-    category: 'Product · Operations',
-    title: 'Petrii',
-    impact: 'Consolidating a fragmented operations workflow into one keyboard-driven console.',
-    tags: ['Dashboard', 'Data grid'],
-    span: 'lg:col-span-2',
+    href: "/projects/draoenix-ai",
+    index: "02",
+    category: "AI Platform · OS & Orchestration",
+    title: "Draoenix AI & Project Galaxy",
+    impact:
+      "A centralized personal AI operating system orchestrating modular microservices via OpenAPI/Swagger specifications.",
+    tags: ["Next.js", "Event-Driven", "Cloudflare Workers", "Swagger"],
+    span: "lg:col-span-2",
   },
   {
-    href: '/projects/looptrip',
-    index: '04',
-    category: 'Product · Travel',
-    title: 'Looptrip',
-    impact: 'Turning trip planning into a calm, guided flow.',
-    tags: ['UX', 'Mobile'],
-    span: 'lg:col-span-2',
+    href: "/projects/tinycrm",
+    index: "03",
+    category: "SaaS · Technical Product",
+    title: "TinyCRM",
+    impact:
+      "A modular, zero-bloat sales pipeline engine featuring an embeddable lead capture runtime and serverless edge storage.",
+    tags: ["Product Design", "Cloudflare D1", "Tailwind CSS", "Embed SDK"],
+    span: "lg:col-span-2",
   },
   {
-    href: '/projects/aaizaltech',
-    index: '05',
-    category: 'Brand · Web',
-    title: 'Aaizaltech',
-    impact: 'A crisp technical brand presence built to convert.',
-    tags: ['Web', 'Brand'],
-    span: 'lg:col-span-2',
+    href: "/projects/career-agent",
+    index: "04",
+    category: "Agentic AI · Automation",
+    title: "The Career Agent",
+    impact:
+      "An autonomous job application agent that dynamically tailors ATS-friendly resumes using structured Master JSON schema.",
+    tags: ["Gemini API", "Puppeteer", "Next.js", "Automation"],
+    span: "lg:col-span-2",
   },
   {
-    href: '/projects/goodsbiz',
-    index: '06',
-    category: 'Commerce · Platform',
-    title: 'Goodsbiz',
-    impact: 'Structuring a commerce platform around clarity and trust.',
-    tags: ['Commerce', 'Systems'],
-    span: 'lg:col-span-2',
+    href: "/projects/goflow",
+    index: "05",
+    category: "AI · SaaS & iPaaS",
+    title: "GoFlow",
+    impact:
+      "Engineering complex background integrations, agentic workflows, and automated system health telemetry.",
+    tags: ["iPaaS", "Complex Workflows", "Automation"],
+    span: "lg:col-span-2",
+  },
+  {
+    href: "/projects/infoane-redesign",
+    index: "06",
+    category: "B2B · IT Services & IA",
+    title: "Infoane Website Redesign",
+    impact:
+      "Driving measurable conversion rates and lead generation through structured information architecture and UX audits.",
+    tags: ["UX Audit", "Conversion Strategy", "Information Architecture"],
+    span: "lg:col-span-2",
   },
 ];
 ---
 
 <section id="work" class="page-section">
-  <div class="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+  <div
+    class="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"
+  >
     <div class="space-y-3">
       <p class="section-label">Selected work</p>
-      <h2 class="section-title text-3xl text-white sm:text-4xl">Systems shipped, not screens decorated.</h2>
+      <h2 class="section-title text-3xl text-white sm:text-4xl">
+        Systems shipped, not screens decorated.
+      </h2>
     </div>
     <p class="max-w-sm text-sm text-slate-400">
-      Each engagement is measured in reliability, adoption, and time saved — not deliverables.
+      Each engagement is measured in reliability, adoption, and time saved — not
+      deliverables.
     </p>
   </div>
 
-  <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-6 lg:auto-rows-[minmax(10rem,1fr)]">
+  <div
+    class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-6 lg:auto-rows-[minmax(10rem,1fr)]"
+  >
     <!-- Feature: GoFlow -->
     <a
       href={feature.href}
       data-transition
       class="surface group relative flex flex-col justify-between overflow-hidden rounded-[1.75rem] p-7 sm:p-9 md:col-span-2 lg:col-span-4 lg:row-span-2"
     >
-      <div class="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-cyan-400/10 blur-3xl transition-opacity duration-500 group-hover:opacity-150"></div>
+      <div
+        class="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-cyan-400/10 blur-3xl transition-opacity duration-500 group-hover:opacity-150"
+      >
+      </div>
       <div class="flex items-start justify-between">
         <span class="chip">{feature.index} · Featured</span>
-        <span class="text-[0.7rem] uppercase tracking-[0.24em] text-slate-400">{feature.category}</span>
+        <span class="text-[0.7rem] uppercase tracking-[0.24em] text-slate-400"
+          >{feature.category}</span
+        >
       </div>
       <div class="my-8">
-        <h3 class="hero-title text-5xl text-white sm:text-6xl">{feature.title}</h3>
-        <p class="mt-5 max-w-xl text-sm leading-7 text-slate-300 sm:text-base">{feature.impact}</p>
+        <h3 class="hero-title text-5xl text-white sm:text-6xl">
+          {feature.title}
+        </h3>
+        <p class="mt-5 max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
+          {feature.impact}
+        </p>
       </div>
       <div class="flex flex-wrap items-end justify-between gap-6">
         <div class="flex flex-wrap gap-2">
           {feature.tags.map((t) => <span class="chip">{t}</span>)}
         </div>
         <div class="text-right">
-          <p class="hero-title text-3xl text-cyan-300">{feature.metric.value}</p>
-          <p class="text-[0.7rem] uppercase tracking-[0.2em] text-slate-400">{feature.metric.label}</p>
+          <p class="hero-title text-3xl text-cyan-300">
+            {feature.metric.value}
+          </p>
+          <p class="text-[0.7rem] uppercase tracking-[0.2em] text-slate-400">
+            {feature.metric.label}
+          </p>
         </div>
       </div>
-      <span class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-cyan-300">
+      <span
+        class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-cyan-300"
+      >
         Read case study <Fragment set:html={arrow} />
       </span>
     </a>
@@ -115,14 +152,21 @@ const projects = [
         <a
           href={p.href}
           data-transition
-          class:list={['surface group flex flex-col justify-between overflow-hidden rounded-[1.75rem] p-6 sm:p-7', p.span]}
+          class:list={[
+            "surface group flex flex-col justify-between overflow-hidden rounded-[1.75rem] p-6 sm:p-7",
+            p.span,
+          ]}
         >
           <div class="flex items-start justify-between gap-3">
             <span class="text-xs font-semibold text-slate-500">{p.index}</span>
-            <span class="text-right text-[0.62rem] uppercase tracking-[0.2em] text-slate-400">{p.category}</span>
+            <span class="text-right text-[0.62rem] uppercase tracking-[0.2em] text-slate-400">
+              {p.category}
+            </span>
           </div>
           <div class="mt-6">
-            <h3 class="hero-title text-2xl text-white sm:text-3xl">{p.title}</h3>
+            <h3 class="hero-title text-2xl text-white sm:text-3xl">
+              {p.title}
+            </h3>
             <p class="mt-3 text-sm leading-6 text-slate-400">{p.impact}</p>
           </div>
           <div class="mt-5 flex items-center justify-between gap-3">
@@ -131,7 +175,10 @@ const projects = [
                 <span class="chip">{t}</span>
               ))}
             </div>
-            <span class="text-cyan-300 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
+            <span
+              class="text-cyan-300 transition-transform duration-300 group-hover:translate-x-1"
+              aria-hidden="true"
+            >
               <Fragment set:html={arrow} />
             </span>
           </div>
