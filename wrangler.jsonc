@@ -3,7 +3,7 @@
 // Alternatively, connect this repo to Cloudflare Pages with
 // build command `npm run build` and output directory `dist`.
 {
-  "name": "ux-portfolio",
+  "name": "draoenix",
   "compatibility_date": "2026-07-01",
   "assets": {
     "directory": "./dist",
