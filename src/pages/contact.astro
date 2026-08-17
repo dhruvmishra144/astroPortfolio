@@ -1,37 +1,42 @@
 ---
-import Base from '../layouts/Base.astro';
-import Icon from '../components/Icon.astro';
+import Base from "../layouts/Base.astro";
+import Icon from "../components/Icon.astro";
 
 const socialLinks = [
   {
-    name: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/dhruvmishra144/',
-    icon: 'linkedin-fill',
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/dhruvmishra144/",
+    icon: "linkedin-fill",
   },
   {
-    name: 'Google',
-    href: 'https://g.co/kgs/nXUxsVY',
-    icon: 'google-fill',
+    name: "Google",
+    href: "https://g.co/kgs/nXUxsVY",
+    icon: "google-fill",
   },
   {
-    name: 'WhatsApp',
-    href: 'https://api.whatsapp.com/send?phone=918376848843&text=Hi%2C%20I%20want%20to%20connect%20for%20New%20Projects...',
-    icon: 'whatsapp-fill',
+    name: "WhatsApp",
+    href: "https://api.whatsapp.com/send?phone=918376848843&text=Hi%2C%20I%20want%20to%20connect%20for%20New%20Projects...",
+    icon: "whatsapp-fill",
   },
 ] as const;
 ---
 
 <Base title="Contact">
   <main id="content" class="page-shell pb-24">
-    <section class="page-section grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+    <section
+      class="page-section grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start"
+    >
       <div class="space-y-5">
         <p class="section-label">Contact</p>
-        <h1 class="hero-title text-balance text-4xl text-white sm:text-5xl lg:text-6xl">
+        <h1
+          class="hero-title text-balance text-4xl text-white sm:text-5xl lg:text-6xl"
+        >
           Let's collaborate on a product that feels calm to use.
         </h1>
         <p class="max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
-          I'm open to UX audits, design systems, product redesigns, and front-end aligned
-          partnerships. Reach out through whichever channel is easiest.
+          I'm open to UX audits, design systems, product redesigns, and
+          front-end aligned partnerships. Reach out through whichever channel is
+          easiest.
         </p>
         <div class="flex flex-wrap gap-2">
           <span class="chip">UX audits</span>
