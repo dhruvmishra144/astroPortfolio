@@ -1,38 +1,43 @@
 ---
-import Base from '../layouts/Base.astro';
-import Icon from '../components/Icon.astro';
+import Base from "../layouts/Base.astro";
+import Icon from "../components/Icon.astro";
 
 const socialLinks = [
   {
-    name: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/dhruvmishra144/',
-    icon: 'linkedin-fill',
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/dhruvmishra144/",
+    icon: "linkedin-fill",
   },
   {
-    name: 'Google',
-    href: 'https://g.co/kgs/nXUxsVY',
-    icon: 'google-fill',
+    name: "Google",
+    href: "https://g.co/kgs/nXUxsVY",
+    icon: "google-fill",
   },
   {
-    name: 'WhatsApp',
-    href: 'https://api.whatsapp.com/send?phone=918376848843&text=Hi%2C%20I%20want%20to%20connect%20for%20New%20Projects...',
-    icon: 'whatsapp-fill',
+    name: "WhatsApp",
+    href: "https://api.whatsapp.com/send?phone=918376848843&text=Hi%2C%20I%20want%20to%20connect%20for%20New%20Projects...",
+    icon: "whatsapp-fill",
   },
 ] as const;
 ---
 
 <Base title="Contact">
   <main id="content" class="page-shell pb-24">
-    <section class="page-section grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+    <section
+      class="page-section grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start"
+    >
       <div class="space-y-6">
         <div class="space-y-5">
           <p class="section-label">Contact</p>
-          <h1 class="hero-title text-balance text-4xl text-white sm:text-5xl lg:text-6xl">
+          <h1
+            class="hero-title text-balance text-4xl text-white sm:text-5xl lg:text-6xl"
+          >
             Let's collaborate on a product that feels calm to use.
           </h1>
           <p class="max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
-            I'm open to UX audits, design systems, product redesigns, and front-end aligned
-            partnerships. Reach out through whichever channel is easiest.
+            I'm open to UX audits, design systems, product redesigns, and
+            front-end aligned partnerships. Reach out through whichever channel
+            is easiest.
           </p>
           <div class="flex flex-wrap gap-2">
             <span class="chip">UX audits</span>
@@ -42,7 +47,11 @@ const socialLinks = [
         </div>
 
         <div class="surface rounded-[2rem] p-4 sm:p-6">
-          <p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Direct Channels</p>
+          <p
+            class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400"
+          >
+            Direct Channels
+          </p>
           <div class="grid gap-3">
             {
               socialLinks.map(({ name, href, icon }) => (
@@ -82,7 +91,8 @@ const socialLinks = [
     src="https://tinycrm.dhruvmishra144.workers.dev/embed.js"
     data-tinycrm-key="pk_live_7371c1bab9e44df9a65fa9b8e63e7bac"
     data-target="#lead-form"
-  ></script>
+    data-heading="Let's talk"
+    data-button="Send message"></script>
 </Base>
 
 <style is:global>
