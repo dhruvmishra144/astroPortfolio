@@ -1,107 +1,72 @@
 ---
-import Base from "../layouts/Base.astro";
-import Icon from "../components/Icon.astro";
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
 
 const socialLinks = [
   {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/in/dhruvmishra144/",
-    icon: "linkedin-fill",
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/dhruvmishra144/',
+    icon: 'linkedin-fill',
   },
   {
-    name: "Google",
-    href: "https://g.co/kgs/nXUxsVY",
-    icon: "google-fill",
+    name: 'Google',
+    href: 'https://g.co/kgs/nXUxsVY',
+    icon: 'google-fill',
   },
   {
-    name: "WhatsApp",
-    href: "https://api.whatsapp.com/send?phone=918376848843&text=Hi%2C%20I%20want%20to%20connect%20for%20New%20Projects...",
-    icon: "whatsapp-fill",
+    name: 'WhatsApp',
+    href: 'https://api.whatsapp.com/send?phone=918376848843&text=Hi%2C%20I%20want%20to%20connect%20for%20New%20Projects...',
+    icon: 'whatsapp-fill',
   },
 ] as const;
 ---
 
 <Base title="Contact">
   <main id="content" class="page-shell pb-24">
-    <section
-      class="page-section grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start"
-    >
-      <div class="space-y-6">
-        <div class="space-y-5">
-          <p class="section-label">Contact</p>
-          <h1
-            class="hero-title text-balance text-4xl text-white sm:text-5xl lg:text-6xl"
-          >
-            Let's collaborate on a product that feels calm to use.
-          </h1>
-          <p class="max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
-            I'm open to UX audits, design systems, product redesigns, and
-            front-end aligned partnerships. Reach out through whichever channel
-            is easiest.
-          </p>
-          <div class="flex flex-wrap gap-2">
-            <span class="chip">UX audits</span>
-            <span class="chip">Design systems</span>
-            <span class="chip">Front-end collaboration</span>
-          </div>
-        </div>
-
-        <div class="surface rounded-[2rem] p-4 sm:p-6">
-          <p
-            class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400"
-          >
-            Direct Channels
-          </p>
-          <div class="grid gap-3">
-            {
-              socialLinks.map(({ name, href, icon }) => (
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="group flex items-center justify-between rounded-[1.5rem] border border-white/10 bg-white/5 p-4 hover:border-cyan-300/30 hover:bg-white/10"
-                >
-                  <div class="flex items-center gap-4">
-                    <div class="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-slate-950/40 text-cyan-300">
-                      <Icon name={icon} class="text-2xl lg:text-3xl" />
-                    </div>
-                    <div>
-                      <p class="text-base font-medium text-white">{name}</p>
-                    </div>
-                  </div>
-                  <Icon
-                    name="arrow-right-thin"
-                    class="text-xl text-slate-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-cyan-300"
-                  />
-                </a>
-              ))
-            }
-          </div>
+    <section class="page-section grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+      <div class="space-y-5">
+        <p class="section-label">Contact</p>
+        <h1 class="hero-title text-balance text-4xl text-white sm:text-5xl lg:text-6xl">
+          Let's collaborate on a product that feels calm to use.
+        </h1>
+        <p class="max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
+          I'm open to UX audits, design systems, product redesigns, and front-end aligned
+          partnerships. Reach out through whichever channel is easiest.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="chip">UX audits</span>
+          <span class="chip">Design systems</span>
+          <span class="chip">Front-end collaboration</span>
         </div>
       </div>
 
-      <div class="surface rounded-[2rem] p-6 sm:p-8">
-        <div id="lead-form"></div>
+      <div class="surface rounded-[2rem] p-4 sm:p-6">
+        <div class="grid gap-4">
+          {
+            socialLinks.map(({ name, href, icon }) => (
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex items-center justify-between rounded-[1.5rem] border border-white/10 bg-white/5 p-5 hover:border-cyan-300/30 hover:bg-white/10"
+              >
+                <div class="flex items-center gap-4">
+                  <div class="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-slate-950/40 text-cyan-300">
+                    <Icon name={icon} class="text-3xl lg:text-4xl" />
+                  </div>
+                  <div>
+                    <p class="text-lg font-medium text-white">{name}</p>
+                  </div>
+                </div>
+                <Icon
+                  name="arrow-right-thin"
+                  class="text-2xl text-slate-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-cyan-300"
+                />
+              </a>
+            ))
+          }
+        </div>
       </div>
     </section>
   </main>
-
-  <script
-    is:inline
-    src="https://tinycrm.dhruvmishra144.workers.dev/embed.js"
-    data-tinycrm-key="pk_live_7371c1bab9e44df9a65fa9b8e63e7bac"
-    data-target="#lead-form"
-    data-heading="Let's talk"
-    data-button="Send message"></script>
 </Base>
-
-<style is:global>
-  .tinycrm-form {
-    --tinycrm-accent: #22d3ee;
-    --tinycrm-button-color: #04202a;
-    --tinycrm-border: 1px solid rgba(255, 255, 255, 0.14);
-    --tinycrm-input-bg: rgba(255, 255, 255, 0.04);
-    --tinycrm-radius: 0.75rem;
-    --tinycrm-width: 100%;
-  }
-</style>
