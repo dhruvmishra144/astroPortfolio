@@ -70,8 +70,32 @@ const socialLinks = [
               </a>
             ))
           }
+
+          <div class="rounded-[1.5rem] border border-white/10 bg-white/5 p-5 sm:p-6">
+            <div id="lead-form"></div>
+          </div>
         </div>
       </div>
     </section>
   </main>
+
+  <style is:global>
+    .tinycrm-form {
+      --tinycrm-accent: #22d3ee;
+      --tinycrm-button-color: #04202a;
+      --tinycrm-border: 1px solid rgba(255, 255, 255, 0.14);
+      --tinycrm-input-bg: rgba(255, 255, 255, 0.04);
+      --tinycrm-radius: 0.75rem;
+      --tinycrm-width: 100%;
+    }
+  </style>
+
+  <script
+    is:inline
+    src="https://tinycrm.dhruvmishra144.workers.dev/embed.js?v=2"
+    data-tinycrm-key="pk_live_7371c1bab9e44df9a65fa9b8e63e7bac"
+    data-target="#lead-form"
+    data-heading="Let's talk"
+    data-button="Send message"
+    data-theme="dark"></script>
 </Base>
