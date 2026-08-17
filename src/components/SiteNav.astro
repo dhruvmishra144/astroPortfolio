@@ -7,18 +7,30 @@
  * The Ask button carries [data-command-open] so it opens the ⌘K palette.
  */
 const pathname = Astro.url.pathname;
-const p = pathname.endsWith('/') && pathname.length > 1 ? pathname.slice(0, -1) : pathname;
+const p =
+  pathname.endsWith("/") && pathname.length > 1
+    ? pathname.slice(0, -1)
+    : pathname;
 
-const isLife = p === '/about-me';
+const isLife = p === "/about-me";
 const isWork = !isLife; // landing, projects, contact, resume all read as "Work"
 ---
 
 <header class="site-nav">
   <div class="site-nav__inner">
-    <a href="/" data-transition class="site-nav__brand" aria-label="Dhruv Mishra — home">
-      <img src="/logo.svg" width="36" height="36" alt="" class="h-8 w-8" />
-      <span class="hidden text-sm font-semibold text-white sm:block">Dhruv Mishra</span>
-    </a>
+    <div>
+      <a
+        href="/"
+        data-transition
+        class="site-nav__brand"
+        aria-label="Dhruv Mishra — home"
+      >
+        <img src="/logo.svg" width="36" height="36" alt="" class="h-8 w-8" />
+        <span class="hidden text-sm font-semibold text-white sm:block"
+          >Dhruv Mishra</span
+        >
+      </a>
+    </div>
 
     <div class="site-nav__toggle" role="tablist" aria-label="Section">
       <a
@@ -26,11 +38,27 @@ const isWork = !isLife; // landing, projects, contact, resume all read as "Work"
         data-transition={isWork ? undefined : true}
         role="tab"
         aria-selected={isWork}
-        class:list={['site-nav__tab', isWork && 'site-nav__tab--active']}
+        class:list={["site-nav__tab", isWork && "site-nav__tab--active"]}
       >
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.7"></rect>
-          <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="1.7"></path>
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+        >
+          <rect
+            x="3"
+            y="7"
+            width="18"
+            height="13"
+            rx="2"
+            stroke="currentColor"
+            stroke-width="1.7"></rect>
+          <path
+            d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+            stroke="currentColor"
+            stroke-width="1.7"></path>
         </svg>
         Work
       </a>
@@ -39,22 +67,48 @@ const isWork = !isLife; // landing, projects, contact, resume all read as "Work"
         data-transition={isLife ? undefined : true}
         role="tab"
         aria-selected={isLife}
-        class:list={['site-nav__tab', isLife && 'site-nav__tab--active']}
+        class:list={["site-nav__tab", isLife && "site-nav__tab--active"]}
       >
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M12 3l2.2 5.6L20 9.2l-4.4 3.8 1.4 5.8L12 15.8 7 18.8l1.4-5.8L4 9.2l5.8-.6L12 3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M12 3l2.2 5.6L20 9.2l-4.4 3.8 1.4 5.8L12 15.8 7 18.8l1.4-5.8L4 9.2l5.8-.6L12 3z"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linejoin="round"></path>
         </svg>
         Life
       </a>
     </div>
-    div
-    <button type="button" class="site-nav__ask" data-command-open aria-label="Open command palette">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M4 5h16v11H8l-4 3V5z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path>
-      </svg>
-      <span class="hidden sm:inline">Ask Dhruv</span>
-      <kbd>⌘K</kbd>
-    </button>
+    <div>
+      <button
+        type="button"
+        class="site-nav__ask"
+        data-command-open
+        aria-label="Open command palette"
+      >
+        <svg
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M4 5h16v11H8l-4 3V5z"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linejoin="round"></path>
+        </svg>
+        <span class="hidden sm:inline">Ask Dhruv</span>
+        <kbd>⌘K</kbd>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -104,7 +158,9 @@ const isWork = !isLife; // landing, projects, contact, resume all read as "Work"
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: rgb(148 163 184);
-    transition: color 180ms ease, background-color 180ms ease;
+    transition:
+      color 180ms ease,
+      background-color 180ms ease;
   }
   .site-nav__tab:hover {
     color: #fff;
@@ -132,7 +188,9 @@ const isWork = !isLife; // landing, projects, contact, resume all read as "Work"
     font-size: 0.8rem;
     font-weight: 500;
     cursor: pointer;
-    transition: border-color 180ms ease, color 180ms ease;
+    transition:
+      border-color 180ms ease,
+      color 180ms ease;
     width: max-content;
   }
   .site-nav__ask:hover {
