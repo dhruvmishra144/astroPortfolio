@@ -1,39 +1,39 @@
 ---
-import Base from '../layouts/Base.astro';
+import Base from "../layouts/Base.astro";
 
-const identities = ['Father', 'Foodie', 'Maker', 'Trap-head', 'Seeker'];
+const identities = ["Father", "Foodie", "Maker", "Trap-head", "Seeker"];
 
 const offTheClock = [
   {
-    title: 'Chasing the strange menu',
+    title: "Chasing the strange menu",
     body: "I'll order the weirdest thing on the menu on purpose. Food is the one experiment where even failure still tastes like something.",
   },
   {
-    title: 'Trap on repeat',
-    body: 'Heavy low end, lots of space to think — trap is the tempo most of my best work quietly happens at.',
+    title: "Trap on repeat",
+    body: "Heavy low end, lots of space to think — trap is the tempo most of my best work quietly happens at.",
   },
   {
-    title: 'Training (on pause)',
+    title: "Training (on pause)",
     body: "I lift when life lets me. It's paused right now, but the discipline it teaches never really switches off.",
   },
   {
-    title: 'A little spiritual',
-    body: 'Quiet and non-dogmatic. I like sitting with the big questions more than pretending to have answered them.',
+    title: "A little spiritual",
+    body: "Quiet and non-dogmatic. I like sitting with the big questions more than pretending to have answered them.",
   },
 ];
 
 const onMyList = [
   {
-    title: 'A small fleet of agents that work for me',
-    note: 'Personal AI agents running the busywork of my life and work — so I get to stay on the interesting parts.',
+    title: "A small fleet of agents that work for me",
+    note: "Personal AI agents running the busywork of my life and work — so I get to stay on the interesting parts.",
   },
   {
-    title: 'A hydroponic farm at home',
-    note: 'Clean, organic food grown without soil. Part experiment, part calmer future, part quietly good business.',
+    title: "A hydroponic farm at home",
+    note: "Clean, organic food grown without soil. Part experiment, part calmer future, part quietly good business.",
   },
   {
-    title: 'Getting back under the barbell',
-    note: 'The training is paused, not cancelled. Rebuilding the routine around a 3.5-year-old is the real project.',
+    title: "Getting back under the barbell",
+    note: "The training is paused, not cancelled. Rebuilding the routine around a 3.5-year-old is the real project.",
   },
 ];
 ---
@@ -43,7 +43,8 @@ const onMyList = [
     <!-- Hero: Outside the terminal -->
     <section class="page-section flex flex-col items-center pt-8 text-center">
       <figure data-life class="relative mx-auto w-full max-w-[18rem]">
-        <div class="absolute -inset-4 rounded-[2rem] bg-cyan-400/10 blur-2xl"></div>
+        <div class="absolute -inset-4 rounded-[2rem] bg-cyan-400/10 blur-2xl">
+        </div>
         <img
           src="/avatar.jpeg"
           alt="Portrait of Dhruv Mishra"
@@ -53,63 +54,160 @@ const onMyList = [
       </figure>
 
       <div data-life class="mt-10 max-w-4xl">
-        <h1 class="hero-title text-balance text-4xl text-white sm:text-6xl">Outside the terminal.</h1>
-        <p class="mt-5 flex flex-wrap justify-center gap-x-3 gap-y-1 text-[0.72rem] uppercase tracking-[0.24em] text-cyan-300/80">
+        <h1 class="hero-title text-balance text-4xl text-white sm:text-6xl">
+          Outside the terminal.
+        </h1>
+        <p
+          class="mt-5 flex flex-wrap justify-center gap-x-3 gap-y-1 text-[0.72rem] uppercase tracking-[0.24em] text-cyan-300/80"
+        >
           {
             identities.map((id, i) => (
               <>
                 <span>{id}</span>
-                {i < identities.length - 1 && <span class="text-slate-600">·</span>}
+                {i < identities.length - 1 && (
+                  <span class="text-slate-600">·</span>
+                )}
               </>
             ))
           }
         </p>
-        <div class="mt-8 space-y-4 text-base leading-8 text-slate-300 sm:text-lg">
+        <div
+          class="mt-8 space-y-4 text-base leading-8 text-slate-300 sm:text-lg"
+        >
           <p>
-            Away from the systems and the screens I'm in Faridabad, on the edge of Delhi NCR —
-            building, tasting, and chasing whatever's next. I don't sit still well: if I'm not
-            shipping something at work, I'm cooking up an idea at home.
+            Away from the systems and the screens I'm in Faridabad, on the edge
+            of Delhi NCR — building, tasting, and chasing whatever's next. I
+            don't sit still well: if I'm not shipping something at work, I'm
+            cooking up an idea at home.
           </p>
           <p>
-            The same curiosity that pulls me into a codebase pulls me toward a dish I've never
-            tried, a beat I've never heard, and a question I can't quite answer yet. That's the part
-            of me that existed long before any of this was a job.
+            The same curiosity that pulls me into a codebase pulls me toward a
+            dish I've never tried, a beat I've never heard, and a question I
+            can't quite answer yet. That's the part of me that existed long
+            before any of this was a job.
           </p>
         </div>
       </div>
     </section>
 
     <!-- The family block -->
-    <section data-life class="page-section flex flex-col items-center pt-0 text-center">
-      <figure class="surface mx-auto grid aspect-[3/4] w-full max-w-[18rem] place-items-center rounded-[1.5rem]">
-        <span class="text-[0.68rem] uppercase tracking-[0.24em] text-slate-500">Family photo · replace</span>
-        <!-- Swap for: <img src="/life/family.jpg" alt="Dhruv with his family" class="aspect-[3/4] w-full rounded-[1.5rem] object-cover grayscale" /> -->
-      </figure>
+    <section
+      data-life
+      class="page-section flex flex-col items-center pt-0 text-center"
+    >
+      <img
+        class="max-w-[40rem] rounded-4xl"
+        src="/family.jpeg"
+        alt="Dhruv with his family"
+        class="aspect-[3/4] w-full rounded-[1.5rem] object-cover grayscale"
+      />
       <div class="mt-10 max-w-4xl">
-        <h2 class="hero-title text-3xl text-white sm:text-4xl">The people I come home to</h2>
-        <div class="mt-6 space-y-5 text-base leading-9 text-slate-300 sm:text-lg sm:leading-10">
-          <p>
-            My wife and my daughter — the two people every late night and long build eventually
-            leads back to. Home is Faridabad, on the edge of Delhi NCR, and it's louder, warmer, and
-            far more interesting than anything I've ever shipped.
-          </p>
-          <p>
-            My wife is the steady, generous force behind everything I get to chase. She holds the
-            ground so I can go wandering after the next idea, and she's the first honest read on
-            whether any of it is actually worth doing. More of my good decisions than I'd like to
-            admit started as something she said out loud before I was ready to.
-          </p>
-          <p>
-            Our daughter is three and a half, and she's quietly rewired how I see almost everything.
-            She asks “why” until the question finally gets good, tastes the whole world with her
-            whole face, and reminds me — daily — that curiosity is the point, not the polish.
-            Watching her figure things out is the closest thing I know to seeing creativity in its
-            rawest form.
-          </p>
-          <p>
-            Everything else is just the work. This is the reason for it — and the calmer,
-            better-run life I'm quietly building toward.
-          </p>
+        <h2 class="hero-title text-3xl text-white sm:text-4xl">
+          The people I come home to
+        </h2>
+        <div class="mt-10 grid gap-4 text-left sm:grid-cols-2 lg:gap-6">
+          <div
+            class="surface col-span-1 flex flex-col justify-center rounded-[1.5rem] p-6 sm:col-span-2 sm:p-8"
+          >
+            <p
+              class="text-center text-base leading-relaxed text-slate-300 sm:text-lg sm:leading-loose"
+            >
+              My wife and my daughter — the two people every late night and long
+              build eventually leads back to. Home is <span class="text-white"
+                >Faridabad</span
+              >, on the edge of Delhi NCR, and it's louder, warmer, and far more
+              interesting than anything I've ever shipped.
+            </p>
+          </div>
+
+          <div class="surface flex flex-col gap-4 rounded-[1.5rem] p-6 sm:p-8">
+            <div class="flex items-center gap-3">
+              <div
+                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cyan-400/10 text-cyan-300"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path
+                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                  ></path></svg
+                >
+              </div>
+              <h3 class="text-lg font-medium text-white">My Wife</h3>
+            </div>
+            <p
+              class="text-sm leading-relaxed text-slate-300 sm:text-base sm:leading-relaxed"
+            >
+              The steady, generous force behind everything I get to chase. She
+              holds the ground so I can go wandering after the next idea, and
+              she's the first honest read on whether any of it is actually worth
+              doing. More of my good decisions than I'd like to admit started as
+              something she said out loud before I was ready to.
+            </p>
+          </div>
+
+          <div class="surface flex flex-col gap-4 rounded-[1.5rem] p-6 sm:p-8">
+            <div class="flex items-center gap-3">
+              <div
+                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-fuchsia-400/10 text-fuchsia-300"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><circle cx="12" cy="12" r="5"></circle><line
+                    x1="12"
+                    y1="1"
+                    x2="12"
+                    y2="3"></line><line x1="12" y1="21" x2="12" y2="23"
+                  ></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"
+                  ></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"
+                  ></line><line x1="1" y1="12" x2="3" y2="12"></line><line
+                    x1="21"
+                    y1="12"
+                    x2="23"
+                    y2="12"></line><line
+                    x1="4.22"
+                    y1="19.78"
+                    x2="5.64"
+                    y2="18.36"></line><line
+                    x1="18.36"
+                    y1="5.64"
+                    x2="19.78"
+                    y2="4.22"></line></svg
+                >
+              </div>
+              <h3 class="text-lg font-medium text-white">Our Daughter</h3>
+            </div>
+            <p
+              class="text-sm leading-relaxed text-slate-300 sm:text-base sm:leading-relaxed"
+            >
+              Three and a half, and she's quietly rewired how I see almost
+              everything. She asks “why” until the question finally gets good,
+              tastes the whole world with her whole face, and reminds me — daily
+              — that curiosity is the point, not the polish.
+            </p>
+          </div>
+
+          <div
+            class="surface col-span-1 rounded-[1.5rem] p-6 text-center sm:col-span-2 sm:p-8"
+          >
+            <p class="text-base font-medium text-cyan-200 sm:text-lg">
+              Everything else is just the work. This is the reason for it — and
+              the calmer, better-run life I'm quietly building toward.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -122,7 +220,9 @@ const onMyList = [
           offTheClock.map((item) => (
             <article class="surface rounded-[1.5rem] p-6 sm:p-7">
               <h3 class="hero-title text-xl text-white">{item.title}</h3>
-              <p class="mt-3 text-sm leading-7 text-slate-400 sm:text-base">{item.body}</p>
+              <p class="mt-3 text-sm leading-7 text-slate-400 sm:text-base">
+                {item.body}
+              </p>
             </article>
           ))
         }
@@ -136,10 +236,16 @@ const onMyList = [
         {
           onMyList.map((item, i) => (
             <li class="grid gap-2 border-t border-white/10 pt-6 sm:grid-cols-[3rem_1fr] sm:gap-6">
-              <span class="text-sm font-semibold text-cyan-300">{String(i + 1).padStart(2, '0')}</span>
+              <span class="text-sm font-semibold text-cyan-300">
+                {String(i + 1).padStart(2, "0")}
+              </span>
               <div>
-                <p class="text-lg font-semibold text-white sm:text-xl">{item.title}</p>
-                <p class="mt-2 text-sm leading-7 text-slate-400 sm:text-base">{item.note}</p>
+                <p class="text-lg font-semibold text-white sm:text-xl">
+                  {item.title}
+                </p>
+                <p class="mt-2 text-sm leading-7 text-slate-400 sm:text-base">
+                  {item.note}
+                </p>
               </div>
             </li>
           ))
@@ -150,20 +256,20 @@ const onMyList = [
 </Base>
 
 <script>
-  import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
 
   gsap.registerPlugin(ScrollTrigger);
 
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!reduce) {
-    gsap.utils.toArray<HTMLElement>('[data-life]').forEach((el) => {
+    gsap.utils.toArray<HTMLElement>("[data-life]").forEach((el) => {
       gsap.from(el, {
         opacity: 0,
         y: 30,
         duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 85%' },
+        ease: "power3.out",
+        scrollTrigger: { trigger: el, start: "top 85%" },
       });
     });
   }

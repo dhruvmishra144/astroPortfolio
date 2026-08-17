@@ -45,14 +45,14 @@ const DEFAULT_ITEMS: Testimonial[] = [
 function Card({ t }: { t: Testimonial }) {
   return (
     <figure
-      className="mr-4 flex w-[20rem] shrink-0 flex-col justify-between rounded-3xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-md sm:w-[24rem] sm:p-7"
-      style={{ boxShadow: '0 24px 60px rgba(2,8,23,0.35)' }}
+      className="mr-6 flex w-[20rem] shrink-0 flex-col justify-between rounded-[2rem] border border-white/10 bg-slate-950/40 p-6 backdrop-blur-xl transition-colors duration-500 hover:bg-slate-900/50 sm:w-[24rem] sm:p-8"
+      style={{ boxShadow: '0 24px 60px rgba(2,8,23,0.5), inset 0 1px 0 rgba(255,255,255,0.05)' }}
     >
-      <blockquote className="text-[0.95rem] leading-relaxed text-slate-200 sm:text-base">
+      <blockquote className="text-[0.95rem] leading-relaxed text-slate-100 sm:text-base">
         “{t.quote}”
       </blockquote>
-      <figcaption className="mt-6 flex items-center gap-3 border-t border-white/10 pt-4">
-        <span className="text-sm font-semibold text-white">{t.name}</span>
+      <figcaption className="mt-8 flex items-center gap-3 border-t border-white/5 pt-5">
+        <span className="text-sm font-semibold tracking-wide text-white">{t.name}</span>
         <span className="text-[0.68rem] uppercase tracking-[0.14em] text-cyan-300/80">{t.role}</span>
       </figcaption>
     </figure>
@@ -112,12 +112,12 @@ export default function TestimonialMarquee({
     >
       <motion.div className="flex w-max" style={{ x }}>
         <div ref={groupRef} className="flex w-max">
-          {items.map((t, i) => (
+          {[...items, ...items].map((t, i) => (
             <Card key={`a-${i}`} t={t} />
           ))}
         </div>
         <div className="flex w-max" aria-hidden={true}>
-          {items.map((t, i) => (
+          {[...items, ...items].map((t, i) => (
             <Card key={`b-${i}`} t={t} />
           ))}
         </div>

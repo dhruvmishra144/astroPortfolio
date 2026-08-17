@@ -16,6 +16,8 @@
 # astro
 /dist/
 /.astro/
+/.claude/
+.claude
 
 # cloudflare
 /.wrangler/
