@@ -1,24 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import Icon from "../components/Icon.astro";
-
-const socialLinks = [
-  {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/in/dhruvmishra144/",
-    icon: "linkedin-fill",
-  },
-  {
-    name: "Google",
-    href: "https://g.co/kgs/nXUxsVY",
-    icon: "google-fill",
-  },
-  {
-    name: "WhatsApp",
-    href: "https://api.whatsapp.com/send?phone=918376848843&text=Hi%2C%20I%20want%20to%20connect%20for%20New%20Projects...",
-    icon: "whatsapp-fill",
-  },
-] as const;
+import { socialLinks } from "../data/socialLinks";
 ---
 
 <Base title="Contact">
@@ -57,7 +40,7 @@ const socialLinks = [
               >
                 <div class="flex items-center gap-4">
                   <div class="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-slate-950/40 text-cyan-300">
-                    <Icon name={icon} class="text-3xl lg:text-4xl" />
+                    <Icon name={`${icon}-fill`} class="text-3xl lg:text-4xl" />
                   </div>
                   <div>
                     <p class="text-lg font-medium text-white">{name}</p>

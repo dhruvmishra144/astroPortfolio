@@ -6,7 +6,6 @@ import Footer from '../components/Footer.astro';
 import AuroraWaves from '../components/AuroraWaves.astro';
 import CommandPalette from '../components/CommandPalette.svelte';
 import CustomCursor from '../components/CustomCursor.svelte';
-import Icon from '../components/Icon.astro';
 
 interface Props {
   title?: string;
@@ -24,6 +23,8 @@ const pathname = Astro.url.pathname;
 const normalizedPathname =
   pathname.endsWith('/') && pathname.length > 1 ? pathname.slice(0, -1) : pathname;
 const showFooter = normalizedPathname !== '/contact';
+
+const bootBars = Array.from({ length: 28 });
 ---
 
 <!doctype html>
@@ -47,11 +48,28 @@ const showFooter = normalizedPathname !== '/contact';
       <div class="relative z-10">
         <div
           id="banner-1"
-          class="min-h-screen h-screen backdrop-blur-3xl bg-black z-30 fixed top-0 left-0 w-full flex flex-col items-center justify-center"
+          class="boot min-h-screen h-screen bg-background z-30 fixed top-0 left-0 w-full flex flex-col items-center justify-center overflow-hidden"
         >
-          <div class="relative -top-16 lg:top-0">
-            <Icon name="spinner" class="text-cyan-500 text-8xl animate-spin" />
-            <Icon name="spinner" class="text-cyan-300 text-8xl animate-spin -z-10 scale-95 blur-[10px] absolute top-0" />
+          <div class="boot-grid pointer-events-none absolute inset-0 flex justify-between" aria-hidden="true">
+            {bootBars.map(() => <span class="boot-bar" />)}
+          </div>
+          <div class="boot-sweep pointer-events-none absolute left-0 top-1/2 h-px w-full" aria-hidden="true"></div>
+
+          <div class="relative z-10 flex flex-col items-center gap-3 text-center">
+            <div class="flex flex-col items-center gap-2">
+              <span class="boot-mark font-display text-lg tracking-[0.2em] text-white">DM</span>
+              <span class="boot-dot h-1.5 w-1.5 rounded-full bg-cyan-300"></span>
+            </div>
+            <p class="boot-name text-sm font-semibold uppercase tracking-[0.4em] text-white">
+              Dhruv Mishra
+            </p>
+            <p class="boot-role text-[10px] uppercase tracking-[0.32em] text-cyan-300/80">
+              Product Design · UX Strategy · Front-End
+            </p>
+            <div class="boot-status mt-6 flex flex-col items-center gap-1">
+              <span class="text-[10px] uppercase tracking-[0.32em] text-slate-400">System Ready</span>
+              <span class="boot-pct text-xs font-semibold text-cyan-300">100%</span>
+            </div>
           </div>
         </div>
         <SiteNav />
@@ -68,3 +86,27 @@ const showFooter = normalizedPathname !== '/contact';
     </script>
   </body>
 </html>
+
+<style>
+  .boot-bar {
+    flex: 1;
+    height: 100%;
+    transform: scaleY(0);
+    transform-origin: center;
+    background: linear-gradient(180deg, transparent, rgba(77, 215, 255, 0.35) 45%, transparent 90%);
+  }
+
+  .boot-sweep {
+    transform: scaleX(0);
+    transform-origin: center;
+    background: linear-gradient(90deg, transparent, rgba(77, 215, 255, 0.9), transparent);
+  }
+
+  .boot-mark,
+  .boot-dot,
+  .boot-name,
+  .boot-role,
+  .boot-status {
+    opacity: 0;
+  }
+</style>
