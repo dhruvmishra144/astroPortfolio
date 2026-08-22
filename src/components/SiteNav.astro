@@ -119,6 +119,22 @@ const isWork = !isLife; // landing, projects, contact, resume all read as "Work"
     z-index: 40;
     padding-block: 0.9rem;
   }
+  .site-nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba(5, 8, 22, 0.66);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 1px 0 rgba(148, 163, 184, 0.08);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  .site-nav.is-scrolled::before {
+    opacity: 1;
+  }
   .site-nav__inner {
     width: min(100%, 82rem);
     margin-inline: auto;
@@ -216,3 +232,14 @@ const isWork = !isLife; // landing, projects, contact, resume all read as "Work"
     }
   }
 </style>
+
+<script>
+  const nav = document.querySelector<HTMLElement>('.site-nav');
+  if (nav) {
+    const updateScrolled = () => {
+      nav.classList.toggle('is-scrolled', window.scrollY > 8);
+    };
+    updateScrolled();
+    window.addEventListener('scroll', updateScrolled, { passive: true });
+  }
+</script>

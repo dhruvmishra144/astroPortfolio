@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LaCasa Retreats — Reverse Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=3" />
+<style>
+  .mockup-figure img { width: 100%; display: block; border-radius: var(--pf-radius-lg) var(--pf-radius-lg) 0 0; }
+  .mockup-figure { overflow: hidden; }
+  .mockup-caption { padding: 20px 24px; }
+  .process-tag { font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; font-weight:600; }
+  .tech-tag { font-size:10px; font-family:monospace; text-transform:uppercase; letter-spacing:0.1em; color:var(--pf-slate-500); margin:0 0 4px; }
+  .wf-annotation { margin-top:12px; padding:12px 16px; border-radius:8px; background:rgba(34,211,238,0.06); border:1px solid rgba(34,211,238,0.18); }
+  .wf-annotation p { margin:0; font-size:0.8rem; line-height:1.6; color:var(--pf-slate-300); }
+  .wf-annotation strong { color:var(--pf-cyan-300); }
+</style>
+</head>
+<body>
+  <nav class="case-nav">
+    <div class="case-nav-inner">
+      <a class="brand" href="index.html">LaCasa Retreats — Case Study</a>
+      <div>
+        <a href="index.html" class="active">Case Study</a>
+        <a href="design-system.html">Design System</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ COVER ============ -->
+  <header class="shell section" style="padding-top:5rem;">
+    <div class="chip" style="margin-bottom:24px;">Reverse case study · Product designer read</div>
+    <p class="section-label">Flagship case study · Live product</p>
+    <h1 class="hero-title" style="font-size:clamp(2.5rem,6vw,4.5rem); line-height:0.95;">
+      The website was never just a website.
+    </h1>
+    <p class="body-text" style="font-size:1.15rem; margin-top:1.5rem;">
+      LaCasa Retreats manages 17 live short-stay rental properties across Noida. I designed and built
+      the guest-facing booking site and the internal operations tooling behind it, solo, end to end —
+      and continue to maintain it in active production. This is a reverse case study: walking backward
+      from the shipped product to the research and decisions that produced it, then forward again
+      through wireframes into the real, live screens.
+    </p>
+    <div class="grid cols-4" style="margin-top:32px; max-width:56rem;">
+      <div class="surface" style="padding:20px;"><p class="hero-title" style="font-size:2rem; color:var(--pf-cyan-300);">17</p><p class="section-label" style="margin:6px 0 0;">Properties live</p></div>
+      <div class="surface" style="padding:20px;"><p class="hero-title" style="font-size:2rem; color:var(--pf-cyan-300);">5</p><p class="section-label" style="margin:6px 0 0;">Booking channels</p></div>
+      <div class="surface" style="padding:20px;"><p class="hero-title" style="font-size:2rem; color:var(--pf-cyan-300);">Solo</p><p class="section-label" style="margin:6px 0 0;">Design &amp; build</p></div>
+      <div class="surface" style="padding:20px;"><p class="hero-title" style="font-size:2rem; color:var(--pf-cyan-300);">~5wk</p><p class="section-label" style="margin:6px 0 0;">MVP timeline</p></div>
+    </div>
+    <div class="grid cols-3" style="margin-top:16px; max-width:56rem;">
+      <div class="surface" style="padding:16px;"><p class="section-label" style="margin:0 0 4px;">Role</p><p style="color:#e6eef8; font-size:0.9rem; margin:0;">Product Designer &amp; Developer</p></div>
+      <div class="surface" style="padding:16px;"><p class="section-label" style="margin:0 0 4px;">Team</p><p style="color:#e6eef8; font-size:0.9rem; margin:0;">Solo — client as sole stakeholder</p></div>
+      <div class="surface" style="padding:16px;"><p class="section-label" style="margin:0 0 4px;">Timeline</p><p style="color:#e6eef8; font-size:0.9rem; margin:0;">MVP in ~5 weeks, active maintenance since</p></div>
+    </div>
+  </header>
+
+  <!-- ============ 01 RESEARCH — PROBLEM ============ -->
+  <section class="shell section">
+    <p class="section-label">01 · Research &amp; thought process — the problem</p>
+    <h2 class="hero-title" style="font-size:1.75rem; margin-bottom:16px;">Five channels, one set of dates.</h2>
+    <p class="body-text" style="font-size:1.05rem;">
+      LaCasa's properties are sold on their own website and, simultaneously, on Booking.com, Agoda,
+      MakeMyTrip/Goibibo, and Airbnb. A guest can book the same physical unit through any of those
+      platforms, completely outside this website's control. Without a shared source of truth, the
+      same dates could be sold twice.
+    </p>
+  </section>
+
+  <section class="shell section">
+    <p class="section-label">Who's involved</p>
+    <h2 class="hero-title" style="font-size:1.5rem; margin-bottom:16px;">Who actually uses it</h2>
+    <div class="grid cols-3">
+      <div class="surface" style="padding:20px;"><h3 style="color:#fff; margin:0 0 8px; font-size:1.05rem;">Guests</h3><p class="body-text" style="font-size:0.85rem;">Book a property for a stay. Most don't want friction like a mandatory account before they can pay.</p></div>
+      <div class="surface" style="padding:20px;"><h3 style="color:#fff; margin:0 0 8px; font-size:1.05rem;">Property managers</h3><p class="body-text" style="font-size:0.85rem;">Record bookings, keep the calendar accurate, make sure no property is ever double-committed.</p></div>
+      <div class="surface" style="padding:20px;"><h3 style="color:#fff; margin:0 0 8px; font-size:1.05rem;">Stakeholders / owners</h3><p class="body-text" style="font-size:0.85rem;">Check revenue and booking status remotely, reconcile anything that slipped through.</p></div>
+    </div>
+  </section>
+
+  <section class="shell section">
+    <p class="section-label">What I discovered</p>
+    <h2 class="hero-title" style="font-size:1.5rem; margin-bottom:16px;">Three things that shaped every decision after</h2>
+    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-bottom:20px;">
+      <span class="tech-tag" style="margin:0;">Research inputs</span>
+      <span class="chip">Stakeholder conversations</span>
+      <span class="chip">WhatsApp booking log review</span>
+      <span class="chip">Workflow observation</span>
+    </div>
+    <div class="grid" style="gap:16px;">
+      <div class="surface" style="padding:24px;"><p class="section-label">Insight 01</p><h3 style="color:#fff; margin:8px 0;">The friction wasn't too many tools — it was no shared source of truth</h3><p class="body-text">Booking.com, Agoda, MMT and Airbnb each worked fine on their own. Nothing stopped the same physical room being confirmed twice.</p></div>
+      <div class="surface" style="padding:24px;"><p class="section-label">Insight 02</p><h3 style="color:#fff; margin:8px 0;">Managers think in months, not dates</h3><p class="body-text">"This month's baseline, weekends a bit higher" — a per-date rate tool was solving a problem nobody had.</p></div>
+      <div class="surface" style="padding:24px;"><p class="section-label">Insight 03</p><h3 style="color:#fff; margin:8px 0;">A signup wall doesn't protect the business — it just moves the cost</h3><p class="body-text">The fix was making email itself the identity key, not gating checkout on registration.</p></div>
+    </div>
+  </section>
+
+  <section class="shell section">
+    <p class="section-label">How I approached it</p>
+    <h2 class="hero-title" style="font-size:1.5rem; margin-bottom:16px;">Understand, structure, simplify, ship, harden</h2>
+    <div class="grid cols-4">
+      <div class="surface" style="padding:16px;"><p class="section-label">01 — Understand</p><p class="body-text" style="font-size:0.85rem;">Sat with how bookings actually got recorded before the site existed: a WhatsApp group, ad-hoc reconciliation.</p></div>
+      <div class="surface" style="padding:16px;"><p class="section-label">02 — Structure</p><p class="body-text" style="font-size:0.85rem;">Mapped guest booking and operator logging onto one shared calendar.</p></div>
+      <div class="surface" style="padding:16px;"><p class="section-label">03 — Simplify</p><p class="body-text" style="font-size:0.85rem;">Cut each flow to its minimum unit of work: one source tag, one monthly rate, one email identity.</p></div>
+      <div class="surface" style="padding:16px;"><p class="section-label">04 — Ship &amp; harden</p><p class="body-text" style="font-size:0.85rem;">Shipped into daily use, backed by email reconciliation and dedicated test coverage on pricing/overlap logic.</p></div>
+    </div>
+  </section>
+
+  <section class="shell section">
+    <p class="section-label">From insight to solution</p>
+    <h2 class="hero-title" style="font-size:1.5rem; margin-bottom:16px;">Three decisions did most of the work</h2>
+    <div class="surface" style="padding:24px; margin-bottom:16px;">
+      <p class="section-label">01 · Two guests, one room</p>
+      <div class="grid cols-3">
+        <div><p class="process-tag" style="color:#fb7185;">The tension</p><p class="body-text" style="font-size:0.85rem;">Availability lived in five places. Automatic sync was impossible with no unified channel-manager access.</p></div>
+        <div><p class="process-tag" style="color:var(--pf-cyan-300);">The call</p><p class="body-text" style="font-size:0.85rem;">Make logging an external booking the fastest action in the product, tagged with its source, blocking dates everywhere.</p></div>
+        <div><p class="process-tag" style="color:#6ee7b7;">Result</p><p class="body-text" style="font-size:0.85rem;">A unit sold on Airbnb can no longer be sold on the website. Still depends on a human logging it in time.</p></div>
+      </div>
+    </div>
+    <div class="surface" style="padding:24px; margin-bottom:16px;">
+      <p class="section-label">02 · Too many dates to price</p>
+      <div class="grid cols-3">
+        <div><p class="process-tag" style="color:#fb7185;">The tension</p><p class="body-text" style="font-size:0.85rem;">Setting prices night-by-night across 17 units was technically complete and operationally unusable.</p></div>
+        <div><p class="process-tag" style="color:var(--pf-cyan-300);">The call</p><p class="body-text" style="font-size:0.85rem;">One Sun–Thu and one Fri–Sat rate per month, applied to every property at once, with per-day overrides.</p></div>
+        <div><p class="process-tag" style="color:#6ee7b7;">Result</p><p class="body-text" style="font-size:0.85rem;">Seasonal repricing across 17 units went from an afternoon to under a minute.</p></div>
+      </div>
+    </div>
+    <div class="surface" style="padding:24px;">
+      <p class="section-label">03 · Account, or conversion</p>
+      <div class="grid cols-3">
+        <div><p class="process-tag" style="color:#fb7185;">The tension</p><p class="body-text" style="font-size:0.85rem;">The business needed to know who the guest was; a signup wall in front of payment kills conversion.</p></div>
+        <div><p class="process-tag" style="color:var(--pf-cyan-300);">The call</p><p class="body-text" style="font-size:0.85rem;">Let them pay with name, email, phone. Key the booking to the email — identity becomes retroactive.</p></div>
+        <div><p class="process-tag" style="color:#6ee7b7;">Result</p><p class="body-text" style="font-size:0.85rem;">No signup wall, no fragmented history. Only as reliable as the email typed at checkout.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 WIREFRAMES ============ -->
+  <section class="shell section">
+    <p class="section-label">02 · Wireframes</p>
+    <h2 class="hero-title" style="font-size:1.75rem; margin-bottom:8px;">Structure before polish</h2>
+    <p class="body-text" style="font-size:1rem; margin-bottom:24px;">Mid-fidelity structure for the three flows above, before final visual design — built and refined directly in Figma.</p>
+
+    <p class="tech-tag">PropertyStatusPage.tsx</p>
+    <h3 style="color:#fff; font-size:1.1rem; margin:0 0 16px;">Manual channel timeline</h3>
+    <div class="surface mockup-figure">
+      <img src="assets/wireframe-timeline.png" alt="Manual channel timeline wireframe" />
+    </div>
+    <div class="wf-annotation" style="margin-bottom:32px;">
+      <p><strong>Decision:</strong> logging an external booking is the single fastest action on the page, and it blocks the date everywhere immediately. <strong>Reason:</strong> this is filled in mid-call with a guest — any friction here reintroduces the exact double-booking risk the feature exists to prevent.</p>
+    </div>
+
+    <p class="tech-tag">AdminPage.tsx:845</p>
+    <h3 style="color:#fff; font-size:1.1rem; margin:0 0 16px;">Monthly rate editor</h3>
+    <div class="surface mockup-figure">
+      <img src="assets/wireframe-rate-editor.png" alt="Monthly rate editor wireframe" />
+    </div>
+    <div class="wf-annotation" style="margin-bottom:32px;">
+      <p><strong>Decision:</strong> one weekday and one weekend rate per month, applied to every property at once, with per-day overrides layered on top. <strong>Reason:</strong> owners think in "this month's baseline, weekends a bit higher," not per-date pricing — the tool matches that mental model instead of training a new one.</p>
+    </div>
+
+    <p class="tech-tag">CheckoutPage.tsx</p>
+    <h3 style="color:#fff; font-size:1.1rem; margin:0 0 16px;">Guest checkout — no login</h3>
+    <div class="surface mockup-figure">
+      <img src="assets/wireframe-checkout.png" alt="Guest checkout wireframe" />
+    </div>
+    <div class="wf-annotation">
+      <p><strong>Decision:</strong> name, email, and phone only — no account creation — with payment collected upfront, not at check-in. <strong>Reason:</strong> a signup wall in front of payment kills conversion on a site with no brand recognition yet; the email itself becomes the identity key retroactively.</p>
+    </div>
+  </section>
+
+  <!-- ============ 03 HI-FI SCREENS ============ -->
+  <section class="shell section">
+    <p class="section-label">03 · Hi-fi screens</p>
+    <h2 class="hero-title" style="font-size:1.75rem; margin-bottom:8px;">The real, live product</h2>
+    <p class="body-text" style="font-size:1rem; margin-bottom:24px;">Not recreations — screenshots of lacasaretreats.com in active production, in LaCasa's own black + gold brand.</p>
+
+    <p class="section-label">Guest-facing</p>
+    <div class="grid cols-2" style="margin-bottom:32px;">
+      <div class="surface mockup-figure"><img src="../public/lacasa-home.png" alt="LaCasa Retreats guest-facing home page" /></div>
+      <div class="surface mockup-figure"><img src="../public/lacasa-listings.png" alt="LaCasa Retreats property listings page" /></div>
+    </div>
+
+    <p class="section-label">Manual channel timeline <span class="tech-tag" style="display:inline; margin-left:8px;">PropertyStatusPage.tsx</span></p>
+    <div class="surface mockup-figure" style="margin-bottom:32px;"><img src="../public/lacasa-timeline.png" alt="Property status manual channel timeline" /></div>
+
+    <p class="section-label">Reservation write path</p>
+    <div class="surface mockup-figure" style="margin-bottom:32px;"><img src="../public/lacasa-reservation.png" alt="Reservation details form" /></div>
+
+    <p class="section-label">Rate editing <span class="tech-tag" style="display:inline; margin-left:8px;">AdminPage.tsx:845</span></p>
+    <div class="grid cols-2" style="margin-bottom:32px;">
+      <div class="surface mockup-figure"><img src="../public/lacasa-admin-rates.png" alt="Monthly rate editor" /><div class="mockup-caption"><p class="body-text" style="font-size:0.85rem; margin:0;">Monthly rate editor — weekday/weekend baseline across all properties.</p></div></div>
+      <div class="surface mockup-figure"><img src="../public/lacasa-monthly-rates.png" alt="Per-property overrides" /><div class="mockup-caption"><p class="body-text" style="font-size:0.85rem; margin:0;">Per-property overrides — bulk day-of-week selection, then price + availability.</p></div></div>
+    </div>
+
+    <p class="section-label">Booking &amp; checkout <span class="tech-tag" style="display:inline; margin-left:8px;">CheckoutPage.tsx</span></p>
+    <div class="grid cols-2">
+      <div class="surface mockup-figure"><img src="../public/lacasa-property.png" alt="Property detail and booking widget" /><div class="mockup-caption"><p class="body-text" style="font-size:0.85rem; margin:0;">Property detail &amp; booking widget — name, email, phone only, no forced account.</p></div></div>
+      <div class="surface mockup-figure"><img src="../public/lacasa-checkout.png" alt="Checkout page" /><div class="mockup-caption"><p class="body-text" style="font-size:0.85rem; margin:0;">Checkout — GST broken out as its own line, price card pinned beside the form.</p></div></div>
+    </div>
+  </section>
+
+  <!-- ============ IMPACT ============ -->
+  <section class="shell section">
+    <p class="section-label">Impact</p>
+    <h2 class="hero-title" style="font-size:1.5rem; margin-bottom:16px;">The strongest evidence, up front</h2>
+    <div class="grid cols-3">
+      <div class="surface" style="padding:24px;"><p class="hero-title" style="font-size:2rem; color:var(--pf-cyan-300); margin:0;">&lt; 1 min</p><p class="body-text" style="font-size:0.85rem; margin-top:8px;">Seasonal repricing across 17 units — down from an afternoon</p></div>
+      <div class="surface" style="padding:24px;"><p class="hero-title" style="font-size:2rem; color:var(--pf-cyan-300); margin:0;">1 calendar</p><p class="body-text" style="font-size:0.85rem; margin-top:8px;">Consolidated from 5 disconnected booking channels</p></div>
+      <div class="surface" style="padding:24px;"><p class="hero-title" style="font-size:2rem; color:var(--pf-cyan-300); margin:0;">Structured GST</p><p class="body-text" style="font-size:0.85rem; margin-top:8px;">Computed from data, no manual reconstruction from conversations</p></div>
+    </div>
+  </section>
+
+  <!-- ============ SCOPE / OUTCOMES / REFLECTION ============ -->
+  <section class="shell section">
+    <p class="section-label">Scope</p>
+    <h2 class="hero-title" style="font-size:1.5rem; margin-bottom:16px;">Trade-offs, made on purpose</h2>
+    <div class="grid" style="gap:12px;">
+      <div class="surface" style="padding:16px; display:flex; gap:12px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--pf-cyan-300); margin-top:6px; flex-shrink:0;"></span><p class="body-text" style="font-size:0.9rem; margin:0;">No live OTA API integration — manual entry backstopped by email reconciliation. Breaks down around 30–50 properties.</p></div>
+      <div class="surface" style="padding:16px; display:flex; gap:12px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--pf-cyan-300); margin-top:6px; flex-shrink:0;"></span><p class="body-text" style="font-size:0.9rem; margin:0;">Guest checkout over mandatory signup — protects conversion, needs email-keyed matching.</p></div>
+      <div class="surface" style="padding:16px; display:flex; gap:12px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--pf-cyan-300); margin-top:6px; flex-shrink:0;"></span><p class="body-text" style="font-size:0.9rem; margin:0;">Monthly baseline + override over dynamic pricing — simpler to operate, doesn't react to demand.</p></div>
+    </div>
+  </section>
+
+  <section class="shell section">
+    <p class="section-label">Before vs. after</p>
+    <h2 class="hero-title" style="font-size:1.5rem; margin-bottom:16px;">Outcomes</h2>
+    <div class="grid" style="gap:10px;">
+      <div class="surface" style="padding:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;"><span style="color:#fff; font-weight:600; font-size:0.9rem;">Reconciliation</span><span style="color:var(--pf-slate-400); font-size:0.85rem;">Weekly, manual cross-check</span><span style="color:var(--pf-cyan-300);">→</span><span style="color:#fff; font-weight:600; font-size:0.85rem;">Daily dashboard glance</span></div>
+      <div class="surface" style="padding:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;"><span style="color:#fff; font-weight:600; font-size:0.9rem;">Source of truth</span><span style="color:var(--pf-slate-400); font-size:0.85rem;">5 disconnected channels</span><span style="color:var(--pf-cyan-300);">→</span><span style="color:#fff; font-weight:600; font-size:0.85rem;">1 shared calendar</span></div>
+      <div class="surface" style="padding:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;"><span style="color:#fff; font-weight:600; font-size:0.9rem;">GST filing prep</span><span style="color:var(--pf-slate-400); font-size:0.85rem;">Reconstructed from conversations</span><span style="color:var(--pf-cyan-300);">→</span><span style="color:#fff; font-weight:600; font-size:0.85rem;">Computed from structured data</span></div>
+      <div class="surface" style="padding:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;"><span style="color:#fff; font-weight:600; font-size:0.9rem;">Business visibility</span><span style="color:var(--pf-slate-400); font-size:0.85rem;">Pieced together from updates</span><span style="color:var(--pf-cyan-300);">→</span><span style="color:#fff; font-weight:600; font-size:0.85rem;">Remote, holistic view</span></div>
+      <div class="surface" style="padding:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;"><span style="color:#fff; font-weight:600; font-size:0.9rem;">Overbooked / vacant rooms</span><span style="color:var(--pf-slate-400); font-size:0.85rem;">Extra bookings manually diverted between properties</span><span style="color:var(--pf-cyan-300);">→</span><span style="color:#fff; font-weight:600; font-size:0.85rem;">Accurate, unified availability — no diverting needed</span></div>
+      <div class="surface" style="padding:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;"><span style="color:#fff; font-weight:600; font-size:0.9rem;">Stay types</span><span style="color:var(--pf-slate-400); font-size:0.85rem;">Informal, ad hoc arrangements</span><span style="color:var(--pf-cyan-300);">→</span><span style="color:#fff; font-weight:600; font-size:0.85rem;">4-hour short stay + 1-day stay (12pm–10am, 2hr cleaning buffer), systematized</span></div>
+      <div class="surface" style="padding:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;"><span style="color:#fff; font-weight:600; font-size:0.9rem;">Payments</span><span style="color:var(--pf-slate-400); font-size:0.85rem;">Cash only, no GST invoicing</span><span style="color:var(--pf-cyan-300);">→</span><span style="color:#fff; font-weight:600; font-size:0.85rem;">Credit card payments accepted, GST invoices provided</span></div>
+      <div class="surface" style="padding:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;"><span style="color:#fff; font-weight:600; font-size:0.9rem;">Online presence</span><span style="color:var(--pf-slate-400); font-size:0.85rem;">Instagram, Facebook, and WhatsApp only</span><span style="color:var(--pf-cyan-300);">→</span><span style="color:#fff; font-weight:600; font-size:0.85rem;">Dedicated booking website</span></div>
+    </div>
+  </section>
+
+  <section class="shell section">
+    <p class="section-label">Reflection</p>
+    <h2 class="hero-title" style="font-size:1.5rem; margin-bottom:16px;">What I'd do differently</h2>
+    <div class="grid" style="gap:12px;">
+      <div class="surface" style="padding:16px; display:flex; gap:12px;"><span style="width:8px;height:8px;border-radius:50%;background:#fda4af; margin-top:6px; flex-shrink:0;"></span><p class="body-text" style="font-size:0.9rem; margin:0;">Design the manual-entry flow mobile-first — it's used mid-call, standing up, on a phone, and today it's still fundamentally a desktop grid.</p></div>
+      <div class="surface" style="padding:16px; display:flex; gap:12px;"><span style="width:8px;height:8px;border-radius:50%;background:#fda4af; margin-top:6px; flex-shrink:0;"></span><p class="body-text" style="font-size:0.9rem; margin:0;">Instrument the funnel earlier — decisions were reasoned from conversations, not data collected from week one.</p></div>
+      <div class="surface" style="padding:16px; display:flex; gap:12px;"><span style="width:8px;height:8px;border-radius:50%;background:#fda4af; margin-top:6px; flex-shrink:0;"></span><p class="body-text" style="font-size:0.9rem; margin:0;">Push back harder on locking the visual design before build started — three days on the logo up front cost more time than it saved.</p></div>
+    </div>
+  </section>
+
+  <section class="shell section">
+    <blockquote class="hero-title" style="font-size:1.5rem; font-family:var(--pf-font-body); font-weight:600; letter-spacing:normal; color:#fff; max-width:48rem;">
+      "The website made our lives easy. We can scan the entire business in a few minutes and know almost everything about sales and profits — great work by Dhruv."
+    </blockquote>
+    <p style="color:var(--pf-slate-400); margin-top:16px; font-size:0.9rem;"><strong style="color:#fff;">Siddhant Sharma</strong> — Stakeholder, LaCasa Retreats</p>
+    <a href="design-system.html" class="button-secondary" style="margin-top:32px;">View the design system →</a>
+  </section>
+
+  <footer class="case-footer">Case study by Dhruv Mishra · lacasaretreats.com</footer>
+</body>
+</html>

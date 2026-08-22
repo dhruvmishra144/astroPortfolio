@@ -1,0 +1,244 @@
+/* ============================================================
+   LaCasa Retreats — Reverse Case Study
+   Two token systems:
+   1. --pf-*  Portfolio theme (dark navy + cyan) — page chrome, narrative
+   2. --lc-*  LaCasa product theme (black + gold) — product mockups
+   ============================================================ */
+
+:root {
+  /* Portfolio (dhruvmishra.dev) tokens — from src/styles/global.css */
+  --pf-background: #050816;
+  --pf-foreground: #e6eef8;
+  --pf-primary: #4dd7ff;
+  --pf-secondary: #d5e7ff;
+  --pf-surface: rgba(8, 15, 28, 0.72);
+  --pf-surface-strong: rgba(10, 18, 33, 0.88);
+  --pf-border: rgba(148, 163, 184, 0.18);
+  --pf-shadow-elevated: 0 28px 90px rgba(2, 8, 23, 0.38);
+  --pf-cyan-300: #67e8f9;
+  --pf-cyan-400: #22d3ee;
+  --pf-slate-300: #cbd5e1;
+  --pf-slate-400: #94a3b8;
+  --pf-slate-500: #64748b;
+
+  --pf-space-xs: 4px;
+  --pf-space-sm: 8px;
+  --pf-space-md: 16px;
+  --pf-space-lg: 24px;
+  --pf-space-xl: 32px;
+  --pf-space-2xl: 48px;
+  --pf-space-3xl: 64px;
+
+  --pf-radius-sm: 16px;
+  --pf-radius-md: 20px;
+  --pf-radius-lg: 24px;
+  --pf-radius-xl: 28px;
+  --pf-radius-2xl: 32px;
+  --pf-radius-full: 999px;
+
+  --pf-font-display: "Paytone One", serif;
+  --pf-font-body: "Poppins", sans-serif;
+
+  /* LaCasa Retreats product tokens — sampled from real product screenshots */
+  --lc-background: #050505;
+  --lc-surface-card: #121212;
+  --lc-gold: #dcb920;
+  --lc-text-heading: #ffffff;
+  --lc-text-muted: #a1a1a6;
+  --lc-border: #222222;
+  --lc-status-direct: #009966;
+  --lc-status-airbnb: #ff5a5f;
+  --lc-status-agoda: #5392f9;
+  --lc-status-bookin: #003580;
+  --lc-status-mmt: #ffcc00;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--pf-background);
+  color: var(--pf-foreground);
+  font-family: var(--pf-font-body);
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  background-image:
+    radial-gradient(circle at top, rgba(77,215,255,0.18), transparent 28%),
+    radial-gradient(circle at 82% 18%, rgba(59,130,246,0.12), transparent 26%),
+    linear-gradient(180deg, #050816 0%, #07111d 46%, #04070e 100%);
+  background-attachment: fixed;
+}
+
+.shell {
+  width: min(100%, 82rem);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 3vw, 1.75rem);
+}
+
+.section { padding-block: clamp(3rem, 7vw, 6rem); border-top: 1px solid var(--pf-border); }
+.section:first-of-type { border-top: none; }
+
+.section-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--pf-cyan-300);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 1rem;
+}
+.section-label::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--pf-cyan-400);
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.45);
+}
+
+.hero-title, .display {
+  font-family: var(--pf-font-display);
+  letter-spacing: -0.04em;
+  color: #fff;
+  margin: 0;
+}
+
+.surface {
+  background: var(--pf-surface);
+  border: 1px solid var(--pf-border);
+  box-shadow: var(--pf-shadow-elevated);
+  backdrop-filter: blur(18px);
+  border-radius: var(--pf-radius-lg);
+}
+
+/* Top navigation (case study internal nav) */
+.case-nav {
+  position: sticky; top: 0; z-index: 40;
+  background: rgba(5,8,22,0.82);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--pf-border);
+}
+.case-nav-inner {
+  width: min(100%, 82rem);
+  margin-inline: auto;
+  padding: 14px clamp(1rem, 3vw, 1.75rem);
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+}
+.case-nav a {
+  color: var(--pf-slate-400);
+  text-decoration: none;
+  font-size: 0.85rem;
+  padding: 8px 14px;
+  border-radius: var(--pf-radius-full);
+  transition: color .2s, background .2s;
+}
+.case-nav a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+.case-nav a.active { color: #061018; background: linear-gradient(135deg, #4dd7ff, rgba(34,211,238,0.9)); font-weight: 600; }
+.case-nav .brand { color: #fff; font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+
+/* Buttons */
+.button-primary, .button-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--pf-radius-full);
+  font-size: 0.875rem; font-weight: 600;
+  text-decoration: none;
+  cursor: pointer; border: none;
+}
+.button-primary { background: var(--pf-primary); color: var(--pf-background); box-shadow: 0 18px 40px rgba(34,211,238,0.24); }
+.button-secondary { background: transparent; color: var(--pf-foreground); border: 1px solid var(--pf-border); }
+
+.chip {
+  display: inline-flex; align-items: center;
+  padding: 6px 14px;
+  border-radius: var(--pf-radius-full);
+  background: rgba(34,211,238,0.1);
+  color: var(--pf-cyan-300);
+  font-size: 0.75rem; font-weight: 500;
+}
+
+/* Grid utilities */
+.grid { display: grid; gap: var(--pf-space-md); }
+.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.cols-4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 800px) { .cols-2, .cols-3, .cols-4 { grid-template-columns: 1fr; } }
+
+p.body-text { color: var(--pf-slate-300); font-size: 1rem; line-height: 1.8; max-width: 42rem; }
+
+/* ============================================================
+   Foundations documentation styles
+   ============================================================ */
+.swatch-row { display: flex; flex-wrap: wrap; gap: 16px; }
+.swatch { width: 120px; }
+.swatch-chip { width: 100%; height: 88px; border-radius: 12px; border: 1px solid var(--pf-border); margin-bottom: 8px; }
+.swatch-label { font-size: 0.75rem; color: var(--pf-slate-300); }
+.swatch-value { font-size: 0.7rem; color: var(--pf-slate-500); font-family: monospace; }
+
+.type-specimen { display: flex; flex-direction: column; gap: 24px; }
+.type-row { display: flex; align-items: baseline; gap: 24px; border-bottom: 1px solid var(--pf-border); padding-bottom: 16px; }
+.type-row .meta { width: 180px; flex-shrink: 0; font-size: 0.75rem; color: var(--pf-slate-500); font-family: monospace; }
+
+.component-block { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+.component-block h4 { margin: 0; color: #fff; font-size: 0.95rem; }
+.component-canvas { padding: 32px; border-radius: var(--pf-radius-lg); background: rgba(255,255,255,0.02); border: 1px solid var(--pf-border); display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+
+/* ============================================================
+   Wireframe styles (deliberately low-fidelity: grayscale, boxes, no polish)
+   ============================================================ */
+.wireframe {
+  background: #1a1a1a;
+  border: 1.5px dashed #555;
+  border-radius: 4px;
+  color: #888;
+}
+.wf-box { background: #262626; border: 1px dashed #555; border-radius: 2px; }
+.wf-text-line { height: 10px; background: #3a3a3a; border-radius: 2px; }
+.wf-label { position: absolute; top: 4px; left: 6px; font-size: 9px; color: #666; text-transform: uppercase; letter-spacing: 0.1em; font-family: monospace; }
+.wf-frame { position: relative; padding: 24px 12px 12px; }
+
+/* ============================================================
+   LaCasa product theme (used inside hi-fi mockup frames)
+   ============================================================ */
+.lc-frame {
+  background: var(--lc-background);
+  color: var(--lc-text-heading);
+  font-family: "Poppins", sans-serif;
+  border-radius: var(--pf-radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--lc-border);
+}
+.lc-frame * { box-sizing: border-box; }
+.lc-nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; border-bottom: 1px solid var(--lc-border); }
+.lc-logo { color: var(--lc-gold); font-weight: 700; font-size: 1.1rem; }
+.lc-nav-links { display: flex; gap: 24px; font-size: 0.85rem; color: #ccc; }
+.lc-card { background: var(--lc-surface-card); border: 1px solid var(--lc-border); border-radius: 12px; padding: 16px; }
+.lc-btn-gold { background: var(--lc-gold); color: #1a1400; font-weight: 600; border: none; border-radius: 6px; padding: 10px 20px; font-size: 0.85rem; cursor: pointer; }
+.lc-pill { display: inline-flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; color: #fff; border-radius: 4px; padding: 4px 6px; }
+.lc-pill.direct { background: var(--lc-status-direct); }
+.lc-pill.airbnb { background: var(--lc-status-airbnb); }
+.lc-pill.agoda { background: var(--lc-status-agoda); }
+.lc-pill.bookin { background: var(--lc-status-bookin); }
+.lc-pill.mmt { background: var(--lc-status-mmt); color: #1a1400; }
+.lc-muted { color: var(--lc-text-muted); font-size: 0.8rem; }
+
+.lc-btn-gold { appearance: none; -webkit-appearance: none; }
+.lc-btn-gold.state-hover { background: #f0c934; box-shadow: 0 4px 14px rgba(220,185,32,0.35); }
+.lc-btn-gold.state-disabled, .lc-btn-gold:disabled { background: #40381a !important; color: #8a8168 !important; cursor: not-allowed; opacity: 1; }
+
+.lc-field-wrap { display: flex; flex-direction: column; gap: 6px; width: 220px; font-family: "Poppins", sans-serif; }
+.lc-field-label { font-size: 0.7rem; font-weight: 500; color: #d9d9d9; }
+.lc-field-box { background: var(--lc-surface-card); border: 1px solid var(--lc-border); border-radius: 6px; padding: 10px 12px; font-size: 0.85rem; color: #fff; }
+.lc-field-box.state-focus { border-color: var(--lc-gold); border-width: 2px; }
+.lc-field-box.state-error { border-color: var(--lc-status-airbnb); }
+.lc-field-error { font-size: 0.7rem; color: var(--lc-status-airbnb); }
+
+.spacing-row { display: flex; align-items: center; gap: 12px; }
+.spacing-label { width: 140px; font-size: 0.75rem; color: var(--pf-slate-400); font-family: monospace; }
+.spacing-bar { height: 16px; background: var(--lc-gold); border-radius: 2px; }
+
+.radius-row { display: flex; align-items: center; gap: 16px; }
+.radius-swatch { width: 56px; height: 56px; background: var(--lc-gold); border: 1px solid var(--lc-border); }
+.radius-label { font-size: 0.75rem; color: var(--pf-slate-400); font-family: monospace; width: 140px; }
+
+footer.case-footer { text-align: center; padding: 48px 24px; color: var(--pf-slate-500); font-size: 0.8rem; border-top: 1px solid var(--pf-border); }

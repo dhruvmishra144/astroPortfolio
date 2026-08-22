@@ -1,0 +1,30 @@
+---
+interface Image {
+  src: string;
+  alt: string;
+}
+
+interface Props {
+  images: Image[];
+  caption?: string;
+}
+
+const { images, caption } = Astro.props;
+---
+
+<figure class="grid gap-4 sm:grid-cols-2">
+  {
+    images.map((img) => (
+      <div class="surface overflow-hidden rounded-[1.5rem]">
+        <img
+          src={img.src}
+          alt={img.alt}
+          width="1200"
+          height="800"
+          class="aspect-[3/2] w-full object-cover object-top"
+        />
+      </div>
+    ))
+  }
+  {caption && <figcaption class="mt-1 text-xs uppercase tracking-[0.2em] text-slate-500 sm:col-span-2">{caption}</figcaption>}
+</figure>

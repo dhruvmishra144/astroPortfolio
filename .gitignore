@@ -51,3 +51,6 @@ next-env.d.ts
 .firebase
 .env
 .env.local
+
+# unredacted portfolio screenshot originals (contain real business data)
+.raw-screenshots-backup/

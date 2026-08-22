@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design System — LaCasa Retreats Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=3" />
+</head>
+<body>
+  <nav class="case-nav">
+    <div class="case-nav-inner">
+      <a class="brand" href="index.html">LaCasa Retreats — Case Study</a>
+      <div>
+        <a href="index.html">Case Study</a>
+        <a href="design-system.html" class="active">Design System</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="shell section" style="padding-top:4rem;">
+    <p class="section-label">04 · Design system</p>
+    <h1 class="hero-title" style="font-size:clamp(2rem,5vw,3.5rem);">LaCasa Retreats' product design system</h1>
+    <p class="body-text" style="font-size:1.05rem;">
+      Tokens and components sampled directly from the real, live product — black + gold —
+      built and maintained in Figma as bound variables, not reskinned to match this case study's own presentation.
+    </p>
+  </header>
+
+  <section class="shell section">
+    <p class="section-label">Color</p>
+    <h2 class="hero-title" style="font-size:1.75rem; margin-bottom:1.5rem;">LaCasa product palette</h2>
+    <div class="swatch-row">
+      <div class="swatch"><div class="swatch-chip" style="background:var(--lc-background); border-color:#333;"></div><p class="swatch-label">background</p><p class="swatch-value">#050505</p></div>
+      <div class="swatch"><div class="swatch-chip" style="background:var(--lc-surface-card); border-color:#333;"></div><p class="swatch-label">surface-card</p><p class="swatch-value">#121212</p></div>
+      <div class="swatch"><div class="swatch-chip" style="background:var(--lc-border); border-color:#333;"></div><p class="swatch-label">border</p><p class="swatch-value">#222222</p></div>
+      <div class="swatch"><div class="swatch-chip" style="background:var(--lc-gold);"></div><p class="swatch-label">gold-primary</p><p class="swatch-value">#dcb920</p></div>
+      <div class="swatch"><div class="swatch-chip" style="background:var(--lc-text-heading); border-color:#333;"></div><p class="swatch-label">text-heading</p><p class="swatch-value">#ffffff</p></div>
+      <div class="swatch"><div class="swatch-chip" style="background:var(--lc-text-muted);"></div><p class="swatch-label">text-muted</p><p class="swatch-value">#a1a1a6</p></div>
+      <div class="swatch"><div class="swatch-chip" style="background:var(--lc-status-direct);"></div><p class="swatch-label">status-direct</p><p class="swatch-value">#009966</p></div>
+      <div class="swatch"><div class="swatch-chip" style="background:var(--lc-status-airbnb);"></div><p class="swatch-label">status-airbnb</p><p class="swatch-value">#ff5a5f</p></div>
+      <div class="swatch"><div class="swatch-chip" style="background:var(--lc-status-agoda);"></div><p class="swatch-label">status-agoda</p><p class="swatch-value">#5392f9</p></div>
+      <div class="swatch"><div class="swatch-chip" style="background:var(--lc-status-bookin);"></div><p class="swatch-label">status-bookin</p><p class="swatch-value">#003580</p></div>
+      <div class="swatch"><div class="swatch-chip" style="background:var(--lc-status-mmt);"></div><p class="swatch-label">status-mmt</p><p class="swatch-value">#ffcc00</p></div>
+    </div>
+  </section>
+
+  <section class="shell section">
+    <p class="section-label">Typography</p>
+    <h2 class="hero-title" style="font-size:1.75rem; margin-bottom:1.5rem;">Type scale</h2>
+    <div class="type-specimen">
+      <div class="type-row"><span class="meta">Display / H1 · 32/120%</span><span style="font-family:'Inter',sans-serif; font-weight:700; font-size:2rem; color:#fff;">Property Status Checkups</span></div>
+      <div class="type-row"><span class="meta">Display / H2 · 24/125%</span><span style="font-family:'Inter',sans-serif; font-weight:700; font-size:1.5rem; color:#fff;">Admin Dashboard</span></div>
+      <div class="type-row"><span class="meta">Display / H3 · 18/130%</span><span style="font-family:'Inter',sans-serif; font-weight:600; font-size:1.125rem; color:#fff;">Manage daily operations and status</span></div>
+      <div class="type-row"><span class="meta">Body / Base · 14/160%</span><span style="font-family:'Inter',sans-serif; font-weight:400; font-size:0.875rem; color:var(--pf-slate-300);">Total earnings across all properties this month</span></div>
+      <div class="type-row"><span class="meta">Body / Small · 12/150%</span><span style="font-family:'Inter',sans-serif; font-weight:400; font-size:0.75rem; color:var(--pf-slate-300);">41.5% of market share</span></div>
+      <div class="type-row"><span class="meta">Label / Caption · 10/130%, +10%</span><span style="font-family:'Inter',sans-serif; font-weight:500; font-size:0.625rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--pf-slate-400);">Total Earnings</span></div>
+    </div>
+  </section>
+
+  <section class="shell section">
+    <p class="section-label">Spacing</p>
+    <h2 class="hero-title" style="font-size:1.75rem; margin-bottom:1.5rem;">Spacing scale</h2>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div class="spacing-row"><span class="spacing-label">spacing/xs — 4px</span><div class="spacing-bar" style="width:4px;"></div></div>
+      <div class="spacing-row"><span class="spacing-label">spacing/sm — 8px</span><div class="spacing-bar" style="width:8px;"></div></div>
+      <div class="spacing-row"><span class="spacing-label">spacing/md — 12px</span><div class="spacing-bar" style="width:12px;"></div></div>
+      <div class="spacing-row"><span class="spacing-label">spacing/lg — 16px</span><div class="spacing-bar" style="width:16px;"></div></div>
+      <div class="spacing-row"><span class="spacing-label">spacing/xl — 24px</span><div class="spacing-bar" style="width:24px;"></div></div>
+      <div class="spacing-row"><span class="spacing-label">spacing/2xl — 32px</span><div class="spacing-bar" style="width:32px;"></div></div>
+      <div class="spacing-row"><span class="spacing-label">spacing/3xl — 48px</span><div class="spacing-bar" style="width:48px;"></div></div>
+      <div class="spacing-row"><span class="spacing-label">spacing/4xl — 64px</span><div class="spacing-bar" style="width:64px;"></div></div>
+    </div>
+  </section>
+
+  <section class="shell section">
+    <p class="section-label">Radius</p>
+    <h2 class="hero-title" style="font-size:1.75rem; margin-bottom:1.5rem;">Corner radius scale</h2>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div class="radius-row"><span class="radius-label">radius/sm — 4px</span><div class="radius-swatch" style="border-radius:4px;"></div></div>
+      <div class="radius-row"><span class="radius-label">radius/md — 6px</span><div class="radius-swatch" style="border-radius:6px;"></div></div>
+      <div class="radius-row"><span class="radius-label">radius/lg — 8px</span><div class="radius-swatch" style="border-radius:8px;"></div></div>
+      <div class="radius-row"><span class="radius-label">radius/xl — 12px</span><div class="radius-swatch" style="border-radius:12px;"></div></div>
+      <div class="radius-row"><span class="radius-label">radius/2xl — 16px</span><div class="radius-swatch" style="border-radius:16px;"></div></div>
+      <div class="radius-row"><span class="radius-label">radius/full — 999px</span><div class="radius-swatch" style="border-radius:999px;"></div></div>
+    </div>
+  </section>
+
+  <section class="shell section">
+    <p class="section-label">Components</p>
+    <h2 class="hero-title" style="font-size:1.75rem; margin-bottom:1.5rem;">Buttons, inputs, pills, cards — with states</h2>
+
+    <div class="component-block">
+      <h4>Button — Default / Hover / Disabled</h4>
+      <div class="component-canvas lc-frame">
+        <button class="lc-btn-gold">Save Changes</button>
+        <button class="lc-btn-gold state-hover">Save Changes</button>
+        <button class="lc-btn-gold state-disabled" disabled>Save Changes</button>
+      </div>
+    </div>
+
+    <div class="component-block">
+      <h4>Input Field — Default / Focus / Error</h4>
+      <div class="component-canvas lc-frame" style="align-items:flex-start;">
+        <div class="lc-field-wrap">
+          <span class="lc-field-label">Price per night (₹)</span>
+          <div class="lc-field-box">2800</div>
+        </div>
+        <div class="lc-field-wrap">
+          <span class="lc-field-label">Price per night (₹)</span>
+          <div class="lc-field-box state-focus">2800</div>
+        </div>
+        <div class="lc-field-wrap">
+          <span class="lc-field-label">Price per night (₹)</span>
+          <div class="lc-field-box state-error">0</div>
+          <span class="lc-field-error">Price must be greater than 0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="component-block">
+      <h4>Channel status pills</h4>
+      <div class="component-canvas lc-frame">
+        <span class="lc-pill direct">Direct</span>
+        <span class="lc-pill airbnb">Airbnb</span>
+        <span class="lc-pill agoda">Agoda</span>
+        <span class="lc-pill bookin">Bookin.</span>
+        <span class="lc-pill mmt">MMT</span>
+      </div>
+    </div>
+
+    <div class="component-block">
+      <h4>Product card</h4>
+      <div class="component-canvas lc-frame">
+        <div class="lc-card" style="width:220px;">
+          <p class="lc-muted" style="text-transform:uppercase; letter-spacing:0.1em; font-size:0.65rem; margin:0 0 8px;">Total Earnings</p>
+          <p style="font-size:1.5rem; font-weight:700; margin:0; color:var(--lc-gold);">₹8,91,593</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="case-footer">Case study by Dhruv Mishra · lacasaretreats.com</footer>
+</body>
+</html>

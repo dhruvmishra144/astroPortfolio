@@ -1,0 +1,28 @@
+---
+interface Row {
+  label: string;
+  before: string;
+  after: string;
+}
+
+interface Props {
+  rows: Row[];
+}
+
+const { rows } = Astro.props;
+---
+
+<div class="grid gap-3">
+  {
+    rows.map((row) => (
+      <div class="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+        <p class="text-sm font-medium text-white">{row.label}</p>
+        <div class="flex flex-col gap-1.5 text-sm">
+          <span class="text-slate-400">{row.before}</span>
+          <span class="text-cyan-300" aria-hidden="true">↓</span>
+          <span class="font-semibold text-white">{row.after}</span>
+        </div>
+      </div>
+    ))
+  }
+</div>

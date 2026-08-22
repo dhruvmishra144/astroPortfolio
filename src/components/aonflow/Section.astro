@@ -2,15 +2,16 @@
 interface Props {
   eyebrow: string;
   title: string;
+  id?: string;
 }
 
-const { eyebrow, title } = Astro.props;
+const { eyebrow, title, id } = Astro.props;
 ---
 
-<section class="grid gap-8 border-t border-white/10 py-14 lg:grid-cols-[0.34fr_0.66fr] lg:gap-12">
+<section id={id} class="grid gap-8 border-t border-white/10 py-14 scroll-mt-24 lg:grid-cols-[0.34fr_0.66fr] lg:gap-12">
   <div class="space-y-3">
     <p class="section-label">{eyebrow}</p>
     <h2 class="section-title text-3xl text-white sm:text-4xl">{title}</h2>
   </div>
-  <div class="space-y-7 text-sm leading-7 text-slate-300 sm:text-base"><slot /></div>
+  <div class="space-y-7 text-base leading-8 text-slate-300 sm:text-lg"><slot /></div>
 </section>

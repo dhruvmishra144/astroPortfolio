@@ -1,0 +1,910 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import Section from '../../components/aonflow/Section.astro';
+import MockupFigure from '../../components/aonflow/MockupFigure.astro';
+import StatRow from '../../components/story/StatRow.astro';
+import StoryBeat from '../../components/story/StoryBeat.astro';
+import ImagePair from '../../components/story/ImagePair.astro';
+import QuoteBlock from '../../components/story/QuoteBlock.astro';
+import BeforeAfter from '../../components/story/BeforeAfter.astro';
+
+const stack = [
+  'React 19 + Vite',
+  'Express / Node',
+  'Firebase Auth + Firestore',
+  'Razorpay',
+  'Twilio & Nodemailer',
+];
+
+const stats = [
+  { value: '17', label: 'Properties live' },
+  { value: '5', label: 'Booking channels' },
+  { value: '~3 hrs/wk', label: 'Reconciliation removed' },
+];
+
+const roleFacts = [
+  { label: 'Role', value: 'Product Designer & Developer' },
+  { label: 'Responsibilities', value: 'Research · UX strategy · IA · Interaction & UI design · Frontend + backend build' },
+  { label: 'Team', value: 'Solo — client as sole stakeholder' },
+  { label: 'Timeline', value: 'MVP in ~5 weeks, in active maintenance since' },
+  { label: 'Platform', value: 'Web (guest booking site + internal ops tooling)' },
+];
+
+const researchInputs = [
+  'Stakeholder conversations',
+  'WhatsApp booking log review',
+  'Workflow observation',
+];
+
+const insights = [
+  {
+    title: 'The friction wasn\u2019t too many tools — it was no shared source of truth',
+    body: 'Booking.com, Agoda, MMT and Airbnb each worked fine on their own. The actual failure mode only appeared at the seam between them: nothing stopped the same physical room being confirmed twice.',
+  },
+  {
+    title: 'Managers think in months, not dates',
+    body: 'Watching how pricing actually got set — "this month\u2019s baseline, weekends a bit higher" — showed that a per-date rate tool was solving a problem nobody had. The mental model was monthly; the tool needed to match it, not train them into a new one.',
+  },
+  {
+    title: 'A signup wall doesn\u2019t protect the business — it just moves the cost',
+    body: 'The instinct is "require an account to keep guest data." In practice that data still needed to be reachable without it: the fix was making email itself the identity key, not gating checkout on registration.',
+  },
+];
+
+const process = [
+  { step: '01 — Understand', body: 'Sat with how bookings actually got recorded before the site existed: a WhatsApp group, ad-hoc reconciliation, no single calendar.' },
+  { step: '02 — Structure', body: 'Mapped the two funnels — guest booking and operator logging — onto one shared calendar as the single source of truth.' },
+  { step: '03 — Simplify', body: 'Cut each flow to its minimum unit of work: one source tag to block a date, one monthly rate to reprice a portfolio, one email to identify a guest.' },
+  { step: '04 — Ship & watch', body: 'No separate test phase — shipped directly into daily use, and revised the rate tool once real usage showed the first version was too granular to operate.' },
+  { step: '05 — Harden', body: 'Backed the manual block with email reconciliation and dedicated test coverage on the pricing/overlap logic, since a bug here is real money, not a cosmetic issue.' },
+];
+
+const reflection = [
+  'I\u2019d design the manual-entry flow mobile-first from day one — it\u2019s used mid-call, standing up, on a phone, and today it\u2019s still fundamentally a desktop grid.',
+  'I\u2019d instrument the funnel earlier. Decisions like the checkout redesign were reasoned from direct conversations, not from data I collected myself \u2014 basic analytics from week one would have made the case for later changes sharper.',
+  'I\u2019d push back harder on locking the visual design before build started \u2014 three days spent on the logo up front, then designing and engineering the MVP simultaneously, cost more time than it saved.',
+];
+
+const userGroups = [
+  {
+    title: 'Guests',
+    description:
+      'Book a property for a stay. Price and convenience are what they optimize for — most don’t want friction like a mandatory account before they can pay.',
+  },
+  {
+    title: 'Property managers',
+    description:
+      'Handle the operational side: recording bookings (including ones that didn’t originate on the website), keeping the calendar accurate, and making sure no property is ever double-committed.',
+  },
+  {
+    title: 'Stakeholders / owners',
+    description:
+      'Check revenue and booking status remotely, and reconcile anything that slipped through the cracks.',
+  },
+];
+
+const pivots = [
+  {
+    tag: '01 · Two guests, one room',
+    tension:
+      'Availability lived in five places. The website could only see one of them — automatic sync was impossible with no unified channel-manager access, and manual entry is exactly the thing humans forget under pressure.',
+    call:
+      'Make logging an external booking the fastest action in the product, tag it with its source, and let that single write block the dates everywhere — backed by email reconciliation instead of pretending the block is airtight.',
+    result:
+      'A unit sold on Airbnb in the morning can no longer be sold on the website that afternoon. Still depends on a human logging it in time — reconciliation is the net under that, not a fix for it.',
+  },
+  {
+    tag: '02 · Too many dates to price',
+    tension:
+      'The earlier rate tool generated one fixed schedule. Setting prices night-by-night across 17 units was technically complete and operationally unusable — but full dynamic pricing was a rules engine nobody needed to operate.',
+    call:
+      'One Sun–Thu and one Fri–Sat rate per month, twelve months out, applied to every property at once — with per-day overrides still available for the genuinely exceptional dates.',
+    result:
+      'Seasonal repricing across all 17 units went from an afternoon to under a minute. No demand signal means pricing is only as good as the last time someone looked.',
+  },
+  {
+    tag: '03 · Account, or conversion',
+    tension:
+      'The business needed to know who the guest was. The guest needed to not care — a signup wall in front of a payment on a site nobody has heard of yet kills conversion.',
+    call:
+      'Let them pay with name, email and phone. Key the booking to the email, so a guest who later signs in with the same address finds their history waiting — identity becomes retroactive instead of upfront.',
+    result:
+      'No signup wall in front of a payment, and no fragmented booking history behind it. Email-keyed matching is only as reliable as the email typed at checkout.',
+  },
+];
+
+const engineeringRigor = [
+  {
+    title: 'BrutalRevenueTracking.test.ts',
+    description: 'Covers GST rounding behavior and override-price edge cases against the real pricing logic, not just the happy path.',
+  },
+  {
+    title: 'PricingAndLocking.e2e.test.ts',
+    description: 'Exercises double-booking overlap detection end-to-end — the exact failure mode the whole channel-block system exists to prevent.',
+  },
+];
+
+const tradeoffs = [
+  'No live OTA API integration — Booking.com/Airbnb/etc. sync is manual, not automated. A deliberate scope call given the cost and access constraints of building real channel-manager integrations at this business’s size, backstopped by email reconciliation rather than engineered around. This has a real ceiling: manual reconciliation starts to break down somewhere around 30–50 properties, where the volume of cross-checking outgrows what a person can reliably catch by hand.',
+  'Guest checkout over mandatory signup — chosen to protect conversion, at the cost of needing the email-keyed matching logic to avoid fragmenting a guest’s booking history.',
+  'Monthly baseline + manual override over full dynamic pricing — simpler to operate at this scale than a rules engine, at the cost of not automatically reacting to demand.',
+];
+
+const outcomeRows = [
+  { label: 'Reconciliation', before: 'Weekly, manual cross-check', after: 'Daily dashboard glance' },
+  { label: 'Source of truth', before: '5 disconnected channels', after: '1 shared calendar' },
+  { label: 'GST filing prep', before: 'Reconstructed from conversations', after: 'Computed from structured data' },
+  { label: 'Business visibility', before: 'Pieced together from updates', after: 'Remote, holistic view' },
+  { label: 'Overbooked / vacant rooms', before: 'Extra bookings manually diverted between properties', after: 'Accurate, unified availability — no diverting needed' },
+  { label: 'Stay types', before: 'Informal, ad hoc arrangements', after: '4-hour short stay (Agoda/direct) + 1-day stay (12pm–10am, 2hr cleaning buffer), systematized' },
+  { label: 'Payments', before: 'Cash only, no GST invoicing', after: 'Credit card payments accepted, GST invoices provided' },
+  { label: 'Online presence', before: 'Instagram, Facebook, and WhatsApp only', after: 'Dedicated booking website' },
+];
+
+const toc = [
+  { href: '#problem', label: 'Problem' },
+  { href: '#research', label: 'Research' },
+  { href: '#decisions', label: 'Decisions' },
+  { href: '#wireframes', label: 'Wireframes' },
+  { href: '#product', label: 'Product' },
+  { href: '#impact', label: 'Impact' },
+  { href: '#outcomes', label: 'Outcomes' },
+  { href: '#reflection', label: 'Reflection' },
+];
+
+const wireframes = [
+  {
+    title: 'Manual channel timeline',
+    tag: 'PropertyStatusPage.tsx',
+    src: '/lacasa-wireframe-timeline.png',
+    decision: 'Logging an external booking is the single fastest action on the page, and it blocks the date everywhere immediately.',
+    reason: 'This is filled in mid-call with a guest — any friction here reintroduces the exact double-booking risk the feature exists to prevent.',
+  },
+  {
+    title: 'Monthly rate editor',
+    tag: 'AdminPage.tsx:845',
+    src: '/lacasa-wireframe-rate-editor.png',
+    decision: 'One weekday and one weekend rate per month, applied to every property at once, with per-day overrides layered on top.',
+    reason: 'Owners think in "this month’s baseline, weekends a bit higher," not per-date pricing — the tool matches that mental model instead of training a new one.',
+  },
+  {
+    title: 'Guest checkout — no login',
+    tag: 'CheckoutPage.tsx',
+    src: '/lacasa-wireframe-checkout.png',
+    decision: 'Name, email, and phone only — no account creation — with payment collected upfront, not at check-in.',
+    reason: 'A signup wall in front of payment kills conversion on a site with no brand recognition yet; the email itself becomes the identity key retroactively.',
+  },
+];
+
+const decisionLog = [
+  { decision: 'Manual OTA logging, not API sync', chosen: 'No unified channel-manager access; integration cost outweighs benefit at 17 units', cost: 'Depends on a human remembering; backstopped by email reconciliation' },
+  { decision: 'Monthly baseline + overrides, not dynamic pricing', chosen: 'Owners think in monthly baselines with a weekend bump — match the mental model', cost: 'No automatic reaction to demand' },
+  { decision: 'Guest checkout, not mandatory signup', chosen: 'Protects conversion on a site with no brand recognition yet', cost: 'Needs email-keyed matching to avoid fragmenting booking history' },
+  { decision: 'Notify guest and host at payment', chosen: 'A booking that lives only in a dashboard depends on someone opening it', cost: 'More notification surface to maintain' },
+];
+---
+
+<Base
+  title="LaCasa Retreats Case Study"
+  description="A live booking platform and lightweight property management system for a 17-property short-stay rental business, designed and built solo end-to-end."
+>
+  <main id="content" class="page-shell pb-24 pt-20">
+    <div class="mb-8 flex flex-col items-center gap-2.5 text-center">
+      <div class="view-toggle" role="group" aria-label="Reading depth">
+        <button type="button" data-view-btn="scannable" class="view-toggle__btn">
+          <svg class="view-toggle__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+          </svg>
+          <span class="view-toggle__text">
+            <span class="view-toggle__label">Scannable</span>
+            <span class="view-toggle__time">~2 min</span>
+          </span>
+        </button>
+        <button type="button" data-view-btn="deep" class="view-toggle__btn">
+          <svg class="view-toggle__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3 3 8l9 5 9-5-9-5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+            <path d="M3 12l9 5 9-5M3 16l9 5 9-5" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+          </svg>
+          <span class="view-toggle__text">
+            <span class="view-toggle__label">Deep dive</span>
+            <span class="view-toggle__time">~8 min</span>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <section class="page-section max-w-4xl space-y-7">
+      <div class="flex flex-wrap gap-2">
+        {stack.map((item) => <span class="chip">{item}</span>)}
+      </div>
+
+      <div class="space-y-5">
+        <p class="section-label">Flagship case study · Live product</p>
+        <h1 class="hero-title text-balance text-5xl leading-[0.95] text-white sm:text-6xl lg:text-7xl">
+          The website was never just a website.
+        </h1>
+        <p class="max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+          LaCasa Retreats manages 17 live short-stay rental properties across Noida, including
+          Galaxy Blue Sapphire and Spectrum Metro Mall. I designed and built the guest-facing
+          booking site and the internal operations tooling behind it, solo, end to end — and
+          continue to maintain it in active production. Live at{' '}
+          <a href="https://lacasaretreats.com" target="_blank" rel="noopener noreferrer" class="text-cyan-300 underline underline-offset-4">
+            lacasaretreats.com
+          </a>.
+        </p>
+      </div>
+
+      <StatRow stats={stats} />
+
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        {
+          roleFacts.map((fact) => (
+            <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+              <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-cyan-300">{fact.label}</p>
+              <p class="mt-2 text-sm leading-6 text-slate-200">{fact.value}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <div class="case-toc-spacer"></div>
+    <div class="case-toc-sticky">
+      <nav class="case-toc-pill flex gap-1.5 overflow-x-auto" aria-label="Case study sections">
+        {
+          toc.map((item) => (
+            <a
+              href={item.href}
+              class="case-toc-item shrink-0 rounded-full px-3.5 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-slate-300 transition hover:text-white"
+            >
+              {item.label}
+            </a>
+          ))
+        }
+        <span class="mx-1 h-4 w-px shrink-0 self-center bg-white/10" aria-hidden="true" />
+        <a
+          href="/design-systems/lacasa-retreats"
+          data-transition
+          class="case-toc-item shrink-0 rounded-full px-3.5 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-cyan-300 transition hover:text-white"
+        >
+          Design system ↗
+        </a>
+      </nav>
+      <button type="button" class="case-toc-arrow case-toc-arrow--left" data-toc-scroll="-1" aria-label="Scroll sections left">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+      <button type="button" class="case-toc-arrow case-toc-arrow--right" data-toc-scroll="1" aria-label="Scroll sections right">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+    </div>
+
+    <StoryBeat id="problem" eyebrow="The problem" headline="Five channels, one set of dates.">
+      <p class="scan-only">
+        The same unit could be sold twice across 5 independent booking channels with no shared
+        source of truth — the product exists to close that gap.
+      </p>
+      <div class="deep-only space-y-5">
+      <p>
+        LaCasa's properties are sold on their own website and, simultaneously, on Booking.com,
+        Agoda, MakeMyTrip/Goibibo, and Airbnb. A guest can book the same physical unit through any
+        of those platforms, completely outside this website's control. Without a shared source of
+        truth, the same dates could be sold twice — a real guest arriving to a room that's already
+        occupied.
+      </p>
+      <p>
+        That constraint — not a feature checklist — is why this became more than a booking site.
+        The product needed a way to consolidate availability across channels it has no API access
+        to, using only what's actually available: manual entry, plus a reconciliation safety net.
+      </p>
+      </div>
+    </StoryBeat>
+
+    <div class="py-4">
+      <ImagePair
+        images={[
+          { src: '/lacasa-home.png', alt: 'LaCasa Retreats guest-facing home page' },
+          { src: '/lacasa-listings.png', alt: 'LaCasa Retreats property listings page' },
+        ]}
+        caption="Guest-facing home & listings"
+      />
+    </div>
+
+    <Section id="research" eyebrow="What I discovered" title="Three things that shaped every decision after">
+      <div class="flex flex-wrap items-center gap-2 -mt-2">
+        <span class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Research inputs</span>
+        {researchInputs.map((item) => <span class="chip">{item}</span>)}
+      </div>
+      <div class="grid gap-4">
+        {
+          insights.map((item, i) => (
+            <article class="surface rounded-[1.5rem] p-6">
+              <p class="section-label mb-3">Insight 0{i + 1}</p>
+              <h3 class="text-lg font-semibold text-white">{item.title}</h3>
+              <p class="deep-only mt-3 text-base leading-8 text-slate-300">{item.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </Section>
+
+    <div class="deep-only">
+    <Section eyebrow="How I approached it" title="Understand, structure, simplify, ship, harden">
+      <div class="grid gap-4 sm:grid-cols-5">
+        {
+          process.map((p) => (
+            <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+              <p class="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-300">{p.step}</p>
+              <p class="mt-2 text-sm leading-7 text-slate-300">{p.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </Section>
+
+    <Section eyebrow="Who's involved" title="Who actually uses it">
+      <p>
+        Three groups use this system day to day. These aren't research personas — they're the
+        real people I built for, based on direct client conversations over the life of the project.
+      </p>
+      <div class="grid gap-4 sm:grid-cols-3">
+        {
+          userGroups.map((group) => (
+            <article class="surface rounded-[1.5rem] p-5">
+              <h3 class="text-lg font-semibold text-white">{group.title}</h3>
+              <p class="mt-3 text-sm leading-7 text-slate-300">{group.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </Section>
+    </div>
+
+    <Section id="decisions" eyebrow="From insight to solution" title="Three decisions did most of the work">
+      <p class="text-base leading-8">
+        Each one started as a tension with no clean answer, got resolved against a real operating
+        constraint, and is still in production today.
+      </p>
+      <div class="grid gap-4">
+        {
+          pivots.map((p) => (
+            <article class="surface rounded-[1.5rem] p-6">
+              <p class="section-label mb-4">{p.tag}</p>
+              <div class="grid gap-4 sm:grid-cols-3">
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-[0.16em] text-rose-300">The tension</p>
+                  <p class="mt-2 text-sm leading-7 text-slate-300">{p.tension}</p>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-300">The call</p>
+                  <p class="mt-2 text-sm leading-7 text-slate-300">{p.call}</p>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-300">Result</p>
+                  <p class="mt-2 text-sm leading-7 text-slate-300">{p.result}</p>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </Section>
+
+    <Section id="wireframes" eyebrow="02 · Wireframes" title="Structure before polish">
+      <p class="text-base leading-8">
+        Mid-fidelity structure for the three flows above, before final visual design — built and
+        refined directly in Figma, each paired with the decision it was drawn to test.
+      </p>
+      <div class="grid gap-8">
+        {
+          wireframes.map((wf) => (
+            <div>
+              <p class="text-[10px] font-mono uppercase tracking-[0.1em] text-slate-500">{wf.tag}</p>
+              <h3 class="mt-1 text-lg font-semibold text-white">{wf.title}</h3>
+              <div class="surface mt-4 overflow-hidden rounded-[1.5rem]">
+                <img src={wf.src} alt={`${wf.title} wireframe`} class="w-full" />
+              </div>
+              <div class="mt-4 rounded-2xl border border-cyan-300/20 bg-cyan-300/[0.06] p-4">
+                <p class="text-sm leading-7 text-slate-300">
+                  <span class="font-semibold text-cyan-300">Decision:</span> {wf.decision}{' '}
+                  <span class="font-semibold text-cyan-300">Reason:</span> {wf.reason}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </Section>
+
+    <StoryBeat id="product" eyebrow="Operations · Channel blocking" headline="One block, then a safety net.">
+      <p class="text-[10px] font-mono uppercase tracking-[0.1em] text-slate-500">PropertyStatusPage.tsx</p>
+      <p class="scan-only">
+        A manager logs any external booking the moment it comes in, tagging its source — that
+        single write blocks the date everywhere, backed by email reconciliation as the safety net.
+      </p>
+      <div class="deep-only space-y-5">
+      <p>
+        Since there's no unified channel-manager integration across Booking.com, Agoda,
+        MakeMyTrip/Goibibo, or Airbnb, a property manager manually logs a booking from any external
+        platform into this page as soon as it comes in, tagged with its source. Doing so blocks
+        those dates in Firestore before the guest-facing site will allow a new booking, so a unit
+        sold on Airbnb this morning can't also be sold on the website this afternoon.
+      </p>
+      <p>
+        The gap this doesn't close on its own is someone forgetting to log an external booking in
+        time — which is why it's paired with email reconciliation rather than relying on the block
+        alone: every platform still emails a booking confirmation, and the stakeholder cross-checks
+        those against what's recorded in the system. The manual block is the first line of defense;
+        email reconciliation is the backstop.
+      </p>
+      </div>
+    </StoryBeat>
+
+    <div class="py-4">
+      <MockupFigure
+        title="Property status — manual channel timeline"
+        description="The color-coded, per-source timeline a property manager uses to log and block dates from external platforms."
+        src="/lacasa-timeline.png"
+      />
+    </div>
+
+    <div class="py-4">
+      <MockupFigure
+        title="Reservation details — the write path"
+        description="Guest, source, price, check-in/out, nights (auto-calculated), and ID upload — the whole manual-entry form a manager fills mid-call."
+        src="/lacasa-reservation.png"
+      />
+    </div>
+
+    <StoryBeat eyebrow="Operations · Pricing" headline="A baseline in seconds, exceptions on top.">
+      <p class="text-[10px] font-mono uppercase tracking-[0.1em] text-slate-500">AdminPage.tsx:845</p>
+      <p class="scan-only">
+        One weekday and one weekend rate per month, applied to all properties at once, with
+        per-day overrides on top — matching how owners actually think about pricing.
+      </p>
+      <div class="deep-only space-y-5">
+      <p>
+        The earlier version of the rate tool generated a single fixed rate schedule. In practice,
+        setting prices night-by-night or week-by-week was too tedious for how the business actually
+        adjusts pricing — owners think in terms of "this month's baseline, with a bump on
+        weekends," not individual dates.
+      </p>
+      <p>
+        The rate editor now lets a manager set one weekday (Sun–Thu) and one weekend (Fri–Sat) rate
+        per month, up to 12 months out, applied across all properties at once, then override
+        specific higher-demand days separately on top of that baseline. It's a direct trade of
+        granularity for speed: the common case takes seconds, the exceptional case is still
+        editable, just not the default unit of work.
+      </p>
+      </div>
+    </StoryBeat>
+
+    <div class="py-4 grid gap-4 sm:grid-cols-2">
+      <MockupFigure
+        title="Monthly rate editor"
+        description="Weekday/weekend baseline pricing set per month across all properties at once."
+        src="/lacasa-admin-rates.png"
+      />
+      <MockupFigure
+        title="Per-property overrides"
+        description="Bulk day-of-week selection, then one price and one availability toggle for the exceptional dates."
+        src="/lacasa-monthly-rates.png"
+      />
+    </div>
+
+    <StoryBeat eyebrow="Guest experience · Checkout" headline="No login. Payment upfront.">
+      <p class="text-[10px] font-mono uppercase tracking-[0.1em] text-slate-500">CheckoutPage.tsx</p>
+      <p class="scan-only">
+        Name, email, and phone only — no account required — with payment collected upfront and
+        the booking keyed to the guest's email for retroactive identity matching.
+      </p>
+      <div class="deep-only space-y-5">
+      <p>
+        The idea to let guests book without an account came from a stakeholder who used
+        Booking.com constantly and wanted that same low-friction flow. I kept one half and adapted
+        the other. Guests still don't need an account — a booking is stored keyed by their email
+        (<code>guest_&lt;email&gt;</code>), so if that same person later signs in using that email,
+        their past bookings surface automatically under "My Bookings," no manual linking step.
+      </p>
+      <p>
+        But payment happens upfront, not at check-in, because unlike an aggregator, LaCasa is the
+        one holding the room. Collecting payment in advance protects the business while keeping
+        booking effortless for the guest. A confirmation goes to both guest and host at time of
+        booking, so nothing depends on one person checking a dashboard. Authentication itself uses
+        dual email/phone OTP verification, with account linking handled for guests who later sign
+        in via Google using the same email. Login-free stayed. Pay-later became pay-upfront.
+      </p>
+      </div>
+    </StoryBeat>
+
+    <div class="py-4 grid gap-4 sm:grid-cols-2">
+      <MockupFigure
+        title="Property detail & booking widget"
+        description="Where a guest reviews a property and starts checkout — name, email, and phone only, no forced account."
+        src="/lacasa-property.png"
+      />
+      <MockupFigure
+        title="Checkout"
+        description="GST broken out as its own line so it's never a surprise at the payment gateway; the price card stays pinned beside the form."
+        src="/lacasa-checkout.png"
+      />
+    </div>
+
+    <div class="deep-only">
+    <StoryBeat eyebrow="Compliance" headline="A record the business can always find.">
+      <p>
+        Short-stay rentals in India get checked by local authorities, sometimes on short notice.
+        That check needs a guest's ID on file. Before the website, that meant collecting IDs
+        manually into a WhatsApp group — reliable most of the time, harder to search fast during a
+        busy period. Now ID capture happens as part of booking itself, attached permanently to that
+        guest's record instead of a message thread. That reliability is also why the underlying
+        data gets backed up as JSON — peace of mind, built in.
+      </p>
+    </StoryBeat>
+
+    <Section eyebrow="Engineering" title="Engineering rigor">
+      <p>
+        Unlike a purely visual case study, LaCasa's pricing and availability logic is covered by
+        dedicated test suites — because a rounding error or a missed overlap check here means real
+        money or a real double-booking, not a cosmetic bug.
+      </p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {
+          engineeringRigor.map((item) => (
+            <article class="surface rounded-[1.5rem] p-5">
+              <h3 class="text-lg font-semibold text-white">{item.title}</h3>
+              <p class="mt-3 text-sm leading-7 text-slate-300">{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </Section>
+
+    <StoryBeat eyebrow="Tooling" headline="A two-hour scare that paid off later.">
+      <p>
+        The site was being built inside Google AI Studio — until it briefly wiped the working code
+        outright. Recovery took about two hours, made possible because Google AI Studio kept its
+        own version history to roll back to. It was a small scare, but enough of one that the
+        project moved onto a real GitHub repository shortly after, with the ongoing build
+        continuing in Antigravity — version control as a permanent habit, not reliance on one
+        tool's built-in safety net.
+      </p>
+    </StoryBeat>
+    </div>
+
+    <Section id="impact" eyebrow="Impact" title="The strongest evidence, up front">
+      <div class="grid gap-4 sm:grid-cols-3">
+        <div class="surface rounded-[1.5rem] p-6">
+          <p class="hero-title text-3xl text-cyan-300">&lt; 1 min</p>
+          <p class="mt-2 text-sm leading-7 text-slate-300">Seasonal repricing across 17 units — down from an afternoon</p>
+        </div>
+        <div class="surface rounded-[1.5rem] p-6">
+          <p class="hero-title text-3xl text-cyan-300">1 calendar</p>
+          <p class="mt-2 text-sm leading-7 text-slate-300">Consolidated from 5 disconnected booking channels</p>
+        </div>
+        <div class="surface rounded-[1.5rem] p-6">
+          <p class="hero-title text-3xl text-cyan-300">Structured GST</p>
+          <p class="mt-2 text-sm leading-7 text-slate-300">Computed from data, no manual reconstruction from conversations</p>
+        </div>
+      </div>
+    </Section>
+
+    <Section eyebrow="Scope" title="Trade-offs, made on purpose">
+      <div class="grid gap-3">
+        {
+          tradeoffs.map((tradeoff) => (
+            <div class="flex gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+              <span class="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-cyan-300 shadow-[0_0_22px_rgba(103,232,249,0.5)]" />
+              <p>{tradeoff}</p>
+            </div>
+          ))
+        }
+      </div>
+    </Section>
+
+    <div class="deep-only">
+    <Section eyebrow="Decision log" title="What's holding, what got replaced">
+      <div class="grid gap-3">
+        {
+          decisionLog.map((row) => (
+            <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+              <p class="text-sm font-semibold text-white">{row.decision}</p>
+              <p class="mt-2 text-sm leading-7 text-slate-300"><span class="text-cyan-300">Chosen because:</span> {row.chosen}</p>
+              <p class="mt-1 text-sm leading-7 text-slate-400"><span class="text-slate-300">Cost accepted:</span> {row.cost}</p>
+            </div>
+          ))
+        }
+      </div>
+    </Section>
+    </div>
+
+    <QuoteBlock
+      quote="The website made our lives easy. We can scan the entire business in a few minutes and know almost everything about sales and profits — great work by Dhruv."
+      name="Siddhant Sharma"
+      role="Stakeholder, LaCasa Retreats"
+    />
+
+    <Section id="outcomes" eyebrow="06" title="Before vs. after">
+      <BeforeAfter rows={outcomeRows} />
+    </Section>
+
+    <Section id="reflection" eyebrow="Reflection" title="What I'd do differently">
+      <div class="grid gap-3">
+        {
+          reflection.map((point) => (
+            <div class="flex gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+              <span class="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-rose-300 shadow-[0_0_22px_rgba(253,164,175,0.4)]" />
+              <p class="text-base leading-8">{point}</p>
+            </div>
+          ))
+        }
+      </div>
+    </Section>
+
+    <Section eyebrow="07" title="Current state">
+      <p>
+        17 properties are live on the platform across multiple Noida locations, including Galaxy
+        Blue Sapphire and Spectrum Metro Mall (19 total, including 2 discontinued). I continue to
+        support the site in an ongoing maintenance capacity as the property portfolio and feature
+        set evolve. The live product is at{' '}
+        <a href="https://lacasaretreats.com" target="_blank" rel="noopener noreferrer" class="text-cyan-300 underline underline-offset-4">
+          lacasaretreats.com
+        </a>.
+      </p>
+
+      <a href="/" data-transition class="button-secondary mt-2 w-fit px-5 py-3 text-sm">
+        Back to homepage
+        <Icon name="arrow-right-thin" class="text-lg" />
+      </a>
+    </Section>
+  </main>
+</Base>
+
+<style>
+  .case-toc-spacer {
+    height: 60px;
+  }
+  .case-toc-sticky {
+    position: fixed;
+    top: 76px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 35;
+    width: max-content;
+    max-width: calc(100% - 2rem);
+  }
+  .case-toc-pill {
+    align-items: center;
+    padding: 6px;
+    border-radius: 999px;
+    background: rgba(10, 18, 33, 0.82);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 12px 40px rgba(2, 8, 23, 0.45);
+    scrollbar-width: none;
+  }
+  .case-toc-pill::-webkit-scrollbar { display: none; }
+  .case-toc-pill {
+    -webkit-mask-image: linear-gradient(to right, black, black);
+    mask-image: linear-gradient(to right, black, black);
+    transition: -webkit-mask-image 0.25s ease, mask-image 0.25s ease;
+  }
+  .case-toc-sticky.can-scroll-left .case-toc-pill {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 28px);
+    mask-image: linear-gradient(to right, transparent, black 28px);
+  }
+  .case-toc-sticky.can-scroll-right .case-toc-pill {
+    -webkit-mask-image: linear-gradient(to left, transparent, black 28px);
+    mask-image: linear-gradient(to left, transparent, black 28px);
+  }
+  .case-toc-sticky.can-scroll-left.can-scroll-right .case-toc-pill {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 28px, black calc(100% - 28px), transparent);
+    mask-image: linear-gradient(to right, transparent, black 28px, black calc(100% - 28px), transparent);
+  }
+  .case-toc-item { background: transparent; }
+  .case-toc-item:hover { background: rgba(255, 255, 255, 0.07); }
+
+  .case-toc-arrow {
+    position: absolute;
+    top: 50%;
+    width: 26px;
+    height: 26px;
+    transform: translateY(-50%) scale(0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: rgba(10, 18, 33, 0.85);
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 8px 20px rgba(2, 8, 23, 0.5);
+    color: rgb(203 213 225);
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease, color 0.2s ease;
+  }
+  .case-toc-arrow svg {
+    width: 13px;
+    height: 13px;
+  }
+  .case-toc-arrow:hover {
+    color: #fff;
+  }
+  .case-toc-arrow--left { left: -11px; }
+  .case-toc-arrow--right { right: -11px; }
+  .case-toc-sticky.can-scroll-left .case-toc-arrow--left,
+  .case-toc-sticky.can-scroll-right .case-toc-arrow--right {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(-50%) scale(1);
+  }
+
+  .view-toggle {
+    display: inline-flex;
+    gap: 6px;
+    padding: 6px;
+    border-radius: 1.25rem;
+    background: rgba(10, 18, 33, 0.72);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 18px 50px rgba(2, 8, 23, 0.35);
+  }
+  .view-toggle__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1.1rem;
+    border-radius: 1rem;
+    color: rgb(148 163 184);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: color 0.2s, background 0.2s;
+  }
+  .view-toggle__btn:hover {
+    color: #fff;
+  }
+  .view-toggle__icon {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex-shrink: 0;
+  }
+  .view-toggle__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  .view-toggle__label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .view-toggle__time {
+    font-size: 0.68rem;
+    font-weight: 500;
+    opacity: 0.7;
+  }
+  .view-toggle__btn.is-active {
+    background: linear-gradient(135deg, #4dd7ff, rgba(34, 211, 238, 0.9));
+    color: #061018;
+  }
+  .view-toggle__btn.is-active .view-toggle__time {
+    opacity: 0.75;
+  }
+
+  @media (max-width: 480px) {
+    .view-toggle__btn {
+      padding: 0.55rem 0.85rem;
+    }
+    .view-toggle__label {
+      font-size: 0.72rem;
+    }
+  }
+  /* Default (no JS / before hydration): full "deep" view */
+  .scan-only { display: none; }
+  body[data-view='scannable'] .scan-only { display: block; }
+  body[data-view='scannable'] .deep-only { display: none; }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-view-btn]');
+  function setView(view: string) {
+    document.body.dataset.view = view;
+    buttons.forEach((btn) => btn.classList.toggle('is-active', btn.dataset.viewBtn === view));
+    try {
+      localStorage.setItem('lacasa-view', view);
+    } catch {}
+    ScrollTrigger.refresh();
+  }
+  buttons.forEach((btn) => btn.addEventListener('click', () => setView(btn.dataset.viewBtn!)));
+  let saved: string | null = null;
+  try {
+    saved = localStorage.getItem('lacasa-view');
+  } catch {}
+  setView(saved === 'scannable' ? 'scannable' : 'deep');
+
+  const tocPill = document.querySelector<HTMLElement>('.case-toc-pill');
+  const tocWrap = document.querySelector<HTMLElement>('.case-toc-sticky');
+  if (tocPill && tocWrap) {
+    const updateTocFade = () => {
+      const { scrollLeft, scrollWidth, clientWidth } = tocPill;
+      const maxScroll = scrollWidth - clientWidth;
+      tocWrap.classList.toggle('can-scroll-left', scrollLeft > 4);
+      tocWrap.classList.toggle('can-scroll-right', scrollLeft < maxScroll - 4);
+    };
+    updateTocFade();
+    tocPill.addEventListener('scroll', updateTocFade, { passive: true });
+    window.addEventListener('resize', updateTocFade);
+
+    document.querySelectorAll<HTMLButtonElement>('[data-toc-scroll]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const dir = Number(btn.dataset.tocScroll);
+        tocPill.scrollBy({ left: dir * 160, behavior: 'smooth' });
+      });
+    });
+  }
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = window.matchMedia('(max-width: 640px)').matches;
+  if (!reduceMotion) {
+    const sectionY = isMobile ? 12 : 48;
+    const sectionDuration = isMobile ? 0.35 : 0.9;
+    const cardY = isMobile ? 8 : 28;
+    const cardDuration = isMobile ? 0.3 : 0.7;
+
+    const revealTargets = document.querySelectorAll<HTMLElement>('main#content section, main#content > div.py-4');
+    revealTargets.forEach((el, i) => {
+      gsap.fromTo(
+        el,
+        { autoAlpha: 0, y: sectionY },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: sectionDuration,
+          ease: 'power3.out',
+          delay: isMobile ? 0 : (i % 3) * 0.05,
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 88%',
+            once: true,
+          },
+        }
+      );
+    });
+
+    const cardGroups = document.querySelectorAll<HTMLElement>('main#content .grid');
+    cardGroups.forEach((grid) => {
+      const cards = Array.from(grid.children) as HTMLElement[];
+      if (cards.length < 2) return;
+      gsap.fromTo(
+        cards,
+        { autoAlpha: 0, y: cardY },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: cardDuration,
+          ease: 'power3.out',
+          stagger: isMobile ? 0.04 : 0.08,
+          scrollTrigger: {
+            trigger: grid,
+            start: 'top 90%',
+            once: true,
+          },
+        }
+      );
+    });
+  }
+</script>

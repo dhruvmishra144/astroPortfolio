@@ -1,0 +1,224 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const colorTokens = [
+  { name: 'background', value: '#050505' },
+  { name: 'surface-card', value: '#121212' },
+  { name: 'border', value: '#222222' },
+  { name: 'gold-primary', value: '#dcb920' },
+  { name: 'text-heading', value: '#ffffff' },
+  { name: 'text-muted', value: '#a1a1a6' },
+  { name: 'status-direct', value: '#009966' },
+  { name: 'status-airbnb', value: '#ff5a5f' },
+  { name: 'status-agoda', value: '#5392f9' },
+  { name: 'status-bookin', value: '#003580' },
+  { name: 'status-mmt', value: '#ffcc00' },
+];
+
+const typeScale = [
+  { meta: 'Display / H1 · 32/120%', size: '2rem', weight: '700', sample: 'Property Status Checkups' },
+  { meta: 'Display / H2 · 24/125%', size: '1.5rem', weight: '700', sample: 'Admin Dashboard' },
+  { meta: 'Display / H3 · 18/130%', size: '1.125rem', weight: '600', sample: 'Manage daily operations and status' },
+  { meta: 'Body / Base · 14/160%', size: '0.875rem', weight: '400', sample: 'Total earnings across all properties this month' },
+  { meta: 'Body / Small · 12/150%', size: '0.75rem', weight: '400', sample: '41.5% of market share' },
+  { meta: 'Label / Caption · 10/130%, +10%', size: '0.625rem', weight: '500', sample: 'Total Earnings', caption: true },
+];
+
+const spacingScale = [
+  { name: 'xs', px: 4 }, { name: 'sm', px: 8 }, { name: 'md', px: 12 }, { name: 'lg', px: 16 },
+  { name: 'xl', px: 24 }, { name: '2xl', px: 32 }, { name: '3xl', px: 48 }, { name: '4xl', px: 64 },
+];
+
+const radiusScale = [
+  { name: 'sm', px: 4 }, { name: 'md', px: 6 }, { name: 'lg', px: 8 },
+  { name: 'xl', px: 12 }, { name: '2xl', px: 16 }, { name: 'full', px: 999 },
+];
+---
+
+<Base
+  title="LaCasa Retreats — Design System"
+  description="LaCasa Retreats' product design system — tokens and components sampled directly from the real, live product."
+>
+  <main id="content" class="page-shell pb-24 pt-20">
+    <section class="page-section max-w-3xl space-y-5">
+      <p class="section-label">Design system · LaCasa Retreats</p>
+      <h1 class="hero-title text-balance text-4xl leading-[1] text-white sm:text-5xl">
+        Product design system
+      </h1>
+      <p class="max-w-2xl text-base leading-8 text-slate-300">
+        Tokens and components sampled directly from the real, live product — black + gold —
+        built and maintained in Figma as bound variables, not reskinned to match this portfolio's
+        own presentation.
+      </p>
+      <a href="/projects/LaCasaRetreats" data-transition class="button-secondary mt-2 w-fit px-5 py-3 text-sm">
+        ← Back to case study
+      </a>
+    </section>
+
+    <section class="page-section border-t border-white/10 py-14">
+      <p class="section-label mb-3">Color</p>
+      <h2 class="section-title mb-6 text-3xl text-white">LaCasa product palette</h2>
+      <div class="flex flex-wrap gap-4">
+        {
+          colorTokens.map((t) => (
+            <div class="w-28">
+              <div class="ds-swatch mb-2 h-20 w-full rounded-xl border border-white/10" style={`background:${t.value};`} />
+              <p class="text-xs text-slate-300">{t.name}</p>
+              <p class="font-mono text-[0.65rem] text-slate-500">{t.value}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="page-section border-t border-white/10 py-14">
+      <p class="section-label mb-3">Typography</p>
+      <h2 class="section-title mb-6 text-3xl text-white">Type scale</h2>
+      <div class="flex flex-col gap-6">
+        {
+          typeScale.map((t) => (
+            <div class="flex flex-wrap items-baseline gap-6 border-b border-white/10 pb-4">
+              <span class="w-56 shrink-0 font-mono text-xs text-slate-500">{t.meta}</span>
+              <span
+                class:list={[t.caption && 'uppercase tracking-[0.1em]']}
+                style={`font-family:'Inter',sans-serif; font-size:${t.size}; font-weight:${t.weight};`}
+                class="text-white"
+              >
+                {t.sample}
+              </span>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="page-section border-t border-white/10 py-14">
+      <p class="section-label mb-3">Spacing</p>
+      <h2 class="section-title mb-6 text-3xl text-white">Spacing scale</h2>
+      <div class="flex flex-col gap-3">
+        {
+          spacingScale.map((s) => (
+            <div class="flex items-center gap-3">
+              <span class="w-36 font-mono text-xs text-slate-400">spacing/{s.name} — {s.px}px</span>
+              <div class="h-4 rounded-sm bg-[--lc-gold-inline]" style={`width:${s.px}px; background:#dcb920;`} />
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="page-section border-t border-white/10 py-14">
+      <p class="section-label mb-3">Radius</p>
+      <h2 class="section-title mb-6 text-3xl text-white">Corner radius scale</h2>
+      <div class="flex flex-col gap-3">
+        {
+          radiusScale.map((r) => (
+            <div class="flex items-center gap-4">
+              <span class="w-36 font-mono text-xs text-slate-400">radius/{r.name} — {r.px}px</span>
+              <div class="h-14 w-14 border border-white/10" style={`background:#dcb920; border-radius:${r.px}px;`} />
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="page-section border-t border-white/10 py-14">
+      <p class="section-label mb-3">Components</p>
+      <h2 class="section-title mb-6 text-3xl text-white">Buttons, inputs, pills, cards — with states</h2>
+
+      <div class="mb-10">
+        <h4 class="mb-3 text-sm font-semibold text-white">Button — Default / Hover / Disabled</h4>
+        <div class="lc-frame flex flex-wrap items-center gap-4 rounded-2xl p-8">
+          <button class="lc-btn-gold">Save Changes</button>
+          <button class="lc-btn-gold state-hover">Save Changes</button>
+          <button class="lc-btn-gold state-disabled" disabled>Save Changes</button>
+        </div>
+      </div>
+
+      <div class="mb-10">
+        <h4 class="mb-3 text-sm font-semibold text-white">Input Field — Default / Focus / Error</h4>
+        <div class="lc-frame flex flex-wrap items-start gap-4 rounded-2xl p-8">
+          <div class="lc-field-wrap">
+            <span class="lc-field-label">Price per night (₹)</span>
+            <div class="lc-field-box">2800</div>
+          </div>
+          <div class="lc-field-wrap">
+            <span class="lc-field-label">Price per night (₹)</span>
+            <div class="lc-field-box state-focus">2800</div>
+          </div>
+          <div class="lc-field-wrap">
+            <span class="lc-field-label">Price per night (₹)</span>
+            <div class="lc-field-box state-error">0</div>
+            <span class="lc-field-error">Price must be greater than 0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-10">
+        <h4 class="mb-3 text-sm font-semibold text-white">Channel status pills</h4>
+        <div class="lc-frame flex flex-wrap items-center gap-4 rounded-2xl p-8">
+          <span class="lc-pill direct">Direct</span>
+          <span class="lc-pill airbnb">Airbnb</span>
+          <span class="lc-pill agoda">Agoda</span>
+          <span class="lc-pill bookin">Bookin.</span>
+          <span class="lc-pill mmt">MMT</span>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="mb-3 text-sm font-semibold text-white">Product card</h4>
+        <div class="lc-frame flex flex-wrap items-center gap-4 rounded-2xl p-8">
+          <div class="lc-card w-56">
+            <p class="lc-muted mb-2 text-[0.65rem] uppercase tracking-[0.1em]">Total Earnings</p>
+            <p class="text-2xl font-bold" style="color:#dcb920;">₹8,91,593</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Base>
+
+<style>
+  .ds-swatch { box-shadow: none; }
+
+  .lc-frame {
+    background: #050505;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    border: 1px solid #222222;
+  }
+  .lc-frame * { box-sizing: border-box; }
+
+  .lc-card { background: #121212; border: 1px solid #222222; border-radius: 12px; padding: 16px; }
+  .lc-muted { color: #a1a1a6; font-size: 0.8rem; }
+
+  .lc-btn-gold {
+    appearance: none;
+    -webkit-appearance: none;
+    background: #dcb920;
+    color: #1a1400;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .lc-btn-gold.state-hover { background: #f0c934; box-shadow: 0 4px 14px rgba(220, 185, 32, 0.35); }
+  .lc-btn-gold.state-disabled,
+  .lc-btn-gold:disabled { background: #40381a !important; color: #8a8168 !important; cursor: not-allowed; }
+
+  .lc-field-wrap { display: flex; flex-direction: column; gap: 6px; width: 220px; font-family: 'Poppins', sans-serif; }
+  .lc-field-label { font-size: 0.7rem; font-weight: 500; color: #d9d9d9; }
+  .lc-field-box { background: #121212; border: 1px solid #222222; border-radius: 6px; padding: 10px 12px; font-size: 0.85rem; color: #fff; }
+  .lc-field-box.state-focus { border-color: #dcb920; border-width: 2px; }
+  .lc-field-box.state-error { border-color: #ff5a5f; }
+  .lc-field-error { font-size: 0.7rem; color: #ff5a5f; }
+
+  .lc-pill { display: inline-flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; color: #fff; border-radius: 4px; padding: 4px 6px; }
+  .lc-pill.direct { background: #009966; }
+  .lc-pill.airbnb { background: #ff5a5f; }
+  .lc-pill.agoda { background: #5392f9; }
+  .lc-pill.bookin { background: #003580; }
+  .lc-pill.mmt { background: #ffcc00; color: #1a1400; }
+</style>

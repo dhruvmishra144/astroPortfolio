@@ -2,36 +2,26 @@
 /**
  * ProjectGrid.astro — dark bento case-study grid for the home page.
  *
- * GoFlow is the tall feature tile; the rest fill a 6-column bento. Uses the
- * existing dark theme primitives (.surface, .chip, cyan accents). Real project
- * routes; copy is concise placeholder you can refine per case study.
+ * LaCasa Retreats is the tall feature tile; `projects` fills a 6-column bento
+ * beside it and is currently empty (GoFlow/AonFlow are unlinked, not deleted,
+ * pending polish). Uses the existing dark theme primitives (.surface, .chip,
+ * cyan accents).
  */
 const arrow =
   '<svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
 const feature = {
-  href: "/projects/GoFlow",
+  href: "/projects/LaCasaRetreats",
   index: "01",
-  category: "AI-assisted iPaaS · Product",
-  title: "GoFlow",
+  category: "Booking Platform & PMS · Hospitality",
+  title: "LaCasa Retreats",
   impact:
-    "Letting non-technical operators build and trust automated data flows across live systems — designed around preview, validation, and recovery so nothing breaks in production.",
-  tags: ["Product Design", "AI-assisted mapping", "Design System"],
-  metric: { value: "68%", label: "faster provisioning" },
+    "A live booking website that grew into a property management system — built solo, end to end, to stop the same unit from being sold twice across five different channels.",
+  tags: ["React 19", "Firebase", "Razorpay", "Solo build"],
+  metric: { value: "17", label: "properties live" },
 };
 
-const projects = [
-  {
-    href: "/projects/aonflow",
-    index: "02",
-    category: "B2B SaaS · Automation Platform",
-    title: "AonFlow",
-    impact:
-      "A tokenized, RSC-first design system for an orchestration platform — built for data density without sacrificing responsiveness.",
-    tags: ["Next.js", "React Server Components", "Tailwind CSS"],
-    span: "lg:col-span-2",
-  },
-];
+const projects = [];
 ---
 
 <section id="work" class="page-section">
