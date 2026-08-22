@@ -104,8 +104,8 @@ export default function TestimonialMarquee({
     <div
       className="overflow-hidden"
       style={{
-        WebkitMaskImage: 'linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)',
-        maskImage: 'linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)',
+        WebkitMaskImage: 'linear-gradient(90deg, transparent, #000 16px, #000 calc(100% - 16px), transparent)',
+        maskImage: 'linear-gradient(90deg, transparent, #000 16px, #000 calc(100% - 16px), transparent)',
       }}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}

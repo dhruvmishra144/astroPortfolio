@@ -10,7 +10,7 @@ const roles = ['Product Designer', 'UX Strategist', 'Front-End'];
   <main id="content" class="page-shell overflow-x-hidden pb-24">
     <!-- Hero -->
     <section class="relative flex min-h-[calc(100vh-6rem)] flex-col items-center justify-center py-16 text-center">
-      <p data-hero class="section-label mb-8 justify-center">
+      <p data-hero class="mb-8 text-center text-[0.7rem] font-bold uppercase tracking-[0.36em] text-cyan-300">
         Faridabad · Delhi NCR · Available 2026
       </p>
 
@@ -21,10 +21,10 @@ const roles = ['Product Designer', 'UX Strategist', 'Front-End'];
       <p data-hero class="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs font-semibold uppercase tracking-[0.32em] text-cyan-300/90 sm:text-sm [text-shadow:0_2px_10px_rgba(0,0,0,0.8)]">
         {
           roles.map((role, i) => (
-            <>
+            <span class="inline-flex items-center gap-3">
               <span>{role}</span>
-              {i < roles.length - 1 && <span class="text-slate-600">·</span>}
-            </>
+              {i < roles.length - 1 && <span class="text-slate-600" aria-hidden="true">·</span>}
+            </span>
           ))
         }
       </p>
