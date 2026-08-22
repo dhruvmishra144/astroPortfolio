@@ -4,6 +4,8 @@ Personal portfolio built with [Astro](https://astro.build) + [Svelte](https://sv
 styled with Tailwind CSS v4 and animated with GSAP. The site builds to fully static
 HTML in `dist/`, ready for Cloudflare.
 
+#LaCasa Retreats - first case study completed
+
 ## Stack
 
 - **Astro 5** — static pages, layouts, and routing (`src/pages`)
