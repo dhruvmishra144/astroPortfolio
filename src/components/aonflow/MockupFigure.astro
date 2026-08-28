@@ -16,8 +16,8 @@ const { title, description, src } = Astro.props;
     height="1000"
     class="aspect-[16/10] w-full object-cover object-left-top"
   />
-  <figcaption class="grid gap-3 border-t border-white/10 p-5 sm:p-6 lg:grid-cols-[0.34fr_0.66fr]">
-    <h3 class="text-xl font-semibold text-white">{title}</h3>
-    <p class="text-sm leading-7 text-slate-300">{description}</p>
+  <figcaption class="grid gap-3 border-t border-border p-5 sm:p-6 lg:grid-cols-[0.34fr_0.66fr]">
+    <h3 class="text-xl font-semibold text-foreground">{title}</h3>
+    <p class="text-sm leading-7 text-muted">{description}</p>
   </figcaption>
 </figure>

@@ -19,10 +19,16 @@
     { id: 'about', label: 'About — Outside the terminal', hint: 'LIFE', group: 'Navigate', run: go('/about-me') },
     { id: 'contact', label: 'Start a conversation', hint: 'CONTACT', group: 'Navigate', run: go('/contact') },
     { id: 'resume', label: 'Open résumé', hint: 'CV', group: 'Navigate', run: go('/resume') },
+    { id: 'work', label: 'Selected work', hint: 'HOME', group: 'Navigate', run: go('/#work') },
+    {
+      id: 'lacasa',
+      label: 'LaCasa Retreats',
+      hint: 'CASE',
+      group: 'Projects',
+      run: go('/projects/LaCasaRetreats'),
+    },
     { id: 'goflow', label: 'GoFlow', hint: 'CASE', group: 'Projects', run: go('/projects/GoFlow') },
     { id: 'aonflow', label: 'Aonflow', hint: 'CASE', group: 'Projects', run: go('/projects/aonflow') },
-    { id: 'petrii', label: 'Petrii', hint: 'CASE', group: 'Projects', run: go('/projects/petrii') },
-    { id: 'looptrip', label: 'Looptrip', hint: 'CASE', group: 'Projects', run: go('/projects/looptrip') },
     {
       id: 'linkedin',
       label: 'LinkedIn',

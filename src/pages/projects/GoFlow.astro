@@ -248,12 +248,12 @@ const flowFeaturePhases = [
 ];
 
 const journeyStates = [
-  { label: 'Curious', copy: '"This looks easy."', tone: 'bg-sky-500/10 text-sky-300 border-sky-400/20' },
-  { label: 'Focused', copy: '"Where does this land?"', tone: 'bg-cyan-500/10 text-blue-300 border-blue-400/20' },
-  { label: 'Cautious', copy: 'Before / after diff and no irreversible action yet', tone: 'bg-amber-500/10 text-amber-300 border-amber-400/20' },
-  { label: 'Anxious - low', copy: '"What if it breaks?"', tone: 'bg-rose-500/10 text-rose-300 border-rose-400/20' },
-  { label: 'Alarmed', copy: 'Operator-readable error plus impact report', tone: 'bg-orange-500/10 text-orange-300 border-orange-400/20' },
-  { label: 'Relieved -> confident', copy: '"OK - I can fix this."', tone: 'bg-emerald-500/10 text-emerald-300 border-emerald-400/20' },
+  { label: 'Curious', copy: '"This looks easy."', tone: 'bg-sky-500/10 text-sky-700 border-sky-400/20' },
+  { label: 'Focused', copy: '"Where does this land?"', tone: 'bg-cyan-500/10 text-blue-700 border-blue-400/20' },
+  { label: 'Cautious', copy: 'Before / after diff and no irreversible action yet', tone: 'bg-amber-500/10 text-amber-700 border-amber-400/20' },
+  { label: 'Anxious - low', copy: '"What if it breaks?"', tone: 'bg-rose-500/10 text-rose-700 border-rose-400/20' },
+  { label: 'Alarmed', copy: 'Operator-readable error plus impact report', tone: 'bg-orange-500/10 text-orange-700 border-orange-400/20' },
+  { label: 'Relieved -> confident', copy: '"OK - I can fix this."', tone: 'bg-emerald-500/10 text-emerald-700 border-emerald-400/20' },
 ];
 
 const pivots = [
@@ -427,7 +427,7 @@ const shipList = [
   title="GoFlow Case Study"
   description="An independent UX case study for GoFlow, an AI-powered iPaaS concept focused on safer execution, reversibility, and trust-first automation for SMB operators."
 >
-  <main class="goflow-theme min-h-screen portfolio-background text-[#e6eef8]">
+  <main id="content" class="goflow-theme min-h-screen portfolio-background text-foreground">
     <section data-hero class="relative overflow-hidden bg-slate-950 text-white">
       <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:64px_64px] opacity-20"></div>
       <div class="container mx-auto page-shell page-section py-8 relative grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
@@ -438,11 +438,11 @@ const shipList = [
             </div>
             <div>
               <p class="text-sm font-semibold text-white">GoFlow</p>
-              <p class="text-xs uppercase tracking-[0.36em] text-slate-500">UX / UI case study</p>
+              <p class="text-xs uppercase tracking-[0.36em] text-slate-600">UX / UI case study</p>
             </div>
           </div>
 
-          <p class="text-xs font-semibold uppercase tracking-[0.36em] text-cyan-300">
+          <p class="text-xs font-semibold uppercase tracking-[0.36em] text-accent-text">
             Independent concept - post-employment redesign
           </p>
           <h1 class="hero-title max-w-4xl text-balance text-5xl leading-[0.92] text-white sm:text-6xl lg:text-7xl">
@@ -461,12 +461,17 @@ const shipList = [
           </div>
         </div>
 
-        <div class="surface-strong rounded-[2rem] p-6 sm:p-8">
-          <p class="text-xs font-semibold uppercase tracking-[0.36em] text-slate-400">At a glance</p>
+        {/*
+          Fixed dark, not `surface-strong`: this panel sits inside the
+          permanently dark hero band, so a theme-following surface would turn
+          white in light mode while its text stayed pale.
+        */}
+        <div class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-6 shadow-[0_28px_90px_rgba(2,8,23,0.38)] backdrop-blur-xl sm:p-8">
+          <p class="text-xs font-semibold uppercase tracking-[0.36em] text-slate-600">At a glance</p>
           <dl class="mt-6 divide-y divide-white/10">
             {atAGlance.map((item) => (
               <div class="grid grid-cols-[0.9fr_1.4fr] gap-4 py-4">
-                <dt class="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">{item.label}</dt>
+                <dt class="text-xs font-semibold uppercase tracking-[0.3em] text-slate-600">{item.label}</dt>
                 <dd class="text-sm leading-6 text-slate-200">{item.value}</dd>
               </div>
             ))}
@@ -478,7 +483,7 @@ const shipList = [
     <section data-disclosure class="container mx-auto page-shell page-section py-8">
       <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
         <article class="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm sm:p-8">
-          <p class="text-xs font-semibold uppercase tracking-[0.36em] text-slate-500">
+          <p class="text-xs font-semibold uppercase tracking-[0.36em] text-slate-600">
             Context and disclosure - please read first
           </p>
           <h2 class="hero-title mt-4 max-w-3xl text-balance text-3xl leading-[1.02] text-slate-950 sm:text-4xl">
@@ -499,7 +504,7 @@ const shipList = [
         </article>
 
         <div class="space-y-4">
-          <p class="text-xs font-semibold uppercase tracking-[0.36em] text-slate-500">
+          <p class="text-xs font-semibold uppercase tracking-[0.36em] text-slate-600">
             How I read the evidence
           </p>
           {disclosureLegend.map((item) => (
@@ -522,7 +527,7 @@ const shipList = [
     <section data-snapshot class="container mx-auto page-shell page-section py-8">
       <div class="space-y-8">
         <div class="rounded-[2rem] bg-slate-950 p-7 text-white shadow-[0_28px_90px_rgba(2,8,23,0.35)] sm:p-8">
-          <p class="text-xs font-semibold uppercase tracking-[0.36em] text-cyan-300">Snapshot - 30 second read</p>
+          <p class="text-xs font-semibold uppercase tracking-[0.36em] text-accent-text">Snapshot - 30 second read</p>
           <p class="mt-4 max-w-4xl text-2xl leading-tight text-white sm:text-3xl">
             SMB operators could configure integrations - but they did not trust themselves to safely run
             or recover them.
@@ -532,7 +537,7 @@ const shipList = [
         <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {snapshotCards.map((card) => (
             <article class="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm">
-              <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-500">{card.label}</p>
+              <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-600">{card.label}</p>
               <p class="mt-3 text-sm leading-6 text-slate-700">{card.value}</p>
             </article>
           ))}
@@ -567,7 +572,7 @@ const shipList = [
             <div>
               <div class="flex items-center justify-between gap-4 text-sm">
                 <span class="font-medium text-white">{item.label}</span>
-                <span class="text-xs uppercase tracking-[0.24em] text-slate-400">{item.note}</span>
+                <span class="text-xs uppercase tracking-[0.24em] text-slate-600">{item.note}</span>
               </div>
               <div class="mt-2 h-2 rounded-full bg-white/10">
                 <div
@@ -588,7 +593,7 @@ const shipList = [
     <Section eyebrow="02" title="Product and organizational context">
       <div class="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
         <div class="rounded-[1.5rem] bg-slate-950 p-6 text-white">
-          <p class="text-xs font-semibold uppercase tracking-[0.36em] text-slate-400">The question</p>
+          <p class="text-xs font-semibold uppercase tracking-[0.36em] text-slate-600">The question</p>
           <p class="mt-4 text-xl leading-8 text-white sm:text-2xl">
             Could an iPaaS feel dramatically safer than today's tools without raising setup time, infra
             cost, or price point?
@@ -597,20 +602,20 @@ const shipList = [
 
         <div class="grid gap-4">
           <article class="rounded-[1.25rem] border border-slate-200 bg-white p-5 shadow-sm">
-            <p class="text-xs font-semibold uppercase tracking-[0.32em] text-slate-500">Target user</p>
+            <p class="text-xs font-semibold uppercase tracking-[0.32em] text-slate-600">Target user</p>
             <p class="mt-2 text-sm leading-6 text-slate-700">
               Non- or lightly-technical operators at SMBs (20-250 employees) running fragmented stacks
               with real reconciliation pain.
             </p>
           </article>
           <article class="rounded-[1.25rem] border border-slate-200 bg-white p-5 shadow-sm">
-            <p class="text-xs font-semibold uppercase tracking-[0.32em] text-slate-500">How I worked</p>
+            <p class="text-xs font-semibold uppercase tracking-[0.32em] text-slate-600">How I worked</p>
             <p class="mt-2 text-sm leading-6 text-slate-700">
               Solo and self-directed. I used a service blueprint and risk maps as the source of truth.
             </p>
           </article>
           <article class="rounded-[1.25rem] border border-slate-200 bg-white p-5 shadow-sm">
-            <p class="text-xs font-semibold uppercase tracking-[0.32em] text-slate-500">Feasibility check</p>
+            <p class="text-xs font-semibold uppercase tracking-[0.32em] text-slate-600">Feasibility check</p>
             <p class="mt-2 text-sm leading-6 text-slate-700">
               I used a full-stack background to pressure-test the concept before any engineering work
               would have been needed.
@@ -634,7 +639,7 @@ const shipList = [
               <th class="border-b border-r border-slate-200 px-5 py-3 text-left font-semibold text-slate-600">
                 Existing product foundation
               </th>
-                <th class="border-b border-slate-200 px-5 py-3 text-left font-semibold text-cyan-300">
+                <th class="border-b border-slate-200 px-5 py-3 text-left font-semibold text-accent-text">
                 My proposed advancement
               </th>
             </tr>
@@ -660,14 +665,14 @@ const shipList = [
             'Review mining · 200+ public reviews',
             'Heuristic evaluation + persona simulation · 3 passes',
           ].map((chip) => (
-            <span class="chip border border-slate-200 bg-white px-4 py-2 text-xs uppercase tracking-[0.28em] text-slate-500">
+            <span class="chip border border-slate-200 bg-white px-4 py-2 text-xs uppercase tracking-[0.28em] text-slate-600">
               {chip}
             </span>
           ))}
         </div>
 
         <article class="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm">
-          <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-500">
+          <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-600">
             Methodological framework
           </p>
           <h3 class="mt-3 max-w-4xl text-2xl font-semibold text-slate-900 sm:text-3xl">
@@ -708,7 +713,7 @@ const shipList = [
           <div class="mt-6 grid gap-4 lg:grid-cols-3">
             {invalidatedAssumptions.map((item) => (
               <div class="rounded-[1.25rem] border border-rose-200 bg-rose-50 p-5">
-                <p class="text-xs font-semibold uppercase tracking-[0.3em] text-rose-500">{item.title}</p>
+                <p class="text-xs font-semibold uppercase tracking-[0.3em] text-rose-700">{item.title}</p>
                 <p class="mt-3 text-sm leading-6 text-slate-700">{item.copy}</p>
               </div>
             ))}
@@ -716,7 +721,7 @@ const shipList = [
         </article>
 
         <div class="rounded-[1.5rem] bg-slate-950 p-6 text-white">
-          <p class="text-xs font-semibold uppercase tracking-[0.36em] text-cyan-300">
+          <p class="text-xs font-semibold uppercase tracking-[0.36em] text-accent-text">
             The turning point
           </p>
           <p class="mt-4 text-lg leading-8 text-slate-200 sm:text-xl">
@@ -763,9 +768,9 @@ const shipList = [
 
     <Section eyebrow="06" title="Problem statement" tone="dark">
       <div class="space-y-6">
-        <div class="rounded-[1.5rem] bg-white/5 p-6">
-          <p class="text-xs font-semibold uppercase tracking-[0.34em] text-cyan-300">Design challenge</p>
-          <p class="mt-4 max-w-4xl text-3xl leading-[1.06] text-white sm:text-4xl">
+        <div class="rounded-[1.5rem] border border-border bg-accent/[0.06] p-6">
+          <p class="text-xs font-semibold uppercase tracking-[0.34em] text-accent-text">Design challenge</p>
+          <p class="mt-4 max-w-4xl text-3xl leading-[1.06] text-foreground sm:text-4xl">
             How might we let SMB operators create and run integrations confidently without schema or API
             literacy, and without giving them a false sense of safety?
           </p>
@@ -778,16 +783,16 @@ const shipList = [
             ['Recoverability', 'Rollback that actually works.'],
             ['Accountability', 'Clear logs, reports, and remediation paths.'],
           ].map((item) => (
-            <article class="rounded-[1.25rem] border border-white/10 bg-white/[0.04] p-5">
-              <p class="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">{item[0]}</p>
-              <p class="mt-3 text-sm leading-6 text-slate-200">{item[1]}</p>
+            <article class="rounded-[1.25rem] border border-border bg-surface p-5">
+              <p class="text-xs font-semibold uppercase tracking-[0.3em] text-subtle">{item[0]}</p>
+              <p class="mt-3 text-sm leading-6 text-muted">{item[1]}</p>
             </article>
           ))}
         </div>
 
         <div class="grid gap-4 lg:grid-cols-2">
           <article class="rounded-[1.25rem] border border-rose-200 bg-rose-50 p-5 text-slate-800">
-            <p class="text-xs font-semibold uppercase tracking-[0.3em] text-rose-500">
+            <p class="text-xs font-semibold uppercase tracking-[0.3em] text-rose-700">
               Where users were today
             </p>
             <ul class="mt-4 space-y-2 text-sm leading-6">
@@ -798,7 +803,7 @@ const shipList = [
             </ul>
           </article>
           <article class="rounded-[1.25rem] border border-emerald-200 bg-emerald-50 p-5 text-slate-800">
-            <p class="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-600">
+            <p class="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-700">
               What success looks like
             </p>
             <ul class="mt-4 space-y-2 text-sm leading-6">
@@ -816,7 +821,7 @@ const shipList = [
       <div class="space-y-6">
         <div class="flex flex-wrap gap-3">
           {flowPhases.map((phase) => (
-            <span class="chip border border-slate-200 bg-white px-4 py-2 text-xs uppercase tracking-[0.28em] text-slate-500">
+            <span class="chip border border-slate-200 bg-white px-4 py-2 text-xs uppercase tracking-[0.28em] text-slate-600">
               {phase.label}
             </span>
           ))}
@@ -832,7 +837,7 @@ const shipList = [
                   </div>
                   <div>
                     <p class="text-lg font-semibold text-slate-900">{step.title}</p>
-                    <p class="text-xs uppercase tracking-[0.28em] text-slate-500">Fear</p>
+                    <p class="text-xs uppercase tracking-[0.28em] text-slate-600">Fear</p>
                   </div>
                 </div>
                 <p class="max-w-[10rem] text-sm leading-6 text-slate-600">{step.fear}</p>
@@ -840,11 +845,11 @@ const shipList = [
 
               <div class="mt-4 grid gap-3 sm:grid-cols-2">
                 <div class="rounded-[1.1rem] bg-slate-50 p-4">
-                  <p class="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">System</p>
+                  <p class="text-xs font-semibold uppercase tracking-[0.28em] text-slate-600">System</p>
                   <p class="mt-2 text-sm leading-6 text-slate-700">{step.system}</p>
                 </div>
                 <div class="rounded-[1.1rem] bg-slate-50 p-4">
-                  <p class="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">Affordance</p>
+                  <p class="text-xs font-semibold uppercase tracking-[0.28em] text-slate-600">Affordance</p>
                   <p class="mt-2 text-sm leading-6 text-slate-700">{step.affordance}</p>
                 </div>
               </div>
@@ -855,7 +860,7 @@ const shipList = [
         <div class="grid gap-4 md:grid-cols-4">
           {flowFeaturePhases.map((phase) => (
             <article class="rounded-[1.25rem] border border-slate-200 bg-white p-5 shadow-sm">
-              <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-500">{phase.title}</p>
+              <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-600">{phase.title}</p>
               <ul class="mt-4 space-y-2 text-sm leading-6 text-slate-700">
                 {phase.items.map((item) => (
                   <Bullet>{item}</Bullet>
@@ -875,7 +880,7 @@ const shipList = [
         </p>
 
         <article class="rounded-[1.75rem] border border-slate-200 bg-white p-5 shadow-sm">
-          <div class="mb-3 flex items-center justify-between text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-slate-400">
+          <div class="mb-3 flex items-center justify-between text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-slate-600">
             <span>Confident</span>
             <span>Anxious</span>
           </div>
@@ -922,13 +927,13 @@ const shipList = [
             <text x="500" y="205" fill="#dc2626" font-size="12" font-weight="700">Low point</text>
           </svg>
 
-          <div class="mt-4 grid grid-cols-2 gap-2 text-center text-xs text-slate-500 sm:grid-cols-6">
+          <div class="mt-4 grid grid-cols-2 gap-2 text-center text-xs text-slate-600 sm:grid-cols-6">
             {['Choose outcome', 'Map data', 'Preview', 'Press Run', 'Error / failure', 'Rollback / recover'].map((label) => (
               <span class="rounded-full bg-slate-50 px-3 py-2">{label}</span>
             ))}
           </div>
 
-          <div class="mt-4 flex flex-wrap gap-3 text-xs text-slate-500">
+          <div class="mt-4 flex flex-wrap gap-3 text-xs text-slate-600">
             {journeyStates.map((state) => (
               <span class={`rounded-full border px-3 py-1.5 font-medium ${state.tone}`}>{state.label}</span>
             ))}
@@ -954,7 +959,7 @@ const shipList = [
               <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-cyan-600 text-sm font-semibold text-white">
                 {index + 1}
               </span>
-              <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-500">{pivot.badge}</p>
+              <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-600">{pivot.badge}</p>
             </div>
             <h3 class="mt-4 text-xl font-semibold text-slate-900">{pivot.title}</h3>
             <p class="mt-3 text-sm leading-7 text-slate-700">
@@ -981,7 +986,7 @@ const shipList = [
         <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {fidelityStages.map((stage, index) => (
             <article class={`rounded-[1.5rem] border bg-white p-5 shadow-sm ${index === 3 ? 'border-blue-500' : 'border-slate-200'}`}>
-              <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-400">{stage.stage}</p>
+              <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-600">{stage.stage}</p>
               <h3 class="mt-3 text-lg font-semibold text-slate-900">{stage.title}</h3>
               <p class="mt-3 text-sm leading-6 text-slate-700">{stage.copy}</p>
             </article>
@@ -990,7 +995,7 @@ const shipList = [
 
         <div class="grid gap-4 lg:grid-cols-2">
           <article class="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
-            <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-500">Low-fidelity wireframes</p>
+            <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-600">Low-fidelity wireframes</p>
             <div class="mt-4 grid gap-3">
               <div class="rounded-[1rem] bg-white p-4 shadow-sm">
                 <div class="h-3 w-2/3 rounded-full bg-slate-200"></div>
@@ -1010,17 +1015,17 @@ const shipList = [
           </article>
 
           <article class="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
-            <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-500">High-fidelity principle</p>
+            <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-600">High-fidelity principle</p>
             <p class="mt-4 text-sm leading-7 text-slate-700">
               Trust, not polish, was the priority. Explainability beats minimalism, and familiarity beats novelty.
             </p>
             <div class="mt-5 grid gap-3 sm:grid-cols-2">
               <div class="rounded-[1rem] bg-white p-4 shadow-sm">
-                <p class="text-xs uppercase tracking-[0.28em] text-slate-500">Hierarchy</p>
+                <p class="text-xs uppercase tracking-[0.28em] text-slate-600">Hierarchy</p>
                 <p class="mt-2 text-sm text-slate-700">Needs to answer the risk question first.</p>
               </div>
               <div class="rounded-[1rem] bg-white p-4 shadow-sm">
-                <p class="text-xs uppercase tracking-[0.28em] text-slate-500">Behavior</p>
+                <p class="text-xs uppercase tracking-[0.28em] text-slate-600">Behavior</p>
                 <p class="mt-2 text-sm text-slate-700">Each screen documents the step, state, and escape path.</p>
               </div>
             </div>
@@ -1041,14 +1046,14 @@ const shipList = [
             <article class="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm">
               <div class="flex items-start justify-between gap-4">
                 <div>
-                  <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-500">{metric.label}</p>
+                  <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-600">{metric.label}</p>
                   <p class="mt-3 text-4xl font-semibold tracking-tight text-slate-900">{metric.value}</p>
                 </div>
-                <span class="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">
+                <span class="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-slate-600">
                   {metric.badge}
                 </span>
               </div>
-              <p class="mt-3 text-sm font-medium text-emerald-600">{metric.delta}</p>
+              <p class="mt-3 text-sm font-medium text-emerald-700">{metric.delta}</p>
               <p class="mt-2 text-sm leading-6 text-slate-600">{metric.baseline}</p>
             </article>
           ))}
@@ -1057,7 +1062,7 @@ const shipList = [
         <div class="grid gap-4 md:grid-cols-2">
           {businessImpacts.map((item) => (
             <article class="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-5">
-              <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-500">{item.title}</p>
+              <p class="text-xs font-semibold uppercase tracking-[0.34em] text-slate-600">{item.title}</p>
               <p class="mt-3 text-sm leading-7 text-slate-700">{item.copy}</p>
             </article>
           ))}
@@ -1098,89 +1103,135 @@ const shipList = [
 </Base>
 
 <style is:global>
-  .goflow-theme .project-section {
+  /*
+    Panels that are dark in BOTH themes (the hero band and the bg-slate-950
+    callouts). Muted label colours inside them must stay light regardless of
+    theme — the [data-theme='dark'] overrides below only fire in dark mode.
+  */
+  .goflow-theme .bg-slate-950 .text-slate-600,
+  .goflow-theme .bg-slate-950 .text-slate-700,
+  .goflow-theme .bg-slate-900 .text-slate-600 {
+    color: #94a3b8 !important;
+  }
+
+  /* --accent-text is the dark cyan in light mode, which is unreadable on these
+     always-dark panels. Use the bright cyan there instead. */
+  .goflow-theme .bg-slate-950 .text-accent-text {
+    color: #67e8f9 !important;
+  }
+
+  [data-theme='dark'] .goflow-theme .project-section {
     background: rgba(8, 15, 28, 0.78) !important;
     border-color: rgba(148, 163, 184, 0.18) !important;
   }
 
-  .goflow-theme .bg-white,
-  .goflow-theme .bg-slate-50,
-  .goflow-theme .bg-slate-100,
-  .goflow-theme .bg-rose-50,
-  .goflow-theme .bg-emerald-50,
-  .goflow-theme .bg-cyan-50,
-  .goflow-theme .bg-amber-50,
-  .goflow-theme .bg-violet-50,
-  .goflow-theme .bg-sky-50 {
+  [data-theme='dark'] .goflow-theme .bg-white,
+  [data-theme='dark'] .goflow-theme .bg-slate-50,
+  [data-theme='dark'] .goflow-theme .bg-slate-100,
+  [data-theme='dark'] .goflow-theme .bg-rose-50,
+  [data-theme='dark'] .goflow-theme .bg-emerald-50,
+  [data-theme='dark'] .goflow-theme .bg-cyan-50,
+  [data-theme='dark'] .goflow-theme .bg-amber-50,
+  [data-theme='dark'] .goflow-theme .bg-violet-50,
+  [data-theme='dark'] .goflow-theme .bg-sky-50 {
     background-color: rgba(8, 15, 28, 0.78) !important;
   }
 
-  .goflow-theme .text-slate-900,
-  .goflow-theme .text-slate-800 {
+  [data-theme='dark'] .goflow-theme .text-slate-900,
+  [data-theme='dark'] .goflow-theme .text-slate-800 {
     color: #e6eef8 !important;
   }
 
-  .goflow-theme .text-slate-950 {
+  [data-theme='dark'] .goflow-theme .text-slate-950 {
     color: #f8fbff !important;
   }
 
-  .goflow-theme .text-slate-700 {
+  [data-theme='dark'] .goflow-theme .text-slate-700 {
     color: #cbd5e1 !important;
   }
 
-  .goflow-theme .text-slate-600 {
+  [data-theme='dark'] .goflow-theme .text-slate-600 {
     color: #94a3b8 !important;
   }
 
-  .goflow-theme .text-slate-500,
-  .goflow-theme .text-slate-400 {
-    color: #64748b !important;
+  /* Was #64748b — darker than slate-400 itself, which put muted labels at
+     ~3.9:1 on the dark panels. */
+  [data-theme='dark'] .goflow-theme .text-slate-600,
+  [data-theme='dark'] .goflow-theme .text-slate-600 {
+    color: #94a3b8 !important;
   }
 
-  .goflow-theme .text-blue-700,
-  .goflow-theme .text-blue-600 {
+  [data-theme='dark'] .goflow-theme .text-blue-700,
+  [data-theme='dark'] .goflow-theme .text-blue-700 {
     color: #7dd3fc !important;
   }
 
-  .goflow-theme .text-emerald-600,
-  .goflow-theme .text-emerald-500 {
+  [data-theme='dark'] .goflow-theme .text-emerald-700,
+  [data-theme='dark'] .goflow-theme .text-emerald-700 {
     color: #86efac !important;
   }
 
-  .goflow-theme .text-rose-500,
-  .goflow-theme .text-rose-600 {
+  [data-theme='dark'] .goflow-theme .text-rose-700,
+  [data-theme='dark'] .goflow-theme .text-rose-700 {
     color: #fda4af !important;
   }
 
-  .goflow-theme .text-amber-600,
-  .goflow-theme .text-amber-500 {
+  [data-theme='dark'] .goflow-theme .text-amber-700,
+  [data-theme='dark'] .goflow-theme .text-amber-700 {
     color: #fcd34d !important;
   }
 
-  .goflow-theme .text-violet-500 {
+  [data-theme='dark'] .goflow-theme .text-violet-700 {
     color: #c4b5fd !important;
   }
 
-  .goflow-theme .text-orange-700 {
+  [data-theme='dark'] .goflow-theme .text-orange-700 {
     color: #fdba74 !important;
   }
 
-  .goflow-theme .text-sky-700 {
+  [data-theme='dark'] .goflow-theme .text-sky-700 {
     color: #7dd3fc !important;
   }
 
-  .goflow-theme .border-slate-200,
-  .goflow-theme .border-slate-100,
-  .goflow-theme .border-blue-100,
-  .goflow-theme .border-rose-200,
-  .goflow-theme .border-emerald-200,
-  .goflow-theme .border-amber-200,
-  .goflow-theme .border-violet-200,
-  .goflow-theme .border-sky-200 {
+  /* The -700 semantic text colours read correctly on the light pastel cards;
+     flip them to the light tints on the dark panels. */
+  [data-theme='dark'] .goflow-theme .text-amber-700 {
+    color: #fcd34d !important;
+  }
+
+  [data-theme='dark'] .goflow-theme .text-emerald-700 {
+    color: #6ee7b7 !important;
+  }
+
+  [data-theme='dark'] .goflow-theme .text-rose-700 {
+    color: #fda4af !important;
+  }
+
+  [data-theme='dark'] .goflow-theme .text-blue-700,
+  [data-theme='dark'] .goflow-theme .text-sky-700 {
+    color: #7dd3fc !important;
+  }
+
+  [data-theme='dark'] .goflow-theme .text-orange-700 {
+    color: #fdba74 !important;
+  }
+
+  [data-theme='dark'] .goflow-theme .text-violet-700 {
+    color: #c4b5fd !important;
+  }
+
+  [data-theme='dark'] .goflow-theme .border-slate-200,
+  [data-theme='dark'] .goflow-theme .border-slate-100,
+  [data-theme='dark'] .goflow-theme .border-blue-100,
+  [data-theme='dark'] .goflow-theme .border-rose-200,
+  [data-theme='dark'] .goflow-theme .border-emerald-200,
+  [data-theme='dark'] .goflow-theme .border-amber-200,
+  [data-theme='dark'] .goflow-theme .border-violet-200,
+  [data-theme='dark'] .goflow-theme .border-sky-200 {
     border-color: rgba(148, 163, 184, 0.18) !important;
   }
 
-  .goflow-theme .shadow-sm {
+  [data-theme='dark'] .goflow-theme .shadow-sm {
     box-shadow: var(--shadow-elevated) !important;
   }
 </style>

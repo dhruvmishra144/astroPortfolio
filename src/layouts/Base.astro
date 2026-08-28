@@ -1,20 +1,26 @@
 ---
 import '../styles/global.css';
+import SeoHead from '../components/SeoHead.astro';
 import SiteNav from '../components/SiteNav.astro';
-import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import AuroraWaves from '../components/AuroraWaves.astro';
 import CommandPalette from '../components/CommandPalette.svelte';
-import CustomCursor from '../components/CustomCursor.svelte';
 
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  noindex?: boolean;
+  /** Pages that document a fixed external palette opt out of the toggle. */
+  lockTheme?: 'light' | 'dark';
 }
 
 const {
   title,
   description = 'Product design and front-end aligned UX systems for scalable digital products.',
+  image,
+  noindex = false,
+  lockTheme,
 } = Astro.props;
 
 const fullTitle = title ? `${title} | Dhruv Mishra` : 'Dhruv Mishra | UX/UI Designer';
@@ -28,21 +34,43 @@ const bootBars = Array.from({ length: 28 });
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme={lockTheme ?? 'light'}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {/*
+      Must run before first paint and before the stylesheet resolves, or a
+      visitor who chose dark gets a white flash. Navigation here is full page
+      reloads (see scripts/transitions.ts), so this runs on every single view —
+      keep it tiny and synchronous. Light is the default; prefers-color-scheme
+      is deliberately not consulted.
+    */}
+    {lockTheme ? (
+      <script is:inline define:vars={{ lockTheme }}>
+        document.documentElement.dataset.theme = lockTheme;
+      </script>
+    ) : (
+      <script is:inline>
+        try {
+          var stored = localStorage.getItem('dm-theme');
+          document.documentElement.dataset.theme =
+            stored === 'dark' || stored === 'light' ? stored : 'light';
+        } catch (e) {
+          document.documentElement.dataset.theme = 'light';
+        }
+      </script>
+    )}
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content="UX/UI design, product design, design systems, front-end development" />
     <meta name="author" content="Dhruv Mishra" />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" href="/icon.png" />
+    <SeoHead title={fullTitle} description={description} image={image} noindex={noindex} />
   </head>
   <body class="bg-background text-foreground antialiased">
     <a class="skip-link" href="#content">Skip to content</a>
-    <CustomCursor client:idle />
-    <div class="portfolio-background relative min-h-screen w-full isolate bg-slate-950">
+    <div class="portfolio-background relative min-h-screen w-full isolate bg-background">
       <div aria-hidden="true" class="portfolio-background__motion fixed inset-0 z-0 pointer-events-none"></div>
       <AuroraWaves />
       <div class="relative z-10">
@@ -57,25 +85,24 @@ const bootBars = Array.from({ length: 28 });
 
           <div class="relative z-10 flex flex-col items-center gap-3 text-center">
             <div class="flex flex-col items-center gap-2">
-              <span class="boot-mark font-display text-lg tracking-[0.2em] text-white">DM</span>
-              <span class="boot-dot h-1.5 w-1.5 rounded-full bg-cyan-300"></span>
+              <span class="boot-mark font-display text-lg tracking-[0.2em] text-foreground">DM</span>
+              <span class="boot-dot h-1.5 w-1.5 rounded-full bg-accent"></span>
             </div>
-            <p class="boot-name text-sm font-semibold uppercase tracking-[0.4em] text-white">
+            <p class="boot-name text-sm font-semibold uppercase tracking-[0.4em] text-foreground">
               Dhruv Mishra
             </p>
-            <p class="boot-role text-[10px] uppercase tracking-[0.32em] text-cyan-300/80">
+            <p class="boot-role text-[10px] uppercase tracking-[0.32em] text-accent-text">
               Product Design · UX Strategy · Front-End
             </p>
             <div class="boot-status mt-6 flex flex-col items-center gap-1">
-              <span class="text-[10px] uppercase tracking-[0.32em] text-slate-400">System Ready</span>
-              <span class="boot-pct text-xs font-semibold text-cyan-300">100%</span>
+              <span class="text-[10px] uppercase tracking-[0.32em] text-subtle">System Ready</span>
+              <span class="boot-pct text-xs font-semibold text-accent-text">100%</span>
             </div>
           </div>
         </div>
-        <SiteNav />
+        <SiteNav showThemeToggle={!lockTheme} />
         <slot />
         {showFooter && <Footer />}
-        <Nav />
       </div>
     </div>
     <CommandPalette client:idle />
@@ -93,13 +120,18 @@ const bootBars = Array.from({ length: 28 });
     height: 100%;
     transform: scaleY(0);
     transform-origin: center;
-    background: linear-gradient(180deg, transparent, rgba(77, 215, 255, 0.35) 45%, transparent 90%);
+    background: linear-gradient(
+      180deg,
+      transparent,
+      color-mix(in srgb, var(--accent) 35%, transparent) 45%,
+      transparent 90%
+    );
   }
 
   .boot-sweep {
     transform: scaleX(0);
     transform-origin: center;
-    background: linear-gradient(90deg, transparent, rgba(77, 215, 255, 0.9), transparent);
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
   }
 
   .boot-mark,

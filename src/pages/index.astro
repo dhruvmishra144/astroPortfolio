@@ -1,74 +1,28 @@
 ---
 import Base from '../layouts/Base.astro';
+import Hero from '../components/landing/Hero.astro';
 import ProjectGrid from '../components/landing/ProjectGrid.astro';
-import TestimonialMarquee from '../components/landing/TestimonialMarquee.tsx';
-
-const roles = ['Product Designer', 'UX Strategist', 'Front-End'];
+import Capabilities from '../components/landing/Capabilities.astro';
+import ProofBand from '../components/landing/ProofBand.astro';
+import ExperienceTimeline from '../components/landing/ExperienceTimeline.astro';
+import Testimonials from '../components/landing/Testimonials.astro';
+import AboutTeaser from '../components/landing/AboutTeaser.astro';
 ---
 
-<Base>
+<Base description="Product designer and front-end engineer for complex SaaS, AI and data products. Ten years turning enterprise software into products people will actually open.">
   <main id="content" class="page-shell overflow-x-hidden pb-24">
-    <!-- Hero -->
-    <section class="relative flex min-h-[calc(100vh-6rem)] flex-col items-center justify-center py-16 text-center">
-      <p data-hero class="mb-8 text-center text-[0.7rem] font-bold uppercase tracking-[0.36em] text-cyan-300">
-        Faridabad · Delhi NCR · Available 2026
-      </p>
-
-      <h1 data-hero class="hero-title text-balance text-5xl font-light leading-[0.95] text-white sm:text-7xl lg:text-8xl [text-shadow:0_4px_40px_rgba(0,0,0,0.6)]">
-        Hi, I'm <span class="text-cyan-300 [text-shadow:0_4px_40px_rgba(0,0,0,0.8)]">Dhruv.</span>
-      </h1>
-
-      <p data-hero class="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs font-semibold uppercase tracking-[0.32em] text-cyan-300/90 sm:text-sm [text-shadow:0_2px_10px_rgba(0,0,0,0.8)]">
-        {
-          roles.map((role, i) => (
-            <span class="inline-flex items-center gap-3">
-              <span>{role}</span>
-              {i < roles.length - 1 && <span class="text-slate-600" aria-hidden="true">·</span>}
-            </span>
-          ))
-        }
-      </p>
-
-      <p data-hero class="mx-auto mt-8 max-w-2xl text-base leading-8 text-slate-200 sm:text-lg lg:text-xl [text-shadow:0_4px_24px_rgba(0,0,0,0.6)]">
-        I redefine and build experiences for complex data &amp; AI platforms — turning powerful,
-        intimidating enterprise software into tools people actually want to use. Grounded in over a
-        decade of product architecture and design thinking.
-      </p>
-
-      <a data-hero href="#work" class="group mt-12 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300">
-        <span class="inline-block transition-transform duration-300 group-hover:translate-y-1">↓</span>
-        See the work
-      </a>
-    </section>
-
+    <Hero />
     <ProjectGrid />
-
-    <!-- Testimonials -->
-    <section class="page-section pt-0">
-      <div class="mb-10 space-y-3">
-        <p class="section-label">Signal</p>
-        <h2 class="section-title text-3xl text-white sm:text-4xl">What the people who staffed the work say.</h2>
-      </div>
-      <div class="flex flex-col gap-6">
-        <TestimonialMarquee client:visible speed={34} direction="left" />
-        <TestimonialMarquee client:visible speed={26} direction="right" />
-      </div>
-    </section>
+    <Capabilities />
+    <ProofBand />
+    <ExperienceTimeline />
+    <Testimonials />
+    <AboutTeaser />
   </main>
 </Base>
 
 <script>
-  import gsap from 'gsap';
+  import { initReveal } from '../scripts/reveal';
 
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!reduce) {
-    gsap.from('[data-hero]', {
-      opacity: 0,
-      y: 22,
-      duration: 0.9,
-      stagger: 0.1,
-      ease: 'power3.out',
-      delay: 0.15,
-    });
-  }
+  initReveal({ heroSelector: '[data-hero]', revealSelector: '[data-reveal]' });
 </script>

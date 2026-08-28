@@ -14,12 +14,27 @@
 
   let container: HTMLDivElement;
 
+  /** ECharts paints to a canvas, so it cannot inherit CSS custom properties. */
+  const themeColors = () => {
+    const cs = getComputedStyle(document.documentElement);
+    const read = (name: string, fallback: string) =>
+      cs.getPropertyValue(name).trim() || fallback;
+    return {
+      axis: read('--subtle', '#94a3b8'),
+      label: read('--muted', '#cbd5e1'),
+      value: read('--foreground', '#e2e8f0'),
+      line: read('--border', 'rgba(148, 163, 184, 0.3)'),
+    };
+  };
+
   onMount(() => {
     let chart: import('echarts').ECharts | undefined;
     let resizeObserver: ResizeObserver | undefined;
     let disposed = false;
 
-    const option = {
+    const buildOption = () => {
+      const c = themeColors();
+      return {
       grid: {
         top: 22,
         bottom: 28,
@@ -32,10 +47,10 @@
         min: 0,
         max: 40,
         interval: 10,
-        axisLine: { lineStyle: { color: 'rgba(148, 163, 184, 0.3)' } },
-        axisTick: { lineStyle: { color: 'rgba(148, 163, 184, 0.3)' } },
-        splitLine: { lineStyle: { color: 'rgba(148, 163, 184, 0.12)' } },
-        axisLabel: { color: '#94a3b8', fontSize: 12 },
+        axisLine: { lineStyle: { color: c.line } },
+        axisTick: { lineStyle: { color: c.line } },
+        splitLine: { lineStyle: { color: c.line } },
+        axisLabel: { color: c.axis, fontSize: 12 },
       },
       yAxis: {
         type: 'category',
@@ -43,7 +58,7 @@
         axisLine: { show: false },
         axisTick: { show: false },
         axisLabel: {
-          color: '#cbd5e1',
+          color: c.label,
           fontSize: 11,
           align: 'right',
           padding: [0, 12, 0, 0],
@@ -64,7 +79,7 @@
               show: true,
               position: 'right',
               formatter: ({ value }: { value: number }) => `${value}%`,
-              color: '#e2e8f0',
+              color: c.value,
               fontSize: 12,
               fontWeight: 600,
             },
@@ -72,18 +87,23 @@
           barWidth: 16,
         },
       ],
+      };
     };
+
+    const repaint = () => chart?.setOption(buildOption());
 
     import('echarts').then((echarts) => {
       if (disposed) return;
       chart = echarts.init(container);
-      chart.setOption(option);
+      chart.setOption(buildOption());
       resizeObserver = new ResizeObserver(() => chart?.resize());
       resizeObserver.observe(container);
+      window.addEventListener('themechange', repaint);
     });
 
     return () => {
       disposed = true;
+      window.removeEventListener('themechange', repaint);
       resizeObserver?.disconnect();
       chart?.dispose();
     };
@@ -93,10 +113,10 @@
 <div class="w-full max-w-6xl mx-auto rounded-[1.75rem] surface-strong p-4 md:p-8">
   <!-- Header -->
   <div class="mb-8 text-center px-2">
-    <h1 class="text-lg sm:text-xl md:text-3xl text-white mb-2 leading-tight">
+    <h1 class="text-lg sm:text-xl md:text-3xl text-foreground mb-2 leading-tight">
       Data loss and reversibility are the top user pain points
     </h1>
-    <p class="text-xs sm:text-sm md:text-base text-slate-400">
+    <p class="text-xs sm:text-sm md:text-base text-subtle">
       Review mining across 200+ public reviews, tagged by risk language
     </p>
   </div>
@@ -108,7 +128,7 @@
 
   <!-- Footer Note -->
   <div class="text-center">
-    <p class="text-xs md:text-sm text-slate-400">
+    <p class="text-xs md:text-sm text-subtle">
       Risk-related complaints dominated. The design priority was not convenience alone, but safer execution and recovery.
     </p>
   </div>

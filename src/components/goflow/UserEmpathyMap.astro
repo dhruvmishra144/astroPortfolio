@@ -2,7 +2,7 @@
 const quadrants = [
   {
     title: 'Feels',
-    style: 'bg-white/[0.04] border border-rose-400/20',
+    style: 'bg-surface border border-rose-400/20',
     items: [
       'Anxious before hitting Run',
       'Responsible for data integrity',
@@ -12,7 +12,7 @@ const quadrants = [
   },
   {
     title: 'Says',
-    style: 'bg-white/[0.04] border border-amber-400/20',
+    style: 'bg-surface border border-amber-400/20',
     items: [
       '"I need to sync data without breaking anything."',
       '"What exactly happens when I press Run?"',
@@ -21,7 +21,7 @@ const quadrants = [
   },
   {
     title: 'Does',
-    style: 'bg-white/[0.04] border border-sky-400/20',
+    style: 'bg-surface border border-sky-400/20',
     items: [
       'Configures in a sandbox before shipping live',
       'Checks logs after every run',
@@ -31,7 +31,7 @@ const quadrants = [
   },
   {
     title: 'Thinks',
-    style: 'bg-white/[0.04] border border-violet-400/20',
+    style: 'bg-surface border border-violet-400/20',
     items: [
       '"If this duplicates invoices, I\'ll lose time cleaning it up."',
       '"I don\'t fully trust suggestions I can\'t see."',
@@ -46,12 +46,12 @@ const gains = ['Confidence to press Run', 'Preview before commit', 'One-click re
 ---
 
 <div class="w-full rounded-[1.75rem] surface-strong p-4">
-  <div class="mb-6 flex flex-col gap-3 border-b border-white/10 pb-4 md:flex-row md:items-end md:justify-between">
+  <div class="mb-6 flex flex-col gap-3 border-b border-border pb-4 md:flex-row md:items-end md:justify-between">
     <div>
-      <h3 class="text-xl font-semibold text-white">Empathy map - SMB operator</h3>
-      <p class="mt-1 text-sm text-slate-400">Confidence from reversibility, not simplicity</p>
+      <h3 class="text-xl font-semibold text-foreground">Empathy map - SMB operator</h3>
+      <p class="mt-1 text-sm text-subtle">Confidence from reversibility, not simplicity</p>
     </div>
-    <p class="max-w-md text-xs uppercase tracking-[0.28em] text-slate-500">
+    <p class="max-w-md text-xs uppercase tracking-[0.28em] text-slate-600">
       Persona: RevOps / Ops operator at a 20-250 person SMB
     </p>
   </div>
@@ -60,8 +60,8 @@ const gains = ['Confidence to press Run', 'Preview before commit', 'One-click re
     {
       quadrants.map((quadrant) => (
         <div class={`${quadrant.style} rounded-[1.25rem] p-5`}>
-          <h4 class="mb-4 text-sm font-semibold uppercase tracking-[0.34em] text-cyan-300">{quadrant.title}</h4>
-          <ul class="space-y-2 text-sm leading-6 text-slate-300">
+          <h4 class="mb-4 text-sm font-semibold uppercase tracking-[0.34em] text-accent-text">{quadrant.title}</h4>
+          <ul class="space-y-2 text-sm leading-6 text-muted">
             {quadrant.items.map((item) => (
               <li class="flex items-start gap-2">
                 <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400"></span>
@@ -75,15 +75,15 @@ const gains = ['Confidence to press Run', 'Preview before commit', 'One-click re
   </div>
 
   <div class="my-6 rounded-[1.25rem] border border-amber-400/20 bg-amber-500/10 p-5 text-center">
-    <p class="text-sm font-medium text-slate-200">
+    <p class="text-sm font-medium text-muted">
       "I get it. I just don't know how to undo this if it goes wrong."
     </p>
   </div>
 
   <div class="grid gap-4 md:grid-cols-2">
     <div class="rounded-[1.25rem] border border-rose-400/20 bg-rose-500/10 p-5">
-      <h4 class="mb-3 text-sm font-semibold uppercase tracking-[0.34em] text-rose-300">Pain points</h4>
-      <ul class="space-y-2 text-sm leading-6 text-slate-300">
+      <h4 class="mb-3 text-sm font-semibold uppercase tracking-[0.34em] text-rose-700">Pain points</h4>
+      <ul class="space-y-2 text-sm leading-6 text-muted">
         {painPoints.map((item) => (
           <li class="flex items-start gap-2">
             <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-rose-300"></span>
@@ -94,8 +94,8 @@ const gains = ['Confidence to press Run', 'Preview before commit', 'One-click re
     </div>
 
     <div class="rounded-[1.25rem] border border-emerald-400/20 bg-emerald-500/10 p-5">
-      <h4 class="mb-3 text-sm font-semibold uppercase tracking-[0.34em] text-emerald-300">Gains</h4>
-      <ul class="space-y-2 text-sm leading-6 text-slate-300">
+      <h4 class="mb-3 text-sm font-semibold uppercase tracking-[0.34em] text-emerald-700">Gains</h4>
+      <ul class="space-y-2 text-sm leading-6 text-muted">
         {gains.map((item) => (
           <li class="flex items-start gap-2">
             <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-300"></span>
@@ -106,7 +106,7 @@ const gains = ['Confidence to press Run', 'Preview before commit', 'One-click re
     </div>
   </div>
 
-  <div class="mt-5 rounded-[1.1rem] border border-white/10 bg-white/[0.03] p-4 text-center text-sm text-slate-400">
+  <div class="mt-5 rounded-[1.1rem] border border-border bg-surface p-4 text-center text-sm text-subtle">
     Stakes: revenue-critical systems, customer data accuracy, and process automation.
   </div>
 </div>

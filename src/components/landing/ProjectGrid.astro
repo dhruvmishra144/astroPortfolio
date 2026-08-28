@@ -1,140 +1,140 @@
 ---
 /**
- * ProjectGrid.astro — dark bento case-study grid for the home page.
+ * Selected work.
  *
- * LaCasa Retreats is the tall feature tile; `projects` fills a 6-column bento
- * beside it and is currently empty (GoFlow/AonFlow are unlinked, not deleted,
- * pending polish). Uses the existing dark theme primitives (.surface, .chip,
- * cyan accents).
+ * Card data lives in src/data/projects.ts, so this file is presentation only
+ * and adding project 02 is a single object append with `featured: false` — the
+ * compact branch below is already typed and waiting for it.
+ *
+ * The featured card answers what / for whom / why, with impact visible without
+ * clicking through. Every metric shown is substantiated inside the case study.
  */
+import { projects } from '../../data/projects';
+
 const arrow =
-  '<svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-const feature = {
-  href: "/projects/LaCasaRetreats",
-  index: "01",
-  category: "Booking Platform & PMS",
-  categorySub: "Hospitality",
-  title: "LaCasa Retreats",
-  image: "/lacasa-home.png",
-  impact:
-    "A live booking website that grew into a property management system — built solo, end to end, to stop the same unit from being sold twice across five different channels.",
-  tags: ["React 19", "Firebase", "Razorpay", "Solo build"],
-  metric: { value: "17", label: "properties live" },
-};
-
-const projects = [];
+const featured = projects.filter((p) => p.featured);
+const secondary = projects.filter((p) => !p.featured);
 ---
 
-<section id="work" class="page-section">
-  <div
-    class="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"
-  >
+<section id="work" data-reveal class="page-section scroll-mt-24">
+  <div class="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
     <div class="space-y-3">
       <p class="section-label">Selected work</p>
-      <h2 class="section-title text-3xl text-white sm:text-4xl">
+      <h2 class="section-title text-3xl text-foreground sm:text-4xl">
         Systems shipped, not screens decorated.
       </h2>
     </div>
-    <p class="max-w-sm text-sm text-slate-400">
-      Each engagement is measured in reliability, adoption, and time saved — not
-      deliverables.
+    <p class="max-w-sm text-sm text-subtle">
+      Each engagement is measured in reliability, adoption, and time saved — not deliverables.
     </p>
   </div>
 
-  <div
-    class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-6 lg:auto-rows-[minmax(10rem,1fr)]"
-  >
-    <!-- Feature: LaCasa Retreats -->
-    <a
-      href={feature.href}
-      data-transition
-      class="surface group relative overflow-hidden rounded-[1.75rem] p-7 sm:p-9 md:col-span-2 lg:col-span-6"
-    >
-      <div
-        class="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-cyan-400/10 blur-3xl transition-opacity duration-500 group-hover:opacity-150"
-      >
-      </div>
-      <div class="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-14">
-        <div class="relative overflow-hidden rounded-2xl border border-white/10">
-          <img
-            src={feature.image}
-            alt={`${feature.title} preview`}
-            class="h-56 w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105 sm:h-72 lg:h-[26rem]"
-            loading="lazy"
-          />
-          <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
-        </div>
+  <div class="grid grid-cols-1 gap-4 lg:grid-cols-6">
+    {
+      featured.map((project) => (
+        <a
+          href={project.href}
+          data-transition
+          class="surface group relative overflow-hidden rounded-[1.75rem] lg:col-span-6"
+        >
+          <div class="flex flex-col">
+            {/*
+              Full-width banner rather than a side column: these are 1200x800
+              desktop captures, and a narrow portrait column crops them
+              mid-sentence.
+            */}
+            <div class="relative overflow-hidden border-b border-border">
+              <img
+                src={project.image}
+                alt={project.imageAlt}
+                loading="lazy"
+                width="1200"
+                height="800"
+                class="h-52 w-full object-cover object-top sm:h-72 lg:h-80"
+              />
+            </div>
 
-        <div class="flex flex-col gap-5">
-          <div class="flex flex-col gap-2">
-            <span class="chip w-fit">{feature.index} · Featured</span>
-            <span class="text-[0.7rem] uppercase leading-relaxed tracking-[0.24em] text-slate-400">
-              {feature.category}<span class="hidden lg:inline"> · </span><br class="lg:hidden" />{feature.categorySub}
-            </span>
+            <div class="flex flex-col p-7 sm:p-9">
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="chip px-3 py-1 text-[0.7rem]">{project.index} · Flagship</span>
+                <span class="text-xs uppercase tracking-[0.2em] text-subtle">
+                  {project.category} · {project.categorySub}
+                </span>
+              </div>
+
+              <h3 class="hero-title mt-5 text-2xl text-foreground sm:text-3xl">
+                {project.title}
+              </h3>
+
+              <p class="mt-2 text-sm font-semibold text-accent-text">{project.forWhom}</p>
+
+              <div class="max-w-3xl">
+                <p class="mt-5 text-sm leading-7 text-muted">{project.problem}</p>
+                <p class="mt-4 text-sm leading-7 text-foreground">{project.outcome}</p>
+              </div>
+
+              <div class="mt-6 flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <span class="chip px-3 py-1 text-[0.7rem]">{tag}</span>
+                ))}
+              </div>
+
+              <dl class="mt-auto grid grid-cols-1 gap-4 border-t border-border pt-6 sm:grid-cols-3">
+                {project.metrics.map((metric) => (
+                  <div>
+                    <dt class="sr-only">{metric.label}</dt>
+                    <dd>
+                      <span class="hero-title block text-2xl text-accent-text sm:text-3xl">
+                        {metric.value}
+                      </span>
+                      <span class="mt-1 block text-[0.7rem] uppercase tracking-[0.16em] text-subtle">
+                        {metric.label}
+                      </span>
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+
+              <span class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-transform group-hover:translate-x-1">
+                Read case study
+                <Fragment set:html={arrow} />
+              </span>
+            </div>
           </div>
-
-          <h3 class="hero-title text-4xl text-white sm:text-5xl lg:text-6xl">
-            {feature.title}
-          </h3>
-
-          <p class="max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
-            {feature.impact}
-          </p>
-
-          <div class="flex flex-wrap gap-2">
-            {feature.tags.map((t) => <span class="chip">{t}</span>)}
-          </div>
-
-          <div class="mt-2 flex flex-col items-start gap-4 border-t border-white/10 pt-5">
-            <p class="hero-title text-3xl uppercase text-cyan-300 sm:text-4xl">
-              {feature.metric.value} <span class="text-base tracking-[0.15em] sm:text-lg">{feature.metric.label}</span>
-            </p>
-            <span
-              class="inline-flex items-center gap-2 text-sm font-semibold text-cyan-300"
-            >
-              Read case study <Fragment set:html={arrow} />
-            </span>
-          </div>
-        </div>
-      </div>
-    </a>
+        </a>
+      ))
+    }
 
     {
-      projects.map((p) => (
+      secondary.map((project) => (
         <a
-          href={p.href}
+          href={project.href}
           data-transition
           class:list={[
-            "surface group flex flex-col justify-between overflow-hidden rounded-[1.75rem] p-6 sm:p-7",
-            p.span,
+            'surface group flex flex-col rounded-[1.75rem] p-7',
+            project.tint && `surface-tint-${project.tint}`,
+            project.span ?? 'lg:col-span-3',
           ]}
         >
-          <div class="flex items-start justify-between gap-3">
-            <span class="text-xs font-semibold text-slate-500">{p.index}</span>
-            <span class="text-right text-[0.62rem] uppercase tracking-[0.2em] text-slate-400">
-              {p.category}
-            </span>
+          <div class="flex items-center gap-3">
+            <span class="chip px-3 py-1 text-[0.7rem]">{project.index}</span>
+            <span class="text-xs uppercase tracking-[0.2em] text-subtle">{project.category}</span>
           </div>
-          <div class="mt-6">
-            <h3 class="hero-title text-2xl text-white sm:text-3xl">
-              {p.title}
-            </h3>
-            <p class="mt-3 text-sm leading-6 text-slate-400">{p.impact}</p>
-          </div>
-          <div class="mt-5 flex items-center justify-between gap-3">
-            <div class="flex flex-wrap gap-2">
-              {p.tags.map((t) => (
-                <span class="chip">{t}</span>
-              ))}
-            </div>
-            <span
-              class="text-cyan-300 transition-transform duration-300 group-hover:translate-x-1"
-              aria-hidden="true"
-            >
-              <Fragment set:html={arrow} />
-            </span>
-          </div>
+          <h3 class="heading-text mt-4 text-xl text-foreground">{project.title}</h3>
+          <p class="mt-2 text-xs font-semibold text-accent-text">{project.forWhom}</p>
+          <p class="mt-4 flex-1 text-sm leading-7 text-muted">{project.outcome}</p>
+          {project.metrics[0] && (
+            <p class="mt-5 border-t border-border pt-4 text-sm text-foreground">
+              <span class="font-semibold text-accent-text">{project.metrics[0].value}</span>
+              <span class="text-subtle"> {project.metrics[0].label}</span>
+            </p>
+          )}
+          <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-transform group-hover:translate-x-1">
+            Read case study
+            <Fragment set:html={arrow} />
+          </span>
         </a>
       ))
     }

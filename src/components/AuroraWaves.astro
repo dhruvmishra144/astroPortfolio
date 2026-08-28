@@ -24,7 +24,9 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    opacity: 0.6; /* Lowered opacity to improve text contrast */
+    /* Theme-driven: on a light page these blobs read as a washed-out smear
+       unless they are far more transparent. See --aurora-* in global.css. */
+    opacity: var(--aurora-wrap-opacity);
     contain: strict;
     overflow: hidden;
     /* Fades out the edges so the blobs don't have hard cuts */
@@ -48,7 +50,7 @@
     position: absolute;
     border-radius: 50%;
     will-change: transform;
-    opacity: 0.6;
+    opacity: var(--aurora-alpha);
   }
 
   /* 
@@ -60,7 +62,7 @@
     width: 40%;
     height: 40%;
     background: #4dd7ff;
-    opacity: 0.5;
+    opacity: var(--aurora-alpha);
   }
 
   .blob--teal {
@@ -69,7 +71,7 @@
     width: 45%;
     height: 45%;
     background: #2dd4bf;
-    opacity: 0.4;
+    opacity: calc(var(--aurora-alpha) * 0.8);
   }
 
   .blob--blue {
@@ -78,7 +80,7 @@
     width: 35%;
     height: 35%;
     background: #0ea5e9;
-    opacity: 0.35;
+    opacity: calc(var(--aurora-alpha) * 0.7);
   }
 
   /* 
@@ -93,8 +95,8 @@
       to right,
       transparent 0px,
       transparent 2px,
-      rgba(0, 0, 0, 0.25) 2px,
-      rgba(0, 0, 0, 0.25) 4px
+      var(--ribbed-ink) 2px,
+      var(--ribbed-ink) 4px
     );
     pointer-events: none;
   }
@@ -107,7 +109,7 @@
 
   @media (max-width: 767px) {
     .blob {
-      opacity: 0.4;
+      opacity: calc(var(--aurora-alpha) * 0.8);
     }
     .blobs-container {
       filter: blur(60px);

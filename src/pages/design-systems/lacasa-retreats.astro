@@ -42,10 +42,10 @@ const radiusScale = [
   <main id="content" class="page-shell pb-24 pt-20">
     <section class="page-section max-w-3xl space-y-5">
       <p class="section-label">Design system · LaCasa Retreats</p>
-      <h1 class="hero-title text-balance text-4xl leading-[1] text-white sm:text-5xl">
+      <h1 class="hero-title text-balance text-4xl leading-[1] text-foreground sm:text-5xl">
         Product design system
       </h1>
-      <p class="max-w-2xl text-base leading-8 text-slate-300">
+      <p class="max-w-2xl text-base leading-8 text-muted">
         Tokens and components sampled directly from the real, live product — black + gold —
         built and maintained in Figma as bound variables, not reskinned to match this portfolio's
         own presentation.
@@ -55,34 +55,34 @@ const radiusScale = [
       </a>
     </section>
 
-    <section class="page-section border-t border-white/10 py-14">
+    <section class="page-section border-t border-border py-14">
       <p class="section-label mb-3">Color</p>
-      <h2 class="section-title mb-6 text-3xl text-white">LaCasa product palette</h2>
+      <h2 class="section-title mb-6 text-3xl text-foreground">LaCasa product palette</h2>
       <div class="flex flex-wrap gap-4">
         {
           colorTokens.map((t) => (
             <div class="w-28">
-              <div class="ds-swatch mb-2 h-20 w-full rounded-xl border border-white/10" style={`background:${t.value};`} />
-              <p class="text-xs text-slate-300">{t.name}</p>
-              <p class="font-mono text-[0.65rem] text-slate-500">{t.value}</p>
+              <div class="ds-swatch mb-2 h-20 w-full rounded-xl border border-border" style={`background:${t.value};`} />
+              <p class="text-xs text-muted">{t.name}</p>
+              <p class="font-mono text-[0.65rem] text-subtle">{t.value}</p>
             </div>
           ))
         }
       </div>
     </section>
 
-    <section class="page-section border-t border-white/10 py-14">
+    <section class="page-section border-t border-border py-14">
       <p class="section-label mb-3">Typography</p>
-      <h2 class="section-title mb-6 text-3xl text-white">Type scale</h2>
+      <h2 class="section-title mb-6 text-3xl text-foreground">Type scale</h2>
       <div class="flex flex-col gap-6">
         {
           typeScale.map((t) => (
-            <div class="flex flex-wrap items-baseline gap-6 border-b border-white/10 pb-4">
-              <span class="w-56 shrink-0 font-mono text-xs text-slate-500">{t.meta}</span>
+            <div class="flex flex-wrap items-baseline gap-6 border-b border-border pb-4">
+              <span class="w-56 shrink-0 font-mono text-xs text-subtle">{t.meta}</span>
               <span
                 class:list={[t.caption && 'uppercase tracking-[0.1em]']}
                 style={`font-family:'Inter',sans-serif; font-size:${t.size}; font-weight:${t.weight};`}
-                class="text-white"
+                class="text-foreground"
               >
                 {t.sample}
               </span>
@@ -92,14 +92,14 @@ const radiusScale = [
       </div>
     </section>
 
-    <section class="page-section border-t border-white/10 py-14">
+    <section class="page-section border-t border-border py-14">
       <p class="section-label mb-3">Spacing</p>
-      <h2 class="section-title mb-6 text-3xl text-white">Spacing scale</h2>
+      <h2 class="section-title mb-6 text-3xl text-foreground">Spacing scale</h2>
       <div class="flex flex-col gap-3">
         {
           spacingScale.map((s) => (
             <div class="flex items-center gap-3">
-              <span class="w-36 font-mono text-xs text-slate-400">spacing/{s.name} — {s.px}px</span>
+              <span class="w-36 font-mono text-xs text-subtle">spacing/{s.name} — {s.px}px</span>
               <div class="h-4 rounded-sm bg-[--lc-gold-inline]" style={`width:${s.px}px; background:#dcb920;`} />
             </div>
           ))
@@ -107,27 +107,27 @@ const radiusScale = [
       </div>
     </section>
 
-    <section class="page-section border-t border-white/10 py-14">
+    <section class="page-section border-t border-border py-14">
       <p class="section-label mb-3">Radius</p>
-      <h2 class="section-title mb-6 text-3xl text-white">Corner radius scale</h2>
+      <h2 class="section-title mb-6 text-3xl text-foreground">Corner radius scale</h2>
       <div class="flex flex-col gap-3">
         {
           radiusScale.map((r) => (
             <div class="flex items-center gap-4">
-              <span class="w-36 font-mono text-xs text-slate-400">radius/{r.name} — {r.px}px</span>
-              <div class="h-14 w-14 border border-white/10" style={`background:#dcb920; border-radius:${r.px}px;`} />
+              <span class="w-36 font-mono text-xs text-subtle">radius/{r.name} — {r.px}px</span>
+              <div class="h-14 w-14 border border-border" style={`background:#dcb920; border-radius:${r.px}px;`} />
             </div>
           ))
         }
       </div>
     </section>
 
-    <section class="page-section border-t border-white/10 py-14">
+    <section class="page-section border-t border-border py-14">
       <p class="section-label mb-3">Components</p>
-      <h2 class="section-title mb-6 text-3xl text-white">Buttons, inputs, pills, cards — with states</h2>
+      <h2 class="section-title mb-6 text-3xl text-foreground">Buttons, inputs, pills, cards — with states</h2>
 
       <div class="mb-10">
-        <h4 class="mb-3 text-sm font-semibold text-white">Button — Default / Hover / Disabled</h4>
+        <h4 class="mb-3 text-sm font-semibold text-foreground">Button — Default / Hover / Disabled</h4>
         <div class="lc-frame flex flex-wrap items-center gap-4 rounded-2xl p-8">
           <button class="lc-btn-gold">Save Changes</button>
           <button class="lc-btn-gold state-hover">Save Changes</button>
@@ -136,7 +136,7 @@ const radiusScale = [
       </div>
 
       <div class="mb-10">
-        <h4 class="mb-3 text-sm font-semibold text-white">Input Field — Default / Focus / Error</h4>
+        <h4 class="mb-3 text-sm font-semibold text-foreground">Input Field — Default / Focus / Error</h4>
         <div class="lc-frame flex flex-wrap items-start gap-4 rounded-2xl p-8">
           <div class="lc-field-wrap">
             <span class="lc-field-label">Price per night (₹)</span>
@@ -155,7 +155,7 @@ const radiusScale = [
       </div>
 
       <div class="mb-10">
-        <h4 class="mb-3 text-sm font-semibold text-white">Channel status pills</h4>
+        <h4 class="mb-3 text-sm font-semibold text-foreground">Channel status pills</h4>
         <div class="lc-frame flex flex-wrap items-center gap-4 rounded-2xl p-8">
           <span class="lc-pill direct">Direct</span>
           <span class="lc-pill airbnb">Airbnb</span>
@@ -166,7 +166,7 @@ const radiusScale = [
       </div>
 
       <div>
-        <h4 class="mb-3 text-sm font-semibold text-white">Product card</h4>
+        <h4 class="mb-3 text-sm font-semibold text-foreground">Product card</h4>
         <div class="lc-frame flex flex-wrap items-center gap-4 rounded-2xl p-8">
           <div class="lc-card w-56">
             <p class="lc-muted mb-2 text-[0.65rem] uppercase tracking-[0.1em]">Total Earnings</p>

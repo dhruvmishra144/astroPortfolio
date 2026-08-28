@@ -1,4 +1,12 @@
 ---
+/**
+ * Panel section used by the GoFlow case study.
+ *
+ * `tone` controls panel emphasis only. Text colours come from tokens in both
+ * tones — the page's own content classes are light-authored and flipped for
+ * dark by the scoped override block in GoFlow.astro, but this shell is
+ * portfolio chrome and must follow the theme directly.
+ */
 interface Props {
   title: string;
   eyebrow?: string;
@@ -6,34 +14,34 @@ interface Props {
 }
 
 const { title, eyebrow, tone = 'dark' } = Astro.props;
-const isDark = tone === 'dark';
+const isStrong = tone === 'dark';
 ---
 
 <section
   class:list={[
-    'project-section container mx-auto flex flex-col gap-8',
-    isDark
-      ? 'rounded-[2rem] surface-strong px-6 py-8 text-white sm:px-8 lg:px-10'
-      : 'rounded-[2rem] surface px-6 py-8 text-slate-900 sm:px-8 lg:px-10',
+    'project-section container mx-auto flex flex-col gap-8 rounded-[2rem] px-6 py-8 text-foreground sm:px-8 lg:px-10',
+    isStrong ? 'surface-strong' : 'surface',
   ]}
 >
   <div class="space-y-3">
-    {eyebrow && (
-      <p
-        class:list={[
-          'text-xs font-semibold uppercase tracking-[0.36em]',
-          isDark ? 'text-cyan-300' : 'text-slate-500',
-        ]}
-      >
-        {eyebrow}
-      </p>
-    )}
-    <h2 class:list={['hero-title text-balance text-3xl sm:text-4xl', isDark ? 'text-white' : 'text-slate-950']}>
+    {
+      eyebrow && (
+        <p
+          class:list={[
+            'text-xs font-semibold uppercase tracking-[0.36em]',
+            isStrong ? 'text-accent-text' : 'text-subtle',
+          ]}
+        >
+          {eyebrow}
+        </p>
+      )
+    }
+    <h2 class="hero-title text-balance text-3xl text-foreground sm:text-4xl">
       {title}
     </h2>
   </div>
 
-  <div class:list={['space-y-7 text-sm leading-7 sm:text-base', isDark ? 'text-slate-300' : 'text-slate-700']}>
+  <div class="space-y-7 text-sm leading-7 text-muted sm:text-base">
     <slot />
   </div>
 </section>

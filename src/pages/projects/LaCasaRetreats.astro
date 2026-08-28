@@ -221,15 +221,15 @@ const decisionLog = [
 
       <div class="space-y-5">
         <p class="section-label">Flagship case study · Live product</p>
-        <h1 class="hero-title text-balance text-5xl leading-[0.95] text-white sm:text-6xl lg:text-7xl">
+        <h1 class="hero-title text-balance text-5xl leading-[0.95] text-foreground sm:text-6xl lg:text-7xl">
           The website was never just a website.
         </h1>
-        <p class="max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+        <p class="max-w-2xl text-base leading-8 text-muted sm:text-lg">
           LaCasa Retreats manages 17 live short-stay rental properties across Noida, including
           Galaxy Blue Sapphire and Spectrum Metro Mall. I designed and built the guest-facing
           booking site and the internal operations tooling behind it, solo, end to end — and
           continue to maintain it in active production. Live at{' '}
-          <a href="https://lacasaretreats.com" target="_blank" rel="noopener noreferrer" class="text-cyan-300 underline underline-offset-4">
+          <a href="https://lacasaretreats.com" target="_blank" rel="noopener noreferrer" class="text-accent-text underline underline-offset-4">
             lacasaretreats.com
           </a>.
         </p>
@@ -240,9 +240,9 @@ const decisionLog = [
       <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
         {
           roleFacts.map((fact) => (
-            <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-              <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-cyan-300">{fact.label}</p>
-              <p class="mt-2 text-sm leading-6 text-slate-200">{fact.value}</p>
+            <div class="rounded-2xl border border-border bg-surface p-4">
+              <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-accent-text">{fact.label}</p>
+              <p class="mt-2 text-sm leading-6 text-muted">{fact.value}</p>
             </div>
           ))
         }
@@ -256,18 +256,18 @@ const decisionLog = [
           toc.map((item) => (
             <a
               href={item.href}
-              class="case-toc-item shrink-0 rounded-full px-3.5 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-slate-300 transition hover:text-white"
+              class="case-toc-item shrink-0 rounded-full px-3.5 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-muted transition hover:text-foreground"
             >
               <span class="case-toc-dot" aria-hidden="true" />
               {item.label}
             </a>
           ))
         }
-        <span class="mx-1 h-4 w-px shrink-0 self-center bg-white/10" aria-hidden="true" />
+        <span class="mx-1 h-4 w-px shrink-0 self-center bg-surface" aria-hidden="true" />
         <a
           href="/design-systems/lacasa-retreats"
           data-transition
-          class="case-toc-item shrink-0 rounded-full px-3.5 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-cyan-300 transition hover:text-white"
+          class="case-toc-item shrink-0 rounded-full px-3.5 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-accent-text transition hover:text-foreground"
         >
           Design system ↗
         </a>
@@ -317,7 +317,7 @@ const decisionLog = [
 
     <Section id="research" eyebrow="What I discovered" title="Three things that shaped every decision after">
       <div class="flex flex-wrap items-center gap-2 -mt-2">
-        <span class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">Research inputs</span>
+        <span class="text-xs font-semibold uppercase tracking-[0.16em] text-subtle">Research inputs</span>
         {researchInputs.map((item) => <span class="chip">{item}</span>)}
       </div>
       <div class="grid gap-4">
@@ -325,8 +325,8 @@ const decisionLog = [
           insights.map((item, i) => (
             <article class="surface rounded-[1.5rem] p-6">
               <p class="section-label mb-3">Insight 0{i + 1}</p>
-              <h3 class="text-lg font-semibold text-white">{item.title}</h3>
-              <p class="deep-only mt-3 text-base leading-8 text-slate-300">{item.body}</p>
+              <h3 class="text-lg font-semibold text-foreground">{item.title}</h3>
+              <p class="deep-only mt-3 text-base leading-8 text-muted">{item.body}</p>
             </article>
           ))
         }
@@ -338,9 +338,9 @@ const decisionLog = [
       <div class="grid gap-4 sm:grid-cols-5">
         {
           process.map((p) => (
-            <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-              <p class="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-300">{p.step}</p>
-              <p class="mt-2 text-sm leading-7 text-slate-300">{p.body}</p>
+            <div class="rounded-2xl border border-border bg-surface p-4">
+              <p class="text-xs font-semibold uppercase tracking-[0.16em] text-accent-text">{p.step}</p>
+              <p class="mt-2 text-sm leading-7 text-muted">{p.body}</p>
             </div>
           ))
         }
@@ -356,8 +356,8 @@ const decisionLog = [
         {
           userGroups.map((group) => (
             <article class="surface rounded-[1.5rem] p-5">
-              <h3 class="text-lg font-semibold text-white">{group.title}</h3>
-              <p class="mt-3 text-sm leading-7 text-slate-300">{group.description}</p>
+              <h3 class="text-lg font-semibold text-foreground">{group.title}</h3>
+              <p class="mt-3 text-sm leading-7 text-muted">{group.description}</p>
             </article>
           ))
         }
@@ -378,15 +378,15 @@ const decisionLog = [
               <div class="grid gap-4 sm:grid-cols-3">
                 <div>
                   <p class="text-xs font-semibold uppercase tracking-[0.16em] text-rose-300">The tension</p>
-                  <p class="mt-2 text-sm leading-7 text-slate-300">{p.tension}</p>
+                  <p class="mt-2 text-sm leading-7 text-muted">{p.tension}</p>
                 </div>
                 <div>
-                  <p class="text-xs font-semibold uppercase tracking-[0.16em] text-cyan-300">The call</p>
-                  <p class="mt-2 text-sm leading-7 text-slate-300">{p.call}</p>
+                  <p class="text-xs font-semibold uppercase tracking-[0.16em] text-accent-text">The call</p>
+                  <p class="mt-2 text-sm leading-7 text-muted">{p.call}</p>
                 </div>
                 <div>
                   <p class="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-300">Result</p>
-                  <p class="mt-2 text-sm leading-7 text-slate-300">{p.result}</p>
+                  <p class="mt-2 text-sm leading-7 text-muted">{p.result}</p>
                 </div>
               </div>
             </article>
@@ -404,15 +404,15 @@ const decisionLog = [
         {
           wireframes.map((wf) => (
             <div>
-              <p class="text-[10px] font-mono uppercase tracking-[0.1em] text-slate-500">{wf.tag}</p>
-              <h3 class="mt-1 text-lg font-semibold text-white">{wf.title}</h3>
+              <p class="text-[10px] font-mono uppercase tracking-[0.1em] text-subtle">{wf.tag}</p>
+              <h3 class="mt-1 text-lg font-semibold text-foreground">{wf.title}</h3>
               <div class="surface mt-4 overflow-hidden rounded-[1.5rem]">
                 <img src={wf.src} alt={`${wf.title} wireframe`} class="w-full" />
               </div>
-              <div class="mt-4 rounded-2xl border border-cyan-300/20 bg-cyan-300/[0.06] p-4">
-                <p class="text-sm leading-7 text-slate-300">
-                  <span class="font-semibold text-cyan-300">Decision:</span> {wf.decision}{' '}
-                  <span class="font-semibold text-cyan-300">Reason:</span> {wf.reason}
+              <div class="mt-4 rounded-2xl border border-accent bg-accent/[0.06] p-4">
+                <p class="text-sm leading-7 text-muted">
+                  <span class="font-semibold text-accent-text">Decision:</span> {wf.decision}{' '}
+                  <span class="font-semibold text-accent-text">Reason:</span> {wf.reason}
                 </p>
               </div>
             </div>
@@ -422,7 +422,7 @@ const decisionLog = [
     </Section>
 
     <StoryBeat id="product" eyebrow="Operations · Channel blocking" headline="One block, then a safety net.">
-      <p class="text-[10px] font-mono uppercase tracking-[0.1em] text-slate-500">PropertyStatusPage.tsx</p>
+      <p class="text-[10px] font-mono uppercase tracking-[0.1em] text-subtle">PropertyStatusPage.tsx</p>
       <p class="scan-only">
         A manager logs any external booking the moment it comes in, tagging its source — that
         single write blocks the date everywhere, backed by email reconciliation as the safety net.
@@ -462,7 +462,7 @@ const decisionLog = [
     </div>
 
     <StoryBeat eyebrow="Operations · Pricing" headline="A baseline in seconds, exceptions on top.">
-      <p class="text-[10px] font-mono uppercase tracking-[0.1em] text-slate-500">AdminPage.tsx:845</p>
+      <p class="text-[10px] font-mono uppercase tracking-[0.1em] text-subtle">AdminPage.tsx:845</p>
       <p class="scan-only">
         One weekday and one weekend rate per month, applied to all properties at once, with
         per-day overrides on top — matching how owners actually think about pricing.
@@ -498,7 +498,7 @@ const decisionLog = [
     </div>
 
     <StoryBeat eyebrow="Guest experience · Checkout" headline="No login. Payment upfront.">
-      <p class="text-[10px] font-mono uppercase tracking-[0.1em] text-slate-500">CheckoutPage.tsx</p>
+      <p class="text-[10px] font-mono uppercase tracking-[0.1em] text-subtle">CheckoutPage.tsx</p>
       <p class="scan-only">
         Name, email, and phone only — no account required — with payment collected upfront and
         the booking keyed to the guest's email for retroactive identity matching.
@@ -557,8 +557,8 @@ const decisionLog = [
         {
           engineeringRigor.map((item) => (
             <article class="surface rounded-[1.5rem] p-5">
-              <h3 class="text-lg font-semibold text-white">{item.title}</h3>
-              <p class="mt-3 text-sm leading-7 text-slate-300">{item.description}</p>
+              <h3 class="text-lg font-semibold text-foreground">{item.title}</h3>
+              <p class="mt-3 text-sm leading-7 text-muted">{item.description}</p>
             </article>
           ))
         }
@@ -580,16 +580,16 @@ const decisionLog = [
     <Section id="impact" eyebrow="Impact" title="The strongest evidence, up front">
       <div class="grid gap-4 sm:grid-cols-3">
         <div class="surface rounded-[1.5rem] p-6">
-          <p class="hero-title text-3xl text-cyan-300">&lt; 1 min</p>
-          <p class="mt-2 text-sm leading-7 text-slate-300">Seasonal repricing across 17 units — down from an afternoon</p>
+          <p class="hero-title text-3xl text-accent-text">&lt; 1 min</p>
+          <p class="mt-2 text-sm leading-7 text-muted">Seasonal repricing across 17 units — down from an afternoon</p>
         </div>
         <div class="surface rounded-[1.5rem] p-6">
-          <p class="hero-title text-3xl text-cyan-300">1 calendar</p>
-          <p class="mt-2 text-sm leading-7 text-slate-300">Consolidated from 5 disconnected booking channels</p>
+          <p class="hero-title text-3xl text-accent-text">1 calendar</p>
+          <p class="mt-2 text-sm leading-7 text-muted">Consolidated from 5 disconnected booking channels</p>
         </div>
         <div class="surface rounded-[1.5rem] p-6">
-          <p class="hero-title text-3xl text-cyan-300">Structured GST</p>
-          <p class="mt-2 text-sm leading-7 text-slate-300">Computed from data, no manual reconstruction from conversations</p>
+          <p class="hero-title text-3xl text-accent-text">Structured GST</p>
+          <p class="mt-2 text-sm leading-7 text-muted">Computed from data, no manual reconstruction from conversations</p>
         </div>
       </div>
     </Section>
@@ -598,8 +598,8 @@ const decisionLog = [
       <div class="grid gap-3">
         {
           tradeoffs.map((tradeoff) => (
-            <div class="flex gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-              <span class="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-cyan-300 shadow-[0_0_22px_rgba(103,232,249,0.5)]" />
+            <div class="flex gap-4 rounded-2xl border border-border bg-surface p-4">
+              <span class="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-accent shadow-[0_0_22px_rgba(103,232,249,0.5)]" />
               <p>{tradeoff}</p>
             </div>
           ))
@@ -612,10 +612,10 @@ const decisionLog = [
       <div class="grid gap-3">
         {
           decisionLog.map((row) => (
-            <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
-              <p class="text-sm font-semibold text-white">{row.decision}</p>
-              <p class="mt-2 text-sm leading-7 text-slate-300"><span class="text-cyan-300">Chosen because:</span> {row.chosen}</p>
-              <p class="mt-1 text-sm leading-7 text-slate-400"><span class="text-slate-300">Cost accepted:</span> {row.cost}</p>
+            <div class="rounded-2xl border border-border bg-surface p-5">
+              <p class="text-sm font-semibold text-foreground">{row.decision}</p>
+              <p class="mt-2 text-sm leading-7 text-muted"><span class="text-accent-text">Chosen because:</span> {row.chosen}</p>
+              <p class="mt-1 text-sm leading-7 text-subtle"><span class="text-muted">Cost accepted:</span> {row.cost}</p>
             </div>
           ))
         }
@@ -637,7 +637,7 @@ const decisionLog = [
       <div class="grid gap-3">
         {
           reflection.map((point) => (
-            <div class="flex gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+            <div class="flex gap-4 rounded-2xl border border-border bg-surface p-4">
               <span class="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-rose-300 shadow-[0_0_22px_rgba(253,164,175,0.4)]" />
               <p class="text-base leading-8">{point}</p>
             </div>
@@ -652,7 +652,7 @@ const decisionLog = [
         Blue Sapphire and Spectrum Metro Mall (19 total, including 2 discontinued). I continue to
         support the site in an ongoing maintenance capacity as the property portfolio and feature
         set evolve. The live product is at{' '}
-        <a href="https://lacasaretreats.com" target="_blank" rel="noopener noreferrer" class="text-cyan-300 underline underline-offset-4">
+        <a href="https://lacasaretreats.com" target="_blank" rel="noopener noreferrer" class="text-accent-text underline underline-offset-4">
           lacasaretreats.com
         </a>.
       </p>
@@ -682,10 +682,10 @@ const decisionLog = [
     align-items: center;
     padding: 6px;
     border-radius: 999px;
-    background: rgba(10, 18, 33, 0.82);
-    border: 1px solid rgba(148, 163, 184, 0.18);
+    background: var(--surface-strong);
+    border: 1px solid var(--border);
     backdrop-filter: blur(16px);
-    box-shadow: 0 12px 40px rgba(2, 8, 23, 0.45);
+    box-shadow: var(--shadow-elevated);
     scrollbar-width: none;
   }
   .case-toc-pill::-webkit-scrollbar { display: none; }
@@ -707,7 +707,7 @@ const decisionLog = [
     mask-image: linear-gradient(to right, transparent, black 28px, black calc(100% - 28px), transparent);
   }
   .case-toc-item { display: inline-flex; align-items: center; gap: 0.4rem; background: transparent; }
-  .case-toc-item:hover { background: rgba(255, 255, 255, 0.07); }
+  .case-toc-item:hover { background: var(--accent-soft); }
   .case-toc-dot {
     width: 5px;
     height: 5px;
@@ -718,14 +718,14 @@ const decisionLog = [
     transition: opacity 0.25s ease, transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
   }
   .case-toc-item.is-active {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.08);
+    color: var(--foreground);
+    background: var(--accent-soft);
   }
   .case-toc-item.is-active .case-toc-dot {
     opacity: 1;
     transform: scale(1);
-    background: #4dd7ff;
-    box-shadow: 0 0 8px rgba(77, 215, 255, 0.7);
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
   }
 
   .case-toc-arrow {
@@ -738,12 +738,12 @@ const decisionLog = [
     align-items: center;
     justify-content: center;
     border-radius: 999px;
-    background: rgba(10, 18, 33, 0.85);
-    border: 1px solid rgba(148, 163, 184, 0.22);
+    background: var(--surface-strong);
+    border: 1px solid var(--border-strong);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    box-shadow: 0 8px 20px rgba(2, 8, 23, 0.5);
-    color: rgb(203 213 225);
+    box-shadow: var(--shadow-elevated);
+    color: var(--muted);
     cursor: pointer;
     opacity: 0;
     pointer-events: none;
@@ -754,7 +754,7 @@ const decisionLog = [
     height: 13px;
   }
   .case-toc-arrow:hover {
-    color: #fff;
+    color: var(--foreground);
   }
   .case-toc-arrow--left { left: -11px; }
   .case-toc-arrow--right { right: -11px; }
@@ -770,10 +770,10 @@ const decisionLog = [
     gap: 6px;
     padding: 6px;
     border-radius: 1.25rem;
-    background: rgba(10, 18, 33, 0.72);
-    border: 1px solid rgba(148, 163, 184, 0.18);
+    background: var(--surface);
+    border: 1px solid var(--border);
     backdrop-filter: blur(16px);
-    box-shadow: 0 18px 50px rgba(2, 8, 23, 0.35);
+    box-shadow: var(--shadow-elevated);
   }
   .view-toggle__btn {
     display: inline-flex;
@@ -781,7 +781,7 @@ const decisionLog = [
     gap: 0.6rem;
     padding: 0.6rem 1.1rem;
     border-radius: 1rem;
-    color: rgb(148 163 184);
+    color: var(--subtle);
     background: transparent;
     border: none;
     cursor: pointer;
@@ -789,7 +789,7 @@ const decisionLog = [
     transition: color 0.2s, background 0.2s;
   }
   .view-toggle__btn:hover {
-    color: #fff;
+    color: var(--foreground);
   }
   .view-toggle__icon {
     width: 1.1rem;
@@ -813,8 +813,8 @@ const decisionLog = [
     opacity: 0.7;
   }
   .view-toggle__btn.is-active {
-    background: linear-gradient(135deg, #4dd7ff, rgba(34, 211, 238, 0.9));
-    color: #061018;
+    background: var(--accent);
+    color: var(--on-accent);
   }
   .view-toggle__btn.is-active .view-toggle__time {
     opacity: 0.75;

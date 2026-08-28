@@ -12,11 +12,11 @@ import { socialLinks } from "../data/socialLinks";
       <div class="space-y-5">
         <p class="section-label">Contact</p>
         <h1
-          class="hero-title text-balance text-4xl text-white sm:text-5xl lg:text-6xl"
+          class="hero-title text-balance text-4xl text-foreground sm:text-5xl lg:text-6xl"
         >
           Let's collaborate on a product that feels calm to use.
         </h1>
-        <p class="max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
+        <p class="max-w-xl text-sm leading-7 text-muted sm:text-base">
           I'm open to UX audits, design systems, product redesigns, and
           front-end aligned partnerships. Reach out through whichever channel is
           easiest.
@@ -36,25 +36,25 @@ import { socialLinks } from "../data/socialLinks";
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="group flex items-center justify-between rounded-[1.5rem] border border-white/10 bg-white/5 p-5 hover:border-cyan-300/30 hover:bg-white/10"
+                class="group flex items-center justify-between rounded-[1.5rem] border border-border bg-surface p-5 hover:border-accent hover:bg-surface"
               >
                 <div class="flex items-center gap-4">
-                  <div class="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-slate-950/40 text-cyan-300">
+                  <div class="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-background text-accent-text">
                     <Icon name={`${icon}-fill`} class="text-3xl lg:text-4xl" />
                   </div>
                   <div>
-                    <p class="text-lg font-medium text-white">{name}</p>
+                    <p class="text-lg font-medium text-foreground">{name}</p>
                   </div>
                 </div>
                 <Icon
                   name="arrow-right-thin"
-                  class="text-2xl text-slate-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-cyan-300"
+                  class="text-2xl text-subtle transition-transform duration-300 group-hover:translate-x-1 group-hover:text-accent-text"
                 />
               </a>
             ))
           }
 
-          <div class="rounded-[1.5rem] border border-white/10 bg-white/5 p-5 sm:p-6">
+          <div class="rounded-[1.5rem] border border-border bg-surface p-5 sm:p-6">
             <div id="lead-form"></div>
           </div>
         </div>
@@ -63,11 +63,20 @@ import { socialLinks } from "../data/socialLinks";
   </main>
 
   <style is:global>
+    /*
+      The embedded form is styled entirely through these custom properties —
+      embed.js reads them and hardcodes only its error red. So the widget
+      follows the site theme with no changes on the widget side. (It ignores a
+      data-theme attribute entirely; that attribute was dead config.)
+    */
     .tinycrm-form {
-      --tinycrm-accent: #22d3ee;
-      --tinycrm-button-color: #04202a;
-      --tinycrm-border: 1px solid rgba(255, 255, 255, 0.14);
-      --tinycrm-input-bg: rgba(255, 255, 255, 0.04);
+      --tinycrm-accent: var(--accent);
+      --tinycrm-button-bg: var(--accent);
+      --tinycrm-button-color: var(--on-accent);
+      --tinycrm-border: 1px solid var(--border-strong);
+      --tinycrm-border-focus: 1px solid var(--accent);
+      --tinycrm-input-bg: var(--tint-a);
+      --tinycrm-input-color: var(--foreground);
       --tinycrm-radius: 0.75rem;
       --tinycrm-width: 100%;
     }
@@ -79,6 +88,5 @@ import { socialLinks } from "../data/socialLinks";
     data-tinycrm-key="pk_live_bd0d5c425e26b7f5547c4818908702e3"
     data-target="#lead-form"
     data-heading="Let's talk"
-    data-button="Send message"
-    data-theme="dark"></script>
+    data-button="Send message"></script>
 </Base>

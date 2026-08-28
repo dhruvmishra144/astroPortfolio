@@ -8,10 +8,10 @@ interface Props {
 const { eyebrow, title, id } = Astro.props;
 ---
 
-<section id={id} class="grid gap-8 border-t border-white/10 py-14 scroll-mt-24 lg:grid-cols-[0.34fr_0.66fr] lg:gap-12">
+<section id={id} class="grid gap-8 border-t border-border py-14 scroll-mt-24 lg:grid-cols-[0.34fr_0.66fr] lg:gap-12">
   <div class="space-y-3">
     <p class="section-label">{eyebrow}</p>
-    <h2 class="section-title text-3xl text-white sm:text-4xl">{title}</h2>
+    <h2 class="section-title text-3xl text-foreground sm:text-4xl">{title}</h2>
   </div>
-  <div class="space-y-7 text-base leading-8 text-slate-300 sm:text-lg"><slot /></div>
+  <div class="space-y-7 text-base leading-8 text-muted sm:text-lg"><slot /></div>
 </section>

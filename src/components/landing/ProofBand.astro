@@ -1,0 +1,69 @@
+---
+/**
+ * Proof band.
+ *
+ * Uses StatRow (big value, small caption) rather than aonflow/MetricCard, which
+ * puts the small label on top — a numeric metric would read caption-first. This
+ * also matches the LaCasa case-study hero, so both pages share one treatment.
+ *
+ * Six tools, not thirty. The resume's full competency list is right for ATS
+ * parsing and wrong for a landing page; a tool wall reads as "will do
+ * anything". The long list is one click away.
+ */
+import StatRow from '../story/StatRow.astro';
+
+interface Metric {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  metrics?: Metric[];
+  stack?: string[];
+}
+
+const defaultMetrics: Metric[] = [
+  { value: '10+ yrs', label: 'product design & front-end' },
+  { value: '50+', label: 'components in one governed Figma system' },
+  { value: '30%', label: 'faster UI sprint velocity (Aonflow)' },
+  { value: '4', label: 'products live in production' },
+];
+
+const defaultStack = [
+  'Figma',
+  'React / Next.js',
+  'TypeScript',
+  'Tailwind CSS',
+  'Firebase / GCP',
+  'Cloudflare',
+];
+
+const { metrics = defaultMetrics, stack = defaultStack } = Astro.props;
+---
+
+<section id="proof" data-reveal class="page-section scroll-mt-24">
+  <div class="mb-10 max-w-2xl">
+    <p class="section-label">Proof</p>
+    <h2 class="section-title mt-4 text-3xl text-foreground sm:text-4xl">
+      The numbers that already happened.
+    </h2>
+  </div>
+
+  <div class="surface rounded-[1.75rem] p-6 sm:p-8">
+    <StatRow stats={metrics} />
+
+    <div class="mt-10 border-t border-border pt-8">
+      <p class="text-xs font-semibold uppercase tracking-[0.28em] text-subtle">Core stack</p>
+      <div class="mt-4 flex flex-wrap gap-2">
+        {stack.map((tool) => <span class="chip text-xs">{tool}</span>)}
+      </div>
+      <a
+        href="/resume#skills"
+        data-transition
+        class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent-text hover:underline"
+      >
+        Full competency list on the resume →
+      </a>
+    </div>
+  </div>
+</section>

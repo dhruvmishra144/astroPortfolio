@@ -43,36 +43,36 @@ const onMyList = [
     <!-- Hero: Outside the terminal -->
     <section class="page-section flex flex-col items-center pt-8 text-center">
       <figure data-life class="relative mx-auto w-full max-w-[18rem]">
-        <div class="absolute -inset-4 rounded-[2rem] bg-cyan-400/10 blur-2xl">
+        <div class="absolute -inset-4 rounded-[2rem] bg-accent/10 blur-2xl">
         </div>
         <img
           src="/avatar.jpeg"
           alt="Portrait of Dhruv Mishra"
-          class="relative w-full rounded-[1.5rem] border border-white/10 object-cover grayscale"
+          class="relative w-full rounded-[1.5rem] border border-border object-cover grayscale"
           fetchpriority="high"
         />
       </figure>
 
       <div data-life class="mt-10 max-w-4xl">
-        <h1 class="hero-title text-balance text-4xl text-white sm:text-6xl">
+        <h1 class="hero-title text-balance text-4xl text-foreground sm:text-6xl">
           Outside the terminal.
         </h1>
         <p
-          class="mt-5 flex flex-wrap justify-center gap-x-3 gap-y-1 text-[0.72rem] uppercase tracking-[0.24em] text-cyan-300/80"
+          class="mt-5 flex flex-wrap justify-center gap-x-3 gap-y-1 text-[0.72rem] uppercase tracking-[0.24em] text-accent-text"
         >
           {
             identities.map((id, i) => (
               <>
                 <span>{id}</span>
                 {i < identities.length - 1 && (
-                  <span class="text-slate-600">·</span>
+                  <span class="text-subtle">·</span>
                 )}
               </>
             ))
           }
         </p>
         <div
-          class="mt-8 space-y-4 text-base leading-8 text-slate-300 sm:text-lg"
+          class="mt-8 space-y-4 text-base leading-8 text-muted sm:text-lg"
         >
           <p>
             Away from the systems and the screens I'm in Faridabad, on the edge
@@ -101,7 +101,7 @@ const onMyList = [
         alt="Dhruv with his family"
       />
       <div class="mt-10 max-w-4xl">
-        <h2 class="hero-title text-3xl text-white sm:text-4xl">
+        <h2 class="hero-title text-3xl text-foreground sm:text-4xl">
           The people I come home to
         </h2>
         <div class="mt-10 grid gap-4 text-left sm:grid-cols-2 lg:gap-6">
@@ -109,10 +109,10 @@ const onMyList = [
             class="surface col-span-1 flex flex-col justify-center rounded-[1.5rem] p-6 sm:col-span-2 sm:p-8"
           >
             <p
-              class="text-center text-base leading-relaxed text-slate-300 sm:text-lg sm:leading-loose"
+              class="text-center text-base leading-relaxed text-muted sm:text-lg sm:leading-loose"
             >
               My wife and my daughter — the two people every late night and long
-              build eventually leads back to. Home is <span class="text-white"
+              build eventually leads back to. Home is <span class="text-foreground"
                 >Faridabad</span
               >, on the edge of Delhi NCR, and it's louder, warmer, and far more
               interesting than anything I've ever shipped.
@@ -122,7 +122,7 @@ const onMyList = [
           <div class="surface flex flex-col gap-4 rounded-[1.5rem] p-6 sm:p-8">
             <div class="flex items-center gap-3">
               <div
-                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cyan-400/10 text-cyan-300"
+                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent-text"
               >
                 <svg
                   width="20"
@@ -138,10 +138,10 @@ const onMyList = [
                   ></path></svg
                 >
               </div>
-              <h3 class="text-lg font-medium text-white">My Wife</h3>
+              <h3 class="text-lg font-medium text-foreground">My Wife</h3>
             </div>
             <p
-              class="text-sm leading-relaxed text-slate-300 sm:text-base sm:leading-relaxed"
+              class="text-sm leading-relaxed text-muted sm:text-base sm:leading-relaxed"
             >
               The steady, generous force behind everything I get to chase. She
               holds the ground so I can go wandering after the next idea, and
@@ -187,10 +187,10 @@ const onMyList = [
                     y2="4.22"></line></svg
                 >
               </div>
-              <h3 class="text-lg font-medium text-white">Our Daughter</h3>
+              <h3 class="text-lg font-medium text-foreground">Our Daughter</h3>
             </div>
             <p
-              class="text-sm leading-relaxed text-slate-300 sm:text-base sm:leading-relaxed"
+              class="text-sm leading-relaxed text-muted sm:text-base sm:leading-relaxed"
             >
               Three and a half, and she's quietly rewired how I see almost
               everything. She asks “why” until the question finally gets good,
@@ -202,7 +202,7 @@ const onMyList = [
           <div
             class="surface col-span-1 rounded-[1.5rem] p-6 text-center sm:col-span-2 sm:p-8"
           >
-            <p class="text-base font-medium text-cyan-200 sm:text-lg">
+            <p class="text-base font-medium text-accent-text sm:text-lg">
               Everything else is just the work. This is the reason for it — and
               the calmer, better-run life I'm quietly building toward.
             </p>
@@ -218,8 +218,8 @@ const onMyList = [
         {
           offTheClock.map((item) => (
             <article class="surface rounded-[1.5rem] p-6 sm:p-7">
-              <h3 class="hero-title text-xl text-white">{item.title}</h3>
-              <p class="mt-3 text-sm leading-7 text-slate-400 sm:text-base">
+              <h3 class="hero-title text-xl text-foreground">{item.title}</h3>
+              <p class="mt-3 text-sm leading-7 text-subtle sm:text-base">
                 {item.body}
               </p>
             </article>
@@ -230,19 +230,19 @@ const onMyList = [
 
     <!-- On my list -->
     <section data-life class="page-section pt-0">
-      <h2 class="hero-title text-3xl text-white sm:text-4xl">On my list</h2>
+      <h2 class="hero-title text-3xl text-foreground sm:text-4xl">On my list</h2>
       <ul class="mt-10 space-y-8">
         {
           onMyList.map((item, i) => (
-            <li class="grid gap-2 border-t border-white/10 pt-6 sm:grid-cols-[3rem_1fr] sm:gap-6">
-              <span class="text-sm font-semibold text-cyan-300">
+            <li class="grid gap-2 border-t border-border pt-6 sm:grid-cols-[3rem_1fr] sm:gap-6">
+              <span class="text-sm font-semibold text-accent-text">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div>
-                <p class="text-lg font-semibold text-white sm:text-xl">
+                <p class="text-lg font-semibold text-foreground sm:text-xl">
                   {item.title}
                 </p>
-                <p class="mt-2 text-sm leading-7 text-slate-400 sm:text-base">
+                <p class="mt-2 text-sm leading-7 text-subtle sm:text-base">
                   {item.note}
                 </p>
               </div>

@@ -54,3 +54,5 @@ next-env.d.ts
 
 # unredacted portfolio screenshot originals (contain real business data)
 .raw-screenshots-backup/
+# The resume PDF is hosted externally (ImageKit) — see src/data/resume.ts.
+*.pdf
