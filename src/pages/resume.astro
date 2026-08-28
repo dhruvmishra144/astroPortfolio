@@ -32,7 +32,12 @@ const hasPdf = Boolean(resumePdf.href);
 >
   <main id="content" class="page-shell pb-24">
     <article class="resume-doc page-section">
-      <header class="max-w-3xl">
+      {/*
+        pb-12 matters: the first <Section> below carries `border-t` with its
+        padding *inside* the border, so without bottom padding here the divider
+        line lands flush against the action buttons.
+      */}
+      <header class="max-w-3xl pb-12">
         <p class="section-label">Resume</p>
         <h1 class="hero-title mt-4 text-4xl text-foreground sm:text-5xl">
           {resumeProfile.name}
@@ -58,7 +63,7 @@ const hasPdf = Boolean(resumePdf.href);
 
         <p class="mt-4 text-xs text-subtle">
           Phone and email on request — or reach me through{' '}
-          <a href="/contact" data-transition class="text-accent-text hover:underline">
+          <a href="/contact" class="text-accent-text hover:underline">
             the contact page
           </a>.
         </p>
@@ -150,7 +155,6 @@ const hasPdf = Boolean(resumePdf.href);
                         {bullet.link && (
                           <a
                             href={bullet.link.href}
-                            data-transition
                             class="ml-1 whitespace-nowrap text-accent-text hover:underline"
                           >
                             {bullet.link.label} →
@@ -228,7 +232,6 @@ const hasPdf = Boolean(resumePdf.href);
 
     .site-nav,
     footer,
-    #banner-1,
     .skip-link,
     .aurora,
     .portfolio-background__motion,

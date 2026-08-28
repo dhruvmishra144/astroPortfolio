@@ -30,7 +30,6 @@ const normalizedPathname =
   pathname.endsWith('/') && pathname.length > 1 ? pathname.slice(0, -1) : pathname;
 const showFooter = normalizedPathname !== '/contact';
 
-const bootBars = Array.from({ length: 28 });
 ---
 
 <!doctype html>
@@ -40,10 +39,10 @@ const bootBars = Array.from({ length: 28 });
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {/*
       Must run before first paint and before the stylesheet resolves, or a
-      visitor who chose dark gets a white flash. Navigation here is full page
-      reloads (see scripts/transitions.ts), so this runs on every single view —
-      keep it tiny and synchronous. Light is the default; prefers-color-scheme
-      is deliberately not consulted.
+      visitor who chose dark gets a white flash. Links navigate natively (full
+      page loads), so this runs on every single view — keep it tiny and
+      synchronous. Light is the default; prefers-color-scheme is deliberately
+      not consulted.
     */}
     {lockTheme ? (
       <script is:inline define:vars={{ lockTheme }}>
@@ -74,71 +73,12 @@ const bootBars = Array.from({ length: 28 });
       <div aria-hidden="true" class="portfolio-background__motion fixed inset-0 z-0 pointer-events-none"></div>
       <AuroraWaves />
       <div class="relative z-10">
-        <div
-          id="banner-1"
-          class="boot min-h-screen h-screen bg-background z-30 fixed top-0 left-0 w-full flex flex-col items-center justify-center overflow-hidden"
-        >
-          <div class="boot-grid pointer-events-none absolute inset-0 flex justify-between" aria-hidden="true">
-            {bootBars.map(() => <span class="boot-bar" />)}
-          </div>
-          <div class="boot-sweep pointer-events-none absolute left-0 top-1/2 h-px w-full" aria-hidden="true"></div>
-
-          <div class="relative z-10 flex flex-col items-center gap-3 text-center">
-            <div class="flex flex-col items-center gap-2">
-              <span class="boot-mark font-display text-lg tracking-[0.2em] text-foreground">DM</span>
-              <span class="boot-dot h-1.5 w-1.5 rounded-full bg-accent"></span>
-            </div>
-            <p class="boot-name text-sm font-semibold uppercase tracking-[0.4em] text-foreground">
-              Dhruv Mishra
-            </p>
-            <p class="boot-role text-[10px] uppercase tracking-[0.32em] text-accent-text">
-              Product Design · UX Strategy · Front-End
-            </p>
-            <div class="boot-status mt-6 flex flex-col items-center gap-1">
-              <span class="text-[10px] uppercase tracking-[0.32em] text-subtle">System Ready</span>
-              <span class="boot-pct text-xs font-semibold text-accent-text">100%</span>
-            </div>
-          </div>
-        </div>
         <SiteNav showThemeToggle={!lockTheme} />
         <slot />
         {showFooter && <Footer />}
       </div>
     </div>
     <CommandPalette client:idle />
-    <script>
-      import { initPageTransitions } from '../scripts/transitions';
-
-      initPageTransitions();
-    </script>
   </body>
 </html>
 
-<style>
-  .boot-bar {
-    flex: 1;
-    height: 100%;
-    transform: scaleY(0);
-    transform-origin: center;
-    background: linear-gradient(
-      180deg,
-      transparent,
-      color-mix(in srgb, var(--accent) 35%, transparent) 45%,
-      transparent 90%
-    );
-  }
-
-  .boot-sweep {
-    transform: scaleX(0);
-    transform-origin: center;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  }
-
-  .boot-mark,
-  .boot-dot,
-  .boot-name,
-  .boot-role,
-  .boot-status {
-    opacity: 0;
-  }
-</style>

@@ -22,7 +22,7 @@
 
 :root,
 [data-theme='light'] {
-  --background: #f7f9fc;
+  --background: #fbfdfe;
   --foreground: #0b1a2b;
   --muted: #3c536e;
   /* #64748b measured 4.29:1 on the pastel tints — just short of AA for the
@@ -48,27 +48,34 @@
   --tint-d: #fdf6ee;
 
   --grid-ink: rgba(11, 26, 43, 0.055);
-  --grid-opacity: 0.55;
-  --aurora-alpha: 0.16;
-  --aurora-wrap-opacity: 0.5;
-  --ribbed-ink: rgba(11, 26, 43, 0.06);
+  --grid-opacity: 0.5;
 
-  --sweep-a: rgba(6, 182, 212, 0.16);
-  --sweep-b: rgba(100, 116, 139, 0.1);
-  --sweep-blend: multiply;
+  /* Atmosphere. Orange is the complement of the cyan accent, so warming the
+     canvas is what stops a white page reading as washed out. Static positions
+     only — no drift, no parallax. */
+  --aurora-1: 249, 115, 22;   /* warm orange, anchors top-left */
+  --aurora-2: 251, 191, 36;   /* soft amber */
+  --aurora-3: 56, 151, 186;   /* desaturated cyan */
+  --aurora-a1: 0.22;
+  --aurora-a2: 0.16;
+  --aurora-a3: 0.12;
+  --aurora-wrap-opacity: 0.85;
 
+  --cmdk-scrim: rgba(11, 26, 43, 0.38);
   --selection-bg: rgba(6, 182, 212, 0.24);
   --selection-fg: #04202a;
   --ring-inner: rgba(6, 182, 212, 0.45);
   --ring-outer: rgba(255, 255, 255, 0.9);
 
   --body-bg:
-    radial-gradient(circle at top, rgba(6, 182, 212, 0.08), transparent 30%),
-    radial-gradient(circle at 82% 18%, rgba(99, 102, 241, 0.06), transparent 28%),
-    linear-gradient(180deg, #fbfcfe 0%, #f7f9fc 46%, #f2f6fb 100%);
+    radial-gradient(52% 42% at 6% 3%, rgba(249, 115, 22, 0.16), transparent 68%),
+    radial-gradient(46% 38% at 92% 12%, rgba(251, 191, 36, 0.13), transparent 70%),
+    radial-gradient(58% 48% at 78% 97%, rgba(56, 151, 186, 0.1), transparent 72%),
+    linear-gradient(180deg, #ffffff 0%, #fbfdfe 48%, #f5f9fc 100%);
   --panel-bg:
-    radial-gradient(ellipse at 50% -20%, rgba(6, 182, 212, 0.09), transparent 58%),
-    linear-gradient(180deg, #fbfcfe 0%, #f7f9fc 48%, #f2f6fb 100%);
+    radial-gradient(46% 40% at 8% 0%, rgba(249, 115, 22, 0.13), transparent 68%),
+    radial-gradient(44% 36% at 92% 8%, rgba(251, 191, 36, 0.1), transparent 70%),
+    linear-gradient(180deg, #ffffff 0%, #fbfdfe 50%, #f5f9fc 100%);
 }
 
 [data-theme='dark'] {
@@ -95,23 +102,26 @@
 
   --grid-ink: rgba(255, 255, 255, 0.03);
   --grid-opacity: 0.18;
-  --aurora-alpha: 0.45;
-  --aurora-wrap-opacity: 0.6;
-  --ribbed-ink: rgba(0, 0, 0, 0.25);
 
-  --sweep-a: rgba(77, 215, 255, 0.12);
-  --sweep-b: rgba(148, 163, 184, 0.08);
-  --sweep-blend: screen;
+  --aurora-1: 34, 211, 238;   /* electric cyan, anchors top-left */
+  --aurora-2: 124, 58, 237;   /* deep violet */
+  --aurora-3: 13, 148, 136;   /* teal */
+  --aurora-a1: 0.34;
+  --aurora-a2: 0.26;
+  --aurora-a3: 0.22;
+  --aurora-wrap-opacity: 0.9;
 
+  --cmdk-scrim: rgba(2, 6, 16, 0.66);
   --selection-bg: rgba(77, 215, 255, 0.28);
   --selection-fg: #ffffff;
   --ring-inner: rgba(34, 211, 238, 0.35);
   --ring-outer: rgba(8, 15, 28, 0.7);
 
   --body-bg:
-    radial-gradient(circle at top, rgba(77, 215, 255, 0.18), transparent 28%),
-    radial-gradient(circle at 82% 18%, rgba(59, 130, 246, 0.12), transparent 26%),
-    linear-gradient(180deg, #050816 0%, #07111d 46%, #04070e 100%);
+    radial-gradient(55% 45% at 5% 2%, rgba(34, 211, 238, 0.2), transparent 66%),
+    radial-gradient(50% 42% at 90% 14%, rgba(124, 58, 237, 0.16), transparent 70%),
+    radial-gradient(58% 50% at 74% 96%, rgba(13, 148, 136, 0.14), transparent 72%),
+    linear-gradient(180deg, #050816 0%, #070e1c 50%, #03050d 100%);
   --panel-bg:
     radial-gradient(ellipse at 50% -20%, rgba(77, 215, 255, 0.16), transparent 56%),
     linear-gradient(180deg, #050816 0%, #07111d 48%, #04070e 100%);
@@ -192,41 +202,19 @@
     opacity: 0.78;
   }
 
-  .portfolio-background__motion::before,
-  .portfolio-background__motion::after {
+  /* Static grid overlay only. The drifting grid and the animated light sweep
+     that used to live here are gone: the atmosphere is locked in place, so
+     there is no compositor work and nothing to promote with will-change. */
+  .portfolio-background__motion::before {
     content: "";
     position: absolute;
     inset: -20%;
-    will-change: transform, opacity;
-  }
-
-  .portfolio-background__motion::before {
     background-image:
       linear-gradient(var(--grid-ink) 1px, transparent 1px),
       linear-gradient(90deg, var(--grid-ink) 1px, transparent 1px);
     background-size: 80px 80px;
     mask-image: radial-gradient(ellipse at 50% 20%, rgba(0, 0, 0, 0.86), transparent 72%);
     opacity: calc(var(--grid-opacity) * 1.5);
-  }
-
-  .portfolio-background__motion::after {
-    background:
-      linear-gradient(115deg, transparent 27%, var(--sweep-a) 43%, transparent 59%),
-      linear-gradient(48deg, transparent 38%, var(--sweep-b) 50%, transparent 62%);
-    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.35) 66%, transparent);
-    mix-blend-mode: var(--sweep-blend);
-    opacity: 0.56;
-    transform: translate3d(-6%, -3%, 0) rotate(-8deg);
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .portfolio-background__motion::before {
-      animation: background-grid-drift 36s linear infinite;
-    }
-
-    .portfolio-background__motion::after {
-      animation: background-light-sweep 22s ease-in-out infinite alternate;
-    }
   }
 
   @media (max-width: 767px) {
@@ -465,23 +453,6 @@
     }
   }
 
-  @keyframes background-grid-drift {
-    100% {
-      transform: translate3d(-80px, -80px, 0);
-    }
-  }
-
-  @keyframes background-light-sweep {
-    0% {
-      opacity: 0.42;
-      transform: translate3d(-8%, -4%, 0) rotate(-10deg);
-    }
-
-    100% {
-      opacity: 0.68;
-      transform: translate3d(8%, 4%, 0) rotate(8deg);
-    }
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

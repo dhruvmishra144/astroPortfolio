@@ -1,21 +1,25 @@
 ---
 /**
- * AuroraWaves.astro — Now updated to Aurora Blobs (Mesh Gradient style).
- * Soft, drifting gradient orbs clustered behind the page content.
- * Fixed + masked so it sits behind everything on every page. Honors prefers-reduced-motion.
+ * Atmospheric background.
+ *
+ * Three heavily blurred orbs in fixed positions behind all content (z-0).
+ * Colours come from --aurora-1/2/3 so each theme sets its own palette:
+ * electric cyan / deep violet / teal on dark, warm orange / soft amber /
+ * desaturated cyan on light.
+ *
+ * Deliberately static. The previous version ran three infinite GSAP tweens
+ * plus a mousemove parallax on a 100px-blur layer, which is continuous
+ * compositor work for decoration. Locking the positions removes that entirely
+ * and keeps contrast ratios stable, since text never sits over a moving colour.
  */
 ---
 
 <div class="aurora" aria-hidden="true">
-  <!-- The drifting aurora blobs -->
-  <div class="blobs-container" id="aurora-parallax">
-    <div class="blob blob--cyan"></div>
-    <div class="blob blob--teal"></div>
-    <div class="blob blob--blue"></div>
+  <div class="blobs">
+    <div class="blob blob--1"></div>
+    <div class="blob blob--2"></div>
+    <div class="blob blob--3"></div>
   </div>
-  
-  <!-- Lightweight ribbed texture overlay (zero lag) -->
-  <div class="ribbed-overlay"></div>
 </div>
 
 <style>
@@ -24,154 +28,62 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    /* Theme-driven: on a light page these blobs read as a washed-out smear
-       unless they are far more transparent. See --aurora-* in global.css. */
     opacity: var(--aurora-wrap-opacity);
     contain: strict;
     overflow: hidden;
-    /* Fades out the edges so the blobs don't have hard cuts */
-    -webkit-mask-image: radial-gradient(120% 80% at 50% 50%, #000 30%, transparent 78%);
-    mask-image: radial-gradient(120% 80% at 50% 50%, #000 30%, transparent 78%);
+    /* Soften the edges so the orbs never end in a hard cut. */
+    -webkit-mask-image: radial-gradient(125% 85% at 50% 45%, #000 32%, transparent 80%);
+    mask-image: radial-gradient(125% 85% at 50% 45%, #000 32%, transparent 80%);
   }
 
-  .blobs-container {
+  .blobs {
     position: absolute;
-    inset: -20%; /* Extend beyond the edges to hide blur cutoffs */
-    width: 140%;
-    height: 140%;
-    /* Hardware acceleration */
-    will-change: transform;
-    /* Massive blur to fuse the blobs into a mesh gradient */
-    filter: blur(100px);
-    -webkit-filter: blur(100px);
+    inset: -25%;
+    filter: blur(110px);
+    -webkit-filter: blur(110px);
   }
 
   .blob {
     position: absolute;
     border-radius: 50%;
-    will-change: transform;
-    opacity: var(--aurora-alpha);
   }
 
-  /* 
-   * Responsive blob sizing using percentages of the oversized container.
-   */
-  .blob--cyan {
-    top: 20%;
-    left: 20%;
+  /* Primary highlight, anchored top-left in both themes. */
+  .blob--1 {
+    top: 6%;
+    left: 4%;
+    width: 46%;
+    height: 46%;
+    background: rgb(var(--aurora-1));
+    opacity: var(--aurora-a1);
+  }
+
+  .blob--2 {
+    top: 2%;
+    right: 6%;
     width: 40%;
-    height: 40%;
-    background: #4dd7ff;
-    opacity: var(--aurora-alpha);
+    height: 42%;
+    background: rgb(var(--aurora-2));
+    opacity: var(--aurora-a2);
   }
 
-  .blob--teal {
-    bottom: 20%;
-    right: 20%;
-    width: 45%;
-    height: 45%;
-    background: #2dd4bf;
-    opacity: calc(var(--aurora-alpha) * 0.8);
-  }
-
-  .blob--blue {
-    top: 40%;
-    left: 40%;
-    width: 35%;
-    height: 35%;
-    background: #0ea5e9;
-    opacity: calc(var(--aurora-alpha) * 0.7);
-  }
-
-  /* 
-   * A pure gradient overlay adds a delicate fluted/ribbed texture to the light
-   * behind it WITHOUT using performance-destroying backdrop-filters. 
-   */
-  .ribbed-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: repeating-linear-gradient(
-      to right,
-      transparent 0px,
-      transparent 2px,
-      var(--ribbed-ink) 2px,
-      var(--ribbed-ink) 4px
-    );
-    pointer-events: none;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .aurora {
-      display: none;
-    }
+  .blob--3 {
+    bottom: 4%;
+    right: 14%;
+    width: 48%;
+    height: 46%;
+    background: rgb(var(--aurora-3));
+    opacity: var(--aurora-a3);
   }
 
   @media (max-width: 767px) {
-    .blob {
-      opacity: calc(var(--aurora-alpha) * 0.8);
-    }
-    .blobs-container {
-      filter: blur(60px);
-      -webkit-filter: blur(60px);
+    /* Cheaper blur on mobile GPUs; the orbs are decorative at this size. */
+    .blobs {
+      filter: blur(70px);
+      -webkit-filter: blur(70px);
     }
   }
+
+  /* Nothing animates any more, so this layer is safe to keep under
+     reduced-motion — it used to be hidden only because it moved. */
 </style>
-
-<script>
-  import gsap from 'gsap';
-
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (!reduceMotion) {
-    // 1. Organic drifting animation for the blobs
-    // Using yoyo paths creates a mesmerizing, never-jumping flow.
-    
-    gsap.to('.blob--cyan', {
-      x: '20vw',
-      y: '10vh',
-      scale: 1.2,
-      duration: 15,
-      ease: 'sine.inOut',
-      yoyo: true,
-      repeat: -1
-    });
-
-    gsap.to('.blob--teal', {
-      x: '-25vw',
-      y: '-15vh',
-      scale: 1.1,
-      duration: 20,
-      ease: 'sine.inOut',
-      yoyo: true,
-      repeat: -1
-    });
-
-    gsap.to('.blob--blue', {
-      x: '-15vw',
-      y: '15vh',
-      scale: 1.3,
-      duration: 18,
-      ease: 'sine.inOut',
-      yoyo: true,
-      repeat: -1
-    });
-
-    // 2. Mouse Parallax
-    const parallaxGroup = document.querySelector('#aurora-parallax');
-    if (parallaxGroup) {
-      window.addEventListener('mousemove', (e) => {
-        const xOffset = (e.clientX / window.innerWidth - 0.5) * -60;
-        const yOffset = (e.clientY / window.innerHeight - 0.5) * -40;
-        
-        gsap.to(parallaxGroup, {
-          x: xOffset,
-          y: yOffset,
-          duration: 2,
-          ease: 'power2.out',
-          overwrite: 'auto'
-        });
-      });
-    }
-  }
-</script>

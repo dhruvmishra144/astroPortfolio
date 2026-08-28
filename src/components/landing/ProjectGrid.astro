@@ -36,7 +36,6 @@ const secondary = projects.filter((p) => !p.featured);
       featured.map((project) => (
         <a
           href={project.href}
-          data-transition
           class="surface group relative overflow-hidden rounded-[1.75rem] lg:col-span-6"
         >
           <div class="flex flex-col">
@@ -81,7 +80,12 @@ const secondary = projects.filter((p) => !p.featured);
                 ))}
               </div>
 
-              <dl class="mt-auto grid grid-cols-1 gap-4 border-t border-border pt-6 sm:grid-cols-3">
+              {/*
+                mt-8, not mt-auto: this element draws the divider, and mt-auto
+                collapses to 0 when the flex column has no free space, which put
+                the rule flush against the tag chips above.
+              */}
+              <dl class="mt-8 grid grid-cols-1 gap-4 border-t border-border pt-6 sm:grid-cols-3">
                 {project.metrics.map((metric) => (
                   <div>
                     <dt class="sr-only">{metric.label}</dt>
@@ -111,7 +115,6 @@ const secondary = projects.filter((p) => !p.featured);
       secondary.map((project) => (
         <a
           href={project.href}
-          data-transition
           class:list={[
             'surface group flex flex-col rounded-[1.75rem] p-7',
             project.tint && `surface-tint-${project.tint}`,

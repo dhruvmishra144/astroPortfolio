@@ -33,7 +33,7 @@ const items = links.map((link) => ({ ...link, active: link.match(p) }));
 <header class="site-nav">
   <div class="site-nav__inner">
     <div class="site-nav__side">
-      <a href="/" data-transition class="site-nav__brand" aria-label="Dhruv Mishra — home">
+      <a href="/" class="site-nav__brand" aria-label="Dhruv Mishra — home">
         {/*
           Inlined rather than <img src="/logo.svg"> because that file is
           hardcoded fill:#fff and vanishes on a light background. currentColor
@@ -62,7 +62,6 @@ const items = links.map((link) => ({ ...link, active: link.match(p) }));
         items.map((item) => (
           <a
             href={item.href}
-            data-transition={item.active ? undefined : true}
             aria-current={item.active ? 'page' : undefined}
             class:list={['site-nav__link', item.active && 'site-nav__link--active']}
           >
@@ -203,7 +202,9 @@ const items = links.map((link) => ({ ...link, active: link.match(p) }));
   }
 
   /* Below ~900px the four links plus both right-hand controls stop fitting on
-     one row, so the link row moves under the brand and scrolls if needed. */
+     one row, so the link row drops under the brand and spans the full width,
+     with each link sharing the space equally rather than sitting in a
+     content-width pill. */
   @media (max-width: 900px) {
     .site-nav__inner {
       flex-wrap: wrap;
@@ -212,12 +213,13 @@ const items = links.map((link) => ({ ...link, active: link.match(p) }));
     .site-nav__links {
       order: 3;
       flex: 1 1 100%;
-      justify-content: flex-start;
-      overflow-x: auto;
-      scrollbar-width: none;
+      width: 100%;
+      justify-content: stretch;
     }
-    .site-nav__links::-webkit-scrollbar {
-      display: none;
+    .site-nav__link {
+      flex: 1 1 0;
+      justify-content: center;
+      text-align: center;
     }
   }
 
