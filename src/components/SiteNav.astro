@@ -242,5 +242,14 @@ const items = links.map((link) => ({ ...link, active: link.match(p) }));
     };
     updateScrolled();
     window.addEventListener('scroll', updateScrolled, { passive: true });
+
+    // Published for anything that needs to sit just below the sticky header
+    // (e.g. CaseTocNav.astro) — the header's own height varies by breakpoint
+    // (it wraps to two rows under ~900px), so a hardcoded pixel offset drifts.
+    const updateHeight = () => {
+      document.documentElement.style.setProperty('--site-nav-height', `${nav.offsetHeight}px`);
+    };
+    updateHeight();
+    new ResizeObserver(updateHeight).observe(nav);
   }
 </script>

@@ -1,0 +1,157 @@
+---
+// Sticky, horizontally-scrollable section nav with scrollspy highlighting
+// (see scripts/caseStudyChrome.ts). `items` anchors must match `id` props set
+// on the StoryBeat/Section components further down the page.
+interface TocItem {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  items: TocItem[];
+  extraLink?: TocItem;
+}
+
+const { items, extraLink } = Astro.props;
+---
+
+<div class="case-toc-spacer"></div>
+<div class="case-toc-sticky">
+  <nav class="case-toc-pill flex gap-1.5 overflow-x-auto" aria-label="Case study sections">
+    {
+      items.map((item) => (
+        <a
+          href={item.href}
+          class="case-toc-item shrink-0 rounded-full px-3.5 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-muted transition hover:text-foreground"
+        >
+          <span class="case-toc-dot" aria-hidden="true" />
+          {item.label}
+        </a>
+      ))
+    }
+    {
+      extraLink && (
+        <>
+          <span class="mx-1 h-4 w-px shrink-0 self-center bg-surface" aria-hidden="true" />
+          <a
+            href={extraLink.href}
+            class="case-toc-item shrink-0 rounded-full px-3.5 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-accent-text transition hover:text-foreground"
+          >
+            {extraLink.label}
+          </a>
+        </>
+      )
+    }
+  </nav>
+  <button type="button" class="case-toc-arrow case-toc-arrow--left" data-toc-scroll="-1" aria-label="Scroll sections left">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M15 5 8 12l7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </button>
+  <button type="button" class="case-toc-arrow case-toc-arrow--right" data-toc-scroll="1" aria-label="Scroll sections right">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </button>
+</div>
+
+<style>
+  .case-toc-spacer {
+    height: 60px;
+  }
+  .case-toc-sticky {
+    position: fixed;
+    top: calc(var(--site-nav-height, 76px) + 12px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 35;
+    width: max-content;
+    max-width: calc(100% - 2rem);
+  }
+  .case-toc-pill {
+    align-items: center;
+    padding: 6px;
+    border-radius: 999px;
+    background: var(--surface-strong);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(16px);
+    box-shadow: var(--shadow-elevated);
+    scrollbar-width: none;
+  }
+  .case-toc-pill::-webkit-scrollbar { display: none; }
+  .case-toc-pill {
+    -webkit-mask-image: linear-gradient(to right, black, black);
+    mask-image: linear-gradient(to right, black, black);
+    transition: -webkit-mask-image 0.25s ease, mask-image 0.25s ease;
+  }
+  .case-toc-sticky.can-scroll-left .case-toc-pill {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 28px);
+    mask-image: linear-gradient(to right, transparent, black 28px);
+  }
+  .case-toc-sticky.can-scroll-right .case-toc-pill {
+    -webkit-mask-image: linear-gradient(to left, transparent, black 28px);
+    mask-image: linear-gradient(to left, transparent, black 28px);
+  }
+  .case-toc-sticky.can-scroll-left.can-scroll-right .case-toc-pill {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 28px, black calc(100% - 28px), transparent);
+    mask-image: linear-gradient(to right, transparent, black 28px, black calc(100% - 28px), transparent);
+  }
+  .case-toc-item { display: inline-flex; align-items: center; gap: 0.4rem; background: transparent; }
+  .case-toc-item:hover { background: var(--accent-soft); }
+  .case-toc-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 999px;
+    background: currentColor;
+    opacity: 0;
+    transform: scale(0.4);
+    transition: opacity 0.25s ease, transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  }
+  .case-toc-item.is-active {
+    color: var(--foreground);
+    background: var(--accent-soft);
+  }
+  .case-toc-item.is-active .case-toc-dot {
+    opacity: 1;
+    transform: scale(1);
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+  }
+
+  .case-toc-arrow {
+    position: absolute;
+    top: 50%;
+    width: 26px;
+    height: 26px;
+    transform: translateY(-50%) scale(0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: var(--surface-strong);
+    border: 1px solid var(--border-strong);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: var(--shadow-elevated);
+    color: var(--muted);
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease, color 0.2s ease;
+  }
+  .case-toc-arrow svg {
+    width: 13px;
+    height: 13px;
+  }
+  .case-toc-arrow:hover {
+    color: var(--foreground);
+  }
+  .case-toc-arrow--left { left: -11px; }
+  .case-toc-arrow--right { right: -11px; }
+  .case-toc-sticky.can-scroll-left .case-toc-arrow--left,
+  .case-toc-sticky.can-scroll-right .case-toc-arrow--right {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(-50%) scale(1);
+  }
+</style>

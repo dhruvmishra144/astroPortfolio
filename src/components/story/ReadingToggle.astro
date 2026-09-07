@@ -1,0 +1,102 @@
+---
+// Scannable/deep-dive reading-depth toggle. Pairs with `.scan-only`/`.deep-only`
+// content classes and scripts/caseStudyChrome.ts, which persists the choice to
+// localStorage under the page's own `storageKey` and reads it back on load.
+---
+
+<div class="mb-8 flex flex-col items-center gap-2.5 text-center">
+  <div class="view-toggle" role="group" aria-label="Reading depth">
+    <button type="button" data-view-btn="scannable" class="view-toggle__btn">
+      <svg class="view-toggle__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+      </svg>
+      <span class="view-toggle__text">
+        <span class="view-toggle__label">Scannable</span>
+        <span class="view-toggle__time"><slot name="scannable-time">~2 min</slot></span>
+      </span>
+    </button>
+    <button type="button" data-view-btn="deep" class="view-toggle__btn">
+      <svg class="view-toggle__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 3 3 8l9 5 9-5-9-5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+        <path d="M3 12l9 5 9-5M3 16l9 5 9-5" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+      </svg>
+      <span class="view-toggle__text">
+        <span class="view-toggle__label">Deep dive</span>
+        <span class="view-toggle__time"><slot name="deep-time">~8 min</slot></span>
+      </span>
+    </button>
+  </div>
+</div>
+
+<style>
+  .view-toggle {
+    display: inline-flex;
+    gap: 6px;
+    padding: 6px;
+    border-radius: 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(16px);
+    box-shadow: var(--shadow-elevated);
+  }
+  .view-toggle__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1.1rem;
+    border-radius: 1rem;
+    color: var(--subtle);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: color 0.2s, background 0.2s;
+  }
+  .view-toggle__btn:hover {
+    color: var(--foreground);
+  }
+  .view-toggle__icon {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex-shrink: 0;
+  }
+  .view-toggle__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  .view-toggle__label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .view-toggle__time {
+    font-size: 0.68rem;
+    font-weight: 500;
+    opacity: 0.7;
+  }
+  .view-toggle__btn.is-active {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+  .view-toggle__btn.is-active .view-toggle__time {
+    opacity: 0.75;
+  }
+
+  @media (max-width: 480px) {
+    .view-toggle__btn {
+      padding: 0.55rem 0.85rem;
+    }
+    .view-toggle__label {
+      font-size: 0.72rem;
+    }
+  }
+</style>
+
+<style is:global>
+  /* Default (no JS / before hydration): full "deep" view */
+  .scan-only { display: none; }
+  body[data-view='scannable'] .scan-only { display: block; }
+  body[data-view='scannable'] .deep-only { display: none; }
+</style>
