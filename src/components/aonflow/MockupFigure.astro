@@ -14,6 +14,7 @@ const { title, description, src } = Astro.props;
     alt={`${title} mockup`}
     width="1600"
     height="1000"
+    loading="lazy"
     class="aspect-[16/10] w-full object-cover object-left-top"
   />
   <figcaption class="grid gap-3 border-t border-border p-5 sm:p-6 lg:grid-cols-[0.34fr_0.66fr]">

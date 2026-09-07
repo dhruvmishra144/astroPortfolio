@@ -406,7 +406,14 @@ const decisionLog = [
               <p class="text-[10px] font-mono uppercase tracking-[0.1em] text-subtle">{wf.tag}</p>
               <h3 class="mt-1 text-lg font-semibold text-foreground">{wf.title}</h3>
               <div class="surface mt-4 overflow-hidden rounded-[1.5rem]">
-                <img src={wf.src} alt={`${wf.title} wireframe`} class="w-full" />
+                <img
+                  src={wf.src}
+                  alt={`${wf.title} wireframe`}
+                  width="1600"
+                  height="1000"
+                  loading="lazy"
+                  class="w-full"
+                />
               </div>
               <div class="mt-4 rounded-2xl border border-accent bg-accent/[0.06] p-4">
                 <p class="text-sm leading-7 text-muted">

@@ -10,7 +10,6 @@
     "deploy": "astro build && npx wrangler deploy"
   },
   "dependencies": {
-    "@astrojs/react": "^6.0.5",
     "echarts": "^6.0.0",
     "gsap": "^3.12.5"
   },
