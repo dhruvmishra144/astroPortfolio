@@ -157,21 +157,21 @@ const wireframes = [
   {
     title: 'Manual channel timeline',
     tag: 'PropertyStatusPage.tsx',
-    src: '/lacasa-wireframe-timeline.png',
+    src: '/lacasa-wireframe-timeline.webp',
     decision: 'Logging an external booking is the single fastest action on the page, and it blocks the date everywhere immediately.',
     reason: 'This is filled in mid-call with a guest — any friction here reintroduces the exact double-booking risk the feature exists to prevent.',
   },
   {
     title: 'Monthly rate editor',
     tag: 'AdminPage.tsx:845',
-    src: '/lacasa-wireframe-rate-editor.png',
+    src: '/lacasa-wireframe-rate-editor.webp',
     decision: 'One weekday and one weekend rate per month, applied to every property at once, with per-day overrides layered on top.',
     reason: 'Owners think in "this month’s baseline, weekends a bit higher," not per-date pricing — the tool matches that mental model instead of training a new one.',
   },
   {
     title: 'Guest checkout — no login',
     tag: 'CheckoutPage.tsx',
-    src: '/lacasa-wireframe-checkout.png',
+    src: '/lacasa-wireframe-checkout.webp',
     decision: 'Name, email, and phone only — no account creation — with payment collected upfront, not at check-in.',
     reason: 'A signup wall in front of payment kills conversion on a site with no brand recognition yet; the email itself becomes the identity key retroactively.',
   },
@@ -307,8 +307,8 @@ const decisionLog = [
     <div class="py-4">
       <ImagePair
         images={[
-          { src: '/lacasa-home.png', alt: 'LaCasa Retreats guest-facing home page' },
-          { src: '/lacasa-listings.png', alt: 'LaCasa Retreats property listings page' },
+          { src: '/lacasa-home.webp', alt: 'LaCasa Retreats guest-facing home page' },
+          { src: '/lacasa-listings.webp', alt: 'LaCasa Retreats property listings page' },
         ]}
         caption="Guest-facing home & listings"
       />
@@ -455,7 +455,7 @@ const decisionLog = [
       <MockupFigure
         title="Property status — manual channel timeline"
         description="The color-coded, per-source timeline a property manager uses to log and block dates from external platforms."
-        src="/lacasa-timeline.png"
+        src="/lacasa-timeline.webp"
       />
     </div>
 
@@ -463,7 +463,7 @@ const decisionLog = [
       <MockupFigure
         title="Reservation details — the write path"
         description="Guest, source, price, check-in/out, nights (auto-calculated), and ID upload — the whole manual-entry form a manager fills mid-call."
-        src="/lacasa-reservation.png"
+        src="/lacasa-reservation.webp"
       />
     </div>
 
@@ -494,12 +494,12 @@ const decisionLog = [
       <MockupFigure
         title="Monthly rate editor"
         description="Weekday/weekend baseline pricing set per month across all properties at once."
-        src="/lacasa-admin-rates.png"
+        src="/lacasa-admin-rates.webp"
       />
       <MockupFigure
         title="Per-property overrides"
         description="Bulk day-of-week selection, then one price and one availability toggle for the exceptional dates."
-        src="/lacasa-monthly-rates.png"
+        src="/lacasa-monthly-rates.webp"
       />
     </div>
 
@@ -532,12 +532,12 @@ const decisionLog = [
       <MockupFigure
         title="Property detail & booking widget"
         description="Where a guest reviews a property and starts checkout — name, email, and phone only, no forced account."
-        src="/lacasa-property.png"
+        src="/lacasa-property.webp"
       />
       <MockupFigure
         title="Checkout"
         description="GST broken out as its own line so it's never a surprise at the payment gateway; the price card stays pinned beside the form."
-        src="/lacasa-checkout.png"
+        src="/lacasa-checkout.webp"
       />
     </div>
 

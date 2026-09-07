@@ -76,7 +76,7 @@ export const projects: ProjectCard[] = [
     category: 'Booking Platform & PMS',
     categorySub: 'Hospitality',
     status: 'Live product',
-    image: '/lacasa-home.png',
+    image: '/lacasa-home.webp',
     imageAlt:
       'LaCasa Retreats booking site home page, showing property search and availability',
     forWhom: 'For a 17-property short-stay rental operator in Noida',
