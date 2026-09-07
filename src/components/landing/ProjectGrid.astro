@@ -27,7 +27,8 @@ const secondary = projects.filter((p) => !p.featured);
       </h2>
     </div>
     <p class="max-w-sm text-sm text-subtle">
-      Each engagement is measured in reliability, adoption, and time saved — not deliverables.
+      One shipped and maintained in production, one an independent concept. Both are judged on
+      the decisions behind them — and every number says how it was measured.
     </p>
   </div>
 
@@ -36,28 +37,35 @@ const secondary = projects.filter((p) => !p.featured);
       featured.map((project) => (
         <a
           href={project.href}
-          class="surface group relative overflow-hidden rounded-[1.75rem] lg:col-span-6"
+          class:list={[
+            'surface group relative overflow-hidden rounded-[1.75rem] lg:col-span-6',
+            !project.image && project.tint && `surface-tint-${project.tint}`,
+          ]}
         >
           <div class="flex flex-col">
             {/*
               Full-width banner rather than a side column: these are 1200x800
               desktop captures, and a narrow portrait column crops them
-              mid-sentence.
+              mid-sentence. Rendered only when the project has a real image —
+              a stretched or off-brand placeholder costs more credibility than
+              an honest text-forward card.
             */}
-            <div class="relative overflow-hidden border-b border-border">
-              <img
-                src={project.image}
-                alt={project.imageAlt}
-                loading="lazy"
-                width="1200"
-                height="800"
-                class="h-52 w-full object-cover object-top sm:h-72 lg:h-80"
-              />
-            </div>
+            {project.image && (
+              <div class="relative overflow-hidden border-b border-border">
+                <img
+                  src={project.image}
+                  alt={project.imageAlt}
+                  loading="lazy"
+                  width="1200"
+                  height="800"
+                  class="h-52 w-full object-cover object-top sm:h-72 lg:h-80"
+                />
+              </div>
+            )}
 
             <div class="flex flex-col p-7 sm:p-9">
               <div class="flex flex-wrap items-center gap-3">
-                <span class="chip px-3 py-1 text-[0.7rem]">{project.index} · Flagship</span>
+                <span class="chip px-3 py-1 text-[0.7rem]">{project.index} · {project.status}</span>
                 <span class="text-xs uppercase tracking-[0.2em] text-subtle">
                   {project.category} · {project.categorySub}
                 </span>
@@ -100,6 +108,10 @@ const secondary = projects.filter((p) => !p.featured);
                   </div>
                 ))}
               </dl>
+
+              {project.metricsNote && (
+                <p class="mt-4 max-w-3xl text-xs leading-6 text-subtle">{project.metricsNote}</p>
+              )}
 
               <span class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-transform group-hover:translate-x-1">
                 Read case study

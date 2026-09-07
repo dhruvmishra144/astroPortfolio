@@ -35,17 +35,22 @@
   --border-strong: rgba(11, 26, 43, 0.14);
   --shadow-elevated: 0 20px 60px rgba(11, 26, 43, 0.09);
 
-  --accent: #06b6d4;
-  /* 5.09:1 on --background, 5.37:1 on white — AA for body text */
-  --accent-text: #0e7490;
-  --accent-soft: rgba(6, 182, 212, 0.12);
-  --on-accent: #04202a;
+  /* Light mode is emerald-led, dark is cyan-led — adjacent hues, so the two
+     themes read as one family rather than as opposites.
+     One token does fill and text: emerald-700 clears AA both ways, where the
+     brighter greens do not (#059669 is only 3.7:1 on canvas and 3.8:1 behind a
+     white label).
+       on canvas 5.38:1 · on white 5.48:1 · white label on fill 5.48:1 */
+  --accent: #047857;
+  --accent-text: #047857;
+  --accent-soft: rgba(4, 120, 87, 0.1);
+  --on-accent: #ffffff;
 
   /* Pastel card tints: colourful but subtle. Collapse to one surface on dark. */
-  --tint-a: #eef6fb;
+  --tint-a: #edf7f2;
   --tint-b: #f4f2fb;
   --tint-c: #eef8f3;
-  --tint-d: #fdf6ee;
+  --tint-d: #f7f9ef;
 
   --grid-ink: rgba(11, 26, 43, 0.055);
   --grid-opacity: 0.5;
@@ -53,29 +58,29 @@
   /* Atmosphere. Orange is the complement of the cyan accent, so warming the
      canvas is what stops a white page reading as washed out. Static positions
      only — no drift, no parallax. */
-  --aurora-1: 249, 115, 22;   /* warm orange, anchors top-left */
-  --aurora-2: 251, 191, 36;   /* soft amber */
-  --aurora-3: 56, 151, 186;   /* desaturated cyan */
-  --aurora-a1: 0.22;
-  --aurora-a2: 0.16;
-  --aurora-a3: 0.12;
+  --aurora-1: 16, 185, 129;   /* soft emerald, anchors top-left */
+  --aurora-2: 94, 186, 208;   /* desaturated cyan */
+  --aurora-3: 234, 200, 140;  /* faint warm sand, keeps it from reading clinical */
+  --aurora-a1: 0.13;
+  --aurora-a2: 0.11;
+  --aurora-a3: 0.09;
   --aurora-wrap-opacity: 0.85;
 
   --cmdk-scrim: rgba(11, 26, 43, 0.38);
-  --selection-bg: rgba(6, 182, 212, 0.24);
-  --selection-fg: #04202a;
-  --ring-inner: rgba(6, 182, 212, 0.45);
+  --selection-bg: rgba(4, 120, 87, 0.18);
+  --selection-fg: #052e22;
+  --ring-inner: rgba(4, 120, 87, 0.45);
   --ring-outer: rgba(255, 255, 255, 0.9);
 
   --body-bg:
-    radial-gradient(52% 42% at 6% 3%, rgba(249, 115, 22, 0.16), transparent 68%),
-    radial-gradient(46% 38% at 92% 12%, rgba(251, 191, 36, 0.13), transparent 70%),
-    radial-gradient(58% 48% at 78% 97%, rgba(56, 151, 186, 0.1), transparent 72%),
-    linear-gradient(180deg, #ffffff 0%, #fbfdfe 48%, #f5f9fc 100%);
+    radial-gradient(52% 42% at 6% 3%, rgba(16, 185, 129, 0.11), transparent 68%),
+    radial-gradient(46% 38% at 92% 12%, rgba(94, 186, 208, 0.1), transparent 70%),
+    radial-gradient(58% 48% at 78% 97%, rgba(234, 200, 140, 0.09), transparent 72%),
+    linear-gradient(180deg, #ffffff 0%, #fbfdfe 48%, #f4faf8 100%);
   --panel-bg:
-    radial-gradient(46% 40% at 8% 0%, rgba(249, 115, 22, 0.13), transparent 68%),
-    radial-gradient(44% 36% at 92% 8%, rgba(251, 191, 36, 0.1), transparent 70%),
-    linear-gradient(180deg, #ffffff 0%, #fbfdfe 50%, #f5f9fc 100%);
+    radial-gradient(46% 40% at 8% 0%, rgba(16, 185, 129, 0.09), transparent 68%),
+    radial-gradient(44% 36% at 92% 8%, rgba(94, 186, 208, 0.09), transparent 70%),
+    linear-gradient(180deg, #ffffff 0%, #fbfdfe 50%, #f4faf8 100%);
 }
 
 [data-theme='dark'] {

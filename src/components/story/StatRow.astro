@@ -6,12 +6,26 @@ interface Stat {
 
 interface Props {
   stats: Stat[];
+  /**
+   * Fixed column count. Omit for the default flowing row — that is what the
+   * LaCasa hero uses for its three stats. Set it when a flowing row would
+   * leave an orphan (four stats wrap to 3 + 1 at desktop widths).
+   */
+  cols?: 2 | 3 | 4;
 }
 
-const { stats } = Astro.props;
+const { stats, cols } = Astro.props;
+
+const colClass = {
+  2: 'grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10',
+  3: 'grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-10',
+  4: 'grid grid-cols-2 gap-8 lg:grid-cols-4 sm:gap-10',
+} as const;
+
+const layout = cols ? colClass[cols] : 'flex flex-wrap gap-10 sm:gap-14';
 ---
 
-<div class="flex flex-wrap gap-10 sm:gap-14">
+<div class={layout}>
   {
     stats.map((stat) => (
       <div>
