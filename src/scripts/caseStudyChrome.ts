@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 // Shared behavior for long-form case study pages: the scannable/deep-dive
 // reading toggle (ReadingToggle.astro), the sticky scrollspy TOC
 // (CaseTocNav.astro), and scroll-in reveal animation for sections/cards.
-// `storageKey` must be unique per page so LaCasa and GoFlow don't clobber
+// `storageKey` must be unique per page so two case studies don't clobber
 // each other's saved reading-depth preference.
 export function initCaseStudyChrome({ storageKey }: { storageKey: string }) {
   gsap.registerPlugin(ScrollTrigger);

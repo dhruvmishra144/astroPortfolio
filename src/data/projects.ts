@@ -45,33 +45,8 @@ export interface ProjectCard {
 
 export const projects: ProjectCard[] = [
   {
-    href: '/projects/GoFlow',
-    index: '01',
-    title: 'GoFlow',
-    category: 'AI Workflow Automation',
-    categorySub: 'Enterprise iPaaS',
-    status: 'Independent concept',
-    // No image: the only asset on hand is a 600x400 stock tablet mockup branded
-    // for a different product. A real GoFlow screen belongs here when one exists.
-    forWhom: 'For non-technical operators at 20–250 person companies running business-critical integrations',
-    problem:
-      'SMBs don’t abandon integration tools because setup is hard. They freeze at Run — a wrong mapping silently overwrites live customer data, and there is no way back.',
-    outcome:
-      'A self-initiated redesign of an AI-powered iPaaS around four ideas: preview before you commit, see the blast radius, recover without support, and leave an audit trail.',
-    metrics: [
-      { value: '88%', label: 'first-run completion (from ~60%)' },
-      { value: '~50%', label: 'fewer first-run config errors' },
-      { value: '~40%', label: 'faster median setup' },
-    ],
-    metricsNote:
-      'Prototype evaluation with evidence-grounded personas — not production metrics. The case study labels every figure by how it was obtained.',
-    tags: ['Product strategy', 'Trust & safety model', 'Design system', 'Solo'],
-    featured: true,
-    tint: 'a',
-  },
-  {
     href: '/projects/LaCasaRetreats',
-    index: '02',
+    index: '01',
     title: 'LaCasa Retreats',
     category: 'Booking Platform & PMS',
     categorySub: 'Hospitality',

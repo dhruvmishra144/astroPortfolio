@@ -106,8 +106,8 @@ const { class: className } = Astro.props;
       }
 
       buttons.forEach((b) => syncLabel(b, next));
-      // Consumers that paint their own colours (e.g. the ECharts canvas on the
-      // GoFlow page) cannot read CSS transitions, so tell them explicitly.
+      // Consumers that paint their own colours (e.g. a chart canvas on a case
+      // study page) cannot read CSS transitions, so tell them explicitly.
       window.dispatchEvent(new CustomEvent('themechange', { detail: { theme: next } }));
     });
   });

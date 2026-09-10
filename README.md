@@ -49,7 +49,6 @@ and import it from client-side code only. Never commit `.env`.
 ```
 src/
   components/       shared UI (Header, Nav, Footer, Icon, Svelte islands)
-    goflow/         GoFlow case-study building blocks
     aonflow/        Aonflow case-study building blocks
   layouts/Base.astro  HTML shell, metadata, page-transition banner
   pages/            one .astro file per route
