@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import SeoHead from '../components/SeoHead.astro';
+import SeoSchema from '../components/SeoSchema.astro';
 import SiteNav from '../components/SiteNav.astro';
 import Footer from '../components/Footer.astro';
 import AuroraWaves from '../components/AuroraWaves.astro';
@@ -13,17 +14,20 @@ interface Props {
   noindex?: boolean;
   /** Pages that document a fixed external palette opt out of the toggle. */
   lockTheme?: 'light' | 'dark';
+  /** Case-study pages pass this to emit CreativeWork + BreadcrumbList JSON-LD. */
+  schemaWork?: { name: string; description: string; url: string };
 }
 
 const {
   title,
-  description = 'Product design and front-end aligned UX systems for scalable digital products.',
+  description = 'Design Engineer. Interface architecture, design systems, and the production front-end that ships them.',
   image,
   noindex = false,
   lockTheme,
+  schemaWork,
 } = Astro.props;
 
-const fullTitle = title ? `${title} | Dhruv Mishra` : 'Dhruv Mishra | UX/UI Designer';
+const fullTitle = title ? `${title} | Dhruv Mishra` : 'Dhruv Mishra | Design Engineer';
 
 const pathname = Astro.url.pathname;
 const normalizedPathname =
@@ -61,16 +65,18 @@ const showFooter = normalizedPathname !== '/contact';
     )}
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="UX/UI design, product design, design systems, front-end development" />
+    <meta name="keywords" content="design engineer, design engineering, design systems, production front-end, interface architecture, React, TypeScript" />
     <meta name="author" content="Dhruv Mishra" />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" href="/icon.png" />
     <SeoHead title={fullTitle} description={description} image={image} noindex={noindex} />
+    {/* Structured data is skipped on noindex pages — no point describing an
+        entity to a crawler that has been told not to index the page. */}
+    {!noindex && <SeoSchema work={schemaWork} />}
   </head>
   <body class="bg-background text-foreground antialiased">
     <a class="skip-link" href="#content">Skip to content</a>
     <div class="portfolio-background relative min-h-screen w-full isolate bg-background">
-      <div aria-hidden="true" class="portfolio-background__motion fixed inset-0 z-0 pointer-events-none"></div>
       <AuroraWaves />
       <div class="relative z-10">
         <SiteNav showThemeToggle={!lockTheme} />

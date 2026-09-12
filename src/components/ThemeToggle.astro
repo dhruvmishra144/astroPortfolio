@@ -48,6 +48,15 @@ const { class: className } = Astro.props;
     border-color: var(--accent);
   }
 
+  /* 2.25rem is 36px — comfortable for a cursor, under the 44px touch target.
+     Matches the pointer-gated bump in SiteNav.astro. */
+  @media (pointer: coarse) {
+    .theme-toggle {
+      width: 2.75rem;
+      height: 2.75rem;
+    }
+  }
+
   .sr-only-text {
     position: absolute;
     width: 1px;
@@ -97,7 +106,14 @@ const { class: className } = Astro.props;
 
     button.addEventListener('click', () => {
       const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+
+      // Suppress transitions across the swap — see .theme-switching in
+      // global.css for why colour would otherwise stay on the old theme.
+      root.classList.add('theme-switching');
       root.dataset.theme = next;
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => root.classList.remove('theme-switching'));
+      });
 
       try {
         localStorage.setItem(STORAGE_KEY, next);

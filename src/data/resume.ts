@@ -1,8 +1,19 @@
 /**
  * Single source of truth for /resume AND the homepage experience timeline.
  *
- * Summary text and role bullets are verbatim from the PDF resume — do not
- * paraphrase them here, the two must stay in sync.
+ * Role bullets are verbatim from the PDF resume — do not paraphrase them here,
+ * the two must stay in sync. They are statements of fact about delivered work
+ * and survive the repositioning unchanged.
+ *
+ * `summary` and `title` are NO LONGER in sync with the last uploaded PDF: they
+ * were rewritten for the Design Engineer positioning while that PDF still says
+ * Senior Product Designer. `resumePdf.href` is deliberately empty until a new
+ * export exists — see the note there. This page is the source of truth; the
+ * PDF has to catch up to it, not the other way round.
+ *
+ * Job titles under `roles` are as conferred by each employer and are not
+ * repositioning surface. Only `independent-product-studio` — self-conferred —
+ * was restated.
  *
  * `headline` and `chips` are the exception: they exist only for the homepage
  * timeline and are deliberately NOT in the PDF.
@@ -84,7 +95,7 @@ export interface ResumePdf {
 
 export const resumeProfile: ResumeProfile = {
   name: 'Dhruv Mishra',
-  title: 'Senior Full-Stack UX/UI Product Designer & Systems Strategist',
+  title: 'Design Engineer — design systems through production front-end',
   location: 'Faridabad, Delhi NCR, India',
   links: [
     {
@@ -99,26 +110,17 @@ export const resumeProfile: ResumeProfile = {
     },
   ],
   summary:
-    'Senior Full-Stack Product Designer and Systems Strategist with 10+ years of experience transforming complex technical requirements into intuitive, scalable digital products. Proven dual-track capability leading human-centered UX research, governing Figma enterprise design systems, and directly engineering production frontend/mobile solutions across React, Next.js, Tailwind CSS, and iOS/Swift. Demonstrated track record in SaaS workflow automation (iPaaS), agentic AI orchestration, and high-conversion digital ecosystems.',
+    'Design Engineer with 10+ years owning the interface layer end to end — the architecture and the design system through to the production front-end that ships. Works the full seam: information architecture, design tokens and component governance in Figma, then React, Next.js, TypeScript and Tailwind in the repository, which removes the design-to-engineering handoff where fidelity is normally lost. Experience spans enterprise iPaaS, agentic AI orchestration, and WealthTech, alongside a booking platform and property-management system designed, built and maintained solo in production.',
 };
 
+/*
+ * Engineering leads. The items inside each group are unchanged — only the
+ * order and the group names moved, because a Design Engineer who lists Figma
+ * before React has buried the half of the job that is harder to prove.
+ */
 export const competencies: CompetencyGroup[] = [
   {
-    title: 'Product Design & UX Architecture',
-    items: [
-      'Figma',
-      'FigJam',
-      'Design Tokens & Reusable Component Systems',
-      'User Research',
-      'Journey Mapping',
-      'Persona Modeling',
-      'Information Architecture',
-      'Interactive Prototyping',
-      'Usability Testing',
-    ],
-  },
-  {
-    title: 'Frontend & Mobile Engineering',
+    title: 'Interface Engineering',
     items: [
       'React.js',
       'Next.js',
@@ -131,6 +133,20 @@ export const competencies: CompetencyGroup[] = [
       'RESTful APIs',
       'FARM Stack (FastAPI, React, MongoDB)',
       'Git/GitHub',
+    ],
+  },
+  {
+    title: 'Design Systems & Interface Architecture',
+    items: [
+      'Figma',
+      'FigJam',
+      'Design Tokens & Reusable Component Systems',
+      'Information Architecture',
+      'Interactive Prototyping',
+      'User Research',
+      'Journey Mapping',
+      'Persona Modeling',
+      'Usability Testing',
     ],
   },
   {
@@ -151,7 +167,7 @@ export const roles: Role[] = [
   {
     id: 'independent-product-studio',
     company: 'Independent Product Studio',
-    role: 'Principal Product Designer & Full-Stack Architect',
+    role: 'Principal Design Engineer',
     period: '03/2026 – Present',
     location: 'Faridabad, India',
     engagement: 'Primary Full-Time Practice',
@@ -290,17 +306,23 @@ export const awards: Award[] = [
 ];
 
 export const resumePdf: ResumePdf = {
-  // Hosted on ImageKit. `ik-attachment=true` is load-bearing: the link is
-  // cross-origin, so the HTML `download` attribute is ignored and without that
-  // flag the PDF opens in the browser's viewer instead of downloading. It makes
-  // ImageKit send `Content-Disposition: attachment`.
+  // GATED ON PURPOSE — do not restore this href until a new PDF is exported.
   //
-  // `updatedAt` is ImageKit's cache-buster — re-uploading yields a new value,
-  // which matters because the asset is served with a one-year max-age.
+  // The last uploaded file is titled "Senior Product Designer" and carries the
+  // old summary. The profile above now reads Design Engineer, so relinking it
+  // would hand a recruiter two different claims about the same person. Empty
+  // href is the supported state: the download button stops rendering and
+  // /resume falls back to "Print / save as PDF", which prints this copy.
   //
-  // If this is ever set to '', the download button stops rendering and /resume
-  // falls back to "Print / save as PDF" rather than breaking.
-  href: 'https://ik.imagekit.io/dhruvmishra144/Dhruv_Mishra_Senior_Product_Designer_Resume.pdf?updatedAt=1787890866822&ik-attachment=true',
+  // To restore, re-export the PDF from the current page copy, upload to
+  // ImageKit, then set href back to the pattern below and bump `updated`:
+  //   https://ik.imagekit.io/dhruvmishra144/<file>.pdf?updatedAt=<ts>&ik-attachment=true
+  //
+  // `ik-attachment=true` is load-bearing: the link is cross-origin, so the HTML
+  // `download` attribute is ignored, and without that flag the PDF opens in the
+  // browser's viewer instead of downloading. `updatedAt` is ImageKit's
+  // cache-buster, which matters because the asset has a one-year max-age.
+  href: '',
   filename: 'Dhruv-Mishra-Resume.pdf',
   updated: 'August 2026',
 };

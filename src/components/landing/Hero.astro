@@ -6,10 +6,25 @@
  * Front-End) which read as three competing identities rather than one claim.
  * The h1 now makes a single claim and the line under it names the practices as
  * services under that claim.
+ *
+ * That h1 — "I design complex software, then I build it" — was already the
+ * Design Engineer claim before the title caught up to it. Nothing about it
+ * needed to change; only the line underneath, which used to hedge back toward
+ * "product design, UX architecture".
  */
+import SonarGrid from './SonarGrid.astro';
 ---
 
-<section class="page-section flex min-h-[78vh] flex-col items-center justify-center text-center">
+<section class="page-section relative flex min-h-[78vh] flex-col items-center justify-center text-center">
+  {/*
+    Full-viewport-width host so the grid runs edge to edge while the hero copy
+    stays inside page-shell. The canvas measures this element, so it has to be
+    the thing that is 100vw — not the canvas stretched past its parent.
+  */}
+  <div class="hero-sonar" aria-hidden="true">
+    <SonarGrid />
+  </div>
+
   <p
     data-hero
     class="mb-8 text-[0.7rem] font-bold uppercase tracking-[0.36em] text-accent-text"
@@ -17,15 +32,21 @@
     India · Working globally · Open for 2026
   </p>
 
+  {/*
+    No font-weight class on the h1: Paytone One ships a single 400 cut, so the
+    `font-light` that used to be here rendered identically to 400 and only
+    misled the next reader.
+  */}
   <h1
     data-hero
-    class="hero-title text-balance text-4xl font-light leading-[1.02] text-foreground sm:text-6xl lg:text-7xl"
+    class="hero-title text-balance text-4xl leading-[1.02] text-foreground sm:text-6xl lg:text-7xl"
   >
     I design complex software, <span class="text-accent-text">then I build it.</span>
   </h1>
 
   <p data-hero class="mx-auto mt-6 max-w-2xl text-base text-muted sm:text-lg">
-    Product design, UX architecture, and production front-end for data &amp; AI platforms.
+    Design Engineer. Interface architecture, design systems, and the production front-end
+    that ships them.
   </p>
 
   <p data-hero class="mx-auto mt-6 max-w-2xl text-sm leading-7 text-subtle sm:text-base sm:leading-8">
@@ -41,3 +62,15 @@
     </a>
   </div>
 </section>
+
+<style>
+  .hero-sonar {
+    position: absolute;
+    inset-block: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    z-index: -1;
+    pointer-events: none;
+  }
+</style>

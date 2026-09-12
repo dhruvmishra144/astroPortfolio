@@ -6,10 +6,18 @@
  * adjectives is what every portfolio has; one verifiable sentence each is what
  * reads as evidence. Every proof below is already backed by the LaCasa case
  * study or the resume.
+ *
+ * The four titles name stages of building an interface, not disciplines a
+ * designer offers. The proofs did not move: they already described engineering
+ * work, which is what made the old "Product thinking / UX architecture" framing
+ * read as a mismatch against its own evidence.
  */
 
+/*
+ * No 01/02/03/04 markers: the headline's whole claim is that these are one job
+ * seen from four sides, and sequence numbering asserts the opposite.
+ */
 interface Pillar {
-  index: string;
   title: string;
   body: string;
   proof: string;
@@ -22,32 +30,28 @@ interface Props {
 
 const defaultPillars: Pillar[] = [
   {
-    index: '01',
-    title: 'Product thinking',
-    body: 'Framing the actual problem before anyone opens Figma — who is doing this, how often, and what breaks when it goes wrong.',
+    title: 'Interface architecture',
+    body: 'Deciding what a screen actually has to do before anything gets drawn or typed — who is doing this, how often, and what breaks when it goes wrong.',
     proof:
       'Cut a dynamic-pricing rules engine down to two rates a month, because that is how owners actually think.',
     tint: 'a',
   },
   {
-    index: '02',
-    title: 'UX architecture',
-    body: 'Information architecture, flows, and states — including the empty, error, and mid-call ones that decide whether a tool survives contact with real work.',
+    title: 'Design infrastructure',
+    body: 'Tokens, components, and the governance that keeps them honest — so it is still one system after the third team starts building on it.',
     proof: 'Governed a 50+ component Figma system with tokens across multi-tenant dashboards.',
     tint: 'b',
   },
   {
-    index: '03',
-    title: 'Systems thinking',
-    body: 'Designing the model underneath the screens: data shapes, sources of truth, and trade-offs that get written down instead of discovered later.',
+    title: 'Systems integration',
+    body: 'The model underneath the screens: data shapes, sources of truth, and trade-offs that get written down instead of discovered later.',
     proof:
       'Five booking channels reconciled into one calendar, with the manual-logging ceiling documented, not hidden.',
     tint: 'c',
   },
   {
-    index: '04',
-    title: 'Technical execution',
-    body: 'React, Next.js, TypeScript, Tailwind — I build production front-end, so the design that ships is the design that was decided.',
+    title: 'Production engineering',
+    body: 'React, Next.js, TypeScript, Tailwind. I ship the front-end myself, which is why the design that ships is the design that was decided.',
     proof: 'Booking platform and PMS built solo, live and maintained.',
     tint: 'd',
   },
@@ -73,10 +77,7 @@ const { pillars = defaultPillars } = Astro.props;
             `surface-tint-${pillar.tint}`,
           ]}
         >
-          <span class="text-xs font-bold uppercase tracking-[0.28em] text-accent-text">
-            {pillar.index}
-          </span>
-          <h3 class="heading-text mt-4 text-lg text-foreground">{pillar.title}</h3>
+          <h3 class="heading-text text-lg text-foreground">{pillar.title}</h3>
           <p class="mt-3 flex-1 text-sm leading-7 text-muted">{pillar.body}</p>
           <p class="mt-5 border-t border-border pt-4 text-xs leading-6 text-subtle">
             {pillar.proof}

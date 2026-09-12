@@ -1,8 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
-import Section from '../../components/aonflow/Section.astro';
-import MockupFigure from '../../components/aonflow/MockupFigure.astro';
+import Section from '../../components/story/Section.astro';
+import MockupFigure from '../../components/story/MockupFigure.astro';
 import StatRow from '../../components/story/StatRow.astro';
 import StoryBeat from '../../components/story/StoryBeat.astro';
 import ImagePair from '../../components/story/ImagePair.astro';
@@ -10,6 +10,7 @@ import QuoteBlock from '../../components/story/QuoteBlock.astro';
 import BeforeAfter from '../../components/story/BeforeAfter.astro';
 import ReadingToggle from '../../components/story/ReadingToggle.astro';
 import CaseTocNav from '../../components/story/CaseTocNav.astro';
+import ChannelConvergence from '../../components/story/ChannelConvergence.astro';
 
 const stack = [
   'React 19 + Vite',
@@ -26,7 +27,7 @@ const stats = [
 ];
 
 const roleFacts = [
-  { label: 'Role', value: 'Product Designer & Developer' },
+  { label: 'Role', value: 'Design Engineer — solo, end to end' },
   { label: 'Responsibilities', value: 'Research · UX strategy · IA · Interaction & UI design · Frontend + backend build' },
   { label: 'Team', value: 'Solo — client as sole stakeholder' },
   { label: 'Timeline', value: 'MVP in ~5 weeks, in active maintenance since' },
@@ -190,6 +191,12 @@ const decisionLog = [
 <Base
   title="LaCasa Retreats Case Study"
   description="A live booking platform and lightweight property management system for a 17-property short-stay rental business, designed and built solo end-to-end."
+  schemaWork={{
+    name: 'LaCasa Retreats — booking platform & property management system',
+    description:
+      'A live booking platform and lightweight PMS for a 17-property short-stay rental operator, reconciling five booking channels into one calendar. Designed and built solo, end to end.',
+    url: 'https://dhruvmishra.in/projects/LaCasaRetreats',
+  }}
 >
   <main id="content" class="page-shell pb-24 pt-20">
     <ReadingToggle />
@@ -217,7 +224,9 @@ const decisionLog = [
 
       <StatRow stats={stats} />
 
-      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+      {/* lg:grid-cols-5 measured 18 characters per line here. Three columns
+          gives these facts room to sit on one or two lines instead of four. */}
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {
           roleFacts.map((fact) => (
             <div class="rounded-2xl border border-border bg-surface p-4">
@@ -252,6 +261,15 @@ const decisionLog = [
       </div>
     </StoryBeat>
 
+    {/*
+      The one loud moment in this case study: the problem drawn, in an inverted
+      band. It sits directly under the paragraph that describes the same thing
+      in words — the diagram is the argument, the prose is the proof.
+    */}
+    <div class="band-dark my-6 rounded-[2rem] px-6 py-14 sm:px-10 sm:py-20">
+      <ChannelConvergence />
+    </div>
+
     <div class="py-4">
       <ImagePair
         images={[
@@ -282,16 +300,25 @@ const decisionLog = [
 
     <div class="deep-only">
     <Section eyebrow="How I approached it" title="Understand, structure, simplify, ship, harden">
-      <div class="grid gap-4 sm:grid-cols-5">
+      {/*
+        Was sm:grid-cols-5, which measured 147px per card and 15 characters per
+        line — a third of the 60-75 that reads comfortably. These five are an
+        ordered sequence, so stacking them is both the honest form and the one
+        that gives the prose room. The label sits in its own column so the body
+        text still starts on a common left edge.
+      */}
+      <ol class="grid gap-3">
         {
           process.map((p) => (
-            <div class="rounded-2xl border border-border bg-surface p-4">
-              <p class="text-xs font-semibold uppercase tracking-[0.16em] text-accent-text">{p.step}</p>
-              <p class="mt-2 text-sm leading-7 text-muted">{p.body}</p>
-            </div>
+            <li class="flex flex-col gap-1 rounded-2xl border border-border bg-surface p-5 sm:flex-row sm:gap-6">
+              <p class="shrink-0 pt-0.5 text-xs font-semibold uppercase tracking-[0.16em] text-accent-text sm:w-36">
+                {p.step}
+              </p>
+              <p class="max-w-[62ch] text-sm leading-7 text-muted">{p.body}</p>
+            </li>
           ))
         }
-      </div>
+      </ol>
     </Section>
 
     <Section eyebrow="Who's involved" title="Who actually uses it">
@@ -324,15 +351,22 @@ const decisionLog = [
               <p class="section-label mb-4">{p.tag}</p>
               <div class="grid gap-4 sm:grid-cols-3">
                 <div>
-                  <p class="text-xs font-semibold uppercase tracking-[0.16em] text-rose-300">The tension</p>
+                  {/*
+                    These three labels each mean a different thing, so they get
+                    three colours: caution for the tension, neutral for the
+                    decision, accent for the outcome. They used to be rose-300
+                    and emerald-300 — dark-palette values that measured 1.88:1
+                    and 1.49:1 on the light canvas.
+                  */}
+                  <p class="text-xs font-semibold uppercase tracking-[0.16em] text-accent-caution">The tension</p>
                   <p class="mt-2 text-sm leading-7 text-muted">{p.tension}</p>
                 </div>
                 <div>
-                  <p class="text-xs font-semibold uppercase tracking-[0.16em] text-accent-text">The call</p>
+                  <p class="text-xs font-semibold uppercase tracking-[0.16em] text-foreground">The call</p>
                   <p class="mt-2 text-sm leading-7 text-muted">{p.call}</p>
                 </div>
                 <div>
-                  <p class="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-300">Result</p>
+                  <p class="text-xs font-semibold uppercase tracking-[0.16em] text-accent-text">Result</p>
                   <p class="mt-2 text-sm leading-7 text-muted">{p.result}</p>
                 </div>
               </div>
@@ -553,7 +587,7 @@ const decisionLog = [
         {
           tradeoffs.map((tradeoff) => (
             <div class="flex gap-4 rounded-2xl border border-border bg-surface p-4">
-              <span class="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-accent shadow-[0_0_22px_rgba(103,232,249,0.5)]" />
+              <span class="bullet-dot bg-accent shadow-[0_0_22px_var(--accent-soft)]" />
               <p>{tradeoff}</p>
             </div>
           ))
@@ -592,7 +626,7 @@ const decisionLog = [
         {
           reflection.map((point) => (
             <div class="flex gap-4 rounded-2xl border border-border bg-surface p-4">
-              <span class="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-rose-300 shadow-[0_0_22px_rgba(253,164,175,0.4)]" />
+              <span class="bullet-dot bg-accent-caution shadow-[0_0_22px_var(--accent-caution-soft)]" />
               <p class="text-base leading-8">{point}</p>
             </div>
           ))

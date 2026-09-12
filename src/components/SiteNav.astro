@@ -151,7 +151,9 @@ const items = links.map((link) => ({ ...link, active: link.match(p) }));
     align-items: center;
     padding: 0.5rem 1.1rem;
     border-radius: 999px;
-    font-size: 0.7rem;
+    /* Was 0.7rem/11.2px — the smallest interactive text on the site, and
+       uppercase with 0.18em tracking on top of that. */
+    font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -194,7 +196,9 @@ const items = links.map((link) => ({ ...link, active: link.match(p) }));
   }
   .site-nav__ask kbd {
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    font-size: 0.62rem;
+    /* 0.62rem measured 9.92px, small enough to be a legibility problem on its
+       own regardless of platform. */
+    font-size: 0.72rem;
     padding: 0.12rem 0.4rem;
     border: 1px solid var(--border-strong);
     border-radius: 6px;
@@ -230,6 +234,28 @@ const items = links.map((link) => ({ ...link, active: link.match(p) }));
     .site-nav__link {
       padding: 0.5rem 0.8rem;
       letter-spacing: 0.1em;
+    }
+  }
+
+  /* Touch targets.
+     Gated on pointer, not width: a finger is the reason 44px matters, and a
+     narrow desktop window is still driven by a cursor. Measured before this
+     rule, every control here was under 44px on a phone — brand 32x32, links
+     34px tall, Ask 41px. All cleared the 28px floor, so this is comfort
+     rather than a compliance fix. */
+  @media (pointer: coarse) {
+    .site-nav__link {
+      min-height: 44px;
+    }
+
+    .site-nav__brand {
+      min-height: 44px;
+      min-width: 44px;
+    }
+
+    .site-nav__ask {
+      min-height: 44px;
+      padding-inline: 1rem;
     }
   }
 </style>

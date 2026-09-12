@@ -12,7 +12,7 @@
  */
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import Section from '../components/aonflow/Section.astro';
+import Section from '../components/story/Section.astro';
 import {
   awards,
   certifications,
@@ -28,7 +28,7 @@ const hasPdf = Boolean(resumePdf.href);
 
 <Base
   title="Resume"
-  description={`${resumeProfile.name} — ${resumeProfile.title}. Ten years across product design, UX architecture, design systems and production front-end.`}
+  description={`${resumeProfile.name} — ${resumeProfile.title}. Ten years across interface architecture, design systems, and production front-end.`}
 >
   <main id="content" class="page-shell pb-24">
     <article class="resume-doc page-section">
@@ -234,7 +234,6 @@ const hasPdf = Boolean(resumePdf.href);
     footer,
     .skip-link,
     .aurora,
-    .portfolio-background__motion,
     .resume-actions,
     [data-theme-toggle] {
       display: none !important;

@@ -1,4 +1,4 @@
-# UX Portfolio — Dhruv Mishra
+# Portfolio — Dhruv Mishra, Design Engineer
 
 Personal portfolio built with [Astro](https://astro.build) + [Svelte](https://svelte.dev),
 styled with Tailwind CSS v4 and animated with GSAP. The site builds to fully static
@@ -49,7 +49,8 @@ and import it from client-side code only. Never commit `.env`.
 ```
 src/
   components/       shared UI (Header, Nav, Footer, Icon, Svelte islands)
-    aonflow/        Aonflow case-study building blocks
+    landing/        homepage sections
+    story/          long-form building blocks (case studies and the resume)
   layouts/Base.astro  HTML shell, metadata, page-transition banner
   pages/            one .astro file per route
   scripts/          GSAP page-transition logic

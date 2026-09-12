@@ -14,7 +14,9 @@
    Rules for anything downstream:
    - never hardcode a colour in a component; use the token utilities
      (text-foreground / text-muted / text-subtle / text-accent-text /
-      bg-surface / bg-surface-strong / border-border / bg-accent)
+      bg-surface / bg-surface-strong / border-border / bg-accent /
+      bg-accent-caution). This covers glows and shadows too: reach for
+      var(--accent-soft) or var(--accent-caution-soft), never a literal rgba.
    - --accent is for fills, rules and graphics; --accent-text is the only
      accent safe for text. On light they are different colours by necessity:
      the bright cyan is ~1.5:1 on a light surface.
@@ -45,6 +47,13 @@
   --accent-text: #047857;
   --accent-soft: rgba(4, 120, 87, 0.1);
   --on-accent: #ffffff;
+
+  /* The second signal colour, for "what I'd do differently" markers. It exists
+     as a token because a raw Tailwind rose-300 was being used inline: far too
+     pale to read on a light surface, and outside the palette entirely. One
+     colour, one meaning — this one never means "good". */
+  --accent-caution: #be123c;
+  --accent-caution-soft: rgba(190, 18, 60, 0.14);
 
   /* Pastel card tints: colourful but subtle. Collapse to one surface on dark. */
   --tint-a: #edf7f2;
@@ -83,7 +92,11 @@
     linear-gradient(180deg, #ffffff 0%, #fbfdfe 50%, #f4faf8 100%);
 }
 
-[data-theme='dark'] {
+/* `.band-dark` shares this block rather than copying the values: a single
+   inverted section on a light page is the same palette, just scoped to a
+   subtree instead of <html>. Two copies of these hexes would drift. */
+[data-theme='dark'],
+.band-dark {
   --background: #050816;
   --foreground: #e6eef8;
   --muted: #cbd5e1;
@@ -99,6 +112,10 @@
   --accent-text: #67e8f9;
   --accent-soft: rgba(77, 215, 255, 0.12);
   --on-accent: #04202a;
+
+  /* Keeps the rose the dark theme already used, now as a token. */
+  --accent-caution: #fda4af;
+  --accent-caution-soft: rgba(253, 164, 175, 0.4);
 
   --tint-a: rgba(8, 15, 28, 0.72);
   --tint-b: rgba(8, 15, 28, 0.72);
@@ -144,6 +161,7 @@
   --color-border: var(--border);
   --color-accent: var(--accent);
   --color-accent-text: var(--accent-text);
+  --color-accent-caution: var(--accent-caution);
   --color-tint-a: var(--tint-a);
   --color-tint-b: var(--tint-b);
   --color-tint-c: var(--tint-c);
@@ -198,40 +216,23 @@
     z-index: -1;
   }
 
+  /* Where the sonar grid renders it *is* the texture, so the line grid stands
+     down. Two grids at different pitches beat against each other — the same
+     mistake removed below. If :has() is unsupported the page degrades to both
+     layers, which is ugly but not broken. */
+  body:has(.sonar-grid)::before {
+    display: none;
+  }
+
   .portfolio-background {
     background: var(--panel-bg);
   }
 
-  .portfolio-background__motion {
-    contain: paint;
-    opacity: 0.78;
-  }
-
-  /* Static grid overlay only. The drifting grid and the animated light sweep
-     that used to live here are gone: the atmosphere is locked in place, so
-     there is no compositor work and nothing to promote with will-change. */
-  .portfolio-background__motion::before {
-    content: "";
-    position: absolute;
-    inset: -20%;
-    background-image:
-      linear-gradient(var(--grid-ink) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid-ink) 1px, transparent 1px);
-    background-size: 80px 80px;
-    mask-image: radial-gradient(ellipse at 50% 20%, rgba(0, 0, 0, 0.86), transparent 72%);
-    opacity: calc(var(--grid-opacity) * 1.5);
-  }
-
-  @media (max-width: 767px) {
-    .portfolio-background__motion {
-      opacity: 0.55;
-    }
-
-    .portfolio-background__motion::before {
-      background-size: 64px 64px;
-      opacity: calc(var(--grid-opacity) * 1.1);
-    }
-  }
+  /* There used to be a second grid here, on a .portfolio-background__motion
+     layer, at 80px (64px on mobile) over the 72px one above. Two full-viewport
+     grids at unequal pitches beat against each other and cost a second
+     composite for one visual idea, so that layer is gone; body::before is now
+     the only grid. */
 
   ::selection {
     background: var(--selection-bg);
@@ -249,6 +250,23 @@
       opacity 180ms ease;
   }
 
+  /*
+    Set by ThemeToggle for the single frame in which data-theme flips.
+
+    Without it, `transition: color` above does not re-resolve when the value
+    comes from a custom property that just changed: Chromium keeps the old
+    computed colour indefinitely, so toggling to dark left the nav links at the
+    light --subtle (#55647a) on the now-dark pill — 3.11:1, and "Ask Dhruv" at
+    2.37:1 — until the next page load. Backgrounds updated instantly because
+    those rules sit on divs that never transition, which is what made it look
+    like a theme bug rather than a transition one.
+  */
+  .theme-switching *,
+  .theme-switching *::before,
+  .theme-switching *::after {
+    transition: none !important;
+  }
+
   :focus-visible {
     outline: none;
     box-shadow:
@@ -262,22 +280,46 @@
     padding-inline: clamp(1rem, 3vw, 1.75rem);
   }
 
+  /* One inverted band on a light page. Tokens come from the shared block at the
+     top, so children using var(--foreground) etc. flip automatically — nothing
+     inside a band needs to know it is in one.
+     Deliberately not full-bleed: it carries a border radius, and a rounded
+     panel that runs to the viewport edge reads as a mistake. */
+  .band-dark {
+    background: var(--background);
+    color: var(--foreground);
+  }
+
   .page-section {
     padding-block: clamp(3rem, 7vw, 6rem);
   }
 
+  /*
+    No backdrop-filter on either of these — deliberately.
+
+    They were blur(18px) and blur(24px). On the LaCasa case study that was 26
+    of the 32 backdrop-filter layers on the page, and each one is a separate
+    compositing layer that has to re-sample and blur whatever is behind it.
+
+    What they bought: nothing worth that. A .surface card is 72% opaque white
+    sitting on the page's soft gradient plus the already-110px-blurred aurora —
+    blurring a blur, through a white veil, is invisible. And .surface-strong is
+    #ffffff in light mode, i.e. fully opaque, so its backdrop-filter could not
+    render *anything* while still forcing a layer.
+
+    Blur is kept only where content genuinely scrolls underneath and the effect
+    does real work: SiteNav, CaseTocNav, ReadingToggle, CommandPalette.
+  */
   .surface {
     background: var(--surface);
     border: 1px solid var(--border);
     box-shadow: var(--shadow-elevated);
-    backdrop-filter: blur(18px);
   }
 
   .surface-strong {
     background: var(--surface-strong);
     border: 1px solid var(--border-strong);
     box-shadow: var(--shadow-elevated);
-    backdrop-filter: blur(24px);
   }
 
   /* Pastel variants for multi-card grids. Uniform on dark by token design. */
@@ -373,12 +415,27 @@
     border: 1px solid var(--border);
   }
 
+  /* Optically centres a bullet against the FIRST LINE of its sibling text,
+     not against the top of the text block.
+     The adjacent paragraphs use leading-8 (2rem line box) and the dot is
+     0.625rem, so the dot's top margin is (2rem - 0.625rem) / 2 = 0.6875rem.
+     `mt-1` was being used, which put the dot 7px high — measured, not guessed.
+     If the paragraph leading ever changes, this value has to change with it. */
+  .bullet-dot {
+    margin-top: 0.6875rem;
+    height: 0.625rem;
+    width: 0.625rem;
+    flex-shrink: 0;
+    border-radius: 9999px;
+  }
+
+  /* Same reasoning as .surface-strong above: this background is opaque in light
+     mode, so the blur rendered nothing and cost a layer. */
   .metric-card {
     background: var(--surface-strong);
     border: 1px solid var(--border);
     border-radius: 1.25rem;
     padding: 1rem;
-    backdrop-filter: blur(14px);
   }
 
   .skip-link {

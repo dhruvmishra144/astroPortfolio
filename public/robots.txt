@@ -1,0 +1,44 @@
+# https://dhruvmishra.in
+
+User-agent: *
+Allow: /
+
+# ---------------------------------------------------------------------------
+# AI crawlers do two different jobs, and they deserve different answers.
+#
+# ANSWERING bots fetch a page because a person asked a question just now. These
+# decide whether ChatGPT, Claude and Perplexity can cite this site *today*.
+# Allowed explicitly — being findable is the entire point of a portfolio.
+#
+# TRAINING bots read pages to build future models. Most publishers block these,
+# because their content IS the product and training is uncompensated use. That
+# calculus is inverted here: this site is marketing for one person, and a model
+# that knows who Dhruv Mishra is and what he builds is a benefit, not a loss.
+# Allowed on purpose.
+#
+# To opt out of training later, change Allow to Disallow in the second block
+# only. The answering block should stay allowed either way.
+#
+# Not listed: Bytespider, which is documented ignoring robots.txt entirely.
+# Blocking it here would be decoration; it needs a WAF rule or nothing.
+# ---------------------------------------------------------------------------
+
+# Answering / retrieval — affects what AI says about this site now
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+Allow: /
+
+# Training — affects what models know in a couple of years
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Meta-ExternalAgent
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://dhruvmishra.in/sitemap.xml

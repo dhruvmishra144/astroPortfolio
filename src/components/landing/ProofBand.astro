@@ -2,9 +2,9 @@
 /**
  * Proof band.
  *
- * Uses StatRow (big value, small caption) rather than aonflow/MetricCard, which
- * puts the small label on top — a numeric metric would read caption-first. This
- * also matches the LaCasa case-study hero, so both pages share one treatment.
+ * Uses StatRow (big value, small caption): a numeric metric read caption-first
+ * loses the number. This also matches the LaCasa case-study hero, so both pages
+ * share one treatment.
  *
  * Six tools, not thirty. The resume's full competency list is right for ATS
  * parsing and wrong for a landing page; a tool wall reads as "will do
@@ -22,10 +22,15 @@ interface Props {
   stack?: string[];
 }
 
+/*
+ * Three, not four. The fourth was "30% faster UI sprint velocity (Aonflow)" —
+ * a resume-sourced figure with no case study a visitor could check it against,
+ * sitting directly beneath copy promising every number says how it was
+ * measured. Removed with the Aonflow case study rather than restated.
+ */
 const defaultMetrics: Metric[] = [
-  { value: '10+ yrs', label: 'product design & front-end' },
+  { value: '10+ yrs', label: 'design engineering' },
   { value: '50+', label: 'components in one governed Figma system' },
-  { value: '30%', label: 'faster UI sprint velocity (Aonflow)' },
   { value: '4', label: 'products live in production' },
 ];
 
@@ -50,8 +55,9 @@ const { metrics = defaultMetrics, stack = defaultStack } = Astro.props;
   </div>
 
   <div class="surface rounded-[1.75rem] p-6 sm:p-8">
-    {/* 2x2: four stats in a flowing row wrap to 3 + 1 and orphan the last one. */}
-    <StatRow stats={metrics} cols={2} />
+    {/* 3-up: an explicit column count, so the row stays even rather than
+        relying on how three items happen to wrap. */}
+    <StatRow stats={metrics} cols={3} />
 
     <div class="mt-10 border-t border-border pt-8">
       <p class="text-xs font-semibold uppercase tracking-[0.28em] text-subtle">Core stack</p>

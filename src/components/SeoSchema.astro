@@ -1,0 +1,98 @@
+---
+/**
+ * JSON-LD structured data.
+ *
+ * Everything here is derived from src/data/*, never retyped, so the schema
+ * cannot drift from what the pages actually say. Google treats structured data
+ * that contradicts the visible page as a spam signal, which is exactly what
+ * hand-maintained duplicates eventually produce.
+ *
+ * Two deliberate omissions:
+ *  - No `email` or `telephone`. resume.ts keeps both out of rendered HTML on
+ *    purpose; putting them in JSON-LD would reintroduce them as machine-readable
+ *    text, which is strictly worse for scraping than the visible page was.
+ *  - No `datePublished` on the case study. I have no reliable publication date
+ *    and an invented one is a lie a crawler will happily index.
+ *
+ * The Person and WebSite nodes carry stable @ids and are emitted on every page,
+ * so crawlers consolidate them into one entity rather than seeing a new person
+ * per URL.
+ */
+import { resumeProfile, competencies, education } from '../data/resume';
+import { socialLinks } from '../data/socialLinks';
+
+interface Props {
+  /** Adds a CreativeWork + BreadcrumbList for a case-study page. */
+  work?: { name: string; description: string; url: string };
+}
+
+const { work } = Astro.props;
+
+const site = Astro.site!.origin;
+const personId = `${site}/#person`;
+const siteId = `${site}/#website`;
+
+// sameAs is for identity profiles only. The WhatsApp entry in socialLinks is a
+// contact channel with a phone number in the query string — not an identity,
+// and not something to hand a crawler in machine-readable form.
+const profiles = socialLinks
+  .filter((l) => l.name === 'LinkedIn' || l.name === 'Google')
+  .map((l) => l.href);
+
+const person = {
+  '@type': 'Person',
+  '@id': personId,
+  name: resumeProfile.name,
+  url: site,
+  image: new URL('/avatar.webp', site).href,
+  jobTitle: 'Design Engineer',
+  description: resumeProfile.summary,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Faridabad',
+    addressRegion: 'Delhi NCR',
+    addressCountry: 'IN',
+  },
+  sameAs: profiles,
+  knowsAbout: competencies.flatMap((g) => g.items),
+  alumniOf: education.map((e) => ({
+    '@type': 'CollegeOrUniversity',
+    name: e.school,
+  })),
+};
+
+const website = {
+  '@type': 'WebSite',
+  '@id': siteId,
+  url: site,
+  name: `${resumeProfile.name} — Design Engineer`,
+  inLanguage: 'en',
+  publisher: { '@id': personId },
+};
+
+const graph: Record<string, unknown>[] = [person, website];
+
+if (work) {
+  graph.push({
+    '@type': 'CreativeWork',
+    '@id': `${work.url}#work`,
+    name: work.name,
+    description: work.description,
+    url: work.url,
+    author: { '@id': personId },
+    creator: { '@id': personId },
+    isPartOf: { '@id': siteId },
+  });
+  graph.push({
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Work', item: site },
+      { '@type': 'ListItem', position: 2, name: work.name, item: work.url },
+    ],
+  });
+}
+
+const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
+---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />

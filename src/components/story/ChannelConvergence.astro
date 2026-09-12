@@ -1,0 +1,206 @@
+---
+/**
+ * Five booking channels converging into one shared calendar.
+ *
+ * This is the case study's central problem drawn instead of described, so the
+ * diagram has to carry information rather than atmosphere: the five nodes are
+ * the five real channels named in the copy, and the light travels source →
+ * calendar because that is the direction the data actually moves.
+ *
+ * Paths are SVG; labels are HTML positioned over them by percentage. Text in
+ * SVG scales with the viewBox and becomes unreadable on a phone, and it reads
+ * badly to screen readers — HTML labels stay legible, selectable and themable.
+ *
+ * The travelling light is `stroke-dasharray` + an animated `stroke-dashoffset`.
+ * The dash pattern is 200 units and the offset animates exactly -200, so every
+ * path loops seamlessly regardless of its own length. No JS, no library.
+ */
+
+interface Channel {
+  id: string;
+  label: string;
+  /** Percentage position of the label within the container. */
+  x: number;
+  y: number;
+  /** SVG path, always drawn source → calendar. */
+  path: string;
+  delay: string;
+}
+
+const channels: Channel[] = [
+  { id: 'booking', label: 'Booking.com', x: 15, y: 12, path: 'M 150 50 C 280 50, 300 210, 420 210', delay: '0s' },
+  { id: 'agoda', label: 'Agoda', x: 15, y: 31, path: 'M 150 130 C 280 130, 320 210, 420 210', delay: '0.8s' },
+  { id: 'mmt', label: 'MakeMyTrip', x: 15, y: 50, path: 'M 150 210 H 420', delay: '1.6s' },
+  { id: 'airbnb', label: 'Airbnb', x: 15, y: 69, path: 'M 150 290 C 280 290, 320 210, 420 210', delay: '2.4s' },
+  { id: 'direct', label: 'Direct · WhatsApp', x: 15, y: 88, path: 'M 150 370 C 280 370, 300 210, 420 210', delay: '3.2s' },
+];
+---
+
+<figure class="convergence">
+  <div class="convergence__stage">
+    <svg
+      class="convergence__svg"
+      viewBox="0 0 640 420"
+      fill="none"
+      preserveAspectRatio="xMidYMid meet"
+      role="img"
+      aria-label="Five booking channels — Booking.com, Agoda, MakeMyTrip, Airbnb and direct WhatsApp bookings — all feeding into one shared calendar."
+    >
+      {channels.map((c) => (
+        <>
+          <path d={c.path} class="convergence__track" />
+          <path d={c.path} class="convergence__flow" style={`animation-delay:${c.delay}`} />
+        </>
+      ))}
+    </svg>
+
+    {channels.map((c) => (
+      <span class="convergence__node" style={`left:${c.x}%;top:${c.y}%`} aria-hidden="true">
+        {c.label}
+      </span>
+    ))}
+
+    <span class="convergence__hub" aria-hidden="true">
+      <span class="convergence__hub-label">One shared calendar</span>
+      <span class="convergence__hub-sub">single source of truth</span>
+    </span>
+  </div>
+
+  <figcaption class="convergence__caption">
+    Five channels sell the same 17 units. Nothing upstream stops the same room being
+    confirmed twice — so availability had to converge somewhere.
+  </figcaption>
+</figure>
+
+<style>
+  .convergence {
+    margin: 0;
+  }
+
+  .convergence__stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 640 / 420;
+  }
+
+  .convergence__svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* The always-visible route. Without this the diagram would be empty between
+     light pulses, and empty under reduced motion. */
+  .convergence__track {
+    stroke: var(--border-strong);
+    stroke-width: 1;
+    fill: none;
+  }
+
+  .convergence__flow {
+    stroke: var(--accent);
+    stroke-width: 2;
+    stroke-linecap: round;
+    fill: none;
+    stroke-dasharray: 26 174; /* pattern total = 200 */
+    animation: convergence-flow 4s linear infinite;
+  }
+
+  @keyframes convergence-flow {
+    from {
+      stroke-dashoffset: 0;
+    }
+    to {
+      stroke-dashoffset: -200; /* exactly one pattern → seamless loop */
+    }
+  }
+
+  .convergence__node,
+  .convergence__hub {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border-radius: 999px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface-strong);
+    white-space: nowrap;
+  }
+
+  .convergence__node {
+    padding: 0.45rem 0.85rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  .convergence__hub {
+    left: 72%;
+    top: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.85rem 1.15rem;
+    border-radius: 1rem;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 6px var(--accent-soft);
+  }
+
+  .convergence__hub-label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--foreground);
+  }
+
+  .convergence__hub-sub {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+  }
+
+  .convergence__caption {
+    margin-top: 1.75rem;
+    max-width: 34rem;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: var(--subtle);
+  }
+
+  /* Portrait: the left-column-to-right-hub layout squashes badly, so the stage
+     gets taller and the hub moves under the sources rather than beside them. */
+  @media (max-width: 700px) {
+    .convergence__stage {
+      aspect-ratio: 4 / 5;
+    }
+    .convergence__svg {
+      display: none; /* the curves are unreadable at this width */
+    }
+    .convergence__node {
+      left: 50% !important;
+      font-size: 0.72rem;
+    }
+    .convergence__hub {
+      left: 50%;
+      top: 100%;
+    }
+    /* Vertical rail standing in for the curves. */
+    .convergence__stage::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 6%;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(var(--border-strong), var(--accent));
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .convergence__flow {
+      animation: none;
+      stroke-dasharray: none;
+      opacity: 0.45;
+    }
+  }
+</style>

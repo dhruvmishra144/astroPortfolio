@@ -1,0 +1,214 @@
+---
+/**
+ * Interactive dot grid behind the hero. A "ping" is an expanding ring; dots
+ * near the ring's leading edge swell and take the accent colour, then settle.
+ *
+ * Canvas, not DOM: at 26px spacing a 1440x700 hero is ~1,400 dots, which is
+ * nothing on a canvas and a layout disaster as elements.
+ *
+ * Three rules this thing has to obey, all of them learned the hard way
+ * elsewhere in this repo:
+ *
+ *  1. It must never animate when nobody is looking. The rAF loop starts on
+ *     intersection and stops on exit, and also stops whenever no ping is in
+ *     flight — see `tick`. AuroraWaves lost its infinite tweens for exactly
+ *     this reason; a decorative layer does not get a permanent frame budget.
+ *  2. Colours come from the live token values, read at run time, so the grid
+ *     follows the theme toggle instead of hardcoding emerald.
+ *  3. Under reduced motion there are no auto-pings and no animation at all —
+ *     the static grid renders once and stays. The hero is still perfectly
+ *     usable; this layer is decoration and is allowed to simply not happen.
+ *
+ * The line grid on body::before is suppressed wherever this renders (see
+ * global.css) — two grids at different pitches beating against each other is
+ * the exact mistake that was just removed from this codebase.
+ */
+---
+
+<canvas class="sonar-grid" aria-hidden="true"></canvas>
+
+<style>
+  .sonar-grid {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    /* Fades into the page rather than ending on a hard edge, matching the
+       aurora treatment in AuroraWaves.astro. */
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 45%, #000 35%, transparent 78%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 45%, #000 35%, transparent 78%);
+  }
+</style>
+
+<script>
+  const SPACING = 26;
+  const DOT_RADIUS = 1.15;
+  const BASE_OPACITY = 0.28;
+  const RING_WIDTH = 90; // px of influence either side of the wavefront
+  const SPEED = 260; // px per second
+  const AMPLITUDE = 2.2; // peak dot scale at the wavefront
+  const AUTO_PING_MS = 2400;
+  const MAX_LIFE_MS = 4200;
+
+  interface Ping {
+    x: number;
+    y: number;
+    start: number;
+  }
+
+  const canvas = document.querySelector<HTMLCanvasElement>('.sonar-grid');
+  const ctx = canvas?.getContext('2d');
+
+  if (canvas && ctx) {
+    const host = canvas.parentElement ?? canvas;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    let width = 0;
+    let height = 0;
+    let dots: { x: number; y: number }[] = [];
+    let pings: Ping[] = [];
+    let frame = 0;
+    let autoTimer = 0;
+    let visible = false;
+
+    // Read once per frame batch rather than per dot — getComputedStyle is a
+    // style resolution, not a property read.
+    const readTokens = () => {
+      const s = getComputedStyle(document.documentElement);
+      return {
+        ink: s.getPropertyValue('--foreground').trim() || '#0b1a2b',
+        accent: s.getPropertyValue('--accent').trim() || '#047857',
+      };
+    };
+    let tokens = readTokens();
+
+    const layout = () => {
+      const rect = host.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = rect.width;
+      height = rect.height;
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      dots = [];
+      const cols = Math.ceil(width / SPACING);
+      const rows = Math.ceil(height / SPACING);
+      const offsetX = (width - (cols - 1) * SPACING) / 2;
+      const offsetY = (height - (rows - 1) * SPACING) / 2;
+      for (let c = 0; c < cols; c++) {
+        for (let r = 0; r < rows; r++) {
+          dots.push({ x: offsetX + c * SPACING, y: offsetY + r * SPACING });
+        }
+      }
+    };
+
+    const draw = (now: number) => {
+      ctx.clearRect(0, 0, width, height);
+
+      for (const dot of dots) {
+        let boost = 0;
+        for (const ping of pings) {
+          const age = (now - ping.start) / 1000;
+          const wave = age * SPEED;
+          const dist = Math.hypot(dot.x - ping.x, dot.y - ping.y);
+          const delta = Math.abs(dist - wave);
+          if (delta < RING_WIDTH) {
+            // Cosine falloff across the ring, damped as the ping ages out.
+            const shape = (Math.cos((delta / RING_WIDTH) * Math.PI) + 1) / 2;
+            const fade = Math.max(0, 1 - age / (MAX_LIFE_MS / 1000));
+            boost = Math.max(boost, shape * fade);
+          }
+        }
+
+        const scale = 1 + boost * (AMPLITUDE - 1);
+        ctx.globalAlpha = BASE_OPACITY + boost * (1 - BASE_OPACITY);
+        ctx.fillStyle = boost > 0.02 ? tokens.accent : tokens.ink;
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, DOT_RADIUS * scale, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.globalAlpha = 1;
+    };
+
+    const tick = (now: number) => {
+      pings = pings.filter((p) => now - p.start < MAX_LIFE_MS);
+      draw(now);
+      // The loop is not permanent: with nothing in flight it stops dead and
+      // only a ping or a resize restarts it.
+      frame = pings.length ? requestAnimationFrame(tick) : 0;
+    };
+
+    const kick = () => {
+      if (!frame) frame = requestAnimationFrame(tick);
+    };
+
+    const ping = (x: number, y: number) => {
+      if (reduced.matches) return;
+      pings.push({ x, y, start: performance.now() });
+      if (pings.length > 4) pings.shift();
+      kick();
+    };
+
+    const startAuto = () => {
+      if (reduced.matches || autoTimer) return;
+      autoTimer = window.setInterval(() => {
+        if (!visible) return;
+        ping(Math.random() * width, Math.random() * height);
+      }, AUTO_PING_MS);
+    };
+
+    const stopAuto = () => {
+      clearInterval(autoTimer);
+      autoTimer = 0;
+    };
+
+    const render = () => {
+      layout();
+      draw(performance.now());
+    };
+
+    render();
+
+    // Bound on window rather than the canvas: the grid sits at z-index -1 so it
+    // never intercepts a click meant for the hero's buttons. Hit-testing the
+    // rect ourselves keeps "tap anywhere" working without the layer being in
+    // the way of anything.
+    window.addEventListener('pointerdown', (e) => {
+      const rect = host.getBoundingClientRect();
+      if (e.clientY < rect.top || e.clientY > rect.bottom) return;
+      ping(e.clientX - rect.left, e.clientY - rect.top);
+    });
+
+    new ResizeObserver(render).observe(host);
+
+    new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+        if (visible) startAuto();
+        else stopAuto();
+      },
+      { threshold: 0.05 }
+    ).observe(host);
+
+    // Follow the theme toggle — ThemeToggle dispatches this after flipping.
+    window.addEventListener('themechange', () => {
+      tokens = readTokens();
+      draw(performance.now());
+    });
+
+    reduced.addEventListener('change', () => {
+      if (reduced.matches) {
+        stopAuto();
+        pings = [];
+        cancelAnimationFrame(frame);
+        frame = 0;
+        draw(performance.now());
+      } else {
+        startAuto();
+      }
+    });
+  }
+</script>

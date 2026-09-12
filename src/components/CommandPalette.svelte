@@ -27,7 +27,6 @@
       group: 'Projects',
       run: go('/projects/LaCasaRetreats'),
     },
-    { id: 'aonflow', label: 'Aonflow', hint: 'CASE', group: 'Projects', run: go('/projects/aonflow') },
     {
       id: 'linkedin',
       label: 'LinkedIn',
