@@ -306,25 +306,24 @@ export const awards: Award[] = [
 ];
 
 export const resumePdf: ResumePdf = {
-  // GATED ON PURPOSE — do not restore this href until a new PDF is exported.
-  //
-  // The last uploaded file is titled "Senior Product Designer" and carries the
-  // old summary. The profile above now reads Design Engineer, so relinking it
-  // would hand a recruiter two different claims about the same person. Empty
-  // href is the supported state: the download button stops rendering and
-  // /resume falls back to "Print / save as PDF", which prints this copy.
-  //
-  // To restore, re-export the PDF from the current page copy, upload to
-  // ImageKit, then set href back to the pattern below and bump `updated`:
-  //   https://ik.imagekit.io/dhruvmishra144/<file>.pdf?updatedAt=<ts>&ik-attachment=true
+  // Re-exported 2026-09-13 for the Design Engineer positioning, replacing the
+  // gated placeholder. Verified live: returns application/pdf, ~100KB.
   //
   // `ik-attachment=true` is load-bearing: the link is cross-origin, so the HTML
   // `download` attribute is ignored, and without that flag the PDF opens in the
-  // browser's viewer instead of downloading. `updatedAt` is ImageKit's
-  // cache-buster, which matters because the asset has a one-year max-age.
-  href: '',
-  filename: 'Dhruv-Mishra-Resume.pdf',
-  updated: 'August 2026',
+  // browser's viewer instead of downloading. It makes ImageKit send
+  // `Content-Disposition: attachment`.
+  //
+  // No `updatedAt` cache-buster here because this is a new filename, so nothing
+  // stale can be cached against it. If this exact file is ever re-uploaded in
+  // place, append `&updatedAt=<ts>` — the asset is served with a one-year
+  // max-age and would otherwise keep serving the old bytes.
+  //
+  // Setting href back to '' degrades gracefully: the download button stops
+  // rendering and /resume falls back to "Print / save as PDF".
+  href: 'https://ik.imagekit.io/dhruvmishra144/Dhruv_Mishra_Senior_Design_Engineer.pdf?ik-attachment=true',
+  filename: 'Dhruv-Mishra-Design-Engineer-Resume.pdf',
+  updated: 'September 2026',
 };
 
 /** Compact projection for the homepage timeline — no bullets. */
