@@ -307,7 +307,7 @@ const decisionLog = [
         that gives the prose room. The label sits in its own column so the body
         text still starts on a common left edge.
       */}
-      <ol class="grid gap-3">
+      <ol class="grid gap-3" data-reveal-children>
         {
           process.map((p) => (
             <li class="flex flex-col gap-1 rounded-2xl border border-border bg-surface p-5 sm:flex-row sm:gap-6">
@@ -583,7 +583,7 @@ const decisionLog = [
     </Section>
 
     <Section eyebrow="Scope" title="Trade-offs, made on purpose">
-      <div class="grid gap-3">
+      <div class="grid gap-3" data-reveal-children>
         {
           tradeoffs.map((tradeoff) => (
             <div class="flex gap-4 rounded-2xl border border-border bg-surface p-4">
@@ -622,7 +622,7 @@ const decisionLog = [
     </Section>
 
     <Section id="reflection" eyebrow="Reflection" title="What I'd do differently">
-      <div class="grid gap-3">
+      <div class="grid gap-3" data-reveal-children>
         {
           reflection.map((point) => (
             <div class="flex gap-4 rounded-2xl border border-border bg-surface p-4">
@@ -655,6 +655,16 @@ const decisionLog = [
 
 <script>
   import { initCaseStudyChrome } from '../../scripts/caseStudyChrome';
+  import { initReveal } from '../../scripts/reveal';
 
   initCaseStudyChrome({ storageKey: 'lacasa-view' });
+
+  // The case study had no reveal at all until now — every section appeared
+  // fully formed. Beats fade in as whole blocks; the trade-off and reflection
+  // lists stagger their children, because those are enumerations where arriving
+  // in sequence is the point.
+  initReveal({
+    revealSelector: '[data-reveal]',
+    revealChildrenSelector: '[data-reveal-children]',
+  });
 </script>

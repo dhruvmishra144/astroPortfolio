@@ -36,6 +36,7 @@
   --border: rgba(11, 26, 43, 0.1);
   --border-strong: rgba(11, 26, 43, 0.14);
   --shadow-elevated: 0 20px 60px rgba(11, 26, 43, 0.09);
+  --shadow-lifted: 0 30px 78px rgba(11, 26, 43, 0.15);
 
   /* Light mode is emerald-led, dark is cyan-led — adjacent hues, so the two
      themes read as one family rather than as opposites.
@@ -107,6 +108,7 @@
   --border: rgba(148, 163, 184, 0.18);
   --border-strong: rgba(148, 163, 184, 0.22);
   --shadow-elevated: 0 28px 90px rgba(2, 8, 23, 0.38);
+  --shadow-lifted: 0 36px 110px rgba(2, 8, 23, 0.55);
 
   --accent: #4dd7ff;
   --accent-text: #67e8f9;
@@ -421,6 +423,24 @@
      0.625rem, so the dot's top margin is (2rem - 0.625rem) / 2 = 0.6875rem.
      `mt-1` was being used, which put the dot 7px high — measured, not guessed.
      If the paragraph leading ever changes, this value has to change with it. */
+  /*
+    The site's one hover micro-interaction. 1.02 is deliberately almost nothing —
+    enough that the card acknowledges the cursor, not enough to read as a
+    "feature". transform + box-shadow only, so it stays on the compositor.
+    The reduced-motion block below flattens the transition to 0.01ms, which
+    leaves the hover state working but instant.
+  */
+  .card-lift {
+    transition:
+      transform 200ms ease-out,
+      box-shadow 200ms ease-out;
+  }
+
+  .card-lift:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-lifted);
+  }
+
   .bullet-dot {
     margin-top: 0.6875rem;
     height: 0.625rem;

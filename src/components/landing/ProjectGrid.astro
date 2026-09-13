@@ -38,7 +38,7 @@ const secondary = projects.filter((p) => !p.featured);
         <a
           href={project.href}
           class:list={[
-            'surface group relative overflow-hidden rounded-[1.75rem] lg:col-span-6',
+            'surface card-lift group relative overflow-hidden rounded-[1.75rem] lg:col-span-6',
             !project.image && project.tint && `surface-tint-${project.tint}`,
           ]}
         >
@@ -128,7 +128,7 @@ const secondary = projects.filter((p) => !p.featured);
         <a
           href={project.href}
           class:list={[
-            'surface group flex flex-col rounded-[1.75rem] p-7',
+            'surface card-lift group flex flex-col rounded-[1.75rem] p-7',
             project.tint && `surface-tint-${project.tint}`,
             project.span ?? 'lg:col-span-3',
           ]}
