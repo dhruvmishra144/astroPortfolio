@@ -1,0 +1,167 @@
+---
+/**
+ * Hero backdrop: one soft blob seen through fluted (ribbed) glass.
+ *
+ * Two tiers. The base is pure CSS (below): calm, theme-aware, and nearly free —
+ * the only motion is a slow transform drift on a layer the browser rasterises
+ * once. On top, once the page has loaded, a small WebGL2 shader (see
+ * src/scripts/fluteShader.ts) takes over with diagonal flutes and light rings;
+ * the CSS tier stays as the fallback for no-WebGL2 and context loss.
+ *
+ * CSS tier, two layers:
+ *  - the blob: a single blurred, organically-shaped radial gradient built from
+ *    the theme's own aurora tokens (denim + sky in light, cyan + violet in
+ *    dark), so it follows the theme toggle with no script;
+ *  - the flutes: a repeating vertical gradient (highlight on the leading edge,
+ *    shade on the trailing edge) laid over it, which is what reads as ribbed
+ *    glass.
+ *
+ * It sits behind everything, is aria-hidden, takes no pointer events, and fades
+ * out at the bottom so it ends in the page rather than on a hard line. It is
+ * rendered by the page (not inside Hero) because it has to run edge to edge and
+ * the page container clips anything wider than itself.
+ *
+ * Opacity is kept modest on purpose: display text and the accent-coloured line
+ * sit directly on it, and the worst case is still comfortably over 3:1 for
+ * large text in both themes.
+ */
+---
+
+<div class="hero-flutes" aria-hidden="true" data-flute-shader>
+  {/* CSS fallback: shown until the shader is running, and kept for browsers
+      without WebGL2. Hidden once the canvas takes over (.is-ready). */}
+  <div class="hero-flutes-blob"></div>
+  <div class="hero-flutes-glass"></div>
+  <canvas class="hero-flutes-canvas"></canvas>
+</div>
+
+<script>
+  /*
+   * Upgrade the CSS backdrop to the WebGL flute shader, after load and when
+   * idle: the headline and LCP must not wait on shader compilation. The shader
+   * is its own lazy chunk (src/scripts/fluteShader.ts), ~3 KB gzipped, with no
+   * dependencies beyond GSAP, which the page already ships.
+   */
+  const host = document.querySelector<HTMLElement>('[data-flute-shader]');
+  const canvas = host?.querySelector<HTMLCanvasElement>('canvas');
+
+  if (host && canvas) {
+    const start = () => {
+      import('../../scripts/fluteShader')
+        .then((m) => m.initFluteShader(canvas, host))
+        .catch(() => {
+          /* keep the CSS fallback */
+        });
+    };
+
+    const afterLoad = () => {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(start, { timeout: 1500 });
+      } else {
+        window.setTimeout(start, 200);
+      }
+    };
+
+    if (document.readyState === 'complete') afterLoad();
+    else window.addEventListener('load', afterLoad, { once: true });
+  }
+</script>
+
+<style>
+  .hero-flutes {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: min(115svh, 72rem);
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+
+    --flute: clamp(26px, 3.2vw, 50px);
+    --blob-opacity: 0.5;
+    --flute-hi: rgba(255, 255, 255, 0.55);
+    --flute-mid: rgba(255, 255, 255, 0.16);
+    --flute-lo: rgba(11, 26, 43, 0.035);
+    --flute-edge: rgba(11, 26, 43, 0.08);
+
+    mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+  }
+
+  :global([data-theme='dark']) .hero-flutes {
+    --blob-opacity: 0.62;
+    --flute-hi: rgba(255, 255, 255, 0.15);
+    --flute-mid: rgba(255, 255, 255, 0.04);
+    --flute-lo: rgba(0, 0, 0, 0.18);
+    --flute-edge: rgba(0, 0, 0, 0.34);
+  }
+
+  .hero-flutes-blob {
+    position: absolute;
+    top: 10%;
+    right: 6%;
+    width: clamp(20rem, 46vw, 46rem);
+    aspect-ratio: 1;
+    border-radius: 58% 42% 55% 45% / 52% 48% 52% 48%;
+    background: radial-gradient(
+      circle at 35% 32%,
+      rgba(var(--aurora-2), 1) 0%,
+      rgba(var(--aurora-1), 0.85) 52%,
+      rgba(var(--aurora-1), 0) 100%
+    );
+    filter: blur(48px);
+    opacity: var(--blob-opacity);
+    will-change: transform;
+    animation: flutes-drift 28s ease-in-out infinite alternate;
+  }
+
+  .hero-flutes-glass {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--flute-hi) 0,
+      var(--flute-mid) calc(var(--flute) * 0.22),
+      transparent calc(var(--flute) * 0.5),
+      var(--flute-lo) calc(var(--flute) * 0.88),
+      var(--flute-edge) var(--flute)
+    );
+  }
+
+  .hero-flutes-canvas {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+
+  /* The shader replaces the CSS layers once it is drawing. */
+  .hero-flutes:global(.is-ready) .hero-flutes-canvas {
+    opacity: 1;
+  }
+
+  .hero-flutes:global(.is-ready) .hero-flutes-blob,
+  .hero-flutes:global(.is-ready) .hero-flutes-glass {
+    display: none;
+  }
+
+  @keyframes flutes-drift {
+    from {
+      transform: translate3d(-4%, 3%, 0) rotate(0deg) scale(1);
+    }
+    to {
+      transform: translate3d(5%, -4%, 0) rotate(14deg) scale(1.06);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero-flutes-blob {
+      top: 18%;
+      right: -18%;
+      width: 24rem;
+    }
+  }
+</style>

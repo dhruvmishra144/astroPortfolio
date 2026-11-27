@@ -38,15 +38,14 @@
   --shadow-elevated: 0 20px 60px rgba(11, 26, 43, 0.09);
   --shadow-lifted: 0 30px 78px rgba(11, 26, 43, 0.15);
 
-  /* Light mode is emerald-led, dark is cyan-led — adjacent hues, so the two
+  /* Light mode is denim-led, dark is cyan-led — neighbouring blues, so the two
      themes read as one family rather than as opposites.
-     One token does fill and text: emerald-700 clears AA both ways, where the
-     brighter greens do not (#059669 is only 3.7:1 on canvas and 3.8:1 behind a
-     white label).
-       on canvas 5.38:1 · on white 5.48:1 · white label on fill 5.48:1 */
-  --accent: #047857;
-  --accent-text: #047857;
-  --accent-soft: rgba(4, 120, 87, 0.1);
+     One token does fill and text: denim #1560bd clears AA both ways, so a
+     brighter blue is not needed (and would not pass).
+       on canvas ~6.0:1 · on white ~6.1:1 · white label on fill ~6.1:1 */
+  --accent: #1560bd;
+  --accent-text: #1560bd;
+  --accent-soft: rgba(21, 96, 189, 0.1);
   --on-accent: #ffffff;
 
   /* The second signal colour, for "what I'd do differently" markers. It exists
@@ -57,10 +56,10 @@
   --accent-caution-soft: rgba(190, 18, 60, 0.14);
 
   /* Pastel card tints: colourful but subtle. Collapse to one surface on dark. */
-  --tint-a: #edf7f2;
-  --tint-b: #f4f2fb;
-  --tint-c: #eef8f3;
-  --tint-d: #f7f9ef;
+  --tint-a: #ecf3fc;
+  --tint-b: #f2f2fb;
+  --tint-c: #eef5fa;
+  --tint-d: #f4f7fb;
 
   --grid-ink: rgba(11, 26, 43, 0.055);
   --grid-opacity: 0.5;
@@ -68,8 +67,8 @@
   /* Atmosphere. Orange is the complement of the cyan accent, so warming the
      canvas is what stops a white page reading as washed out. Static positions
      only — no drift, no parallax. */
-  --aurora-1: 16, 185, 129;   /* soft emerald, anchors top-left */
-  --aurora-2: 94, 186, 208;   /* desaturated cyan */
+  --aurora-1: 21, 96, 189;    /* denim, anchors top-left */
+  --aurora-2: 96, 165, 225;   /* soft sky blue */
   --aurora-3: 234, 200, 140;  /* faint warm sand, keeps it from reading clinical */
   --aurora-a1: 0.13;
   --aurora-a2: 0.11;
@@ -77,20 +76,20 @@
   --aurora-wrap-opacity: 0.85;
 
   --cmdk-scrim: rgba(11, 26, 43, 0.38);
-  --selection-bg: rgba(4, 120, 87, 0.18);
-  --selection-fg: #052e22;
-  --ring-inner: rgba(4, 120, 87, 0.45);
+  --selection-bg: rgba(21, 96, 189, 0.18);
+  --selection-fg: #0a2447;
+  --ring-inner: rgba(21, 96, 189, 0.45);
   --ring-outer: rgba(255, 255, 255, 0.9);
 
   --body-bg:
-    radial-gradient(52% 42% at 6% 3%, rgba(16, 185, 129, 0.11), transparent 68%),
-    radial-gradient(46% 38% at 92% 12%, rgba(94, 186, 208, 0.1), transparent 70%),
+    radial-gradient(52% 42% at 6% 3%, rgba(21, 96, 189, 0.1), transparent 68%),
+    radial-gradient(46% 38% at 92% 12%, rgba(96, 165, 225, 0.1), transparent 70%),
     radial-gradient(58% 48% at 78% 97%, rgba(234, 200, 140, 0.09), transparent 72%),
-    linear-gradient(180deg, #ffffff 0%, #fbfdfe 48%, #f4faf8 100%);
+    linear-gradient(180deg, #ffffff 0%, #fbfdfe 48%, #f3f7fc 100%);
   --panel-bg:
-    radial-gradient(46% 40% at 8% 0%, rgba(16, 185, 129, 0.09), transparent 68%),
-    radial-gradient(44% 36% at 92% 8%, rgba(94, 186, 208, 0.09), transparent 70%),
-    linear-gradient(180deg, #ffffff 0%, #fbfdfe 50%, #f4faf8 100%);
+    radial-gradient(46% 40% at 8% 0%, rgba(21, 96, 189, 0.08), transparent 68%),
+    radial-gradient(44% 36% at 92% 8%, rgba(96, 165, 225, 0.09), transparent 70%),
+    linear-gradient(180deg, #ffffff 0%, #fbfdfe 50%, #f3f7fc 100%);
 }
 
 /* `.band-dark` shares this block rather than copying the values: a single
@@ -218,11 +217,10 @@
     z-index: -1;
   }
 
-  /* Where the sonar grid renders it *is* the texture, so the line grid stands
-     down. Two grids at different pitches beat against each other — the same
-     mistake removed below. If :has() is unsupported the page degrades to both
-     layers, which is ugly but not broken. */
-  body:has(.sonar-grid)::before {
+  /* The homepage hero has its own backdrop (fluted glass over a blob), so the
+     page-wide line grid stands down there rather than fighting the flutes. If
+     :has() is unsupported the grid simply shows, which is ugly but not broken. */
+  body:has(.hero-flutes)::before {
     display: none;
   }
 
@@ -322,6 +320,36 @@
     background: var(--surface-strong);
     border: 1px solid var(--border-strong);
     box-shadow: var(--shadow-elevated);
+  }
+
+  /* Bento tile: the one container every grid on the site shares, so spacing,
+     radius and padding cannot drift between sections. Compose with .surface /
+     .surface-strong / .surface-tint-* for the fill and a Tailwind col-span-*
+     class on a `grid-cols-1 sm:grid-cols-6 lg:grid-cols-12` parent for size. */
+  .bento-tile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 1.75rem;
+    padding: clamp(1.25rem, 2.4vw, 1.75rem);
+  }
+
+  .bento-tile-flush {
+    padding: 0;
+  }
+
+  /* The chat.svg glyph is solid white (made for the dark footer), so as an
+     <img> it vanished on a light surface. Masking it lets the colour come from
+     the theme token instead: navy on light, near-white on dark. */
+  .chat-icon {
+    display: inline-block;
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: var(--foreground);
+    -webkit-mask: url('/chat.svg') center / contain no-repeat;
+    mask: url('/chat.svg') center / contain no-repeat;
   }
 
   /* Pastel variants for multi-card grids. Uniform on dark by token design. */

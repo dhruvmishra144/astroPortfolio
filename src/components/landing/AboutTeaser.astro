@@ -4,25 +4,25 @@
  * on /about-me so the teaser doesn't promise something that page won't deliver,
  * and reuses that page's own "Outside the terminal" phrasing so the link reads
  * as continuous.
+ *
+ * Bento: the copy is the wide tile, the link its own accent tile.
  */
 ---
 
 <section data-reveal class="page-section pt-0">
-  <div
-    class="surface-strong flex flex-col gap-4 rounded-[1.75rem] p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8"
-  >
-    <div class="max-w-2xl">
+  <div class="grid grid-cols-1 gap-4 lg:grid-cols-12">
+    <div class="bento-tile surface-strong lg:col-span-8">
       <p class="section-label">Off the clock</p>
-      <p class="mt-4 text-sm leading-7 text-muted sm:text-base">
+      <p class="mt-4 max-w-2xl text-sm leading-7 text-muted sm:text-base">
         There is a person behind the systems — a father, a foodie who orders the strangest thing on
         the menu, and someone slowly building a hydroponic farm at home.
       </p>
     </div>
     <a
       href="/about-me"
-      class="button-secondary shrink-0 px-5 py-3 text-sm"
+      class="bento-tile card-lift justify-end bg-accent text-[color:var(--on-accent)] lg:col-span-4"
     >
-      Step outside the terminal →
+      <span class="hero-title text-2xl">Step outside the terminal →</span>
     </a>
   </div>
 </section>
