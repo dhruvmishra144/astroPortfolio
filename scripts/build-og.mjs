@@ -17,7 +17,7 @@ import sharp from 'sharp';
 
 // Token values copied from src/styles/global.css (light theme).
 const INK = '#0b1a2b';
-const ACCENT = '#047857';
+const ACCENT = '#1560bd';
 const MUTED = '#3c536e';
 const DOT = 'rgba(11, 26, 43, 0.10)';
 
@@ -28,11 +28,11 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" v
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#ffffff"/>
       <stop offset="48%" stop-color="#fbfdfe"/>
-      <stop offset="100%" stop-color="#f1f8f5"/>
+      <stop offset="100%" stop-color="#f1f5fb"/>
     </linearGradient>
     <radialGradient id="glowA" cx="8%" cy="4%" r="55%">
-      <stop offset="0%" stop-color="rgba(16,185,129,0.16)"/>
-      <stop offset="100%" stop-color="rgba(16,185,129,0)"/>
+      <stop offset="0%" stop-color="rgba(21,96,189,0.16)"/>
+      <stop offset="100%" stop-color="rgba(21,96,189,0)"/>
     </radialGradient>
     <radialGradient id="glowB" cx="94%" cy="96%" r="55%">
       <stop offset="0%" stop-color="rgba(234,200,140,0.16)"/>

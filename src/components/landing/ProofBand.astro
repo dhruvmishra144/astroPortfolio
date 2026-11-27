@@ -10,8 +10,6 @@
  * parsing and wrong for a landing page; a tool wall reads as "will do
  * anything". The long list is one click away.
  */
-import StatRow from '../story/StatRow.astro';
-
 interface Metric {
   value: string;
   label: string;
@@ -44,6 +42,12 @@ const defaultStack = [
 ];
 
 const { metrics = defaultMetrics, stack = defaultStack } = Astro.props;
+
+const spans = [
+  'sm:col-span-6 lg:col-span-5',
+  'sm:col-span-3 lg:col-span-4',
+  'sm:col-span-3 lg:col-span-3',
+];
 ---
 
 <section id="proof" data-reveal class="page-section scroll-mt-24">
@@ -54,22 +58,55 @@ const { metrics = defaultMetrics, stack = defaultStack } = Astro.props;
     </h2>
   </div>
 
-  <div class="surface rounded-[1.75rem] p-6 sm:p-8">
-    {/* 3-up: an explicit column count, so the row stays even rather than
-        relying on how three items happen to wrap. */}
-    <StatRow stats={metrics} cols={3} />
+  {/*
+    Bento: the first metric is the lead tile (widest), the others are smaller,
+    then the stack tile and a resume link tile close the row. Value-first, as
+    StatRow does, so a number is never read caption-first.
+  */}
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-6 lg:grid-cols-12">
+    {
+      metrics.map((metric, i) => (
+        <div
+          class:list={[
+            'bento-tile surface justify-between gap-8',
+            i === 0 && 'surface-strong',
+            // 5 + 4 + 3 = 12 on desktop for the default three metrics.
+            spans[i] ?? 'sm:col-span-3 lg:col-span-4',
+          ]}
+        >
+          <dl>
+            <dt class="sr-only">{metric.label}</dt>
+            <dd>
+              <span
+                class:list={[
+                  'hero-title block text-accent-text',
+                  i === 0 ? 'text-5xl sm:text-6xl' : 'text-4xl sm:text-5xl',
+                ]}
+              >
+                {metric.value}
+              </span>
+              <span class="mt-2 block text-xs uppercase tracking-[0.16em] text-subtle">
+                {metric.label}
+              </span>
+            </dd>
+          </dl>
+        </div>
+      ))
+    }
 
-    <div class="mt-10 border-t border-border pt-8">
+    <div class="bento-tile surface sm:col-span-6 lg:col-span-8">
       <p class="text-xs font-semibold uppercase tracking-[0.28em] text-subtle">Core stack</p>
       <div class="mt-4 flex flex-wrap gap-2">
         {stack.map((tool) => <span class="chip text-xs">{tool}</span>)}
       </div>
-      <a
-        href="/resume#skills"
-        class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent-text hover:underline"
-      >
-        Full competency list on the resume →
-      </a>
     </div>
+
+    <a
+      href="/resume#skills"
+      class="bento-tile card-lift justify-between gap-6 bg-accent text-[color:var(--on-accent)] sm:col-span-6 lg:col-span-4"
+    >
+      <span class="text-xs font-bold uppercase tracking-[0.28em] opacity-90">Resume</span>
+      <span class="hero-title text-xl">Full competency list →</span>
+    </a>
   </div>
 </section>

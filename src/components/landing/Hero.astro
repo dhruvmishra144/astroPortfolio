@@ -1,76 +1,269 @@
 ---
 /**
- * Landing hero.
+ * Landing hero — editorial composition.
  *
- * The old version listed three job titles (Product Designer · UX Strategist ·
- * Front-End) which read as three competing identities rather than one claim.
- * The h1 now makes a single claim and the line under it names the practices as
- * services under that claim.
+ * The claim is unchanged: "I design complex software, then I build it" is the
+ * Design Engineer position, and the copy under it is the existing copy. What
+ * changed is composition. The old hero centred everything at one scale, which
+ * is the default SaaS shape. This one is left-aligned and type-led:
  *
- * That h1 — "I design complex software, then I build it" — was already the
- * Design Engineer claim before the title caught up to it. Nothing about it
- * needed to change; only the line underneath, which used to hedge back toward
- * "product design, UX architecture".
+ *  - the h1 is the visual. It is set large and broken on purpose into three
+ *    lines, with the last line ("then I build it.") stepped in and set in the
+ *    accent, so the sentence's turn — design, *then* build — is something you
+ *    see, not just read;
+ *  - a hairline rule splits the screen into the claim above and the evidence
+ *    below, on an asymmetric 7/5 split rather than a centred stack;
+ *  - the evidence is one real fact, pulled from src/data/projects.ts rather
+ *    than retyped, so the hero can never claim a number the case study does
+ *    not. If that data changes, this follows it.
+ *
+ * Deliberately not numbered 01/02/03: Capabilities.astro explains why this
+ * site avoids sequence markers. The backdrop (fluted glass over one blob) is
+ * HeroFlutes.astro, rendered by the page rather than here because it runs edge
+ * to edge and this section sits inside the clipped page container.
  */
-import SonarGrid from './SonarGrid.astro';
+import { projects } from '../../data/projects';
+
+const latest = projects.find((p) => p.featured) ?? projects[0];
+const headlineMetric = latest?.metrics[0];
 ---
 
-<section class="page-section relative flex min-h-[78vh] flex-col items-center justify-center text-center">
-  {/*
-    Full-viewport-width host so the grid runs edge to edge while the hero copy
-    stays inside page-shell. The canvas measures this element, so it has to be
-    the thing that is 100vw — not the canvas stretched past its parent.
-  */}
-  <div class="hero-sonar" aria-hidden="true">
-    <SonarGrid />
-  </div>
-
-  <p
-    data-hero
-    class="mb-8 text-[0.7rem] font-bold uppercase tracking-[0.36em] text-accent-text"
-  >
-    India · Working globally · Open for 2026
+<section class="page-section hero relative">
+  <p data-hero class="hero-eyebrow">
+    <span>India · Working globally · Open for 2026</span>
   </p>
 
   {/*
-    No font-weight class on the h1: Paytone One ships a single 400 cut, so the
-    `font-light` that used to be here rendered identically to 400 and only
-    misled the next reader.
+    No font-weight class on the h1: Paytone One ships a single 400 cut, so a
+    weight utility would render identically and only mislead the next reader.
+    The outer spans are block-level masks for the deliberate line breaks; the
+    whitespace between them keeps the heading's text content reading as one
+    sentence. Each line's inner span is what the GSAP intro slides up through
+    its mask (see the script below). No data-hero on the h1 itself: the lines
+    animate individually, so the block must not also fade as one.
   */}
-  <h1
-    data-hero
-    class="hero-title text-balance text-4xl leading-[1.02] text-foreground sm:text-6xl lg:text-7xl"
-  >
-    I design complex software, <span class="text-accent-text">then I build it.</span>
+  <h1 class="hero-title" data-hero-title>
+    <span class="hero-line"><span class="hero-line-inner">I design</span></span>{' '}
+    <span class="hero-line"><span class="hero-line-inner">complex software,</span></span>{' '}
+    <span class="hero-line hero-line-turn"><span class="hero-line-inner">then I build it.</span></span>
   </h1>
 
-  <p data-hero class="mx-auto mt-6 max-w-2xl text-base text-muted sm:text-lg">
-    Design Engineer. Interface architecture, design systems, and the production front-end
-    that ships them.
-  </p>
+  <div class="hero-lower">
+    <div class="hero-copy">
+      <p data-hero class="text-base text-muted sm:text-lg">
+        Design Engineer. Interface architecture, design systems, and the production front-end
+        that ships them.
+      </p>
 
-  <p data-hero class="mx-auto mt-6 max-w-2xl text-sm leading-7 text-subtle sm:text-base sm:leading-8">
-    Ten years making intimidating enterprise software — iPaaS, agentic AI, WealthTech — into
-    products people will actually open. I do the strategy, the system, and the code that ships,
-    which means fewer handoffs and no gap between the design and what gets built.
-  </p>
+      <p data-hero class="mt-5 max-w-xl text-sm leading-7 text-subtle sm:text-base sm:leading-8">
+        Ten years making intimidating enterprise software — iPaaS, agentic AI, WealthTech — into
+        products people will actually open. I do the strategy, the system, and the code that ships,
+        which means fewer handoffs and no gap between the design and what gets built.
+      </p>
 
-  <div data-hero class="mt-10 flex flex-wrap items-center justify-center gap-3">
-    <a href="#work" class="button-primary px-6 py-3 text-sm">See my work</a>
-    <a href="/resume" class="button-secondary px-6 py-3 text-sm">
-      Read the resume
-    </a>
+      <div data-hero class="mt-9 flex flex-wrap items-center gap-3">
+        <a href="#work" class="button-primary px-6 py-3 text-sm">See my work</a>
+        <a href="/resume" class="button-secondary px-6 py-3 text-sm">Read the resume</a>
+      </div>
+    </div>
+
+    {
+      latest && headlineMetric && (
+        <a data-hero href={latest.href} class="hero-latest">
+          <span class="hero-latest-label">Latest shipped</span>
+          <span class="hero-latest-figure">
+            <span class="hero-latest-value">{headlineMetric.value}</span>
+            <span class="hero-latest-unit">{headlineMetric.label}</span>
+          </span>
+          <span class="hero-latest-title">
+            {latest.title}
+            <span class="hero-latest-arrow" aria-hidden="true">→</span>
+          </span>
+          <span class="hero-latest-meta">
+            {latest.status} · {latest.category}
+          </span>
+        </a>
+      )
+    }
   </div>
 </section>
 
 <style>
-  .hero-sonar {
-    position: absolute;
-    inset-block: 0;
-    left: 50%;
-    width: 100vw;
-    transform: translateX(-50%);
-    z-index: -1;
-    pointer-events: none;
+  /* Open hero, no tile: no border, fill or shadow of its own. */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(1.75rem, 4vw, 3rem);
+    min-height: min(88svh, 62rem);
+  }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.36em;
+    color: var(--accent-text);
+  }
+
+  /* The rule is the eyebrow's own, so it can never drift from the text. */
+  .hero-eyebrow::after {
+    content: '';
+    flex: 1;
+    max-width: 16rem;
+    height: 1px;
+    background: var(--border-strong);
+  }
+
+  .hero-title {
+    font-family: 'Paytone One', serif;
+    font-size: clamp(2.25rem, 8.2vw, 7.75rem);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+    color: var(--foreground);
+    text-wrap: balance;
+  }
+
+  /* Mask for the intro: clips the inner span while it slides up. The vertical
+     padding/negative margin pair gives descenders (p, g, comma) room so they
+     are not sliced, without changing the line spacing. */
+  .hero-line {
+    display: block;
+    overflow: hidden;
+    padding-block: 0.08em;
+    margin-block: -0.08em;
+  }
+
+  .hero-line-inner {
+    display: inline-block;
+  }
+
+  .hero-line-turn {
+    color: var(--accent-text);
+  }
+
+  .hero-lower {
+    display: grid;
+    gap: clamp(2rem, 5vw, 3rem);
+    padding-top: clamp(1.75rem, 4vw, 2.75rem);
+    border-top: 1px solid var(--border-strong);
+  }
+
+  .hero-copy {
+    max-width: 38rem;
+  }
+
+  .hero-latest {
+    display: grid;
+    gap: 0.35rem;
+    align-content: start;
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--accent);
+    color: var(--foreground);
+    text-decoration: none;
+  }
+
+  .hero-latest-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.36em;
+    color: var(--subtle);
+  }
+
+  .hero-latest-figure {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-top: 0.4rem;
+  }
+
+  .hero-latest-value {
+    font-family: 'Paytone One', serif;
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--accent-text);
+  }
+
+  .hero-latest-unit {
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+
+  .hero-latest-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    font-family: 'Paytone One', serif;
+    font-size: 1.35rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-latest-arrow {
+    display: inline-block;
+    transition: transform 0.25s ease;
+  }
+
+  .hero-latest:hover .hero-latest-arrow,
+  .hero-latest:focus-visible .hero-latest-arrow {
+    transform: translateX(4px);
+  }
+
+  .hero-latest-meta {
+    font-size: 0.8rem;
+    color: var(--subtle);
+  }
+
+  @media (min-width: 768px) {
+    /* The turn of the sentence steps in; the indent is what makes the three
+       lines a composition rather than a left-aligned paragraph. */
+    .hero-line-turn {
+      padding-left: clamp(2rem, 12vw, 11rem);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-lower {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      align-items: end;
+    }
+
+    .hero-copy {
+      grid-column: 1 / span 7;
+    }
+
+    .hero-latest {
+      grid-column: 9 / span 4;
+    }
   }
 </style>
+
+<script>
+  import gsap from 'gsap';
+
+  /*
+   * Headline intro: each line slides up through its own mask, staggered, then
+   * the rest of the hero follows via initReveal's [data-hero] pass. Nothing is
+   * hidden in CSS beforehand, so if JS fails or motion is reduced the headline
+   * is simply already there.
+   */
+  const lines = gsap.utils.toArray<HTMLElement>('[data-hero-title] .hero-line-inner');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (lines.length && !reduced) {
+    gsap.from(lines, {
+      yPercent: 115,
+      duration: 1,
+      stagger: 0.12,
+      ease: 'power4.out',
+      delay: 0.05,
+      // Release inline transforms so the finished headline is plain layout.
+      clearProps: 'transform',
+    });
+  }
+</script>

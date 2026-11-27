@@ -1,23 +1,39 @@
 ---
-
+/**
+ * Closing call to action, as a bento: a wide statement tile carrying the ask,
+ * with the contact route and the resume as two smaller tiles beside it.
+ */
 ---
 
 <footer class="page-shell pb-20">
-  <div class="surface-strong mx-auto flex max-w-4xl flex-col items-center gap-6 rounded-[2rem] px-6 py-10 text-center sm:px-10 sm:py-12">
-    <img class="mb-1" width="56" height="56" src="/chat.svg" alt="Let's connect" />
-    <div class="space-y-3">
-      <p class="section-label justify-center">Start a conversation</p>
-      <h3 class="hero-title text-3xl text-balance text-foreground sm:text-4xl">
-        Have something complex that needs to ship?
-      </h3>
-      <p class="mx-auto max-w-2xl text-sm text-muted sm:text-base">
-        I take on interface architecture, design systems, and front-end builds — usually where
-        the problem is tangled and the team wants one person who can do the thinking and the
-        building. Tell me what is broken.
-      </p>
+  <div class="grid grid-cols-1 gap-4 lg:grid-cols-12">
+    <div class="bento-tile surface-strong gap-6 sm:p-10 lg:col-span-8">
+      <span class="chat-icon" role="img" aria-label="Let's connect"></span>
+      <div class="space-y-3">
+        <p class="section-label">Start a conversation</p>
+        <h3 class="hero-title text-3xl text-balance text-foreground sm:text-4xl">
+          Have something complex that needs to ship?
+        </h3>
+        <p class="max-w-2xl text-sm text-muted sm:text-base">
+          I take on interface architecture, design systems, and front-end builds — usually where
+          the problem is tangled and the team wants one person who can do the thinking and the
+          building. Tell me what is broken.
+        </p>
+      </div>
     </div>
-    <a href="/contact" class="button-primary px-6 py-3 text-sm">
-      Start a conversation
-    </a>
+
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-4 lg:grid-cols-1">
+      <a
+        href="/contact"
+        class="bento-tile card-lift justify-between gap-6 bg-accent text-[color:var(--on-accent)]"
+      >
+        <span class="text-xs font-bold uppercase tracking-[0.28em] opacity-90">Contact</span>
+        <span class="hero-title text-2xl">Start a conversation →</span>
+      </a>
+      <a href="/resume" class="bento-tile surface card-lift justify-between gap-6">
+        <span class="text-xs font-bold uppercase tracking-[0.28em] text-subtle">Resume</span>
+        <span class="hero-title text-2xl text-foreground">Read the resume →</span>
+      </a>
+    </div>
   </div>
 </footer>

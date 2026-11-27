@@ -9,7 +9,6 @@
  *
  * `withheld` is empty by default on purpose — see the note in data/reviews.ts.
  */
-import QuoteBlock from '../story/QuoteBlock.astro';
 import {
   clientQuote,
   googleRating,
@@ -36,32 +35,44 @@ const tints = ['a', 'b', 'c', 'd'] as const;
 ---
 
 <section id="signal" data-reveal class="page-section scroll-mt-24">
-  <div class="mb-4 max-w-2xl">
+  <div class="mb-10 max-w-2xl">
     <p class="section-label">Signal</p>
     <h2 class="section-title mt-4 text-3xl text-foreground sm:text-4xl">
       What the people who paid for the work say.
     </h2>
   </div>
 
-  <QuoteBlock quote={lead.quote} name={lead.name} role={lead.context} />
+  {/* Bento: the lead quote is the big tile, the rating sits beside it, and
+      each review is its own tile below. */}
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-6 lg:grid-cols-12">
+    <figure class="bento-tile surface-strong justify-between gap-8 sm:col-span-6 lg:col-span-8">
+      <blockquote class="hero-title text-balance text-2xl leading-snug text-foreground sm:text-3xl">
+        “{lead.quote}”
+      </blockquote>
+      <figcaption class="text-sm text-subtle">
+        <span class="font-semibold text-foreground">{lead.name}</span>
+        {lead.context && <span> — {lead.context}</span>}
+      </figcaption>
+    </figure>
 
-  <a
-    href={rating.href}
-    target="_blank"
-    rel="noopener noreferrer"
-    class="surface inline-flex items-center gap-3 rounded-full px-5 py-3 hover:border-accent"
-  >
-    <span class="text-lg font-bold text-accent-text">{rating.value} ★</span>
-    <span class="text-sm font-medium text-foreground">{rating.label}</span>
-    <span class="text-xs text-subtle">Read the reviews ↗</span>
-  </a>
+    <a
+      href={rating.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="bento-tile card-lift justify-between gap-6 bg-accent text-[color:var(--on-accent)] sm:col-span-6 lg:col-span-4"
+    >
+      <span class="hero-title text-5xl sm:text-6xl">{rating.value} ★</span>
+      <span>
+        <span class="block text-sm font-semibold">{rating.label}</span>
+        <span class="mt-1 block text-xs opacity-90">Read the reviews ↗</span>
+      </span>
+    </a>
 
-  <div class="mt-8 grid gap-4 md:grid-cols-3">
     {
       reviews.map((review, i) => (
         <figure
           class:list={[
-            'surface flex flex-col rounded-[1.5rem] p-6',
+            'bento-tile surface sm:col-span-2 lg:col-span-4',
             `surface-tint-${tints[i % tints.length]}`,
           ]}
         >

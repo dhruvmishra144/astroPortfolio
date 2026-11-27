@@ -32,36 +32,32 @@ import { socialLinks } from "../data/socialLinks";
         </div>
       </div>
 
-      <div class="surface rounded-[2rem] p-4 sm:p-6">
-        <div class="grid gap-4">
-          {
-            socialLinks.map(({ name, href, icon }) => (
-              <a
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="group flex items-center justify-between rounded-[1.5rem] border border-border bg-surface p-5 hover:border-accent hover:bg-surface"
-              >
-                <div class="flex items-center gap-4">
-                  <div class="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-background text-accent-text">
-                    <Icon name={`${icon}-fill`} class="text-3xl lg:text-4xl" />
-                  </div>
-                  <div>
-                    <p class="text-lg font-medium text-foreground">{name}</p>
-                  </div>
-                </div>
+      {/* Bento: the form is the large tile, each channel a small one. */}
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bento-tile surface-strong col-span-2">
+          <div id="lead-form"></div>
+        </div>
+        {
+          socialLinks.map(({ name, href, icon }) => (
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bento-tile surface card-lift group col-span-2 justify-between gap-6 sm:col-span-1"
+            >
+              <div class="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-background text-accent-text">
+                <Icon name={`${icon}-fill`} class="text-3xl" />
+              </div>
+              <div class="flex items-center justify-between gap-3">
+                <p class="text-lg font-medium text-foreground">{name}</p>
                 <Icon
                   name="arrow-right-thin"
                   class="text-2xl text-subtle transition-transform duration-300 group-hover:translate-x-1 group-hover:text-accent-text"
                 />
-              </a>
-            ))
-          }
-
-          <div class="rounded-[1.5rem] border border-border bg-surface p-5 sm:p-6">
-            <div id="lead-form"></div>
-          </div>
-        </div>
+              </div>
+            </a>
+          ))
+        }
       </div>
     </section>
   </main>

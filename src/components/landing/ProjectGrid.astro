@@ -6,8 +6,10 @@
  * and adding project 02 is a single object append with `featured: false` — the
  * compact branch below is already typed and waiting for it.
  *
- * The featured card answers what / for whom / why, with impact visible without
- * clicking through. Every metric shown is substantiated inside the case study.
+ * The featured project is a bento cluster rather than one long card: the
+ * screenshot, the summary, the problem/outcome and each metric get their own
+ * tile, so the proof reads at a glance with impact visible without clicking
+ * through. Every metric shown is substantiated inside the case study.
  */
 import { projects } from '../../data/projects';
 
@@ -32,94 +34,102 @@ const secondary = projects.filter((p) => !p.featured);
     </p>
   </div>
 
-  <div class="grid grid-cols-1 gap-4 lg:grid-cols-6">
+  {/*
+    12 columns on desktop, 6 on tablet, one on phones. The title is a stretched
+    link, so the whole summary tile is clickable while the screenshot tile
+    (a second link to the same place) stays out of the tab order and the
+    accessibility tree.
+  */}
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-6 lg:grid-cols-12">
     {
       featured.map((project) => (
-        <a
-          href={project.href}
-          class:list={[
-            'surface card-lift group relative overflow-hidden rounded-[1.75rem] lg:col-span-6',
-            !project.image && project.tint && `surface-tint-${project.tint}`,
-          ]}
-        >
-          <div class="flex flex-col">
-            {/*
-              Full-width banner rather than a side column: these are 1200x800
-              desktop captures, and a narrow portrait column crops them
-              mid-sentence. Rendered only when the project has a real image —
-              a stretched or off-brand placeholder costs more credibility than
-              an honest text-forward card.
-            */}
-            {project.image && (
-              <div class="relative overflow-hidden border-b border-border">
-                <img
-                  src={project.image}
-                  alt={project.imageAlt}
-                  loading="lazy"
-                  width="1200"
-                  height="800"
-                  class="h-52 w-full object-cover object-top sm:h-72 lg:h-80"
-                />
-              </div>
-            )}
+        <>
+          {project.image && (
+            <a
+              href={project.href}
+              tabindex="-1"
+              aria-hidden="true"
+              class="bento-tile bento-tile-flush surface card-lift min-h-64 sm:col-span-6 lg:col-span-7 lg:row-span-2"
+            >
+              <img
+                src={project.image}
+                alt=""
+                loading="lazy"
+                width="1200"
+                height="800"
+                class="absolute inset-0 h-full w-full object-cover object-top"
+              />
+            </a>
+          )}
 
-            <div class="flex flex-col p-7 sm:p-9">
-              <div class="flex flex-wrap items-center gap-3">
-                <span class="chip px-3 py-1 text-[0.7rem]">{project.index} · {project.status}</span>
-                <span class="text-xs uppercase tracking-[0.2em] text-subtle">
-                  {project.category} · {project.categorySub}
-                </span>
-              </div>
-
-              <h3 class="hero-title mt-5 text-2xl text-foreground sm:text-3xl">
-                {project.title}
-              </h3>
-
-              <p class="mt-2 text-sm font-semibold text-accent-text">{project.forWhom}</p>
-
-              <div class="max-w-3xl">
-                <p class="mt-5 text-sm leading-7 text-muted">{project.problem}</p>
-                <p class="mt-4 text-sm leading-7 text-foreground">{project.outcome}</p>
-              </div>
-
-              <div class="mt-6 flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span class="chip px-3 py-1 text-[0.7rem]">{tag}</span>
-                ))}
-              </div>
-
-              {/*
-                mt-8, not mt-auto: this element draws the divider, and mt-auto
-                collapses to 0 when the flex column has no free space, which put
-                the rule flush against the tag chips above.
-              */}
-              <dl class="mt-8 grid grid-cols-1 gap-4 border-t border-border pt-6 sm:grid-cols-3">
-                {project.metrics.map((metric) => (
-                  <div>
-                    <dt class="sr-only">{metric.label}</dt>
-                    <dd>
-                      <span class="hero-title block text-2xl text-accent-text sm:text-3xl">
-                        {metric.value}
-                      </span>
-                      <span class="mt-1 block text-[0.7rem] uppercase tracking-[0.16em] text-subtle">
-                        {metric.label}
-                      </span>
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-
-              {project.metricsNote && (
-                <p class="mt-4 max-w-3xl text-xs leading-6 text-subtle">{project.metricsNote}</p>
-              )}
-
-              <span class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-transform group-hover:translate-x-1">
-                Read case study
-                <Fragment set:html={arrow} />
+          <article
+            class:list={[
+              'bento-tile surface-strong card-lift group sm:col-span-6',
+              project.image ? 'lg:col-span-5' : 'lg:col-span-12',
+            ]}
+          >
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="chip px-3 py-1 text-[0.7rem]">
+                {project.index} · {project.status}
+              </span>
+              <span class="text-xs uppercase tracking-[0.2em] text-subtle">
+                {project.category} · {project.categorySub}
               </span>
             </div>
+            <h3 class="hero-title mt-5 text-2xl text-foreground sm:text-3xl">
+              <a href={project.href} class="after:absolute after:inset-0 after:content-['']">
+                {project.title}
+              </a>
+            </h3>
+            <p class="mt-2 text-sm font-semibold text-accent-text">{project.forWhom}</p>
+            <div class="mt-5 flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <span class="chip px-3 py-1 text-[0.7rem]">{tag}</span>
+              ))}
+            </div>
+            <span class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-transform group-hover:translate-x-1">
+              Read case study
+              <Fragment set:html={arrow} />
+            </span>
+          </article>
+
+          <div
+            class:list={[
+              'bento-tile surface sm:col-span-6',
+              project.tint && `surface-tint-${project.tint}`,
+              project.image ? 'lg:col-span-5' : 'lg:col-span-12',
+            ]}
+          >
+            <p class="text-xs font-bold uppercase tracking-[0.28em] text-subtle">The problem</p>
+            <p class="mt-3 text-sm leading-7 text-muted">{project.problem}</p>
+            <p class="mt-5 text-xs font-bold uppercase tracking-[0.28em] text-subtle">
+              What shipped
+            </p>
+            <p class="mt-3 text-sm leading-7 text-foreground">{project.outcome}</p>
           </div>
-        </a>
+
+          {project.metrics.map((metric) => (
+            <div class="bento-tile surface justify-between gap-6 sm:col-span-2 lg:col-span-4">
+              <dl>
+                <dt class="sr-only">{metric.label}</dt>
+                <dd>
+                  <span class="hero-title block text-4xl text-accent-text sm:text-5xl">
+                    {metric.value}
+                  </span>
+                  <span class="mt-2 block text-[0.7rem] uppercase tracking-[0.16em] text-subtle">
+                    {metric.label}
+                  </span>
+                </dd>
+              </dl>
+            </div>
+          ))}
+
+          {project.metricsNote && (
+            <p class="px-2 text-xs leading-6 text-subtle sm:col-span-6 lg:col-span-12">
+              {project.metricsNote}
+            </p>
+          )}
+        </>
       ))
     }
 
@@ -128,9 +138,9 @@ const secondary = projects.filter((p) => !p.featured);
         <a
           href={project.href}
           class:list={[
-            'surface card-lift group flex flex-col rounded-[1.75rem] p-7',
+            'bento-tile surface card-lift group sm:col-span-3',
             project.tint && `surface-tint-${project.tint}`,
-            project.span ?? 'lg:col-span-3',
+            project.span ?? 'lg:col-span-6',
           ]}
         >
           <div class="flex items-center gap-3">
